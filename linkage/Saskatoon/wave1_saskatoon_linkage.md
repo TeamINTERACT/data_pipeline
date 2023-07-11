@@ -15,7 +15,7 @@ Reading in the data. Here we are reading in two files
 
 ``` r
 setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
-skt_w1 <- read_delim("linkage_for_ingest_skt_w1.csv", delim = ";")
+skt <- read_delim("linkage_for_ingest_skt_w1.csv", delim = ";")
 ```
 
     ## Rows: 401 Columns: 14
@@ -42,7 +42,7 @@ lut_skt <- read_delim("lut_skt.csv", delim = ",")
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 ``` r
-skt <- full_join(skt_w1, lut_skt, by="interact_id")
+skt_w1 <- full_join(skt, lut_skt, by="interact_id")
 ```
 
 ## Ethica test accounts
@@ -78,13 +78,13 @@ Here we are adding the Treksoft (Health and VERITAS) IDs to the data.
 These are `treksoft_pid` and `treksoft_uid`.
 
 ``` r
-city <- select(skt, interact_id, treksoft_pid, treksoft_uid, ethica_id.x, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, dropout, data_disposition, test)
+skt_w1 <- select(skt_w1, interact_id, treksoft_pid, treksoft_uid, ethica_id.x, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, dropout, data_disposition, test)
 ```
 
 ### Rename ethica
 
 ``` r
-city <- rename (city, ethica_id = ethica_id.x)
+skt_w1 <- rename(skt_w1, ethica_id = ethica_id.x)
 ```
 
 ### Flag Ethica test
@@ -92,7 +92,7 @@ city <- rename (city, ethica_id = ethica_id.x)
 Here we create a 0/1 flag for Ethica test accounts.
 
 ``` r
-city <- city %>%
+skt_w1 <- skt_w1 %>%
   mutate(test = ifelse(ethica_id %in% ethica_tests, 1, 0)) 
 ```
 
@@ -106,12 +106,12 @@ Here we add the columns
 -   `wave`: The wave ID for the study.
 
 ``` r
-city$plg_id <- ""
-city$wave <- "1"
+skt_w1$plg_id <- NA
+skt_w1$wave <- 1
 ```
 
 ## Write clean csv file
 
 ``` r
-write.csv(city, file= "linkage_skt_w1.csv")
+write.csv(skt_w1, file = "linkage_skt_w1.csv")
 ```
