@@ -4,10 +4,10 @@ The INTerventions, Equity, Research, and Action in Cities Team (INTERACT ) is a 
 ## Data collected
 Participants provide data via these sources     
 
-- Participation meta-data
-    - __Linkage Files__: For each data source, participants are assigned an ID. These are tracked through the city's linkage file (one linkage file per city, per wave)
+- Linkage
+    - __Linkage__: Participation meta-data for each data source, participants are assigned an ID. These are tracked through the city's linkage file (one linkage file per city, per wave)
 - Surveys (Polygon): 
-    - __Health Questionnaire__: The health questionnaire features questions on INTERACT’s key health outcomes (physical activity, social connectedness, and well-being), mobility, socio-demographic data, and neighbourhood
+    - __Health__: The health questionnaire features questions on INTERACT’s key health outcomes (physical activity, social connectedness, and well-being), mobility, socio-demographic data, and neighbourhood
     - __VERITAS (Visualisation, Evaluation and Recording of Itineraries and Activity Spaces)__: is a map-based survey that aims to collect data to help understand the complex interactions between daily mobility, social networks, and urban environments. These questions are asked across all sites.
 - SenseDoc
     - __Sensedoc__: The SenseDoc is a research grade multisensor device used for mobility (GPS) and physical activity (accelerometer) tracking. These data are collected continuously and allow us to measure location-based physical activity and infer transportation mode.
@@ -19,7 +19,8 @@ Participants provide data via these sources
         4. Pedometer
         5. Battery
         6. Accelerometer data
-        7. Ecological momentary assessment (EMA- Questions are different from city to city)
+- EMA (Ethica)
+    - __Ecological momentary assessment__ (EMA- Questions are different from city to city) collected from Ethica data. They have their own folder because the data are a different format from the rest of the Ethica data and require bespoke data wrangling. 
 
 See Folders for each data source. 
 ## Pipeline
