@@ -3,7 +3,7 @@ title: "Wave 1 Saskatoon Linkage"
 author: "Daniel Fuller"
 output:
   github_document:
-    keep_html: true
+    keep_html: false
 ---
 
 ```{r setup, include=FALSE}
