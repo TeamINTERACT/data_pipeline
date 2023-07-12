@@ -19,3 +19,4 @@ Linkage files are in the specific folders or find links to them here
 | Victoria | 2 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Victoria/wave2_victoria_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Victoria/wave2_victoria_linkage.md) |
 | Victoria | 3 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Victoria/wave3_victoria_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Victoria/wave3_victoria_linkage.md) |
 
+The final check for the linkage files are [here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Linkage%20Check.Rmd). This file checks the variable names and types and ensures that the data for each wave can be bound together and all of the cities and waves can be bound together.
