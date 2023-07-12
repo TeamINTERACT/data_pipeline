@@ -201,6 +201,15 @@ van_w3$treksoft_pid <- NA
 van_w3$treksoft_uid <- NA
 van_w3$spam_participant <- NA
 van_w3$wave <- 3
+
+van_w3$interact_id <- as.numeric(van_w3$interact_id)
+```
+
+    ## Warning: NAs introduced by coercion
+
+``` r
+van_w3$treksoft_pid <- as.numeric(van_w3$treksoft_pid)
+van_w3$treksoft_uid <- as.numeric(van_w3$treksoft_uid)
 ```
 
 ### Selecting variables

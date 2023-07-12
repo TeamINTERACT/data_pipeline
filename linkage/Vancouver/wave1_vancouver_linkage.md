@@ -88,7 +88,17 @@ van_w1 <- van_w1 %>%
 van_w1$plg_id <- NA
 van_w1$spam_participant <- NA
 van_w1$wave <- 1
+
+van_w1$treksoft_pid <- as.numeric(van_w1$treksoft_pid)
 ```
+
+    ## Warning: NAs introduced by coercion
+
+``` r
+van_w1$treksoft_uid <- as.numeric(van_w1$treksoft_uid)
+```
+
+    ## Warning: NAs introduced by coercion
 
 ### Selecting variables
 
