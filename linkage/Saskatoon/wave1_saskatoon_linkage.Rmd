@@ -22,10 +22,6 @@ Reading in the data. Here we are reading in two files
 - `linkage_for_ingest_skt_w1.csv` which is our main file
 - `lut_skt.csv` which is a look up table for looking up previous versions of the health and VERITAS ID variables. These will not be used after Wave 1. 
 
-```{r, eval = FALSE, echo = FALSE}
-setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
-```
-
 ```{r}
 setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
 skt <- read_delim("linkage_for_ingest_skt_w1.csv", delim = ";")
@@ -47,18 +43,6 @@ ethica_tests <- c("1451", "2036",
                   "12617", "1470",
                   "4579", "5367",
                   "5399","3962")
-```
-
-## Cleaning up dates
-
-There are problems with SD dates in Saskatoon Wave 1  
-
-- this file: `linkage_for_ingest_skt_w1.csv` has wrongly encoded dates, but generally 9 day periods. Dates in 2010. This is what Jeff used. I believe this is correct data. 
-- this file: `Participant_Tracking_SASK_W1-norm-filtered-redated.csv` has 11-day SD periods, correctly encoded, but I think are the wrong dates. Just an automated +11 rule on excel. 
-
-```{r}
-
-
 ```
 
 ### Add treksoft IDs 

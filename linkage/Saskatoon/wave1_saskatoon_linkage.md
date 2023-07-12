@@ -21,9 +21,10 @@ skt <- read_delim("linkage_for_ingest_skt_w1.csv", delim = ";")
     ## Rows: 401 Columns: 14
     ## ── Column specification ────────────────────────────────────────────────────────
     ## Delimiter: ";"
-    ## chr (6): sd_start_1, sd_end_1, sd_start_2, sd_end_2, notes, data_disposition
-    ## dbl (4): interact_id, ethica_id, sd_id_1, sd_id_2
-    ## lgl (4): sd_firmware_1, sd_firmware_2, test, dropout
+    ## chr  (2): notes, data_disposition
+    ## dbl  (4): interact_id, ethica_id, sd_id_1, sd_id_2
+    ## lgl  (4): sd_firmware_1, sd_firmware_2, test, dropout
+    ## date (4): sd_start_1, sd_end_1, sd_start_2, sd_end_2
     ## 
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -60,17 +61,6 @@ ethica_tests <- c("1451", "2036",
                   "4579", "5367",
                   "5399","3962")
 ```
-
-## Cleaning up dates
-
-There are problems with SD dates in Saskatoon Wave 1
-
--   this file: `linkage_for_ingest_skt_w1.csv` has wrongly encoded
-    dates, but generally 9 day periods. Dates in 2010. This is what Jeff
-    used. I believe this is correct data.
--   this file: `Participant_Tracking_SASK_W1-norm-filtered-redated.csv`
-    has 11-day SD periods, correctly encoded, but I think are the wrong
-    dates. Just an automated +11 rule on excel.
 
 ### Add treksoft IDs
 
