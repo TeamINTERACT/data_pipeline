@@ -29,7 +29,8 @@ mtl_w2 <- read_delim("linkage_for_ingest_mtl_w2.csv", delim = ",")
 ### Rename variables
 
 ``` r
-mtl_w2 <- rename(mtl_w2, sd_id_1 = sensedoc1_id,
+mtl_w2 <- rename(mtl_w2, 
+                 sd_id_1 = sensedoc1_id,
                 ethica_start = ethica_start_date, 
                 ethica_end = ethica_end_date,
                 sd_start_1 = sensedoc1_wear_start_date,
@@ -68,6 +69,8 @@ mtl_w2$treksoft_uid <- NA
 mtl_w2$plg_id <- NA
 mtl_w2$spam_participant <- NA
 mtl_w2$wave <- 2
+
+mtl_w2$sd_id_1 <- as.numeric(mtl_w2$sd_id_1)
 ```
 
 ### Selecting variables

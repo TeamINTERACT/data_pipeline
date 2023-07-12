@@ -1,0 +1,104 @@
+---
+title: "Linkage File Check"
+author: "Daniel Fuller"
+output:
+  github_document:
+    keep_html: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(janitor)
+```
+
+## Check linkage files
+
+This code provides some high level checks for the linkage files related to variable names, types, appending, and working with the data. 
+
+```{r}
+setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
+
+skt_w1 <- read_csv("linkage_skt_w1.csv")
+skt_w2 <- read_csv("linkage_skt_w2.csv")
+skt_w3 <- read_csv("linkage_skt_w3.csv")
+
+mtl_w1 <- read_csv("linkage_mtl_w1.csv")
+mtl_w2 <- read_csv("linkage_mtl_w2.csv")
+mtl_w3 <- read_csv("linkage_mtl_w3.csv")
+
+van_w1 <- read_csv("linkage_van_w1.csv")
+van_w2 <- read_csv("linkage_van_w2.csv")
+van_w3 <- read_csv("linkage_van_w3.csv")
+
+vic_w1 <- read_csv("linkage_vic_w1.csv")
+vic_w2 <- read_csv("linkage_vic_w2.csv")
+vic_w3 <- read_csv("linkage_vic_w3.csv")
+```
+
+All datasets have 19 variables. 
+
+## Compare column types
+
+### Saskatoon
+
+```{r}
+compare_df_cols(skt_w1, skt_w2, return = "mismatch")
+compare_df_cols(skt_w1, skt_w3, return = "mismatch")
+compare_df_cols(skt_w2, skt_w3, return = "mismatch")
+
+skt_all_waves <- bind_rows(skt_w1, skt_w2, skt_w3)
+```
+
+`bind_rows` seems to work alright so I'm going to leave this as is. Most of the mismatch is coming from the variables we add that are in wave 1 but not in waves 2 or 3. 
+
+### Montreal
+
+```{r}
+compare_df_cols(mtl_w1, mtl_w2, return = "mismatch")
+compare_df_cols(mtl_w1, mtl_w3, return = "mismatch")
+compare_df_cols(mtl_w2, mtl_w3, return = "mismatch")
+
+mtl_all_waves <- bind_rows(mtl_w1, mtl_w2, mtl_w3)
+```
+
+I had to go back and fix the Montreal W2 linkage file because for some reason it was writing the `sd_id_1` variable as character. 
+
+### Vancouver
+
+```{r}
+compare_df_cols(van_w1, van_w2, return = "mismatch")
+compare_df_cols(van_w1, van_w3, return = "mismatch")
+compare_df_cols(van_w2, van_w3, return = "mismatch")
+
+van_all_waves <- bind_rows(van_w1, van_w2, van_w3)
+```
+
+I had to go back and fix the Vancouver W3 linkage file because for some reason it was writing the `sd_id_1`, `sd_id_2`, and `interact_id` variables as character. 
+
+### Victoria
+
+```{r}
+compare_df_cols(vic_w1, vic_w2, return = "mismatch")
+compare_df_cols(vic_w1, vic_w3, return = "mismatch")
+compare_df_cols(vic_w2, vic_w3, return = "mismatch")
+
+vic_all_waves <- bind_rows(vic_w1, vic_w2, vic_w3)
+```
+
+I had to go back and fix the Victoria W1 linkage file because the `sd_end_2`, `sd_start_2` variables were character. 
+
+### Binding everything together
+
+```{r}
+compare_df_cols(skt_all_waves, mtl_all_waves, return = "mismatch")
+compare_df_cols(skt_all_waves, van_all_waves, return = "mismatch")
+compare_df_cols(skt_all_waves, vic_all_waves, return = "mismatch")
+compare_df_cols(mtl_all_waves, van_all_waves, return = "mismatch")
+compare_df_cols(mtl_all_waves, vic_all_waves, return = "mismatch")
+compare_df_cols(van_all_waves, vic_all_waves, return = "mismatch")
+
+all_waves_cities <- bind_rows(skt_all_waves, mtl_all_waves, van_all_waves, vic_all_waves)
+```
+
+Had to fix a bunch of stuff with `treksoft_pid` and `treksoft_uid` for Vancouver and Victoria. Binding works now. 
