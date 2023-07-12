@@ -45,14 +45,6 @@ ethica_tests <- c("1451", "2036",
                   "5399","3962")
 ```
 
-### Add treksoft IDs 
-
-Here we are adding the Treksoft (Health and VERITAS) IDs to the data. These are `treksoft_pid` and `treksoft_uid`. 
-
-```{r}
-skt_w1 <- select(skt_w1, interact_id, treksoft_pid, treksoft_uid, ethica_id.x, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, dropout, data_disposition, test)
-```
-
 ### Rename ethica 
 
 ```{r}
@@ -77,7 +69,16 @@ Here we add the columns
 
 ```{r}
 skt_w1$plg_id <- NA
+skt_w1$spam_participant <- NA
 skt_w1$wave <- 1
+```
+
+### Add treksoft IDs 
+
+Here we are adding the Treksoft (Health and VERITAS) IDs to the data. These are `treksoft_pid` and `treksoft_uid`. 
+
+```{r}
+skt_w1 <- select(skt_w1, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, data_disposition, dropout, test, plg_id, spam_participant, wave)
 ```
 
 ## Write clean csv file

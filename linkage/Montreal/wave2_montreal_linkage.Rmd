@@ -39,12 +39,6 @@ mtl_w2 <- rename(mtl_w2, sd_id_1 = sensedoc1_id,
                 sd_end_2 = sensedoc2_wear_end_date)
 ```
 
-### Keeping variables
-
-```{r}
-mtl_w2 <- select(mtl_w2, interact_id, ethica_id, sd_id_1, sd_start_1, sd_end_1, sd_id_2, sd_start_2, sd_end_2, data_disposition)
-```
-
 ### Flag test accounts
 
 ```{r}
@@ -72,7 +66,14 @@ mtl_w2$dropout <- NA
 mtl_w2$treksoft_pid <- NA
 mtl_w2$treksoft_uid <- NA
 mtl_w2$plg_id <- NA
+mtl_w2$spam_participant <- NA
 mtl_w2$wave <- 2
+```
+
+### Selecting variables
+
+```{r}
+mtl_w2 <- select(mtl_w2, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, data_disposition, dropout, test, plg_id, spam_participant, wave)
 ```
 
 ### Write clean file

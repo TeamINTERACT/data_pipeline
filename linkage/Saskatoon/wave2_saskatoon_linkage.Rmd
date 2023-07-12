@@ -74,13 +74,12 @@ skt_w2$dropout <- NA
 skt_w2$treksoft_pid <- NA
 skt_w2$treksoft_uid <- NA
 skt_w2$plg_id <- NA
+skt_w2$spam_participant <- NA
 skt_w2$wave <- 2
 ```
 
-## Keeping columns
-
 ```{r}
-skt_w2 <- select(skt_w2, interact_id, ethica_id, sd_id_1, sd_start_1, sd_end_1, sd_id_2, sd_start_2, sd_end_2, data_disposition)
+skt_w2 <- select(skt_w2, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, data_disposition, dropout, test, plg_id, spam_participant, wave)
 ```
 
 ## Write clean csv file
