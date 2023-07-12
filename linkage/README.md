@@ -6,6 +6,9 @@ Linkage files are in the specific folders or find links to them here
 
 | City | Wave | .Rmd file | Rendered .md file |
 | ---- | ---- | --------- | ----------------- |
+| Vancouver | 1 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave1_vancouver_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave1_vancouver_linkage.md) |
+| Vancouver | 2 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave2_vancouver_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave2_vancouver_linkage.md) |
+| Vancouver | 3 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave3_vancouver_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave3_vancouver_linkage.md) |
 | Saskatoon | 1 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave1_saskatoon_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave1_saskatoon_linkage.md) |
 | Saskatoon | 2 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave2_saskatoon_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave2_saskatoon_linkage.md) |
 | Saskatoon | 3 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave3_saskatoon_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave3_saskatoon_linkage.md) |
