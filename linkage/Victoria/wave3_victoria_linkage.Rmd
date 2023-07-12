@@ -74,6 +74,9 @@ vic_w3$treksoft_uid <- NA
 vic_w3$plg_id <- NA
 vic_w3$spam_participant <- NA
 vic_w3$wave <- 3
+
+vic_w3$treksoft_pid <- as.numeric(vic_w3$treksoft_pid)
+vic_w3$treksoft_uid <- as.numeric(vic_w3$treksoft_uid)
 ```
 
 ### Selecting variables

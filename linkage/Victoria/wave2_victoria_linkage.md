@@ -100,6 +100,9 @@ vic_w2$dropout <- NA
 vic_w2$plg_id <- NA
 vic_w2$spam_participant <- NA
 vic_w2$wave <- 2
+
+vic_w2$treksoft_pid <- as.numeric(vic_w2$treksoft_pid)
+vic_w2$treksoft_uid <- as.numeric(vic_w2$treksoft_uid)
 ```
 
 ### Selecting variables

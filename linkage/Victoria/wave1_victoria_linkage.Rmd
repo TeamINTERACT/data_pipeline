@@ -108,6 +108,12 @@ vic_w1$plg_id <- NA
 vic_w1$dropout <- NA
 vic_w1$spam_participant <- NA
 vic_w1$wave <- 1
+
+vic_w1$sd_end_2 <- as.Date(vic_w1$sd_end_2)
+vic_w1$sd_start_2 <- as.Date(vic_w1$sd_start_2)
+
+vic_w1$treksoft_pid <- as.numeric(vic_w1$treksoft_pid)
+vic_w1$treksoft_uid <- as.numeric(vic_w1$treksoft_uid)
 ```
 
 ### Selecting variables
