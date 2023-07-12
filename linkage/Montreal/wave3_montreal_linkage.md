@@ -186,13 +186,14 @@ Here we add the columns to have consistent columns across linkage files.
 mtl_w3$data_disposition <- NA
 mtl_w3$treksoft_pid <- NA
 mtl_w3$treksoft_uid <- NA
+mtl_w3$spam_participant <- NA
 mtl_w3$wave <- 3
 ```
 
-## Keeping columns
+### Selecting variables
 
 ``` r
-mtl_w3 <- select(mtl_w3, interact_id, plg_id, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, dropout, test)
+mtl_w3 <- select(mtl_w3, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, data_disposition, dropout, test, plg_id, spam_participant, wave)
 ```
 
 ## Write clean csv file
