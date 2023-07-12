@@ -8,8 +8,8 @@ Daniel Fuller
 
 Reading in the data. Here we are reading in two files
 
--   `linkage_for_ingest_skt_w1.csv` which is our main file
--   `lut_skt.csv` which is a look up table for looking up previous
+-   `linkage_for_ingest_mtl_w1.csv` which is our main file
+-   `lut_mtl.csv` which is a look up table for looking up previous
     versions of the health and VERITAS ID variables. These will not be
     used after Wave 1.
 

@@ -8,7 +8,7 @@ Daniel Fuller
 
 Reading in the data. Here we are reading in two files
 
--   `linkage_for_ingest_skt_w2.csv` which is our main file
+-   `linkage_for_ingest_mtl_w2.csv` which is our main file
 
 ``` r
 setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
