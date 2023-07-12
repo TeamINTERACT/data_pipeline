@@ -1,0 +1,89 @@
+---
+title: "Wave 3 Victoria Linkage"
+author: "Daniel Fuller"
+output:
+  github_document:
+    keep_html: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidyr)
+library(kableExtra)
+```
+
+# Victoria Wave 3 Linkage Files
+
+### Read in Data
+
+Reading in the data. Here we are reading in one file
+
+- `linkage_for_ingest_vic_w3.csv` which is the main file for everything
+
+```{r}
+setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
+vic_w3 <- read_delim("linkage_for_ingest_vic_w3.csv", delim = ",")
+```
+
+### Rename variables
+
+```{r}
+vic_w3 <- rename(vic_w3, 
+                 sd_id_1 = sensedoc1_id,
+                ethica_start = ethica_start_date, 
+                ethica_end = ethica_end_date,
+                sd_start_1 = sensedoc1_wear_start_date,
+                sd_end_1 = sensedoc1_wear_end_date,
+                sd_id_2 = sensedoc2_id,
+                sd_start_2 = sensedoc2_wear_start_date,
+                sd_end_2 = sensedoc2_wear_end_date)
+```
+
+### Recode Sensedoc firmware and ID 
+
+```{r}
+vic_w3 <- separate(vic_w3, col = sd_id_1, into = c("sd_id_1", "sd_firmware_1"), sep = "-")
+vic_w3 <- separate(vic_w3, col = sd_id_2, into = c("sd_id_2", "sd_firmware_2"), sep = "-")
+```
+
+### Keep variables
+
+```{r}
+vic_w3 <- select(vic_w3, interact_id, ethica_id, sd_id_1, sd_start_1, sd_end_1, sd_id_2, sd_start_2, sd_end_2, data_disposition)
+```
+
+### Flag test accounts
+
+```{r}
+ethica_tests <- c("1451", "2036", 
+                  "5256", "1454", 
+                  "8911", "1469",
+                  "1462", "9321", 
+                  "12641", "12638", 
+                  "12617", "1470",
+                  "4579", "5367",
+                  "5399","3962")
+```
+
+```{r}
+vic_w3 <- vic_w3 %>%
+  mutate(test = ifelse(ethica_id %in% ethica_tests, 1, 0)) 
+```
+
+### Adding columns
+
+```{r}
+vic_w3$dropout <- NA
+vic_w3$treksoft_pid <- NA
+vic_w3$treksoft_uid <- NA
+vic_w3$plg_id <- NA
+vic_w3$wave <- 3
+```
+
+### Write clean file
+
+```{r}
+write.csv(vic_w3, file= "linkage_vic_w3.csv")
+```
+
