@@ -64,10 +64,6 @@ van_w1 <- rename(van_w1,
                  ethica_id = ethica_id.x)
 ```
 
-``` r
-van_w1 <- select(van_w1, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, dropout, data_disposition, test)
-```
-
 ### Flag test accounts
 
 ``` r
@@ -90,7 +86,14 @@ van_w1 <- van_w1 %>%
 
 ``` r
 van_w1$plg_id <- NA
+van_w1$spam_participant <- NA
 van_w1$wave <- 1
+```
+
+### Selecting variables
+
+``` r
+van_w1 <- select(van_w1, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, data_disposition, plg_id, dropout, wave, test, spam_participant)
 ```
 
 ### Write clean file

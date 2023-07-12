@@ -47,12 +47,6 @@ vic_w3 <- separate(vic_w3, col = sd_id_1, into = c("sd_id_1", "sd_firmware_1"), 
 vic_w3 <- separate(vic_w3, col = sd_id_2, into = c("sd_id_2", "sd_firmware_2"), sep = "-")
 ```
 
-### Keep variables
-
-```{r}
-vic_w3 <- select(vic_w3, interact_id, ethica_id, sd_id_1, sd_start_1, sd_end_1, sd_id_2, sd_start_2, sd_end_2, data_disposition)
-```
-
 ### Flag test accounts
 
 ```{r}
@@ -78,7 +72,14 @@ vic_w3$dropout <- NA
 vic_w3$treksoft_pid <- NA
 vic_w3$treksoft_uid <- NA
 vic_w3$plg_id <- NA
+vic_w3$spam_participant <- NA
 vic_w3$wave <- 3
+```
+
+### Selecting variables
+
+```{r}
+vic_w3 <- select(vic_w3, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, data_disposition, plg_id, dropout, wave, test, spam_participant)
 ```
 
 ### Write clean file

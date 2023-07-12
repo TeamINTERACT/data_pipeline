@@ -83,12 +83,6 @@ non_numeric <- grepl("[^0-9]", vic_w1$ethica_id)
 vic_w1$ethica_id[non_numeric] <- NA
 ```
 
-### Keeping variables
-
-```{r}
-vic_w1 <- select(vic_w1, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, data_disposition)
-```
-
 ### Flag test accounts
 
 ```{r}
@@ -112,7 +106,14 @@ vic_w1 <- vic_w1 %>%
 ```{r}
 vic_w1$plg_id <- NA
 vic_w1$dropout <- NA
+vic_w1$spam_participant <- NA
 vic_w1$wave <- 1
+```
+
+### Selecting variables
+
+```{r}
+vic_w1 <- select(vic_w1, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, data_disposition, plg_id, dropout, wave, test, spam_participant)
 ```
 
 ### Write clean file
