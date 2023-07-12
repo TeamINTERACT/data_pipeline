@@ -9,5 +9,7 @@ Linkage files are in the specific folders or find links to them here
 | Saskatoon | 1 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave1_saskatoon_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave1_saskatoon_linkage.md) |
 | Saskatoon | 2 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave2_saskatoon_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave2_saskatoon_linkage.md) |
 | Saskatoon | 3 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave3_saskatoon_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave3_saskatoon_linkage.md) |
-| Montreal | 1 | [Click here]() | [Click here]() |
+| Montreal | 1 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave1_montreal_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave1_montreal_linkage.md) |
+| Montreal | 2 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave2_montreal_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave2_montreal_linkage.md) |
+| Montreal | 3 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave3_montreal_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave3_montreal_linkage.md) |
 
