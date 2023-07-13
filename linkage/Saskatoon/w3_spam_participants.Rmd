@@ -1,0 +1,384 @@
+---
+title: "Spam Participants"
+output: html_document
+date: "2023-06-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+library(readxl)
+library(stringr)
+```
+
+## Reading in Data
+
+```{r}
+name_repair <- function(nms) tolower(gsub("-", "_", nms))
+
+elig <- read_excel("participants-20221216.xlsx", .name_repair = name_repair)
+
+ip <- read_excel("ip-list-20221216.xlsx", .name_repair = name_repair)
+
+ip <- ip %>% 
+  mutate_all(funs(str_replace_all(., "'", "")))
+
+ip$id <- ip$participant_id
+```
+
+## Join data
+
+```{r}
+ip_elig <- full_join(elig, ip)
+
+ip_elig <- filter(ip_elig, profile_participant_type == "new")
+
+ip_elig <- ip_elig %>% drop_na(identifier)
+```
+
+## Create Duplicate IP 
+
+```{r}
+ip_elig <- ip_elig %>% 
+              add_count(ip)
+
+table(ip_elig$n)
+
+ip_elig <- ip_elig %>% 
+              mutate(strike_1 = case_when(
+                                n >= 4 ~ 1,
+                                TRUE ~ 0
+                          ))
+
+table(ip_elig$strike_1)
+```
+
+There are some people who have 3+ attempts at one IP but not that many. 
+
+## Checking City Location
+
+```{r}
+table(ip_elig$profile_city)
+
+ip_elig <- ip_elig %>% 
+              mutate(strike_2 = case_when(
+                                profile_city == "Montreal" ~ 1,
+                                profile_city == "Toronto" ~ 1,
+                                profile_city == "Central Toronto" ~ 1,
+                                profile_city == "Vancouver" ~ 1,
+                                profile_city == "Prince Albert" ~ 1,
+                                profile_city == "Warman" ~ 1,
+                                profile_city == "Biggar" ~ 1,
+                                profile_city == "fdf" ~ 1,
+                                profile_city == "New York" ~ 1,
+                                profile_city == "Regina" ~ 1,
+                                profile_city == "Louisville" ~ 1,
+                                profile_city == "Osler" ~ 1,
+                                profile_city == "Sakwanten" ~ 1,
+                                profile_city == "Cre" ~ 1,
+                                profile_city == "SARDIS" ~ 1,
+                                profile_city == "Teterboro" ~ 1,
+                                profile_city == "(920) 269-2136 709 5th St Lomira, Wisconsin(WI), 53048" ~ 1,
+                                TRUE ~ 0
+                          ))
+
+table(ip_elig$strike_2)
+```
+
+## Checking the weird locations 
+
+```{r}
+table(ip_elig$profile_street_address_complement)
+ip_elig$profile_street_address_complement <- str_to_lower(ip_elig$profile_street_address_complement)
+
+ip_elig$profile_street_address <- str_to_lower(ip_elig$profile_street_address)
+
+ip_elig$weird_address <- str_detect(ip_elig$profile_street_address_complement, pattern = "park", negate = TRUE)
+ip_elig$weird_address1 <- str_detect(ip_elig$profile_street_address_complement, pattern = "comfort", negate = TRUE)
+ip_elig$weird_address2 <- str_detect(ip_elig$profile_street_address, pattern = "brand", negate = TRUE)
+
+table(ip_elig$weird_address)
+table(ip_elig$weird_address1)
+table(ip_elig$weird_address2)
+
+ip_elig <- ip_elig %>% 
+              mutate(strike_3 = case_when(
+                                weird_address == FALSE ~ 1,
+                                weird_address1 == FALSE ~ 1,
+                                weird_address2 == FALSE ~ 1,
+                                TRUE ~ 0
+                          ))
+
+table(ip_elig$strike_3)
+```
+
+### Checking completion time
+
+```{r}
+ip_elig$first_session <- ymd_hms(ip_elig$first_session_activity_at)
+ip_elig$last_session <- ymd_hms(ip_elig$last_session_activity_at)
+
+ip_elig$complete_time <- interval(ip_elig$first_session, ip_elig$last_session)
+ip_elig$complete_time <- as.duration(ip_elig$complete_time) 
+
+ggplot(ip_elig, aes(x = complete_time)) +
+    geom_histogram()
+
+ip_elig <- ip_elig %>% 
+              mutate(strike_4 = case_when(
+                                complete_time <= 700 ~ 1,
+                                TRUE ~ 0
+                          ))
+
+table(ip_elig$strike_4)
+```
+
+### USask or Sasktel Email
+
+```{r}
+ip_elig$sastel_email <- str_detect(ip_elig$identifier, pattern = "sasktel", negate = TRUE)
+ip_elig$usask_email <- str_detect(ip_elig$identifier, pattern = "usask", negate = TRUE)
+
+table(ip_elig$sastel_email)
+table(ip_elig$usask_email)
+
+ip_elig <- ip_elig %>% 
+              mutate(usask_sasktel_email = case_when(
+                                sastel_email == FALSE ~ 1,
+                                usask_email == FALSE ~ 1,
+                                TRUE ~ 0
+                          ))
+
+table(ip_elig$usask_sasktel_email)
+```
+
+### Update all strikes and convert
+
+```{r}
+ip_elig$all_strikes <- ip_elig$strike_2 + ip_elig$strike_3 + ip_elig$strike_4 
+
+table(ip_elig$all_strikes)
+
+spam_candidates <- filter(ip_elig, all_strikes >= 1)
+
+spam_candidates_dedup <- spam_candidates %>%
+                            arrange(desc(all_strikes)) %>%
+                            distinct(identifier, .keep_all = TRUE)
+write_csv(spam_candidates_dedup, "spam_candidates_2022_12_20.csv")
+
+non_spam <- filter(ip_elig, all_strikes < 1)
+
+non_spam_dedup <- non_spam %>%
+                            arrange(desc(all_strikes)) %>%
+                            distinct(identifier, .keep_all = TRUE)
+
+write_csv(non_spam_dedup, "non_spam_candidates_2022_12_20.csv")
+```
+
+### Linking health and spam data
+
+```{r}
+health <- read_excel("skt_health_w3new.xlsx", .name_repair = name_repair)
+
+linkage <- read_excel("Saskatoon W3 Participants FINAL 2023 01 24.xlsx", .name_repair = name_repair)
+
+spam <- read_csv("spam_candidates_2022_12_20.csv")
+```
+
+## Time to complete
+
+```{r}
+summary(health$time_to_complete_minutes)
+
+health <- health %>% 
+              mutate(ttc_5min = case_when(
+                                time_to_complete_minutes <= 11 ~ 1,
+                                time_to_complete_minutes > 11 ~ 0,
+                                TRUE ~ NA_real_
+                          ))
+table(health$ttc_5min)
+
+histo_ttc <- ggplot(data = health) + 
+                      geom_histogram(aes(time_to_complete_minutes), bins = 20)
+plot(histo_ttc)
+
+time_to_complete <- ggplot(data = health, aes(x = date_of_survey, y = time_to_complete_minutes)) + 
+                      geom_point(alpha = 0.5)
+plot(time_to_complete)
+```
+
+Overall 58 people completed the health survey in less than 5 minutes. That's very fast. When we visualize the data many of the fast completers appear in early October which was around the time that we thought we experience a large number of fake participations. 
+
+### Fast completers on key
+
+```{r}
+fast_health <- filter(health, ttc_5min == 1)
+
+cols <- c("sask_bus_pass", "saskroads_a", "saskroads_b", "saskroads_c", "saskroads_d", "saskroads_e", "saskroads_f", "saskroads_g", "saskroads_h", "saskroads_i", "pwb_a", "pwb_b", "pwb_c", "pwb_d", "pwb_e", "pwb_f", "pwb_g", "pwb_h", "loneliness_a", "loneliness_b", "loneliness_c", "neigh_pref_a", "neigh_pref_b", "neigh_pref_c", "neigh_pref_f", "neigh_pref_g", "neigh_pref_h", "neigh_pref_i", "neigh_pref_j")
+
+health_sub_fast <- select(fast_health, sask_bus_pass, saskroads_a, saskroads_b, saskroads_c, saskroads_d, saskroads_e, saskroads_f, saskroads_g, saskroads_h, saskroads_i, pwb_a, pwb_b, pwb_c, pwb_d, pwb_e, pwb_f, pwb_g, pwb_h, loneliness_a, loneliness_b, loneliness_c, neigh_pref_a, neigh_pref_b, neigh_pref_c, neigh_pref_f, neigh_pref_g, neigh_pref_h, neigh_pref_i, neigh_pref_j, ttc_5min)
+
+health_sub_fast <- health_sub_fast %>% mutate(across(cols, as.factor))
+
+health_sub_fast <- health_sub_fast %>%
+                dplyr::mutate(id = row_number()) %>%
+                gather(-id, key = "key", value = "val") %>%
+                mutate(isna = is.na(val)) 
+
+row_plot_slow <-  ggplot(data = health_sub_fast, aes(id, key, fill = val)) +
+    geom_tile(alpha=0.8) +
+    labs(x = "Person", y = "Variable", title = "Fast Completers") +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + 
+    coord_flip()
+
+plot(row_plot_slow)
+```
+
+### Slow completers on key
+
+```{r}
+slow_health <- filter(health, ttc_5min == 0)
+
+cols <- c("sask_bus_pass", "saskroads_a", "saskroads_b", "saskroads_c", "saskroads_d", "saskroads_e", "saskroads_f", "saskroads_g", "saskroads_h", "saskroads_i", "pwb_a", "pwb_b", "pwb_c", "pwb_d", "pwb_e", "pwb_f", "pwb_g", "pwb_h", "loneliness_a", "loneliness_b", "loneliness_c", "neigh_pref_a", "neigh_pref_b", "neigh_pref_c", "neigh_pref_f", "neigh_pref_g", "neigh_pref_h", "neigh_pref_i", "neigh_pref_j")
+
+health_sub_slow <- select(slow_health, sask_bus_pass, saskroads_a, saskroads_b, saskroads_c, saskroads_d, saskroads_e, saskroads_f, saskroads_g, saskroads_h, saskroads_i, pwb_a, pwb_b, pwb_c, pwb_d, pwb_e, pwb_f, pwb_g, pwb_h, loneliness_a, loneliness_b, loneliness_c, neigh_pref_a, neigh_pref_b, neigh_pref_c, neigh_pref_f, neigh_pref_g, neigh_pref_h, neigh_pref_i, neigh_pref_j, ttc_5min)
+
+health_sub_slow <- health_sub_slow %>% mutate(across(cols, as.factor))
+
+health_sub_slow <- health_sub_slow %>%
+                dplyr::mutate(id = row_number()) %>%
+                gather(-id, key = "key", value = "val") %>%
+                mutate(isna = is.na(val)) 
+
+row_plot_slow <-  ggplot(data = health_sub_slow, aes(id, key, fill = val)) +
+    geom_tile(alpha=0.8) +
+    labs(x = "Person", y = "Variable", title = "Slow Completers") +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) + 
+    coord_flip()
+
+plot(row_plot_slow)
+```
+
+It looks like a number of participants have answered exactly the same thing to neighbourhood questions and the sask roads questions. Calculating who those people are. 
+
+```{r}
+health <- health %>% 
+              rowwise() %>%
+              mutate(neigh_constant = sum(c_across(neigh_pref_a:neigh_pref_j), na.rm = TRUE))
+
+table(health$neigh_constant)
+
+health <- health %>% 
+              mutate(neigh_bad = case_when(
+                                neigh_constant == 8 ~ 1,
+                                neigh_constant == 16 ~ 1,
+                                neigh_constant == 24 ~ 1,
+                                TRUE ~ 0
+                          ))
+
+table(health$neigh_bad)
+```
+
+There are 61 people who always gave either a 1, 2, or 3 for the neighbourhood questions. This extremely unlikely given the nature of the questions related to the neighbourood. 
+
+```{r}
+health <- health %>% 
+              rowwise() %>%
+              mutate(roads_constant = sum(c_across(saskroads_a:saskroads_i), na.rm = TRUE))
+
+table(health$roads_constant)
+
+health <- health %>% 
+              mutate(roads_bad = case_when(
+                                roads_constant == 9 ~ 1,
+                                roads_constant == 18 ~ 1,
+                                TRUE ~ 0
+                          ))
+
+table(health$roads_bad)
+```
+
+There are 88 people who answered either Yes (1) or No (2) to every road question. "Do you currently travel on any of the following streets when you travel by bus in Saskatoon?"
+
+### Adding neighbourhood and roads questions together
+
+```{r}
+table(health$neigh_bad, health$roads_bad)
+
+health$neigh_road_bad <- health$neigh_bad + health$roads_bad
+
+table(health$neigh_road_bad)
+```
+
+There are 101 people who were constant for one on the question sets and 24 people who were constant for both of the question sets. Definitely the 24 people are out. 
+
+### Creating new variable for potential health spam 
+
+```{r}
+health$out_sum <- health$neigh_road_bad + health$ttc_5min
+
+table(health$out_sum)
+```
+
+From the health data we have identified a possible 144 participants who have one of three possible clues. There are 87 people with 1 strike, 57 with two strikes, and 3 participants with 3 strikes. 
+
+### Joining Health with Spam data
+
+Joining health with spam data to see if there is overlap between potential spam participants in the two groups.  
+
+```{r}
+spam_link <- spam %>% left_join(linkage, by = "id")
+
+spam_link$interact_id <- spam_link$study_id.y
+```
+
+There are 98 potential spam participants based on the eligibility survey that participants completed. 
+
+```{r}
+spam_link_hlth <- spam_link %>% full_join(health, by = "interact_id")
+
+table(spam_link_hlth$out_sum)
+
+table(spam_link_hlth$all_strikes)
+
+health_spam <- spam_link_hlth %>% select(id, identifier.x, first_name.x, last_name.x, interact_id, all_strikes, neigh_road_bad, ttc_5min, out_sum)
+
+health_spam <- health_spam %>% 
+              rowwise() %>%
+              mutate(spam_candidate = sum(c_across(all_strikes:out_sum), na.rm = TRUE))
+
+table(health_spam$spam_candidate)
+
+table(health_spam$all_strikes, health_spam$out_sum)
+
+health_spam <- filter(health_spam, spam_candidate >= 1)
+```
+
+In total we have 202 people who are potential spam candidates in the data. There are 202 people who are spam candidates and 150 people who have more than one strike in our various metrics. Of these there are 41 participants who have a strike based on both the health and eligibility surveys. 
+
+### Writing to CSV 
+
+```{r}
+write_csv(health_spam, "spam_candidates_2023_06_20.csv")
+```
+
+## Getting people who completed VERITAS
+
+```{r}
+all_participants <- read_excel("Saskatoon W3 Participants FINAL 2023 01 24.xlsx", sheet = "Polygon", .name_repair = name_repair)
+
+table(all_participants$completed_sessions_count)
+
+all_participants_polygon <- filter(all_participants, completed_sessions_count == 3)
+```
+
+```{r}
+all_participants_polygon$interact_id <- all_participants_polygon$study_id
+
+spam_complete <- all_participants_polygon %>% inner_join(health_spam, by = "interact_id")
+
+spam_complete <- spam_complete %>% select(id.x:spam_candidate)
+
+write_csv(spam_complete, "spam_complete_list_2023_06_20.csv")
+```
