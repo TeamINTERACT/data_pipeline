@@ -103,8 +103,21 @@ Here we add the columns to have consistent columns across linkage files.
 skt_w3$data_disposition <- NA
 skt_w3$treksoft_pid <- NA
 skt_w3$treksoft_uid <- NA
-skt_w3$spam_participant <- NA
 skt_w3$wave <- 3
+```
+
+## Spam Participants
+
+In W3 Saskatoon we had a bunch of spam participants complete the survey. We assume to try and get the gift card money. The code for identifying those spam participants is [here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/w3_spam_participants.Rmd). Here we will add a flag to the data that indicates if a participant is spam. 
+
+```{r}
+spam <- read_csv("spam_candidates_2023_06_20.csv")
+
+spam <- select(spam, interact_id)
+spam$spam_participant <- 1
+
+skt_w3 <- full_join(skt_w3, spam, by = "interact_id")
+table(skt_w3$spam_participant)
 ```
 
 ## Keeping columns

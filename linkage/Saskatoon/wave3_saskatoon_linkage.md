@@ -12,12 +12,12 @@ Sensedoc data sources. We are also moving to our naming convention of
 extract, validate, etc for this document. Here we are reading in three
 files
 
--   `SaskatoonW3ParticipantsFINAL20230124_plg.csv` which is our main
-    Polygon file
--   `SaskatoonW3ParticipantsFINAL20230124_eth.csv` which is our main
-    Ethica file
--   `SaskatoonW3ParticipantsFINAL20230124_sd.csv` which is our main
-    Sensedoc file
+- `SaskatoonW3ParticipantsFINAL20230124_plg.csv` which is our main
+  Polygon file
+- `SaskatoonW3ParticipantsFINAL20230124_eth.csv` which is our main
+  Ethica file
+- `SaskatoonW3ParticipantsFINAL20230124_sd.csv` which is our main
+  Sensedoc file
 
 ``` r
 setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
@@ -184,10 +184,44 @@ skt_w3$treksoft_uid <- NA
 skt_w3$wave <- 3
 ```
 
+## Spam Participants
+
+In W3 Saskatoon we had a bunch of spam participants complete the survey.
+We assume to try and get the gift card money. The code for identifying
+those spam participants is
+[here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/w3_spam_participants.Rmd).
+Here we will add a flag to the data that indicates if a participant is
+spam.
+
+``` r
+spam <- read_csv("spam_candidates_2023_06_20.csv")
+```
+
+    ## Rows: 202 Columns: 10
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (4): id, identifier.x, first_name.x, last_name.x
+    ## dbl (6): interact_id, all_strikes, neigh_road_bad, ttc_5min, out_sum, spam_c...
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+spam <- select(spam, interact_id)
+spam$spam_participant <- 1
+
+skt_w3 <- full_join(skt_w3, spam, by = "interact_id")
+table(skt_w3$spam_participant)
+```
+
+    ## 
+    ##   1 
+    ## 202
+
 ## Keeping columns
 
 ``` r
-skt_w3 <- select(skt_w3, interact_id, plg_id, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, dropout, test)
+skt_w3 <- select(skt_w3, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, data_disposition, dropout, test, plg_id, spam_participant, wave)
 ```
 
 ## Write clean csv file
