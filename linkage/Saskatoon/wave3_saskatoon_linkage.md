@@ -194,14 +194,17 @@ Here we will add a flag to the data that indicates if a participant is
 spam.
 
 ``` r
-spam <- read_csv("spam_candidates_2023_06_20.csv")
+spam <- read_csv("spam_complete_list_2023_06_20.csv")
 ```
 
-    ## Rows: 202 Columns: 10
+    ## Rows: 141 Columns: 50
     ## ── Column specification ────────────────────────────────────────────────────────
     ## Delimiter: ","
-    ## chr (4): id, identifier.x, first_name.x, last_name.x
-    ## dbl (6): interact_id, all_strikes, neigh_road_bad, ttc_5min, out_sum, spam_c...
+    ## chr  (17): id.x, identifier, first_name, last_name, status, preferred_locale...
+    ## dbl  (18): study_id, total_sessions_count, started_sessions_count, completed...
+    ## num   (1): profile_ethnicity
+    ## lgl   (9): profile_sense_doc_1_id, profile_sense_doc_2_id, profile_secondary...
+    ## dttm  (5): created_at, registered_at, verified_at, first_session_activity_at...
     ## 
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
@@ -216,7 +219,7 @@ table(skt_w3$spam_participant)
 
     ## 
     ##   1 
-    ## 202
+    ## 141
 
 ## Keeping columns
 
