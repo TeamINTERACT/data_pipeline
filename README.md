@@ -39,4 +39,4 @@ See Folders for each data source.
   * OUTPUT: Create csvs of Polygon surveys or ToP, for SenseDoc or Ethica
 * **Describe**: Data is described with summary statitsics to help check data is as expected.
 
-Each data source follows theses pipeline steps. Details can be found in their respective folders (**link?**)
+Each data source follows theses pipeline steps. Details can be found in their respective folders. 
