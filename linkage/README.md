@@ -5,21 +5,21 @@ Linkage files are critical files that contain all of the participant information
 Linkage files are in the specific folders or find links to them here
 
 | City | Wave | .Rmd file | Rendered .md file |
-| ---- | ---- | --------- | ----------------- |
-| Montreal | 1 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave1_montreal_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave1_montreal_linkage.md) |
-| Montreal | 2 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave2_montreal_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave2_montreal_linkage.md) |
-| Montreal | 3 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave3_montreal_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Montreal/wave3_montreal_linkage.md) |
-| Saskatoon | 1 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave1_saskatoon_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave1_saskatoon_linkage.md) |
-| Saskatoon | 2 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave2_saskatoon_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave2_saskatoon_linkage.md) |
-| Saskatoon | 3 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave3_saskatoon_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Saskatoon/wave3_saskatoon_linkage.md) |
-| Vancouver | 1 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave1_vancouver_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave1_vancouver_linkage.md) |
-| Vancouver | 2 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave2_vancouver_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave2_vancouver_linkage.md) |
-| Vancouver | 3 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave3_vancouver_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Vancouver/wave3_vancouver_linkage.md) |
-| Victoria | 1 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Victoria/wave1_victoria_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Victoria/wave1_victoria_linkage.md) |
-| Victoria | 2 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Victoria/wave2_victoria_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Victoria/wave2_victoria_linkage.md) |
-| Victoria | 3 | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Victoria/wave3_victoria_linkage.Rmd) | [Click here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Victoria/wave3_victoria_linkage.md) |
+| ---- | ---- | ---------:| -----------------:|
+| Montreal | 1 | [Click here](Montreal\wave1_montreal_linkage.Rmd) | [Click here](Montreal/wave1_montreal_linkage.md) |
+| Montreal | 2 | [Click here](Montreal/wave2_montreal_linkage.Rmd) | [Click here](Montreal/wave2_montreal_linkage.md) |
+| Montreal | 3 | [Click here](Montreal/wave3_montreal_linkage.Rmd) | [Click here](Montreal/wave3_montreal_linkage.md) |
+| Saskatoon | 1 | [Click here](Saskatoon/wave1_saskatoon_linkage.Rmd) | [Click here](Saskatoon/wave1_saskatoon_linkage.md) |
+| Saskatoon | 2 | [Click here](Saskatoon/wave2_saskatoon_linkage.Rmd) | [Click here](Saskatoon/wave2_saskatoon_linkage.md) |
+| Saskatoon | 3 | [Click here](Saskatoon/wave3_saskatoon_linkage.Rmd) | [Click here](Saskatoon/wave3_saskatoon_linkage.md) |
+| Vancouver | 1 | [Click here](Vancouver/wave1_vancouver_linkage.Rmd) | [Click here](Vancouver/wave1_vancouver_linkage.md) |
+| Vancouver | 2 | [Click here](Vancouver/wave2_vancouver_linkage.Rmd) | [Click here](Vancouver/wave2_vancouver_linkage.md) |
+| Vancouver | 3 | [Click here](Vancouver/wave3_vancouver_linkage.Rmd) | [Click here](Vancouver/wave3_vancouver_linkage.md) |
+| Victoria | 1 | [Click here](Victoria/wave1_victoria_linkage.Rmd) | [Click here](Victoria/wave1_victoria_linkage.md) |
+| Victoria | 2 | [Click here](Victoria/wave2_victoria_linkage.Rmd) | [Click here](Victoria/wave2_victoria_linkage.md) |
+| Victoria | 3 | [Click here](Victoria/wave3_victoria_linkage.Rmd) | [Click here](Victoria/wave3_victoria_linkage.md) |
 
-The final check for the linkage files are [here](https://github.com/TeamINTERACT/data_pipeline/blob/master/linkage/Linkage%20Check.Rmd). This file checks the variable names and types and ensures that the data for each wave can be bound together and all of the cities and waves can be bound together.
+The final check for the linkage files are [here](Linkage-Check.md). This file checks the variable names and types and ensures that the data for each wave can be bound together and all of the cities and waves can be bound together.
 
 ## Variables
 

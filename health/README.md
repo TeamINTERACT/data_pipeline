@@ -19,5 +19,7 @@
 7. **Describe**: Data dictionary has distribution of responses integrated for each variable 
 
 
-Full processing steps are documented here: https://github.com/TeamINTERACT/treksoft_import 
+Full processing steps are documented in the two following repos:
+ - https://github.com/TeamINTERACT/treksoft_import 
+ - https://github.com/TeamINTERACT/essence_table
 

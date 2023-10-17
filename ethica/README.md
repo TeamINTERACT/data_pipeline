@@ -13,9 +13,9 @@
       + OUTPUT: Export Elite files: each data source in Ethica as csv, with linked INTERACT_ID to Project 
       + Data dictionary for **Ethica variables** is available here: https://teaminteract.ca/ressources/INTERACT_datadict.html#ethica_title
 
-6. **Produce**: Create Tables of Power (ToP) by a) adding columns; and b) aggregating by epoch. The variables used in the Table of Power will evolve, as the team develops new metrics, important that this code can be easily adapted to integrate more metrics. 
-The following columns are added : `INTERACT_ID`, `activity_levels`, `city_id`, `in_city` (flag whether data was collected within CMA), `sumary_count`, `count_x`, `count_y`, `count_z`, `device worn`.
-Data is aggregated by epoch: Two ToPs are created per city per wave: 1 second, 5 minutes.
+6. **Produce**: Create Tables of Power (ToP) by a) adding columns; and b) aggregating by epoch. The variables used in the Table of Power will evolve, as the team develops new metrics, important that this code can be easily adapted to integrate more metrics.  
+The following columns are added : `INTERACT_ID`, `activity_levels`, `city_id`, `in_city` (flag whether data was collected within CMA), `sumary_count`, `count_x`, `count_y`, `count_z`, `device_worn`.
+Data is aggregated by epoch: Two ToPs are created per city per wave: 1 second, 5 minutes. _NB: NO PHYSICAL ACTIVITY LEVELS ARE COMPUTED FOR ETHICA AXL DATA, AS WE HAVE NO VALIDATED ALGORITHM TO DERIVE THEM FROM THE 1-IN-5 DATA ACQUISITION PATTERN_
     + OUTPUT: 1 table of power per city, per wave per epoch (2/city/wave) 
     + Data dictionary for **TOP variables for Ethica** is available here: https://teaminteract.ca/ressources/INTERACT_datadict.html#top_title 
 
