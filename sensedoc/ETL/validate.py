@@ -13,8 +13,11 @@ import re
 import pandas as pd
 
 # Define city_id and wave_id
-cities = ['montreal', 'saskatoon', 'vancouver', 'victoria']
-waves = ['wave_01', 'wave_02', 'wave_03', 'wave_04']
+cities = {'mtl': 'montreal', 
+          'skt': 'saskatoon', 
+          'van': 'vancouver', 
+          'vic': 'victoria'}
+waves = [1, 2, 3, 4]
 
 # Define base folder
 root_data_folder = 'data\interact_test_data'
@@ -26,19 +29,20 @@ if __name__ == '__main__':
     # Reporting, stored in a list of tuples (city, wave, n pids, n sdb, status)
     report = []
 
-    for city in cities:
+    for ccode, city in cities.items():
         for wave in waves:
             n_match = 0
 
             # Heading
-            print(f'===== VALIDATING {city.capitalize()} | {wave.capitalize().replace("_", " ")} =====')
+            print(f'===== VALIDATING {city.capitalize()} | Wave {wave} =====')
 
             # Read linkage file
-            lk_file_path = os.path.join(root_data_folder, city, wave, f'linkage_{wave}_{city}.csv')
+            # lk_file_path = os.path.join(root_data_folder, city, wave, f'linkage_{wave}_{city}.csv') # WRONG LINKAGE FILE NAME TEMPLATE IN TEST DATA
+            lk_file_path = os.path.join(root_data_folder, city, f'wave_{wave:02d}', f'linkage_{ccode}_w{wave}.csv')
             if not os.path.isfile(lk_file_path):
                 logging.warning(f'Linkage file <{os.path.basename(lk_file_path)}> not found, skipping')
                 report.append((city.capitalize(), 
-                           wave.capitalize().replace("_", " "), 
+                           f'Wave {wave}', 
                            '-', 
                            '-', 
                            'No linkage file found'))
@@ -54,7 +58,7 @@ if __name__ == '__main__':
                     missing_col = True
             if missing_col:
                 report.append((city.capitalize(), 
-                           wave.capitalize().replace("_", " "), 
+                           f'Wave {wave}', 
                            '-', 
                            '-', 
                            'Linkage file wrongly formatted'))
@@ -70,7 +74,7 @@ if __name__ == '__main__':
             if not lk_df.interact_id.is_unique:
                 logging.error(f'Found duplicated interact_ids in <{os.path.basename(lk_file_path)}>')
                 report.append((city.capitalize(), 
-                           wave.capitalize().replace("_", " "), 
+                           f'Wave {wave}', 
                            str(len(lk_df.index)), 
                            '-', 
                            'Found duplicated interact_ids'))
@@ -78,7 +82,7 @@ if __name__ == '__main__':
 
             # Inspect each participant with SD to look for a matching sdb file
             for pid in lk_df.itertuples(index=False):
-                pid_folder = os.path.join(root_data_folder, city, wave, 'sensedoc', str(pid.interact_id))
+                pid_folder = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'sensedoc', str(pid.interact_id))
                 missing_sdb = True # Track if matching sdb file is found in folder
                 other_sdb = [] # Track all other (not matching) sdb files in folder
                 # Define pattern according to type of sd_id
@@ -103,7 +107,7 @@ if __name__ == '__main__':
             # Report findings
             #print(f'Expecting {len(lk_df.index)} participants with SD data; found {n_match} participants with matching sdb file')
             report.append((city.capitalize(), 
-                           wave.capitalize().replace("_", " "), 
+                           f'Wave {wave}', 
                            str(len(lk_df.index)), 
                            str(n_match), 
                            'OK' if n_match == len(lk_df.index) else 'Missing SD files'))
