@@ -5,9 +5,14 @@ Checks list of folder names against matches in linkage file. Folder names
 linkage file. In some cases, directories need to be reorganized into unique 
 {INTERACT_ID}_{SD_ID}` pairs with that name. Records which fail validation 
 are flagged for follow up.
+--
+USAGE: validate.py [TARGET_ROOT_FOLDER]
+
+If TARGET_ROOT_FOLDER not provided, will default to test data folder.
 """
 
 import os
+import sys
 import logging
 import re
 import pandas as pd
@@ -25,6 +30,14 @@ root_data_folder = 'data\interact_test_data'
 
 if __name__ == '__main__':
     logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S') #, level=logging.DEBUG)
+
+    # Get target root folder as command line argument
+    if len(sys.argv[1:]):
+        root_data_folder = sys.argv[1]
+
+    if not os.path.isdir(root_data_folder):
+        logging.error(f'No directory <{root_data_folder}> found! Aborting')
+        exit(1)
 
     # Reporting, stored in a list of tuples (city, wave, n pids, n sdb, status)
     report = []
@@ -47,7 +60,7 @@ if __name__ == '__main__':
                            '-', 
                            'No linkage file found'))
                 continue
-            lk_df = pd.read_csv(lk_file_path)
+            lk_df = pd.read_csv(lk_file_path, dtype=str)
 
             # Check if we get the expected columns according to linkage\README.md
             # that is interact_id, sd_id_1, sd_id_2; Report as an ERROR and skip if not
@@ -80,16 +93,20 @@ if __name__ == '__main__':
                            'Found duplicated interact_ids'))
                 continue
 
-            # Inspect each participant with SD to look for a matching sdb file
+            # Inspect each participant with SD to look for a matching sdb file 
+            # (we only check the first one, if more than one SD has been given to that participant)
             for pid in lk_df.itertuples(index=False):
-                pid_folder = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'sensedoc', str(pid.interact_id))
+                # Ids can be str or float, depending on the 
+                pid_folder = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'sensedoc', f'{pid.interact_id}_{pid.sd_id_1}')
+                # Check PID folder exists
+                if not os.path.isdir(pid_folder):
+                    logging.error(f'Unable to find directory <{os.path.relpath(pid_folder, root_data_folder)}>')
+                    continue
+
                 missing_sdb = True # Track if matching sdb file is found in folder
                 other_sdb = [] # Track all other (not matching) sdb files in folder
                 # Define pattern according to type of sd_id
-                if isinstance(pid.sd_id_1, str):
-                    psdb = f'SD{pid.sd_id_1}fw\\d+_.+.sdb'
-                else:
-                    psdb = f'SD{pid.sd_id_1:.0f}fw\\d+_.+.sdb'
+                psdb = f'SD{pid.sd_id_1}fw\\d+_.+.sdb'
                 for fentry in os.scandir(pid_folder):
                     if re.fullmatch(psdb, fentry.name):
                         missing_sdb= False
