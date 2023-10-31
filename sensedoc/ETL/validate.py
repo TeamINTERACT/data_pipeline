@@ -96,7 +96,6 @@ if __name__ == '__main__':
             # Inspect each participant with SD to look for a matching sdb file 
             # (we only check the first one, if more than one SD has been given to that participant)
             for pid in lk_df.itertuples(index=False):
-                # Ids can be str or float, depending on the 
                 pid_folder = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'sensedoc', f'{pid.interact_id}_{pid.sd_id_1}')
                 # Check PID folder exists
                 if not os.path.isdir(pid_folder):
@@ -106,7 +105,7 @@ if __name__ == '__main__':
                 missing_sdb = True # Track if matching sdb file is found in folder
                 other_sdb = [] # Track all other (not matching) sdb files in folder
                 # Define pattern according to type of sd_id
-                psdb = f'SD{pid.sd_id_1}fw\\d+_.+.sdb'
+                psdb = f'SD{pid.sd_id_1}fw\\d*_.+.sdb'
                 for fentry in os.scandir(pid_folder):
                     if re.fullmatch(psdb, fentry.name):
                         missing_sdb= False

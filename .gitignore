@@ -4,6 +4,10 @@ temp/
 tmp/
 cache/
 
+# other CC stuff
+def-dfuller.code-workspace
+slurm*.out
+
 ############## R stuff ##############
 # History files
 .Rhistory
@@ -185,6 +189,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+venv*
 
 # Spyder project settings
 .spyderproject
