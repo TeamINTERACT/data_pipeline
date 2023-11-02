@@ -1,12 +1,11 @@
-"""Validation of SenseDoc data against linkage files
+"""Loading and transformation of SenseDoc data into (zipped) CSV files
 
-Checks list of folder names against matches in linkage file. Folder names 
-{INTERACT_ID}_{SD_ID} must match a record of INTERACT_ID and SD_ID in the 
-linkage file. In some cases, directories need to be reorganized into unique 
-{INTERACT_ID}_{SD_ID}` pairs with that name. Records which fail validation 
-are flagged for follow up.
+Creates one csv per participant/wave/sensor, file name includes INTERACT_ID. 
+The result is a folder per sensor, per city, each with a csv file per 
+participant with data and INTERACT_ID.
+Resulting CSV files are stored in the <sensedoc> subfolder.
 --
-USAGE: validate.py [TARGET_ROOT_FOLDER]
+USAGE: load.py [TARGET_ROOT_FOLDER]
 
 If TARGET_ROOT_FOLDER not provided, will default to test data folder.
 """
@@ -16,6 +15,12 @@ import sys
 import logging
 import re
 import pandas as pd
+from sqlalchemy import create_engine
+import platform
+from datetime import datetime
+import pytz
+from tempfile import NamedTemporaryFile
+
 
 # Define city_id and wave_id
 cities = {'mtl': 'montreal', 
@@ -28,10 +33,105 @@ waves = [1, 2, 3]
 root_data_folder = 'data\interact_test_data'
 
 
-if __name__ == '__main__':
-    logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S') #, level=logging.DEBUG)
+def single_load_transform(interact_id, src_sdb, dst_dir, start_date=None, end_date=None):
+    """
+    Processing of a single participant's SD data.
+    Load GPS and AXL data separately from sdb file, filter records to keep only
+    measurements within start and end dates, then save each of the two streams 
+    to a CSV file with interact_id, timestamp followed by axl/gps measurements.
 
-    # Get target root folder as command line argument
+    Parameters:
+    -----------
+    - interact_id: Participant unique ID
+    - src_sdb: Path to the SDB file, that contains the AXL and GPS data
+    - dst_dir: Path where newly created CSV files (one for GPS, one for AXL) will
+        be saved 
+    - start_date (Optional): if provided, only records on or after the start date will
+        be saved to the CSV file; format YYYY-MM-DD
+    - end_date (Optional): if provided, only records on or before the end date will
+        be saved to the CSV file; format YYYY-MM-DD
+
+    Notes:
+    ------
+    - Dates (in YYYY-MM-DD format) are converted to UTC timestamps, based on the city of participation.
+        Start date -> start date at 00:00:00 local time
+        End date -> end date at 23:59:59 local time
+    """
+    # A bit of checking going-on here:
+    # TODO
+
+    # Convert dates to proper UTC timestamp
+    tz_lut = {'1': 'America/Vancouver', # Victoria
+              '2': 'America/Vancouver', # Vancouver'
+              '3': 'America/Regina', # Saskatoon
+              '4': 'America/Toronto'} # Montreal
+    target_tz = pytz.timezone(tz_lut[str(interact_id)[:1]]) # First number of iid codes the city
+
+    if start_date is not None:
+        start_date = datetime.strptime(f'{start_date} 00:00:00', '%Y-%m-%d %H:%M:%S')
+        start_date = target_tz.localize(start_date)
+        start_date = start_date.astimezone(pytz.utc)
+
+    if end_date is not None:
+        end_date = datetime.strptime(f'{end_date} 23:59:59', '%Y-%m-%d %H:%M:%S')
+        end_date = target_tz.localize(end_date)
+        end_date = end_date.astimezone(pytz.utc)
+
+    # Process GPS
+    try:
+        gps_file = _single_load_transform_gps(interact_id, src_sdb, dst_dir, start_date, end_date)
+        logging.info(f'Participant # {interact_id}: GPS elite file -> {os.path.basename(gps_file)}')
+    except Exception as e:
+        logging.error(f'Participant # {interact_id}: Unable to process GPS ({e})')
+
+
+def _single_load_transform_gps(interact_id, src_sdb, dst_dir, start_date, end_date) -> str:
+    """ Process the GPS data stream 
+    
+    Returns the path to the newly created CSV file"""
+
+    # TODO: check if several sdb with _rtcX have been created, deal with the loading in that case
+
+    # Load GPS data from sdb file
+    if platform.system() == 'Windows':
+        # Connection string varies between Linux/Max and Windows
+        sdb_con = create_engine(f'sqlite:///{src_sdb}') 
+    else:
+        sdb_con = create_engine(f'sqlite:////{src_sdb}')
+    gps_df = pd.read_sql_table("gps", sdb_con, parse_dates=["utcdate"])
+
+    # Filter records based on start/end dates if required (dates already converted in utc timestamps)
+    if start_date:
+        gps_df = gps_df[gps_df['utcdate'] >= pd.to_datetime(start_date.replace(tzinfo = None))] # Need to drop tz so that pandas can handle it properly
+    if end_date:
+        gps_df = gps_df[gps_df['utcdate'] <= pd.to_datetime(end_date.replace(tzinfo = None))]
+
+    # Reformat, dropping unused columns and adding interact_id
+    gps_df.insert(0, 'interact_id', interact_id)
+    gps_df.drop(columns="ts", inplace=True)
+    gps_df = gps_df.convert_dtypes() # Some int were decoded as float in order to handle NULL, this should fix it
+
+    # Save to destination folder
+    with NamedTemporaryFile(prefix=f'{interact_id}_GPS-', suffix=".csv", delete=False, dir=dst_dir) as f:
+        gps_df.to_csv(f, index=False)
+
+    return f.name
+
+def _single_load_transform_axl(interact_id, src_sdb, dst_dir, start_date=None, end_date=None) -> str:
+    """ Process the AXL data stream 
+    
+    Returns the path to the newly created CSV file"""
+
+
+
+if __name__ == '__main__':
+    logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.DEBUG)
+
+    f = single_load_transform(1000, r"I:\Benoit\WORKSPACE\INTERACT_data_pipeline\data\interact_test_data\montreal\wave_01\sensedoc\401228518_50\SD50fw2099_20180829_163512.sdb", 
+                               r"I:\Benoit\WORKSPACE\INTERACT_data_pipeline\data\interact_test_data\montreal\wave_01\sensedoc\elite", '2018-07-17', None)
+
+
+"""     # Get target root folder as command line argument
     if len(sys.argv[1:]):
         root_data_folder = sys.argv[1]
 
@@ -129,4 +229,4 @@ if __name__ == '__main__':
                            'OK' if n_match == len(lk_df.index) else 'Missing SD files'))
 
     report_df = pd.DataFrame(report, columns=['City', 'Wave', 'Expected PIDs with SD', 'Found PIDs with SD', 'Status'])
-    print(report_df)
+    print(report_df)"""

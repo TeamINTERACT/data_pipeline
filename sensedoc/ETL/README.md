@@ -2,11 +2,19 @@
 
 ## Validate data
 
+See script `sensedoc\ETL\validate.py`
+
 Scan each city/wave folder and report missing participants and/or SD data with no match according to linkage files
 
 For each city/wave:
 1. Read linkage file `interact_id`, `sd_id` (more than 1 SD_ID possible)
 2. Look for a matching folder named `{interact_id}_{sd_id}`; this folder contains one or more SQLite3 databases with SenseDoc sensor data. Report any missing folder for follow-up.
+
+### Notes
+
+- Vancouver and Victoria wave 3 data required to be unzipped and renamed befaore being validated, see script `sensedoc\ETL\utilities.py`
+- Jeff's flag (_e.g._ `ignore`) are not considered when looking for data
+- As of commit `#348ef11`, participant'S data folder with `sdb` files are not listed in linkage file are ignored
 
 ## Load and transform data
 
@@ -18,6 +26,7 @@ For each city/wave/participant/sensor:
 5. Export to CSV / zipped CSV, including `city_id`, `wave_id`, `interact_id` and `sd_id` at the record level
 
 ### Notes
+
 - GPS and AXL data are processed separately
 - The output of that stage corresponds to the _Elite files_; these files are not saved to the pg database but rather on `nearline` once the ToP have be produced
 
