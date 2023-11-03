@@ -113,12 +113,12 @@ if __name__ == '__main__':
                     elif re.match('.*.sdb', fentry.name):
                         other_sdb.append(fentry.name)
                 if not missing_sdb:
-                    logging.info(f'Found sdb file <{fentry.name}> in folder <{pid_folder}>')
+                    logging.info(f'Found sdb file <{fentry.name}> in folder <{os.path.relpath(pid_folder, root_data_folder)}>')
                     n_match += 1
                 elif len(other_sdb):
-                    logging.error(f'No matching sdb file found in folder <{pid_folder}> but other sdb file(s) found:\n\t'+'\n\t'.join(other_sdb))
+                    logging.error(f'No matching sdb file found in folder <{os.path.relpath(pid_folder, root_data_folder)}> but other sdb file(s) found:\n\t'+'\n\t'.join(other_sdb))
                 else:
-                    logging.error(f'No sdb file found in folder <{pid_folder}>')
+                    logging.error(f'No sdb file found in folder <{os.path.relpath(pid_folder, root_data_folder)}>')
             
             # Report findings
             #print(f'Expecting {len(lk_df.index)} participants with SD data; found {n_match} participants with matching sdb file')
