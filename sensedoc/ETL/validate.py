@@ -5,6 +5,8 @@ Checks list of folder names against matches in linkage file. Folder names
 linkage file. In some cases, directories need to be reorganized into unique 
 {INTERACT_ID}_{SD_ID}` pairs with that name. Records which fail validation 
 are flagged for follow up.
+A second step during validation involves listing all *.sdb files found and 
+not matched against linkage file.
 --
 USAGE: validate.py [TARGET_ROOT_FOLDER]
 
@@ -41,6 +43,7 @@ if __name__ == '__main__':
 
     # Reporting, stored in a list of tuples (city, wave, n pids, n sdb, status)
     report = []
+    matched_sdbs = [] # keep track of all matched sdb files, for 2nd step validation
 
     for ccode, city in cities.items():
         for wave in waves:
@@ -109,6 +112,7 @@ if __name__ == '__main__':
                 for fentry in os.scandir(pid_folder):
                     if re.fullmatch(psdb, fentry.name):
                         missing_sdb= False
+                        matched_sdbs.append(os.path.join(pid_folder, fentry.name))
                         break
                     elif re.match('.*.sdb', fentry.name):
                         other_sdb.append(fentry.name)
@@ -127,6 +131,20 @@ if __name__ == '__main__':
                            str(len(lk_df.index)), 
                            str(n_match), 
                            'OK' if n_match == len(lk_df.index) else 'Missing SD files'))
-
+            
     report_df = pd.DataFrame(report, columns=['City', 'Wave', 'Expected PIDs with SD', 'Found PIDs with SD', 'Status'])
     print(report_df)
+
+    # Second step validation: looking for unmatched sdb files
+    print('==== SECOND STEP VALIDATION ====')
+    unmatched_sdbs = []
+    for dirpath, dirnames, filenames in os.walk(root_data_folder):
+        for f in filenames:
+            if os.path.splitext(f)[1] == '.sdb' and not re.fullmatch('.+_rtc\\d+.sdb', f) and os.path.join(dirpath, f) not in matched_sdbs:
+                unmatched_sdbs.append(os.path.join(dirpath, f))
+    if len(unmatched_sdbs):
+        print(f'The following sdb files have been found in <{root_data_folder}> with no match in linkage files:')
+        for i, sdb in enumerate(unmatched_sdbs, 1):
+            print(f'{i}. {os.path.relpath(sdb, root_data_folder)}')
+    else:
+        print('Ok')
