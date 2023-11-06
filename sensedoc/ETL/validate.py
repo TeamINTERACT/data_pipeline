@@ -133,7 +133,7 @@ if __name__ == '__main__':
                            'OK' if n_match == len(lk_df.index) else 'Missing SD files'))
             
     report_df = pd.DataFrame(report, columns=['City', 'Wave', 'Expected PIDs with SD', 'Found PIDs with SD', 'Status'])
-    print(report_df)
+    print(report_df.to_markdown(index=False, tablefmt='presto'))
 
     # Second step validation: looking for unmatched sdb files
     print('==== SECOND STEP VALIDATION ====')

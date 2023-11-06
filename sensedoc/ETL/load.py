@@ -3,18 +3,23 @@
 Creates one csv per participant/wave/sensor, file name includes INTERACT_ID. 
 The result is a folder per sensor, per city, each with a csv file per 
 participant with data and INTERACT_ID.
-Resulting CSV files are stored in the <sensedoc> subfolder.
+Resulting CSV files are stored in the <sensedoc_elite_files> subfolder within
+each city/wave folder.
 --
 USAGE: load.py [TARGET_ROOT_FOLDER]
 
 If TARGET_ROOT_FOLDER not provided, will default to test data folder.
 """
+# Required to avoid bug in Pandas https://github.com/pandas-dev/pandas/issues/55025
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 import os
 import sys
 import logging
 import re
 import pandas as pd
+import numpy as np
 from sqlalchemy import create_engine
 import platform
 from datetime import datetime
@@ -22,6 +27,7 @@ import pytz
 from tempfile import NamedTemporaryFile
 from time import perf_counter, strftime
 import multiprocessing as mp
+from itertools import starmap
 
 
 # Define city_id and wave_id
@@ -35,7 +41,9 @@ waves = [1, 2, 3]
 root_data_folder = 'data\interact_test_data'
 
 
-def single_load_transform(interact_id, src_sdb, dst_dir, start_date=None, end_date=None, city=None, wave=None):
+def single_load_transform(interact_id, sd_id, src_sdb, dst_dir, 
+                          start_date=None, end_date=None, city=None, wave=None,
+                          process_gps = True, process_axl = True):
     """
     Processing of a single participant's SD data.
     Load GPS and AXL data separately from sdb file, filter records to keep only
@@ -45,6 +53,7 @@ def single_load_transform(interact_id, src_sdb, dst_dir, start_date=None, end_da
     Parameters:
     -----------
     - interact_id: Participant unique ID
+    - sd_id: SenseDoc ID
     - src_sdb: Path to the SDB file, that contains the AXL and GPS data
     - dst_dir: Path where newly created CSV files (one for GPS, one for AXL) will
         be saved 
@@ -54,10 +63,12 @@ def single_load_transform(interact_id, src_sdb, dst_dir, start_date=None, end_da
         be saved to the CSV file; format YYYY-MM-DD
     - city (optional): for reporting
     - wave (optional): for reporting
+    - process_gps (optional): if true, GPS from sdb will be processed 
+    - process_axl (optional): if true, accelerometry from sdb will be processed 
 
     Returns:
     --------
-    A tuple with (city, wave, interact_id, gps_ok, axl_ok)
+    A tuple with (city, wave, interact_id, sd_id, gps_ok, axl_ok)
 
     Notes:
     ------
@@ -65,7 +76,11 @@ def single_load_transform(interact_id, src_sdb, dst_dir, start_date=None, end_da
         city of participation.
         Start date -> start date at 00:00:00 local time
         End date -> end date at 23:59:59 local time
+    - rtc sdb files, which happen when the SenseDoc Realt Time Clock is reset unexpectedly,
+        are appended to the current output CSV as long as their timestamps fall within 
+        period bounds
     """
+    logging.debug(f'PID {mp.current_process().pid}: processing {interact_id}/{sd_id}')
     # A bit of checking going-on here:
     # TODO
 
@@ -83,7 +98,7 @@ def single_load_transform(interact_id, src_sdb, dst_dir, start_date=None, end_da
             start_date = start_date.astimezone(pytz.utc)
         except Exception as e:
             logging.error(f'Participant # {interact_id}: unexpected error while decoding date ({e})')
-            return (city, wave, interact_id, 0, 0)
+            return (city, wave, interact_id, sd_id, 0, 0)
 
 
     if end_date is not None:
@@ -93,36 +108,42 @@ def single_load_transform(interact_id, src_sdb, dst_dir, start_date=None, end_da
             end_date = end_date.astimezone(pytz.utc)
         except Exception as e:
             logging.error(f'Participant # {interact_id}: unexpected error while decoding date ({e})')
-            return (city, wave, interact_id, 0, 0)
+            return (city, wave, interact_id, sd_id, 0, 0)
 
     # Process GPS
     gps_ok = None
-    try:
-        c0 = perf_counter()
-        gps_file = _single_load_transform_gps(interact_id, src_sdb, dst_dir, start_date, end_date)
-        c1 = perf_counter()
-        gps_ok = 1
-        logging.info(f'Participant # {interact_id}: GPS elite file -> {os.path.basename(gps_file)} [{c1-c0:.1f}s]')
-    except Exception as e:
-        gps_ok = 0
-        logging.error(f'Participant # {interact_id}: Unable to process GPS ({e})')
+    if process_gps:
+        try:
+            c0 = perf_counter()
+            gps_file = _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date, end_date)
+            c1 = perf_counter()
+            gps_ok = 1
+            logging.info(f'Participant # {interact_id}: GPS elite file -> {os.path.basename(gps_file)} [{c1-c0:.1f}s]')
+        except Exception as e:
+            gps_ok = 0
+            logging.error(f'Participant # {interact_id}: Unable to process GPS ({e})')
+    else:
+        gps_ok = -1
 
     # Process AXL
     axl_ok = None
-    try:
-        c0 = perf_counter()
-        axl_file = _single_load_transform_axl(interact_id, src_sdb, dst_dir, start_date, end_date)
-        c1 = perf_counter()
-        axl_ok = 1
-        logging.info(f'Participant # {interact_id}: AXL elite file -> {os.path.basename(axl_file)} [{c1-c0:.1f}s]')
-    except Exception as e:
-        axl_ok = 0
-        logging.error(f'Participant # {interact_id}: Unable to process AXL ({e})')
+    if process_axl:
+        try:
+            c0 = perf_counter()
+            axl_file = _single_load_transform_axl(interact_id, sd_id, src_sdb, dst_dir, start_date, end_date)
+            c1 = perf_counter()
+            axl_ok = 1
+            logging.info(f'Participant # {interact_id}: AXL elite file -> {os.path.basename(axl_file)} [{c1-c0:.1f}s]')
+        except Exception as e:
+            axl_ok = 0
+            logging.error(f'Participant # {interact_id}: Unable to process AXL ({e})')
+    else:
+        axl_ok = -1
 
-    return (city, wave, interact_id, gps_ok, axl_ok)
+    return (city, wave, interact_id, sd_id, gps_ok, axl_ok)
 
 
-def _single_load_transform_gps(interact_id, src_sdb, dst_dir, start_date, end_date) -> str:
+def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date, end_date) -> str:
     """ Process the GPS data stream 
     
     Returns the path to the newly created CSV file"""
@@ -168,9 +189,23 @@ def _single_load_transform_gps(interact_id, src_sdb, dst_dir, start_date, end_da
     with NamedTemporaryFile(prefix=f'{interact_id}_GPS-', suffix=".csv", delete=False, dir=dst_dir) as f:
         gps_df.to_csv(f, index=False)
 
-    return f.name
+    # Try to rename newly created file
+    # FIXME: Unable to properly deal with race condition on Linux, althought
+    # the risk of having the same name is close to zero
+    dst_f = os.path.join(dst_dir, f'{interact_id}_{sd_id}_GPS.csv')
+    if not os.path.exists(dst_f):
+        os.replace(os.path.join(dst_dir, f.name), dst_f)
+    else:
+        i = 1
+        dst_f = os.path.join(dst_dir, f'{interact_id}_{sd_id}.{i}_GPS.csv')
+        while os.path.exists(dst_f):
+            i += 1
+            dst_f = os.path.join(dst_dir, f'{interact_id}_{sd_id}.{i}_GPS.csv')
+        os.replace(os.path.join(dst_dir, f.name), dst_f)
 
-def _single_load_transform_axl(interact_id, src_sdb, dst_dir, start_date=None, end_date=None) -> str:
+    return dst_f
+
+def _single_load_transform_axl(interact_id, sd_id, src_sdb, dst_dir, start_date=None, end_date=None) -> str:
     """ Process the AXL data stream 
     
     Returns the path to the newly created CSV file"""
@@ -228,7 +263,21 @@ def _single_load_transform_axl(interact_id, src_sdb, dst_dir, start_date=None, e
     with NamedTemporaryFile(prefix=f'{interact_id}_AXL-', suffix=".csv", delete=False, dir=dst_dir) as f:
         axl_df.to_csv(f, index=False, float_format="%.5f")
     
-    return f.name
+    # Try to rename newly created file
+    # FIXME: Unable to properly deal with race condition on Linux, althought
+    # the risk of having the same name is close to zero
+    dst_f = os.path.join(dst_dir, f'{interact_id}_{sd_id}_AXL.csv')
+    if not os.path.exists(dst_f):
+        os.replace(os.path.join(dst_dir, f.name), dst_f)
+    else:
+        i = 1
+        dst_f = os.path.join(dst_dir, f'{interact_id}_{sd_id}.{i}_AXL.csv')
+        while os.path.exists(dst_f):
+            i += 1
+            dst_f = os.path.join(dst_dir, f'{interact_id}_{sd_id}.{i}_AXL.csv')
+        os.replace(os.path.join(dst_dir, f.name), dst_f)
+
+    return dst_f
 
 
 def load_transform_sd(src_dir, ncpu=None):
@@ -252,15 +301,14 @@ def load_transform_sd(src_dir, ncpu=None):
 
     Steps:
     1. Create <sensedoc_elite_files> subfolder within each city/wave;
-        folder needs to be empty if already existing
+        if folder already contains files, the processing of their
+        interact_id/sd_id combination will be removed from the processing
+        queue 
     2. Search linkage file within each city/wave
     3. Extract metadata for all participants with one or more SD file;
         store in pool worker argument list
     4. Run multiprocessing pool of workers
-    5. Once all workers have completed, clean the elite files:
-        - Drop random part in name -> IID_GPS.CSV / IID_AXL.CSV
-        - Append suffix (.N) to name when more than one SD used
-    6. Report back
+    5. Report back
     """
     # Store pool worker arguments in list of tuples
     # Arg = (interact_id, src_sdb, dst_dir, start_date, end_date) / see single_load_transform
@@ -270,16 +318,29 @@ def load_transform_sd(src_dir, ncpu=None):
         for wave in waves:
             # Check that city/wave folder exists, which is the case with test data...
             if not os.path.exists(os.path.join(root_data_folder, city, f'wave_{wave:02d}')):
-                logging.warning(f'Unable to find subfolder <{os.path.join(city, f"wave_{wave:02d}")}>, skipping!')
+                logging.warning(f'Unable to find subfolder <{os.path.join(city, f"wave_{wave:02d}")}>, skipping')
                 continue
             # Create elite subfolder
             elite_folder = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'sensedoc_elite_files')
+            existing_files = [] # store (interact_id, sd_id, gps_found, axl_found)
             if os.path.exists(elite_folder):
-                # Check folder is empty, other raise an error
+                # Found a folder, all content will be scan to remove already processed GPS/AXL files from queue
                 with os.scandir(elite_folder) as it:
-                    if any(it):
-                        logging.error(f'Found a non-empty elite folder <{os.path.relpath(elite_folder, root_data_folder)}>, aborting!')
-                        exit(1)
+                    existing_files_dict = {}
+                    warned = False
+                    for f in it:
+                        m = re.match('(?P<iid>\\d+)_(?P<sd_id>\\d+)_(?P<sensor>GPS|AXL).csv', f.name)
+                        if m is not None:
+                            if not warned:
+                                logging.warning(f'Elite folder <{os.path.relpath(elite_folder, root_data_folder)}> contains already processed files, which will be skipped')
+                                warned = True
+                            found = existing_files_dict.get((m.group('iid'), m.group('sd_id')), {})
+                            found[m.group('sensor')] = 1
+                            existing_files_dict[(m.group('iid'), m.group('sd_id'))] = found
+                    # Restructure dict to list of tuples
+                    for iid_sdid, snsr in existing_files_dict.items():
+                        iid, sdid = iid_sdid
+                        existing_files.append((iid, sdid, snsr.get('GPS', 0), snsr.get('AXL', 0)))
             else:
                 os.mkdir(elite_folder)
 
@@ -296,8 +357,15 @@ def load_transform_sd(src_dir, ncpu=None):
             lk_df_long = lk_df_long.loc[lk_df_long['sd_id'].notna(),['sd_id', 'sd_start', 'sd_end']]
             lk_df_long.reset_index(drop=False, inplace=True)
 
+            # Flag participant/sd already processed, even partially
+            processed_df = pd.DataFrame(existing_files, columns=['interact_id', 'sd_id', 'gps_done', 'axl_done'])
+            lk_df_long = lk_df_long.merge(processed_df, how='left')
+            lk_df_long.loc[:,'process_gps'] = np.where(lk_df_long['gps_done'] == 1, False, True)
+            lk_df_long.loc[:,'process_axl'] = np.where(lk_df_long['axl_done'] == 1, False, True)
+            lk_df_long.drop(columns=['gps_done', 'axl_done'], inplace=True)
+
             # Display linkage file content for control
-            logging.debug(f'Sd to process, according to linkage file <{os.path.basename(lk_file_path)}>:\n{lk_df_long.to_string()}')
+            logging.debug(f'SD to process, according to linkage file <{os.path.basename(lk_file_path)}>:\n{lk_df_long.to_string()}')
 
             # Load pid/sd metadata for processing by pool of workers
             for pid in lk_df_long.itertuples(index=False):
@@ -311,37 +379,53 @@ def load_transform_sd(src_dir, ncpu=None):
                 # Define pattern according to type of sd_id
                 psdb = f'SD{pid.sd_id}fw\\d*_.+.sdb'
                 for fentry in os.scandir(pid_folder):
-                    if re.fullmatch(psdb, fentry.name):
-                        wrk_args.append((pid.interact_id, 
+                    if re.fullmatch(psdb, fentry.name) : #and (pid.process_gps or pid.process_axl):
+                        wrk_args.append((pid.interact_id,
+                                         pid.sd_id,
                                          os.path.join(pid_folder, fentry.name),
                                          elite_folder,
                                          pid.sd_start,
                                          pid.sd_end,
-                                         city, wave))
+                                         city, wave,
+                                         pid.process_gps,
+                                         pid.process_axl))
                         missing_sdb = False
                         break
                         
                 if missing_sdb:
                     logging.warning(f'No sdb file found in folder <{os.path.relpath(pid_folder, root_data_folder)}>, skipping')
             
-    # DEBUG: display full list of args for workers
-    for t in wrk_args:
-        print(t)
-
-    # TODO: finalize
+    # Multiprocessing run
     c0 = perf_counter()
-    with mp.Pool(2) as pool:
-        results = pool.starmap_async(single_load_transform, wrk_args[:3])
-        for result in results.get():
-            print(f'[{strftime("%X")}] {result}', flush=True)
+    with mp.Pool(processes=ncpu, maxtasksperchild=1) as pool:
+        results = pool.starmap_async(single_load_transform, wrk_args)
 
+        # Report
+        result_df = pd.DataFrame([r for r in results.get()], columns=['City', 'Wave', 'iid', 'sd', 'GPS', 'AXL']).convert_dtypes()
+
+    # # Single thread processing (for debug only)
+    # results = starmap(single_load_transform, wrk_args[:3])
+    # result_df = pd.DataFrame([r for r in results], columns=['City', 'Wave', 'iid', 'sd', 'GPS', 'AXL']).convert_dtypes()
+
+    # Display stats on computation
+    print('==== PROCESSING REPORT | GPS ====')
+    result_gps_df = result_df.groupby(['City', 'Wave', 'GPS'], as_index=False).size()
+    result_gps_df.loc[result_gps_df['GPS'] == 0,'GPS Statut'] = 'Error'
+    result_gps_df.loc[result_gps_df['GPS'] == 1,'GPS Statut'] = 'OK'
+    result_gps_df.loc[result_gps_df['GPS'] == -1,'GPS Statut'] = 'Skipped'
+    result_gps_df = result_gps_df.pivot(index=['City', 'Wave'], columns='GPS Statut', values='size').fillna(0).convert_dtypes()
+    print(result_gps_df.reset_index().to_markdown(index=False, tablefmt='presto'))
+    print('==== PROCESSING REPORT | AXL ====')
+    result_axl_df = result_df.groupby(['City', 'Wave', 'AXL'], as_index=False).size()
+    result_axl_df.loc[result_axl_df['AXL'] == 0,'AXL Statut'] = 'Error'
+    result_axl_df.loc[result_axl_df['AXL'] == 1,'AXL Statut'] = 'OK'
+    result_axl_df.loc[result_axl_df['AXL'] == -1,'AXL Statut'] = 'Skipped'
+    result_axl_df = result_axl_df.pivot(index=['City', 'Wave'], columns='AXL Statut', values='size').fillna(0).convert_dtypes()
+    print(result_axl_df.reset_index().to_markdown(index=False, tablefmt='presto'))
     print(f'DONE: {perf_counter() - c0:.1f}s')
 
 if __name__ == '__main__':
     logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S') #, level=logging.DEBUG)
-
-    # f = single_load_transform(1000, r"data\interact_test_data\saskatoon\wave_01\sensedoc\302544861_487\SD487fw2106_20181029_133049.sdb", 
-    #                            r"data\interact_test_data\test_elite_files", '2018-10-03', None)
 
     # Get target root folder as command line argument
     if len(sys.argv[1:]):
