@@ -110,7 +110,7 @@ if __name__ == '__main__':
                 # Define pattern according to type of sd_id
                 psdb = f'SD{pid.sd_id_1}fw\\d*_.+.sdb'
                 for fentry in os.scandir(pid_folder):
-                    if re.fullmatch(psdb, fentry.name):
+                    if re.fullmatch(psdb, fentry.name) and not re.fullmatch(f'SD{pid.sd_id_1}fw\\d*_.+_rtc\\d+.sdb', fentry.name):
                         missing_sdb= False
                         matched_sdbs.append(os.path.join(pid_folder, fentry.name))
                         break
