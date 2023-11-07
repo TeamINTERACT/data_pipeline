@@ -166,6 +166,8 @@ def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date,
         else:
             rtc_con = create_engine(f'sqlite:////{src_rtc}')
         rtc_df = pd.read_sql_table("gps", rtc_con, parse_dates=["utcdate"])
+        if rtc_df.empty:
+            continue
         rtc_df.loc[:,'rtc'] = i # Keep track of rtc count, although not used for the moment
         gps_df = pd.concat([gps_df, rtc_df])
         i += 1
@@ -210,6 +212,22 @@ def _single_load_transform_axl(interact_id, sd_id, src_sdb, dst_dir, start_date=
     
     Returns the path to the newly created CSV file"""
 
+    def _scale_axl(_axl_df, _con) -> pd.DataFrame:
+        """ Scale X,Y,Z values to g and add utcdate """
+
+        # Convert int axl measures to g
+        axl_factor = pd.read_sql_query("SELECT value FROM ancillary WHERE key = 'axlFactor'", _con)
+        axl_factor = float(axl_factor.iloc[0, 0])
+        for col in ['x', 'y', 'z']:
+            _axl_df.loc[:,col] = axl_factor * _axl_df[col]
+
+        # Add utcdate
+        ref_date = pd.read_sql_query("SELECT value FROM ancillary WHERE key = 'refDate'", _con)
+        ref_date = pd.to_datetime(ref_date.iloc[0, 0])
+        _axl_df.insert(0, 'utcdate', ref_date + pd.to_timedelta(_axl_df['ts'], unit='Micro'))
+
+        return _axl_df
+
     # Load AXL data from sdb file
     # NB: using the accel_utcdate view, which precompute the utc date/time from the SD timestamp
     if platform.system() == 'Windows':
@@ -218,6 +236,9 @@ def _single_load_transform_axl(interact_id, sd_id, src_sdb, dst_dir, start_date=
     else:
         sdb_con = create_engine(f'sqlite:////{src_sdb}')
     axl_df = pd.read_sql_table("accel", sdb_con)
+
+    # Scale timestamp and axes
+    axl_df = _scale_axl(axl_df, sdb_con)
 
     # Check if several sdb with _rtcX have been created, deal with the loading in that case
     i = 1
@@ -229,21 +250,13 @@ def _single_load_transform_axl(interact_id, sd_id, src_sdb, dst_dir, start_date=
         else:
             rtc_con = create_engine(f'sqlite:////{src_rtc}')
         rtc_df = pd.read_sql_table("accel", rtc_con)
+        if rtc_df.empty:
+            continue
+        rtc_df = _scale_axl(rtc_df, rtc_con)
         rtc_df.loc[:,'rtc'] = i # Keep track of rtc count, although not used for the moment
         axl_df = pd.concat([axl_df, rtc_df])
         i += 1
         src_rtc = f'{os.path.splitext(src_sdb)[0]}_rtc{i}{os.path.splitext(src_sdb)[1]}'
-
-    # Convert int axl measures to g
-    axl_factor = pd.read_sql_query("SELECT value FROM ancillary WHERE key = 'axlFactor'", sdb_con)
-    axl_factor = float(axl_factor.iloc[0, 0])
-    for col in ['x', 'y', 'z']:
-        axl_df.loc[:,col] = axl_factor * axl_df[col]
-
-    # Add utcdate
-    ref_date = pd.read_sql_query("SELECT value FROM ancillary WHERE key = 'refDate'", sdb_con)
-    ref_date = pd.to_datetime(ref_date.iloc[0, 0])
-    axl_df.insert(0, 'utcdate', ref_date + pd.to_timedelta(axl_df['ts'], unit='Micro'))
 
     # Filter records based on start/end dates if required (dates already converted in utc timestamps)
     if start_date:
@@ -435,4 +448,5 @@ if __name__ == '__main__':
         logging.error(f'No directory <{root_data_folder}> found! Aborting')
         exit(1)
 
-    load_transform_sd(root_data_folder)
+    ncpus = int(os.environ.get('SLURM_CPUS_PER_TASK',default=1))
+    load_transform_sd(root_data_folder, ncpus)
