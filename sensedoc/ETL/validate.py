@@ -61,6 +61,7 @@ if __name__ == '__main__':
                            f'Wave {wave}', 
                            '-', 
                            '-', 
+                           '-', 
                            'No linkage file found'))
                 continue
             lk_df = pd.read_csv(lk_file_path, dtype=str)
@@ -75,6 +76,7 @@ if __name__ == '__main__':
             if missing_col:
                 report.append((city.capitalize(), 
                            f'Wave {wave}', 
+                           '-', 
                            '-', 
                            '-', 
                            'Linkage file wrongly formatted'))
@@ -92,14 +94,20 @@ if __name__ == '__main__':
                 report.append((city.capitalize(), 
                            f'Wave {wave}', 
                            str(len(lk_df.index)), 
-                           '-', 
+                           '-',
+                           '-',
                            'Found duplicated interact_ids'))
                 continue
 
+            # Pivot table to extract all SD when more than one has been used
+            lk_df_long = pd.wide_to_long(lk_df, ['sd_id', 'sd_firmware', 'sd_start', 'sd_end'], sep="_", i='interact_id', j='sd_rank')
+            lk_df_long = lk_df_long.loc[lk_df_long['sd_id'].notna(),['sd_id', 'sd_start', 'sd_end']]
+            lk_df_long.reset_index(drop=False, inplace=True)
+
             # Inspect each participant with SD to look for a matching sdb file 
             # (we only check the first one, if more than one SD has been given to that participant)
-            for pid in lk_df.itertuples(index=False):
-                pid_folder = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'sensedoc', f'{pid.interact_id}_{pid.sd_id_1}')
+            for pid in lk_df_long.itertuples(index=False):
+                pid_folder = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'sensedoc', f'{pid.interact_id}_{pid.sd_id}')
                 # Check PID folder exists
                 if not os.path.isdir(pid_folder):
                     logging.error(f'Unable to find directory <{os.path.relpath(pid_folder, root_data_folder)}>')
@@ -108,9 +116,10 @@ if __name__ == '__main__':
                 missing_sdb = True # Track if matching sdb file is found in folder
                 other_sdb = [] # Track all other (not matching) sdb files in folder
                 # Define pattern according to type of sd_id
-                psdb = f'SD{pid.sd_id_1}fw\\d*_.+.sdb'
+                psdb = f'SD{pid.sd_id}fw\\d*_.+.sdb'
+                psbd_rtc = f'SD{pid.sd_id}fw\\d*_.+_rtc\\d+.sdb'
                 for fentry in os.scandir(pid_folder):
-                    if re.fullmatch(psdb, fentry.name) and not re.fullmatch(f'SD{pid.sd_id_1}fw\\d*_.+_rtc\\d+.sdb', fentry.name):
+                    if re.fullmatch(psdb, fentry.name) and not re.fullmatch(psbd_rtc, fentry.name):
                         missing_sdb= False
                         matched_sdbs.append(os.path.join(pid_folder, fentry.name))
                         break
@@ -129,10 +138,11 @@ if __name__ == '__main__':
             report.append((city.capitalize(), 
                            f'Wave {wave}', 
                            str(len(lk_df.index)), 
+                           str(len(lk_df_long.index)),
                            str(n_match), 
-                           'OK' if n_match == len(lk_df.index) else 'Missing SD files'))
+                           'OK' if n_match == len(lk_df_long.index) else 'Missing SD files'))
             
-    report_df = pd.DataFrame(report, columns=['City', 'Wave', 'Expected PIDs with SD', 'Found PIDs with SD', 'Status'])
+    report_df = pd.DataFrame(report, columns=['City', 'Wave', 'PIDs with SD', 'Expected #SD', 'Found #SD', 'Status'])
     print(report_df.to_markdown(index=False, tablefmt='presto'))
 
     # Second step validation: looking for unmatched sdb files
