@@ -3,6 +3,7 @@ data/
 temp/
 tmp/
 cache/
+.env
 
 # other CC stuff
 def-dfuller.code-workspace

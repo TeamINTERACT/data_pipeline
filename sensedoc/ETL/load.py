@@ -91,7 +91,7 @@ def single_load_transform(interact_id, sd_id, src_sdb, dst_dir,
               '4': 'America/Toronto'} # Montreal
     target_tz = pytz.timezone(tz_lut[str(interact_id)[:1]]) # First number of iid codes the city
 
-    if start_date is not None:
+    if pd.notna(start_date):
         try:
             start_date = datetime.strptime(f'{start_date} 00:00:00', '%Y-%m-%d %H:%M:%S')
             start_date = target_tz.localize(start_date)
@@ -101,7 +101,7 @@ def single_load_transform(interact_id, sd_id, src_sdb, dst_dir,
             return (city.capitalize(), wave, interact_id, sd_id, 0, 0)
 
 
-    if end_date is not None:
+    if pd.notna(end_date):
         try:
             end_date = datetime.strptime(f'{end_date} 23:59:59', '%Y-%m-%d %H:%M:%S')
             end_date = target_tz.localize(end_date)
@@ -166,17 +166,17 @@ def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date,
         else:
             rtc_con = create_engine(f'sqlite:////{src_rtc}')
         rtc_df = pd.read_sql_table("gps", rtc_con, parse_dates=["utcdate"])
+        i += 1
+        src_rtc = f'{os.path.splitext(src_sdb)[0]}_rtc{i}{os.path.splitext(src_sdb)[1]}'
         if rtc_df.empty:
             continue
         rtc_df.loc[:,'rtc'] = i # Keep track of rtc count, although not used for the moment
         gps_df = pd.concat([gps_df, rtc_df])
-        i += 1
-        src_rtc = f'{os.path.splitext(src_sdb)[0]}_rtc{i}{os.path.splitext(src_sdb)[1]}'
 
     # Filter records based on start/end dates if required (dates already converted in utc timestamps)
-    if start_date:
+    if pd.notna(start_date):
         gps_df = gps_df[gps_df['utcdate'] >= pd.to_datetime(start_date.replace(tzinfo = None))] # Need to drop tz so that pandas can handle it properly
-    if end_date:
+    if pd.notna(end_date):
         gps_df = gps_df[gps_df['utcdate'] <= pd.to_datetime(end_date.replace(tzinfo = None))]
 
     # Reformat, dropping unused columns and adding interact_id
@@ -250,18 +250,18 @@ def _single_load_transform_axl(interact_id, sd_id, src_sdb, dst_dir, start_date=
         else:
             rtc_con = create_engine(f'sqlite:////{src_rtc}')
         rtc_df = pd.read_sql_table("accel", rtc_con)
+        i += 1
+        src_rtc = f'{os.path.splitext(src_sdb)[0]}_rtc{i}{os.path.splitext(src_sdb)[1]}'
         if rtc_df.empty:
             continue
         rtc_df = _scale_axl(rtc_df, rtc_con)
         rtc_df.loc[:,'rtc'] = i # Keep track of rtc count, although not used for the moment
         axl_df = pd.concat([axl_df, rtc_df])
-        i += 1
-        src_rtc = f'{os.path.splitext(src_sdb)[0]}_rtc{i}{os.path.splitext(src_sdb)[1]}'
 
     # Filter records based on start/end dates if required (dates already converted in utc timestamps)
-    if start_date:
+    if pd.notna(start_date):
         axl_df = axl_df[axl_df['utcdate'] >= pd.to_datetime(start_date.replace(tzinfo = None))] # Need to drop tz so that pandas can handle it properly
-    if end_date:
+    if pd.notna(end_date):
         axl_df = axl_df[axl_df['utcdate'] <= pd.to_datetime(end_date.replace(tzinfo = None))]
 
     # Reformat, dropping unused columns and adding interact_id
@@ -410,15 +410,14 @@ def load_transform_sd(src_dir, ncpu=None):
             
     # Multiprocessing run
     c0 = perf_counter()
-    with mp.Pool(processes=ncpu, maxtasksperchild=1) as pool:
-        results = pool.starmap_async(single_load_transform, wrk_args)
-
-        # Report
-        result_df = pd.DataFrame([r for r in results.get()], columns=['City', 'Wave', 'iid', 'sd', 'GPS', 'AXL']).convert_dtypes()
-
-    # # Single thread processing (for debug only)
-    # results = starmap(single_load_transform, wrk_args[:3])
-    # result_df = pd.DataFrame([r for r in results], columns=['City', 'Wave', 'iid', 'sd', 'GPS', 'AXL']).convert_dtypes()
+    if ncpus > 1: # Switch to multiprocessing if more than 1 CPU
+        with mp.Pool(processes=ncpu, maxtasksperchild=1) as pool:
+            results = pool.starmap_async(single_load_transform, wrk_args)
+            result_df = pd.DataFrame([r for r in results.get()], columns=['City', 'Wave', 'iid', 'sd', 'GPS', 'AXL']).convert_dtypes()
+    else:
+        # Single thread processing (for debug only)
+        results = starmap(single_load_transform, wrk_args)
+        result_df = pd.DataFrame([r for r in results], columns=['City', 'Wave', 'iid', 'sd', 'GPS', 'AXL']).convert_dtypes()
 
     # Display stats on computation
     print('==== PROCESSING REPORT | GPS ====')
@@ -438,7 +437,7 @@ def load_transform_sd(src_dir, ncpu=None):
     print(f'DONE: {perf_counter() - c0:.1f}s')
 
 if __name__ == '__main__':
-    logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S') #, level=logging.DEBUG)
+    logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.DEBUG)
 
     # Get target root folder as command line argument
     if len(sys.argv[1:]):
