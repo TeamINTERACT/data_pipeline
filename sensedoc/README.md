@@ -10,31 +10,29 @@
 
    ```
    ===== VALIDATING Montreal | Wave 1 =====
-   [11/10/2023 06:13:58] ERROR: Unable to find directory <montreal/wave_01/sensedoc/401627014_188>
-   [11/10/2023 06:13:58] ERROR: Unable to find directory <montreal/wave_01/sensedoc/401751741_51>
-   [11/10/2023 06:13:58] ERROR: Unable to find directory <montreal/wave_01/sensedoc/401679813_146>
+   [11/13/2023 13:13:47] ERROR: Unable to find directory <montreal/wave_01/sensedoc/401627014_188>  | Jeff dit ignore
+   [11/13/2023 13:13:47] ERROR: Unable to find directory <montreal/wave_01/sensedoc/401751741_51>   | Jeff dit ignore
+   [11/13/2023 13:13:47] ERROR: Unable to find directory <montreal/wave_01/sensedoc/401679813_146>  | Jeff dit ignore
    ===== VALIDATING Montreal | Wave 2 =====
    ===== VALIDATING Montreal | Wave 3 =====
-   [11/10/2023 06:13:58] ERROR: Unable to find directory <montreal/wave_03/sensedoc/401952301_23>
+   [11/13/2023 13:13:47] ERROR: Unable to find directory <montreal/wave_03/sensedoc/401952301_23>   | Jeff dit ignore
    ===== VALIDATING Saskatoon | Wave 1 =====
-   [11/10/2023 06:13:58] ERROR: Unable to find directory <saskatoon/wave_01/sensedoc/302610266_367>
-   [11/10/2023 06:13:59] ERROR: Unable to find directory <saskatoon/wave_01/sensedoc/302923081_367>
-   [11/10/2023 06:13:59] ERROR: Unable to find directory <saskatoon/wave_01/sensedoc/302273130_375>
+   [11/13/2023 13:13:48] ERROR: Unable to find directory <saskatoon/wave_01/sensedoc/302610266_367> | Jeff dit ignore
+   [11/13/2023 13:13:48] ERROR: Unable to find directory <saskatoon/wave_01/sensedoc/302923081_367> | Jeff dit ignore
+   [11/13/2023 13:13:48] ERROR: Unable to find directory <saskatoon/wave_01/sensedoc/302273130_375> | Jeff dit ignore
    ===== VALIDATING Saskatoon | Wave 2 =====
-   [11/10/2023 06:13:59] ERROR: Unable to find directory <saskatoon/wave_02/sensedoc/302955394_383>
+   [11/13/2023 13:13:48] ERROR: Unable to find directory <saskatoon/wave_02/sensedoc/302955394_383> | Jeff dit ignore
    ===== VALIDATING Saskatoon | Wave 3 =====
    ===== VALIDATING Vancouver | Wave 1 =====
    ===== VALIDATING Vancouver | Wave 2 =====
-   [11/10/2023 06:14:00] ERROR: Unable to find directory <vancouver/wave_02/sensedoc/202634537_491>
+   [11/13/2023 13:13:49] ERROR: Unable to find directory <vancouver/wave_02/sensedoc/202634537_491> | Zoé dit ignore! see sd_id_2
    ===== VALIDATING Vancouver | Wave 3 =====
-   [11/10/2023 06:14:00] ERROR: Unable to find directory <vancouver/wave_03/sensedoc/203064043_324>
    ===== VALIDATING Victoria | Wave 1 =====
-   [11/10/2023 06:14:00] ERROR: Unable to find directory <victoria/wave_01/sensedoc/101158091_23>
-   [11/10/2023 06:14:01] ERROR: Unable to find directory <victoria/wave_01/sensedoc/101891218_111>
+   [11/13/2023 13:13:49] ERROR: Unable to find directory <victoria/wave_01/sensedoc/101158091_23>   | missing file - c'est ok!
+   [11/13/2023 13:13:50] ERROR: Unable to find directory <victoria/wave_01/sensedoc/101891218_111>  | Zoé dit ignore see sd_id_2
    ===== VALIDATING Victoria | Wave 2 =====
    ===== VALIDATING Victoria | Wave 3 =====
-   [11/10/2023 06:14:01] ERROR: Unable to find directory <victoria/wave_03/sensedoc/101847191_405>
-
+   [11/13/2023 13:13:50] ERROR: Unable to find directory <victoria/wave_03/sensedoc/101847191_405>  | Jeff dit ignore
    City      | Wave   |   PIDs with SD |   Expected #SD |   Found #SD | Status
    -----------+--------+----------------+----------------+-------------+------------------
    Montreal  | Wave 1 |            163 |            165 |         162 | Missing SD files
@@ -45,19 +43,12 @@
    Saskatoon | Wave 3 |             10 |             10 |          10 | OK
    Vancouver | Wave 1 |            152 |            152 |         152 | OK
    Vancouver | Wave 2 |             84 |             91 |          90 | Missing SD files
-   Vancouver | Wave 3 |             73 |             76 |          75 | Missing SD files
+   Vancouver | Wave 3 |             76 |             79 |          79 | OK
    Victoria  | Wave 1 |            155 |            165 |         163 | Missing SD files
    Victoria  | Wave 2 |            130 |            134 |         134 | OK
    Victoria  | Wave 3 |             89 |             91 |          90 | Missing SD files
-   
    ==== SECOND STEP VALIDATION ====
-   The following sdb files have been found in </home/btcrchum/projects/def-dfuller/interact/data_archive> with no match in linkage files:
-   1. victoria/wave_03/sensedoc/101435597_374/101435597_445/SDfw_20210621_103435.sdb
-   2. montreal/wave_02/sensedoc/402312216_280/investigate.sdb
-   3. vancouver/wave_03/sensedoc/201210287_349/SD349fw2110_20221011_113814.sdb
-   4. vancouver/wave_03/sensedoc/202662394_401/SD401fw2110_20220910_111205.sdb
-   5. vancouver/wave_03/sensedoc/202116714_403/SD403fw2106_20220903_104635.sdb
-   6. vancouver/wave_03/sensedoc/203659654_324/SD324fw2099_20220903_105938.sdb
+   Ok
    ```
    
 4. **Load**: Developer creates one csv per participant/wave/sensor, file name includes INTERACT_ID. The result is a folder per sensor, per city, each with a csv file per participant with data and INTERACT_ID
