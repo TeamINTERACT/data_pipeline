@@ -8,11 +8,12 @@ Daniel Fuller
 
 Reading in the data. Here we are reading in one file
 
--   `linkage_for_ingest_vic_w3.csv` which is the main file for
-    everything
+- `linkage_for_ingest_vic_w3.csv` which is the main file for everything
 
 ``` r
 setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
+#setwd("C:/Users/zoepo/Documents/Data/Linkages")
+
 vic_w3 <- read_delim("linkage_for_ingest_vic_w3.csv", delim = ",")
 ```
 
@@ -31,8 +32,8 @@ vic_w3 <- read_delim("linkage_for_ingest_vic_w3.csv", delim = ",")
 ### Rename variables
 
 ``` r
-vic_w3 <- rename(vic_w3, 
-                 sd_id_1 = sensedoc1_id,
+vic_w3 <- rename(vic_w3,
+                sd_id_1 = sensedoc1_id,
                 ethica_start = ethica_start_date, 
                 ethica_end = ethica_end_date,
                 sd_start_1 = sensedoc1_wear_start_date,
@@ -79,6 +80,8 @@ vic_w3$wave <- 3
 
 vic_w3$treksoft_pid <- as.numeric(vic_w3$treksoft_pid)
 vic_w3$treksoft_uid <- as.numeric(vic_w3$treksoft_uid)
+
+vic_w3$sd_end_1 <- as.Date(vic_w3$sd_end_1)
 ```
 
 ### Selecting variables
