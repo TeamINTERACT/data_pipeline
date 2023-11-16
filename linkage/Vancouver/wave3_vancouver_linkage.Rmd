@@ -26,6 +26,8 @@ Reading in the data. These are data are relatively different from Wave 1 and 2 a
 
 ```{r}
 setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
+#setwd("C:/Users/zoepo/Documents/Data/Linkages")
+
 w3_plg <- read_delim("INT-YVR-W3-PLG.csv", delim = ";", name_repair = "universal")
 w3_eth <- read_delim("INT-YVR-W3-ETH.csv", delim = ";", name_repair = "universal")
 w3_sd <- read_delim("INT-YVR-W3-SD.csv", delim = ";", name_repair = "universal")
@@ -110,6 +112,7 @@ van_w3$test[van_w3$email== "vancouver+moved@teaminteract.ca"] <- 1
 table(van_w3$test)
 ```
 
+
 ### Adding columns
 
 Here we add the columns to have consistent columns across linkage files. 
@@ -125,6 +128,24 @@ van_w3$interact_id <- as.numeric(van_w3$interact_id)
 
 van_w3$treksoft_pid <- as.numeric(van_w3$treksoft_pid)
 van_w3$treksoft_uid <- as.numeric(van_w3$treksoft_uid)
+```
+
+
+
+
+### Correct a mistake in linkage ID 
+
+```{r}
+## ERROR: Unable to find directory <vancouver/wave_03/sensedoc/203064043_324> 
+## vancouver/wave_03/sensedoc/203659654_324/SD324fw2099_20220903_105938.sdb 
+## No ID 203659654 found in the linkage table. This is a mistake and was corrected on CC.  
+
+## Decision: 13 nov 2023: zoe renamed on compute canada this file 203659654_324, to this 203064043_324 
+
+## ID n'existe pas dans aucun linkage, et tiens le SD 324 n'a été utilisé qu'une fois- et manque au 203064043. 
+## Je confirme que participant 203064043 vit dans un des hotspots captés par SD 324.
+
+
 ```
 
 ### Selecting variables
