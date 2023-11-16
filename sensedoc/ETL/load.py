@@ -1,7 +1,7 @@
 """Loading and transformation of SenseDoc data into (zipped) CSV files
 
 Creates one csv per participant/wave/sensor, file name includes INTERACT_ID. 
-The result is a folder per sensor, per city.capitalize(), each with a csv file per 
+The result is a folder per sensor, per city, each with a csv file per 
 participant with data and INTERACT_ID.
 Resulting CSV files are stored in the <sensedoc_elite_files> subfolder within
 each city/wave folder.
@@ -68,7 +68,7 @@ def single_load_transform(interact_id, sd_id, src_sdb, dst_dir,
 
     Returns:
     --------
-    A tuple with (city.capitalize(), wave, interact_id, sd_id, gps_ok, axl_ok)
+    A tuple with (city, wave, interact_id, sd_id, gps_ok, axl_ok)
 
     Notes:
     ------
@@ -330,11 +330,11 @@ def load_transform_sd(src_dir, ncpu=None):
     for ccode, city in cities.items():
         for wave in waves:
             # Check that city/wave folder exists, which is the case with test data...
-            if not os.path.exists(os.path.join(root_data_folder, city.capitalize(), f'wave_{wave:02d}')):
-                logging.warning(f'Unable to find subfolder <{os.path.join(city.capitalize(), f"wave_{wave:02d}")}>, skipping')
+            if not os.path.exists(os.path.join(root_data_folder, city, f'wave_{wave:02d}')):
+                logging.warning(f'Unable to find subfolder <{os.path.join(city, f"wave_{wave:02d}")}>, skipping')
                 continue
             # Create elite subfolder
-            elite_folder = os.path.join(root_data_folder, city.capitalize(), f'wave_{wave:02d}', 'sensedoc_elite_files')
+            elite_folder = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'sensedoc_elite_files')
             existing_files = [] # store (interact_id, sd_id, gps_found, axl_found)
             if os.path.exists(elite_folder):
                 # Found a folder, all content will be scan to remove already processed GPS/AXL files from queue
@@ -358,7 +358,7 @@ def load_transform_sd(src_dir, ncpu=None):
                 os.mkdir(elite_folder)
 
             # Read linkage file and add corresponding args to list of worker args
-            lk_file_path = os.path.join(root_data_folder, city.capitalize(), f'wave_{wave:02d}', f'linkage_{ccode}_w{wave}.csv')
+            lk_file_path = os.path.join(root_data_folder, city, f'wave_{wave:02d}', f'linkage_{ccode}_w{wave}.csv')
             if not os.path.isfile(lk_file_path):
                 logging.warning(f'Linkage file <{os.path.basename(lk_file_path)}> not found, skipping')
                 continue
@@ -382,7 +382,7 @@ def load_transform_sd(src_dir, ncpu=None):
 
             # Load pid/sd metadata for processing by pool of workers
             for pid in lk_df_long.itertuples(index=False):
-                pid_folder = os.path.join(root_data_folder, city.capitalize(), f'wave_{wave:02d}', 'sensedoc', f'{pid.interact_id}_{pid.sd_id}')
+                pid_folder = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'sensedoc', f'{pid.interact_id}_{pid.sd_id}')
 
                 if not os.path.exists(pid_folder):
                     logging.warning(f'No folder <{os.path.relpath(pid_folder, root_data_folder)}> found, skipping')
@@ -399,7 +399,7 @@ def load_transform_sd(src_dir, ncpu=None):
                                          elite_folder,
                                          pid.sd_start,
                                          pid.sd_end,
-                                         city.capitalize(), f'Wave {wave}',
+                                         city, f'Wave {wave}',
                                          pid.process_gps,
                                          pid.process_axl))
                         missing_sdb = False
