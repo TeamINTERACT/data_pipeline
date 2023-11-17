@@ -24,6 +24,8 @@ Reading in the data. Here we are reading in two files
 
 ```{r}
 setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
+#setwd("C:/Users/zoepo/Documents/Data/Linkages")
+
 skt <- read_delim("linkage_for_ingest_skt_w1.csv", delim = ";")
 lut_skt <- read_delim("lut_skt.csv", delim = ",")
 
@@ -42,7 +44,7 @@ ethica_tests <- c("1451", "2036",
                   "12641", "12638", 
                   "12617", "1470",
                   "4579", "5367",
-                  "5399","3962")
+                  "5399","3962", "29609")
 ```
 
 ### Rename ethica 

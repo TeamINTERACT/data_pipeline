@@ -8,13 +8,15 @@ Daniel Fuller
 
 Reading in the data. Here we are reading in two files
 
--   `linkage_for_ingest_vic_w1.csv` which is our main file
--   `lut_vic.csv` which is a look up table for looking up previous
-    versions of the health and VERITAS ID variables. These will not be
-    used after Wave 1.
+- `linkage_for_ingest_vic_w1.csv` which is our main file
+- `lut_vic.csv` which is a look up table for looking up previous
+  versions of the health and VERITAS ID variables. These will not be
+  used after Wave 1.
 
 ``` r
 setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
+#setwd("C:/Users/zoepo/Documents/Data/Linkages")
+
 vic_w1 <- read_delim("linkage_for_ingest_vic_w1.csv", delim = ";")
 ```
 
@@ -48,6 +50,9 @@ dates
 
 ``` r
 vic_w1 <- separate(vic_w1, col = dates, into = c("sd_start_1_messy", "sd_end_1_messy"), sep = "-")
+vic_w1 <- rename(vic_w1, 
+                sd_start_2_messy = sd_start_2,
+                sd_end_2_messy = sd_end_2)
 ```
 
 Fixing the start dates for SenseDoc
@@ -55,23 +60,30 @@ Fixing the start dates for SenseDoc
 ``` r
 vic_w1$sd_start_1 <- parse_date_time(vic_w1$sd_start_1_messy, orders = c("md", "dm"))
 year(vic_w1$sd_start_1) <- 2017
+
+
+vic_w1$sd_start_2 <- parse_date_time(vic_w1$sd_start_2_messy, orders = c("dmy"))
 ```
 
 Fixing the end dates for SenseDoc
 
 ``` r
 vic_w1$sd_end_1 <- parse_date_time(vic_w1$sd_end_1_messy, orders = c("mdy", "dmy", "md", "dm"))
+
+vic_w1$sd_end_2 <- parse_date_time(vic_w1$sd_end_2_messy, orders = c("dmy"))
 ```
 
 Spot checked text dates with parsed dates
 
 ``` r
 date_review <- select(vic_w1, sd_start_1_messy, sd_end_1_messy, sd_start_1, sd_end_1)
+
+date_review <- select(vic_w1, sd_start_2_messy, sd_end_2_messy, sd_start_2, sd_end_2)
 ```
 
-Looks good.
+Looks good. Looks good for sd_id_2 too.
 
-## Join LUT with vix_w1
+## Join LUT with vic_w1
 
 Join Benoit’s LUT and check if IDs match \#309 records
 
@@ -126,8 +138,8 @@ vic_w1$dropout <- NA
 vic_w1$spam_participant <- NA
 vic_w1$wave <- 1
 
-vic_w1$sd_end_2 <- as.Date(vic_w1$sd_end_2)
-vic_w1$sd_start_2 <- as.Date(vic_w1$sd_start_2)
+# vic_w1$sd_end_2 <- as.Date(vic_w1$sd_end_2)
+# vic_w1$sd_start_2 <- as.Date(vic_w1$sd_start_2)
 
 vic_w1$treksoft_pid <- as.numeric(vic_w1$treksoft_pid)
 vic_w1$treksoft_uid <- as.numeric(vic_w1$treksoft_uid)

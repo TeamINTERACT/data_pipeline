@@ -8,13 +8,15 @@ Daniel Fuller
 
 Reading in the data. Here we are reading in two files
 
--   `linkage_for_ingest_skt_w1.csv` which is our main file
--   `lut_skt.csv` which is a look up table for looking up previous
-    versions of the health and VERITAS ID variables. These will not be
-    used after Wave 1.
+- `linkage_for_ingest_skt_w1.csv` which is our main file
+- `lut_skt.csv` which is a look up table for looking up previous
+  versions of the health and VERITAS ID variables. These will not be
+  used after Wave 1.
 
 ``` r
 setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
+#setwd("C:/Users/zoepo/Documents/Data/Linkages")
+
 skt <- read_delim("linkage_for_ingest_skt_w1.csv", delim = ";")
 ```
 
@@ -59,16 +61,7 @@ ethica_tests <- c("1451", "2036",
                   "12641", "12638", 
                   "12617", "1470",
                   "4579", "5367",
-                  "5399","3962")
-```
-
-### Add treksoft IDs
-
-Here we are adding the Treksoft (Health and VERITAS) IDs to the data.
-These are `treksoft_pid` and `treksoft_uid`.
-
-``` r
-skt_w1 <- select(skt_w1, interact_id, treksoft_pid, treksoft_uid, ethica_id.x, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, dropout, data_disposition, test)
+                  "5399","3962", "29609")
 ```
 
 ### Rename ethica
@@ -90,14 +83,24 @@ skt_w1 <- skt_w1 %>%
 
 Here we add the columns
 
--   `plg_id`: This is a ID column that will supersede the `treksoft_pid`
-    and `treksoft_uid`. Note that the company Treksoft and Polygone are
-    the same, they just changed names during the study period.
--   `wave`: The wave ID for the study.
+- `plg_id`: This is a ID column that will supersede the `treksoft_pid`
+  and `treksoft_uid`. Note that the company Treksoft and Polygone are
+  the same, they just changed names during the study period.
+- `wave`: The wave ID for the study.
 
 ``` r
 skt_w1$plg_id <- NA
+skt_w1$spam_participant <- NA
 skt_w1$wave <- 1
+```
+
+### Add treksoft IDs
+
+Here we are adding the Treksoft (Health and VERITAS) IDs to the data.
+These are `treksoft_pid` and `treksoft_uid`.
+
+``` r
+skt_w1 <- select(skt_w1, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, data_disposition, dropout, test, plg_id, spam_participant, wave)
 ```
 
 ## Write clean csv file

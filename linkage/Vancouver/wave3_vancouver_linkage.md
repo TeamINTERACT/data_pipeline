@@ -12,12 +12,14 @@ Sensedoc data sources. We are also moving to our naming convention of
 extract, validate, etc for this document. Here we are reading in three
 files
 
--   `INT-YVR-W3-PLG.csv` which is our main Polygon file
--   `INT-YVR-W3-ETH.csv` which is our main Ethica file
--   `INT-YVR-W3-SD.csv` which is our main Sensedoc file
+- `INT-YVR-W3-PLG.csv` which is our main Polygon file
+- `INT-YVR-W3-ETH.csv` which is our main Ethica file
+- `INT-YVR-W3-SD.csv` which is our main Sensedoc file
 
 ``` r
 setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
+#setwd("C:/Users/zoepo/Documents/Data/Linkages")
+
 w3_plg <- read_delim("INT-YVR-W3-PLG.csv", delim = ";", name_repair = "universal")
 ```
 
@@ -90,7 +92,7 @@ w3_eth <- read_delim("INT-YVR-W3-ETH.csv", delim = ";", name_repair = "universal
 w3_sd <- read_delim("INT-YVR-W3-SD.csv", delim = ";", name_repair = "universal")
 ```
 
-    ## Rows: 73 Columns: 9
+    ## Rows: 76 Columns: 9
     ## ── Column specification ────────────────────────────────────────────────────────
     ## Delimiter: ";"
     ## dbl  (5): interact_id, sd_id_1, sd_firmware_1, sd_id_2, sd_firmware_2
@@ -210,6 +212,19 @@ van_w3$interact_id <- as.numeric(van_w3$interact_id)
 ``` r
 van_w3$treksoft_pid <- as.numeric(van_w3$treksoft_pid)
 van_w3$treksoft_uid <- as.numeric(van_w3$treksoft_uid)
+```
+
+### Correct a mistake in linkage ID
+
+``` r
+## ERROR: Unable to find directory <vancouver/wave_03/sensedoc/203064043_324> 
+## vancouver/wave_03/sensedoc/203659654_324/SD324fw2099_20220903_105938.sdb 
+## No ID 203659654 found in the linkage table. This is a mistake and was corrected on CC.  
+
+## Decision: 13 nov 2023: zoe renamed on compute canada this file 203659654_324, to this 203064043_324 
+
+## ID n'existe pas dans aucun linkage, et tiens le SD 324 n'a été utilisé qu'une fois- et manque au 203064043. 
+## Je confirme que participant 203064043 vit dans un des hotspots captés par SD 324.
 ```
 
 ### Selecting variables
