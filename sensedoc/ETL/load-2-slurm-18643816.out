@@ -1,0 +1,2511 @@
+created virtual environment CPython3.11.5.final.0-64 in 14687ms
+  creator CPython3Posix(dest=/localscratch/btcrchum.18643816.0/env, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/btcrchum/.local/share/virtualenv)
+    added seed packages: pip==23.3.1, setuptools==68.2.2, wheel==0.41.1
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+Looking in links: /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic
+Requirement already satisfied: pip in /localscratch/btcrchum.18643816.0/env/lib/python3.11/site-packages (23.3.1)
+Looking in links: /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/greenlet-2.0.2+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 1))
+Requirement already satisfied: numpy==1.25.2+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 2)) (1.25.2+computecanada)
+Requirement already satisfied: pandas==2.1.0+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 3)) (2.1.0+computecanada)
+Requirement already satisfied: python-dateutil==2.8.2+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/ipykernel/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 4)) (2.8.2+computecanada)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/pytz-2023.3.post1+computecanada-py2.py3-none-any.whl (from -r requirements.txt (line 5))
+Requirement already satisfied: six==1.16.0+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/ipykernel/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 6)) (1.16.0+computecanada)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/SQLAlchemy-2.0.21+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 7))
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/tabulate-0.9.0+computecanada-py3-none-any.whl (from -r requirements.txt (line 8))
+Requirement already satisfied: typing_extensions==4.7.1+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 9)) (4.7.1+computecanada)
+Requirement already satisfied: tzdata==2023.3+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 10)) (2023.3+computecanada)
+Installing collected packages: pytz, tabulate, greenlet, SQLAlchemy
+  Attempting uninstall: pytz
+    Found existing installation: pytz 2023.3+computecanada
+    Not uninstalling pytz at /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/scipy-stack/2023b/lib/python3.11/site-packages, outside environment /localscratch/btcrchum.18643816.0/env
+    Can't uninstall 'pytz'. No files were found to uninstall.
+Successfully installed SQLAlchemy-2.0.21+computecanada greenlet-2.0.2+computecanada pytz-2023.3.post1+computecanada tabulate-0.9.0+computecanada
+[11/17/2023 05:38:20] WARNING: Elite folder <montreal/wave_01/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:20] DEBUG: SD to process, according to linkage file <linkage_mtl_w1.csv>:
+    interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0     401228518        1    50  2018-07-17  2018-07-26        False        False
+1     401837149        1   214  2018-07-09  2018-07-18        False        False
+2     401657924        1   158  2018-08-30  2018-09-06        False        False
+3     401630460        1   256  2018-08-07  2018-08-16        False        False
+4     401977519        1   250  2018-07-10  2018-07-22        False        False
+5     401097960        1   205  2018-07-14  2018-07-23        False        False
+6     401858062        1   230  2018-07-11  2018-07-20        False        False
+7     401013270        1   122  2018-08-07  2018-08-16        False        False
+8     401114651        1   192  2018-08-18  2018-08-27        False        False
+9     401184984        1    40  2018-08-22  2018-08-26        False        False
+10    401143240        1   174  2018-07-11  2018-07-23        False        False
+11    401213122        1    77  2018-08-01  2018-08-12        False        False
+12    401460946        1   179  2018-07-29  2018-08-07        False        False
+13    401809034        1   146  2018-07-12  2018-07-21        False        False
+14    401442080        1    63  2018-07-14  2018-07-23        False        False
+15    401145591        1    51  2018-07-31  2018-08-09        False        False
+16    401713668        1    48  2018-08-22  2018-08-31        False        False
+17    401079598        1   109  2018-08-04  2018-08-13        False        False
+18    401313041        1    48  2018-09-29  2018-10-08        False        False
+19    401387517        1   162  2018-07-18  2018-07-27        False        False
+20    401406511        1   258  2018-09-24  2018-10-04        False        False
+21    401755253        1   293  2018-07-20  2018-07-29        False        False
+22    401513068        1   280  2018-08-13  2018-08-22        False        False
+23    401461413        1    60  2018-07-20  2018-07-30        False        False
+24    401015259        1   121  2018-08-10  2018-08-19        False        False
+25    401882892        1   232  2018-08-22  2018-08-31        False        False
+26    401240793        1    17  2018-07-28  2018-08-06        False        False
+27    401095730        1   245  2018-07-20  2018-07-29        False        False
+28    401117024        1   102  2018-08-07  2018-08-16        False        False
+29    401669659        1   147  2018-08-10  2018-08-20        False        False
+30    401702019        1   166  2018-07-23  2018-08-01        False        False
+31    401785805        1   264  2018-08-09  2018-08-18        False        False
+32    401793448        1   205  2018-08-30  2018-09-08        False        False
+33    401887854        1   250  2018-08-09  2018-08-18        False        False
+34    401547018        1   199  2018-08-02  2018-08-11        False        False
+35    401291822        1   167  2018-08-04  2018-08-13        False        False
+36    401001817        1    11  2018-07-20  2018-07-29        False        False
+37    401586738        1   112  2018-08-10  2018-08-19        False        False
+38    401519033        1   283  2018-08-09  2018-08-18        False        False
+39    401522734        1    77  2018-08-17  2018-08-26        False        False
+40    401143038        1   253  2018-08-22  2018-08-31        False        False
+41    401809607        1    72  2018-08-01  2018-08-10        False        False
+42    401687877        1   123  2018-08-03  2018-08-12        False        False
+43    401206271        1   192  2018-11-24  2018-12-03        False        False
+44    401639662        1   268  2018-08-04  2018-08-13        False        False
+45    401479258        1   182  2018-08-04  2018-08-13        False        False
+46    401867550        1    46  2018-08-07  2018-08-16        False        False
+47    401043675        1   237  2018-08-14  2018-08-23        False        False
+48    401674061        1   258  2018-08-23  2018-09-01        False        False
+49    401493283        1    63  2018-08-09  2018-08-18        False        False
+50    401303680        1    50  2018-09-04  2018-09-13        False        False
+51    401885616        1   166  2018-08-17  2018-08-26        False        False
+52    401936329        1   165  2018-08-28  2018-09-06        False        False
+53    401068153        1   103  2018-08-22  2018-08-31        False        False
+54    401507474        1   188  2018-08-07  2018-08-16        False        False
+55    401719979        1    49  2018-08-08  2018-08-17        False        False
+56    401717838        1   293  2018-08-14  2018-08-23        False        False
+57    401599541        1    36  2018-08-20  2018-08-28        False        False
+58    401815437        1   144  2018-08-08  2018-08-17        False        False
+59    401545947        1    25  2018-08-04  2018-08-17        False        False
+60    401469801        1    96  2018-08-09  2018-08-18        False        False
+61    401331963        1    95  2018-08-07  2018-08-16        False        False
+62    401778226        1   149  2018-08-15  2018-08-24        False        False
+63    401277679        1   223  2018-08-08  2018-08-17        False        False
+64    401553707        1   276  2018-08-03  2018-08-12        False        False
+65    401664309        1    59  2018-08-03  2018-08-12        False        False
+66    401811306        1    78  2018-08-08  2018-08-17        False        False
+67    401208681        1   104  2018-08-07  2018-08-16        False        False
+68    401826476        1   235  2018-08-23  2018-09-01        False        False
+69    401720955        1    45  2018-08-21  2018-08-30        False        False
+70    401067509        1   201  2018-08-07  2018-08-16        False        False
+71    401911823        1   241  2018-08-04  2018-08-13        False        False
+72    401263827        1   205  2018-10-17  2018-10-26        False        False
+73    401379028        1     6  2018-08-18  2018-08-27        False        False
+74    401471476        1   204  2018-08-23  2018-09-01        False        False
+75    401279983        1   147  2018-09-17  2018-09-27        False        False
+76    401211351        1    23  2018-08-10  2018-08-19        False        False
+77    401449636        1    69  2018-08-15  2018-08-24        False        False
+78    401178700        1    25  2018-08-26  2018-09-04        False        False
+79    401240419        1   169  2018-09-10  2018-09-19        False        False
+80    401189367        1    95  2018-09-22  2018-10-01        False        False
+81    401774805        1   166  2018-10-11  2018-10-21        False        False
+82    401581644        1   203  2018-08-03  2018-08-12        False        False
+83    401968762        1   214  2018-08-07  2018-08-16        False        False
+84    401899217        1   232  2018-10-03  2018-10-12        False        False
+85    401855160        1   205  2018-08-18  2018-08-27        False        False
+86    401380365        1   246  2018-08-22  2018-08-31        False        False
+87    401505571        1   174  2018-08-17  2018-08-26        False        False
+88    401952301        1   169  2018-08-16  2018-08-25        False        False
+89    401747663        1   168  2018-08-21  2018-08-30        False        False
+90    401655897        1   168  2018-09-22  2018-10-01        False        False
+91    401690625        1    78  2018-09-04  2018-09-13        False        False
+92    401480375        1   246  2018-09-19  2018-09-30        False        False
+93    401524229        1   241  2018-09-22  2018-10-01        False        False
+94    401652752        1   169  2018-10-12  2018-10-21        False        False
+95    401952428        1   103  2018-09-21  2018-09-30        False        False
+96    401706561        1   241  2018-09-01  2018-09-10        False        False
+97    401030297        1   232  2018-10-26  2018-11-04        False        False
+98    401016540        1   232  2018-11-14  2018-11-16        False        False
+99    401627014        1   188         NaN         NaN         True         True
+100   401277385        1   121  2018-09-06  2018-09-15        False        False
+101   401610003        1   205  2018-09-22  2018-10-01        False        False
+102   401342134        1   168  2018-09-05  2018-09-14        False        False
+103   401400173        1   169  2018-09-25  2018-10-04        False        False
+104   401167164        1   192  2018-08-31  2018-09-09        False        False
+105   401392810        1   168  2019-01-16  2019-01-25        False        False
+106   401249937        1   174  2018-09-11  2018-09-20        False        False
+107   401691038        1   241  2018-11-17  2018-11-26        False        False
+108   401034467        1    96  2018-09-21  2018-10-03        False        False
+109   401128981        1   223  2018-10-08  2018-10-17        False        False
+110   401839530        1   256  2018-08-31  2018-09-09        False        False
+111   401377103        1   112  2018-09-27  2018-10-06        False        False
+112   401573388        1   146  2018-09-20  2018-09-29        False        False
+113   401601193        1    23  2018-10-26  2018-11-04        False        False
+114   401888182        1    77  2018-09-08  2018-09-19        False        False
+115   401750427        1    95  2018-09-04  2018-09-13        False        False
+116   401754630        1    48  2018-09-12  2018-09-21        False        False
+117   401514073        1    60  2018-09-01  2018-09-10        False        False
+118   401709298        1   264  2018-09-01  2018-09-09        False        False
+119   401204379        1   246  2018-11-01  2018-11-10        False        False
+120   401914555        1    96  2018-10-13  2018-10-22        False        False
+121   401615346        1   201  2018-09-01  2018-09-10        False        False
+122   401047099        1    51  2018-09-04  2018-09-14        False        False
+123   401677382        1   168  2018-10-27  2018-11-05        False        False
+124   401217682        1    23  2018-09-23  2018-10-02        False        False
+125   401500689        1   122  2018-09-19  2018-10-01        False        False
+126   401194965        1   147  2018-10-11  2018-10-20        False        False
+127   401532425        1   264  2018-09-25  2018-10-04        False        False
+128   401998921        1    77  2018-09-25  2018-10-05        False        False
+129   401841730        1   112  2018-10-20  2018-10-29        False        False
+130   401928299        1   258  2018-10-19  2018-10-28        False        False
+131   401522186        1   166  2018-09-21  2018-09-30        False        False
+132   401842092        1   223  2018-09-19  2018-10-01        False        False
+133   401462227        1   169  2018-10-25  2018-11-04        False        False
+134   401678459        1   122  2018-10-13  2018-10-22        False        False
+135   401021150        1   264  2018-11-21  2018-11-30        False        False
+136   401655906        1   241  2018-10-16  2018-10-25        False        False
+137   401967217        1   223  2018-10-24  2018-10-31        False        False
+138   401818388        1   103  2018-10-16  2018-10-25        False        False
+139   401879844        1   174  2018-10-31  2018-11-09        False        False
+140   401530157        1   280  2018-10-25  2018-11-03        False        False
+141   401272407        1    48  2018-10-27  2018-11-05        False        False
+142   401336772        1   189  2018-10-31  2018-11-10        False        False
+143   401751741        1    51         NaN         NaN         True         True
+144   401794213        1   192  2018-10-28  2018-11-06        False        False
+145   401273284        1    48  2018-11-27  2018-12-06        False        False
+146   401915749        1   223  2018-11-16  2018-11-25        False        False
+147   401386983        1   168  2018-11-27  2018-12-06        False        False
+148   401201353        1   174  2019-01-11  2019-01-18        False        False
+149   401102101        1    60  2018-11-17  2018-11-26        False        False
+150   401152941        1    23  2019-01-19  2019-01-28        False        False
+151   401876240        1   121  2018-11-28  2018-12-07        False        False
+152   401760345        1    50  2018-11-20  2018-11-29        False        False
+153   401450953        1   205  2019-01-11  2019-01-21        False        False
+154   401272178        1   169  2018-11-21  2018-11-30        False        False
+155   401935700        1   280  2018-11-29  2018-12-08        False         True
+156   401841090        1   169  2019-01-13  2019-01-24         True         True
+157   401679813        1   146         NaN         NaN         True         True
+158   401919451        1   189  2019-01-12  2019-01-21         True         True
+159   401178032        1    96  2019-01-11  2019-01-20         True         True
+160   401937896        1   147  2019-01-14  2019-01-23         True         True
+161   401440362        1   166  2019-01-31  2019-02-09         True         True
+162   401103480        1   112  2019-01-15  2019-01-24         True         True
+163   401184984        2   112  2018-09-08  2018-09-17         True         True
+164   401016540        2   232  2018-11-26  2018-12-02        False        False
+[11/17/2023 05:38:21] WARNING: No folder <montreal/wave_01/sensedoc/401627014_188> found, skipping
+[11/17/2023 05:38:21] WARNING: No folder <montreal/wave_01/sensedoc/401751741_51> found, skipping
+[11/17/2023 05:38:21] WARNING: No folder <montreal/wave_01/sensedoc/401679813_146> found, skipping
+[11/17/2023 05:38:21] WARNING: Elite folder <montreal/wave_02/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:21] DEBUG: SD to process, according to linkage file <linkage_mtl_w2.csv>:
+   interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0    401034573        1    39  2020-10-16  2020-10-25        False        False
+1    401035210        1   173  2020-10-24  2020-11-02        False        False
+2    401082893        1   158  2021-01-13  2021-01-22        False        False
+3    401095730        1   158  2020-10-06  2020-10-15        False        False
+4    401097960        1   121  2020-11-10  2020-11-19        False        False
+5    401214720        1   280  2021-01-19  2021-01-28        False        False
+6    401240419        1    77  2020-12-09  2020-12-18        False        False
+7    401272178        1    60  2020-10-29  2020-11-07        False        False
+8    401313041        1   283  2020-10-17  2020-10-26        False        False
+9    401328714        1   201  2020-11-15  2020-11-24        False         True
+10   401341482        1   117  2021-01-14  2021-01-24         True         True
+11   401342134        1   241  2020-10-29  2020-11-02         True         True
+12   401379272        1   169  2020-10-16  2020-10-25         True         True
+13   401440362        1   167  2020-10-28  2020-11-07         True         True
+14   401465378        1    51  2020-12-16  2020-12-25         True         True
+15   401469801        1   165  2020-09-30  2020-10-12         True         True
+16   401507474        1    69  2020-10-28  2020-11-06         True         True
+17   401556493        1   204  2020-11-20  2020-11-30         True         True
+18   401630460        1   256  2020-10-26  2020-11-04        False         True
+19   401664309        1    63  2020-11-10  2020-11-19         True         True
+20   401727775        1    50  2020-12-02  2020-12-12         True         True
+21   401796474        1   189  2021-01-16  2021-01-25         True         True
+22   401809607        1    49  2020-10-14  2020-10-23         True         True
+23   401811306        1   246  2020-10-16  2020-10-25         True         True
+24   401812917        1   144  2020-12-15  2020-12-24         True         True
+25   401860045        1   237  2020-10-28  2020-11-06         True         True
+26   401905412        1   174  2020-10-26  2020-11-05         True         True
+27   401919451        1   235  2020-10-09  2020-10-18        False        False
+28   401937896        1   117  2020-10-16  2020-10-25        False        False
+29   401952301        1     6  2020-10-15  2020-10-24        False        False
+30   401967217        1   102  2020-10-15  2020-10-24        False        False
+31   401967735        1   103  2020-10-28  2020-11-06        False        False
+32   402141286        1   293  2020-10-22  2020-10-31        False        False
+33   402178963        1   253  2020-10-22  2020-10-31        False        False
+34   402312216        1   280  2020-10-24  2020-11-03        False        False
+35   402402064        1    45  2020-11-12  2020-11-22        False        False
+36   402411342        1    96  2020-12-02  2020-12-12        False         True
+37   402435135        1   122  2020-10-25  2020-11-03         True         True
+38   402463787        1   283  2020-12-26  2021-01-04         True         True
+39   402495712        1    36  2020-10-16  2020-10-25         True         True
+40   402577721        1    23  2020-12-19  2020-12-29         True         True
+41   402781880        1    95  2020-12-16  2020-12-26         True         True
+42   402789603        1   205  2020-11-28  2020-12-07         True         True
+43   402843397        1   189  2020-11-22  2020-12-01         True         True
+44   402958700        1   166  2021-01-30  2021-02-07         True         True
+[11/17/2023 05:38:21] WARNING: Elite folder <montreal/wave_03/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:21] DEBUG: SD to process, according to linkage file <linkage_mtl_w3.csv>:
+   interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0    403658820        1   263  2022-12-09  2022-12-18        False         True
+1    403910107        1     8  2022-11-30  2022-12-09         True         True
+2    403846091        1    69  2022-10-26  2022-11-04         True         True
+3    403322693        1    96  2022-11-18  2022-11-27         True         True
+4    403683583        1    72  2022-10-28  2022-11-06         True         True
+5    403835859        1   109  2022-10-27  2022-11-05         True         True
+6    403144072        1   201  2022-12-02  2022-12-11         True         True
+7    403094862        1   102  2022-12-03  2022-12-30         True         True
+8    403781623        1     8  2022-10-29  2022-11-07         True         True
+9    402559939        1   162  2023-01-05  2023-01-14        False        False
+10   402411342        1   158  2022-11-04  2022-11-13        False        False
+11   402949876        1    96  2022-10-27  2022-11-05        False        False
+12   402737687        1    59  2022-10-28  2022-11-16        False        False
+13   402326480        1   122  2022-12-08  2022-12-17        False        False
+14   402141286        1    50  2022-10-27  2022-11-05        False        False
+15   401103480        1   122  2022-10-26  2022-11-04        False        False
+16   401919451        1   201  2022-11-03  2022-11-12        False        False
+17   401514022        1   179  2022-10-26  2022-11-04        False        False
+18   401760345        1     9  2022-11-10  2022-11-19        False         True
+19   401273284        1    59  2023-01-11  2023-01-20         True         True
+20   401530157        1   276  2022-10-27  2022-11-11         True         True
+21   401967217        1    78  2022-11-04  2022-11-13         True         True
+22   401841730        1   276  2022-11-19  2022-11-28         True         True
+23   401532425        1   104  2023-01-10  2023-01-19         True         True
+24   401451781        1    46  2022-12-09  2022-12-18         True         True
+25   401556493        1   147  2022-11-04  2022-11-13         True         True
+26   401212334        1   169  2022-10-28  2022-11-08         True         True
+27   401860045        1   162  2022-11-04  2022-11-13        False         True
+28   401393873        1   264  2023-01-09  2023-01-18         True         True
+29   401750427        1    17  2022-11-24  2022-12-03         True         True
+30   401484804        1   263  2022-11-03  2022-11-12         True         True
+31   401831490        1    23  2022-10-27  2022-11-08         True         True
+32   401167164        1    72  2022-12-09  2022-12-18         True         True
+33   401910151        1   169  2022-12-02  2022-12-11         True         True
+34   401399249        1   102  2022-10-26  2022-11-04         True         True
+35   401927418        1    78  2022-12-02  2022-12-11         True         True
+36   401309906        1     6  2022-10-27  2022-11-05        False        False
+37   401952301        1    23  2022-12-09  2022-12-18         True         True
+38   401240419        1    45  2022-11-03  2023-11-18        False        False
+39   401263827        1   253  2022-10-30  2022-11-08        False        False
+40   401461691        1   123  2022-12-09  2022-12-18        False        False
+41   401128368        1   103  2022-12-10  2022-12-19        False        False
+42   401545947        1   123  2022-10-28  2022-11-06        False        False
+43   401740972        1    46  2022-11-03  2022-11-16        False        False
+44   401844948        1    36  2022-11-03  2022-11-12        False        False
+45   401809607        1    69  2022-11-18  2022-11-27        False        False
+46   401586738        1   254  2022-10-28  2022-11-06        False         True
+47   401785805        1   264  2022-10-27  2022-11-05         True         True
+48   401669659        1   144  2022-10-26  2022-11-04         True         True
+49   401095730        1     9  2022-12-04  2022-12-14         True         True
+50   401544321        1   253  2023-01-03  2023-01-12         True         True
+51   401713668        1   235  2022-12-07  2022-12-16         True         True
+52   401460946        1   254  2023-01-14  2023-01-23         True         True
+53   401959741        1   103  2022-11-14  2022-11-23         True         True
+54   401630460        1    17  2022-11-02  2022-11-11         True         True
+[11/17/2023 05:38:21] WARNING: No folder <montreal/wave_03/sensedoc/401952301_23> found, skipping
+[11/17/2023 05:38:21] WARNING: Elite folder <saskatoon/wave_01/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:21] DEBUG: SD to process, according to linkage file <linkage_skt_w1.csv>:
+    interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0     302988056        1   404  2019-01-08  2019-01-17        False        False
+1     302539875        1   470  2018-10-02  2018-10-11        False        False
+2     302417689        1   483  2018-10-02  2018-10-11        False        False
+3     302544861        1   487  2018-10-02  2018-10-10        False        False
+4     302898812        1   453  2018-10-03  2018-10-12        False        False
+5     302947667        1   468  2018-10-03  2018-10-07        False        False
+6     302975201        1   363  2018-10-05  2018-10-14        False        False
+7     302980703        1   401  2018-10-05  2018-10-14        False        False
+8     302982550        1   404  2018-10-10  2018-10-19        False        False
+9     302434238        1   379  2018-10-11  2018-10-20        False        False
+10    302172908        1   366  2018-10-12  2018-10-21        False        False
+11    302464931        1   484  2018-10-12  2018-10-21        False        False
+12    302350198        1   491  2018-10-12  2018-10-21        False        False
+13    302319371        1   358  2018-10-13  2018-10-14        False        False
+14    302770046        1   373  2018-10-13  2018-10-22        False        False
+15    302226167        1   374  2018-10-13  2018-10-22        False        False
+16    302699137        1   367  2018-10-15  2018-10-24        False        False
+17    302201045        1   369  2018-10-16  2018-10-25        False        False
+18    302769937        1   356  2018-10-17  2018-10-26        False        False
+19    302445933        1   357  2018-10-17  2018-10-20        False        False
+20    302406156        1   466  2018-10-18  2018-10-27        False        False
+21    302312662        1   346  2018-10-20  2018-10-27        False        False
+22    302347000        1   392  2018-10-25  2018-11-03        False        False
+23    302877334        1   416  2018-10-25  2018-10-28        False        False
+24    302571730        1   314  2018-10-26  2018-11-04        False        False
+25    302411013        1   412  2018-10-26  2018-11-04        False        False
+26    302162315        1   406  2018-10-27  2018-11-05        False        False
+27    302450280        1   409  2018-10-27  2018-11-05        False        False
+28    302405256        1   415  2018-10-27  2018-11-05        False        False
+29    302168004        1   400  2018-10-28  2018-11-06        False        False
+30    302810350        1   350  2018-10-29  2018-11-07        False        False
+31    302168848        1   393  2018-10-29  2018-11-13        False        False
+32    302999241        1   345  2018-10-30  2018-11-08        False        False
+33    302610266        1   367  2018-10-30  2018-11-08         True         True
+34    302061859        1   391  2018-10-30  2018-11-08        False        False
+35    302402459        1   347  2018-10-31  2018-11-09        False        False
+36    302988730        1   358  2018-11-01  2018-11-10        False        False
+37    302358375        1   346  2018-11-02  2018-11-11        False        False
+38    302837017        1   374  2018-11-02  2018-11-11        False        False
+39    302260551        1   466  2018-11-02  2018-11-10        False        False
+40    302045191        1   401  2018-11-03  2018-11-12        False        False
+41    302887081        1   470  2018-11-05  2018-11-13        False        False
+42    302886690        1   349  2018-11-06  2018-11-12        False        False
+43    302405269        1   383  2018-11-06  2018-11-13        False        False
+44    302974083        1   366  2018-11-08  2018-11-18        False        False
+45    302515834        1   404  2018-11-08  2018-11-17        False        False
+46    302078583        1   483  2018-11-08  2018-11-17        False        False
+47    302468920        1   487  2018-11-08  2018-11-17        False        False
+48    302869057        1   343  2018-11-09  2018-11-18        False        False
+49    302414522        1   403  2018-11-09  2018-11-14        False        False
+50    302103402        1   415  2018-11-09  2018-11-18        False        False
+51    302244974        1   453  2018-11-09  2018-11-19        False        False
+52    302979980        1   339  2018-11-14  2018-11-25        False        False
+53    302328670        1   369  2018-11-14  2018-11-23        False        False
+54    302316534        1   379  2018-11-15  2018-11-22        False        False
+55    302022142        1   412  2018-11-15  2018-11-24        False        False
+56    302730391        1   314  2018-11-16  2018-11-25        False        False
+57    302641169        1   391  2018-11-17  2018-11-27        False        False
+58    302446738        1   375  2018-11-20  2018-11-29        False        False
+59    302881421        1   404  2018-11-22  2018-12-01        False        False
+60    302056620        1   416  2018-11-22  2018-12-01        False        False
+61    302466932        1   487  2018-11-22  2018-11-30        False        False
+62    302445124        1   363  2018-11-23  2019-01-20        False        False
+63    302918821        1   406  2018-11-24  2018-12-03        False        False
+64    302279231        1   358  2018-11-26  2018-12-05        False        False
+65    302955513        1   349  2018-11-27  2018-12-06        False        False
+66    302680215        1   401  2018-11-28  2018-12-14        False        False
+67    302387519        1   392  2018-12-03  2018-12-13        False        False
+68    302790666        1   375  2018-12-08  2018-12-18        False        False
+69    302810474        1   339  2018-12-14  2018-12-21        False        False
+70    302431853        1   369  2018-12-17  2018-12-26        False        False
+71    302731380        1   491         NaN         NaN        False        False
+72    302605500        1   468  2018-12-25  2019-01-03        False        False
+73    302435759        1   343  2019-01-08  2019-01-17        False        False
+74    302624918        1   357  2019-01-08  2019-01-18        False        False
+75    302460504        1   349  2019-01-10  2019-01-19        False        False
+76    302677539        1   358  2019-01-10  2019-01-19        False        False
+77    302146561        1   415  2019-01-10  2019-01-19        False        False
+78    302160728        1   416  2019-01-10  2019-01-19        False        False
+79    302770297        1   417  2019-01-10  2019-01-19        False        False
+80    302826527        1   443  2019-01-10  2019-01-18        False        False
+81    302440874        1   453  2019-01-10  2019-01-19        False        False
+82    302928345        1   483  2019-01-10  2019-01-19        False        False
+83    302562672        1   492  2019-01-10  2019-01-19        False        False
+84    302422928        1   475  2019-01-11  2019-01-20        False        False
+85    302357259        1   465  2019-01-21  2019-01-30        False        False
+86    302614231        1   435  2019-02-08  2019-02-17        False        False
+87    302002879        1   473  2019-02-12  2019-02-21        False        False
+88    302665073        1   494  2019-02-12  2019-02-28        False        False
+89    302902697        1   493  2019-03-01  2019-03-10        False        False
+90    302530348        1   345         NaN         NaN        False        False
+91    302631120        1   356         NaN         NaN        False        False
+92    302923081        1   367         NaN         NaN         True         True
+93    302756755        1   373         NaN         NaN        False        False
+94    302273130        1   375         NaN         NaN         True         True
+95    302865628        1   393  2019-01-30  2019-02-10        False        False
+96    302330481        1   399         NaN         NaN        False        False
+97    302487100        1   403         NaN         NaN        False        False
+98    302862878        1   405         NaN         NaN        False        False
+99    302318839        1   407         NaN         NaN        False        False
+100   302394560        1   408         NaN         NaN        False        False
+101   302700417        1   409         NaN         NaN        False        False
+102   302631199        1   420         NaN         NaN        False        False
+103   302591105        1   426         NaN         NaN        False        False
+104   302977654        1   427  2019-01-10  2019-01-24        False        False
+105   302832294        1   439         NaN         NaN        False        False
+106   302265135        1   441         NaN         NaN        False        False
+107   302864487        1   442  2019-02-08  2019-02-16        False        False
+108   302429590        1   451         NaN         NaN        False        False
+109   302168600        1   459         NaN         NaN        False        False
+110   302919111        1   462  2019-01-29  2019-02-04        False        False
+111   302531549        1   466         NaN         NaN        False        False
+112   302394520        1   470  2018-11-28  2018-12-03        False        False
+113   302319371        2   403  2018-10-16  2018-10-28        False        False
+[11/17/2023 05:38:21] WARNING: No folder <saskatoon/wave_01/sensedoc/302610266_367> found, skipping
+[11/17/2023 05:38:22] WARNING: No folder <saskatoon/wave_01/sensedoc/302923081_367> found, skipping
+[11/17/2023 05:38:22] WARNING: No folder <saskatoon/wave_01/sensedoc/302273130_375> found, skipping
+[11/17/2023 05:38:22] WARNING: Elite folder <saskatoon/wave_02/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:22] DEBUG: SD to process, according to linkage file <linkage_skt_w2.csv>:
+   interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0    302045191        1   483         NaN         NaN        False        False
+1    302078583        1   468  2020-10-17  2020-10-26        False        False
+2    302319371        1   391  2020-10-24  2020-11-02        False        False
+3    302387519        1   460  2021-01-05  2021-01-19        False        False
+4    302417689        1   347  2020-10-17  2020-10-26        False        False
+5    302515834        1   319  2020-10-30  2020-11-01        False        False
+6    302539875        1   324  2020-12-12  2020-12-21        False        False
+7    302579217        1   428  2020-11-20  2020-11-30        False        False
+8    302619633        1   312  2020-10-20  2020-10-23        False        False
+9    302641169        1   434  2020-10-17  2020-10-26        False        False
+10   302769937        1   344  2020-10-18  2020-10-27        False        False
+11   302918821        1   423  2020-11-25  2020-12-04        False        False
+12   302938714        1   317  2020-10-28  2020-11-06        False        False
+13   302947667        1   453  2020-10-16  2020-10-25        False        False
+14   302955394        1   383         NaN         NaN         True         True
+15   302988730        1   352  2020-10-16  2020-10-25        False        False
+16   302992006        1   408  2020-11-25  2020-12-04        False        False
+17   303105656        1   349  2021-02-05  2021-02-14        False        False
+18   303215059        1   464  2020-10-13  2021-02-22        False        False
+19   303304799        1   481  2021-01-21  2021-01-30        False        False
+20   303344149        1   490  2021-01-27  2021-02-09        False        False
+21   303494740        1   332  2021-01-27  2021-02-05        False        False
+22   303555236        1   451  2021-01-30  2021-02-08        False        False
+23   303571721        1   442  2021-01-15  2021-01-27        False        False
+24   303583054        1   337         NaN         NaN        False        False
+25   303606448        1   399  2021-02-06  2021-02-15        False        False
+26   303781388        1   345  2021-02-08  2021-02-17        False        False
+27   303792486        1   401  2021-01-16  2021-01-25        False        False
+28   303827552        1   338  2020-11-26  2020-12-05         True         True
+29   303846901        1   421  2021-01-30  2021-02-08        False        False
+30   303897664        1   416  2020-12-12  2020-12-21        False        False
+31   303929327        1   331  2021-01-26  2021-02-04        False        False
+32   302515834        2   403  2020-11-21  2020-11-28        False        False
+33   303583054        2   492  2021-02-12  2021-02-21        False        False
+[11/17/2023 05:38:22] WARNING: No folder <saskatoon/wave_02/sensedoc/302955394_383> found, skipping
+[11/17/2023 05:38:22] WARNING: Elite folder <saskatoon/wave_03/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:22] DEBUG: SD to process, according to linkage file <linkage_skt_w3.csv>:
+  interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0   304282966        1   442  2022-10-08  2022-10-17        False        False
+1   303619525        1   324  2022-10-12  2022-10-14        False        False
+2   303606564        1   334  2022-10-11  2022-10-20        False        False
+3   302918821        1   331  2022-10-12  2022-10-21        False        False
+4   302078583        1   483  2022-10-08  2022-10-17        False        False
+5   302614101        1   401  2022-10-08  2022-10-21        False        False
+6   302988730        1   484  2022-10-08  2022-10-17        False        False
+7   302980421        1   416  2022-10-08  2022-10-17        False        False
+8   302350198        1   403  2022-10-08  2022-10-17        False        False
+9   302417689        1   464  2022-10-08  2022-10-17        False        False
+[11/17/2023 05:38:22] WARNING: Elite folder <vancouver/wave_01/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:22] DEBUG: SD to process, according to linkage file <linkage_van_w1.csv>:
+    interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0     201747792        1   455  2018-10-13  2018-10-23        False        False
+1     201016583        1   417  2018-05-04  2018-05-13        False        False
+2     201096308        1   417  2018-05-26  2018-06-04        False        False
+3     201354715        1   417  2018-07-04  2018-07-13        False        False
+4     201897232        1   417  2018-08-02  2018-08-11        False        False
+5     201084620        1   420  2018-06-22  2018-07-01        False        False
+6     201243705        1   420  2018-09-22  2018-10-01        False        False
+7     201440082        1   420  2018-08-24  2018-09-02        False        False
+8     201555219        1   420  2018-07-19  2018-07-28        False        False
+9     201206867        1   423  2018-07-25  2018-08-04        False        False
+10    201395817        1   423  2018-05-14  2018-05-23        False        False
+11    201808807        1   423  2018-06-23  2018-07-02        False        False
+12    201936202        1   423  2018-05-29  2018-06-07        False        False
+13    201335765        1   426  2018-10-18  2018-10-27        False        False
+14    201581816        1   426  2018-05-04  2018-05-13        False        False
+15    201629908        1   426  2018-09-27  2018-10-06        False        False
+16    201966494        1   426  2018-06-11  2018-06-20        False        False
+17    201046774        1   427  2018-05-29  2018-06-07        False        False
+18    201062161        1   427  2018-07-26  2018-08-05        False        False
+19    201335404        1   427  2018-05-02  2018-05-11        False        False
+20    201540108        1   427  2018-07-07  2018-07-16        False        False
+21    201611721        1   428  2018-05-04  2018-05-13        False        False
+22    201642869        1   428  2018-09-13  2018-09-22        False        False
+23    201828168        1   428  2018-08-17  2018-08-26        False        False
+24    201140482        1   430  2018-05-10  2018-05-19        False        False
+25    201213672        1   430  2018-11-20  2018-11-29        False        False
+26    201622526        1   430  2018-05-29  2018-06-07        False        False
+27    201210693        1   434  2018-07-11  2018-07-20        False        False
+28    201344260        1   434  2018-05-08  2018-05-17        False        False
+29    201488353        1   434  2018-08-10  2018-08-19        False        False
+30    201632326        1   434  2018-06-24  2018-07-03        False        False
+31    201829346        1   434  2018-05-30  2018-06-08        False        False
+32    201057630        1   435  2018-05-31  2018-06-09        False         True
+33    201233360        1   435  2018-05-09  2018-05-18        False        False
+34    201375419        1   435  2018-06-16  2018-06-25        False        False
+35    201865115        1   435  2018-09-19  2018-09-28        False        False
+36    201167559        1   439  2018-05-18  2018-05-27        False        False
+37    201537102        1   457  2018-06-11  2018-06-22        False        False
+38    201731907        1   439  2018-08-28  2018-09-09        False        False
+39    201903900        1   439  2018-10-11  2018-10-20        False        False
+40    201047893        1   441  2018-05-18  2018-05-27        False        False
+41    201320546        1   441  2018-08-10  2018-08-19        False        False
+42    201751458        1   441  2018-10-20  2018-10-29        False        False
+43    201822987        1   441  2018-09-27  2018-10-06        False        False
+44    201888195        1   441  2018-11-08  2018-11-17        False        False
+45    201906036        1   441  2018-07-20  2018-07-29        False        False
+46    201260516        1   442  2018-05-09  2018-05-18        False        False
+47    201299366        1   442  2018-05-26  2018-06-04        False        False
+48    201498983        1   442  2018-07-26  2018-08-04        False        False
+49    201296599        1   443  2018-05-04  2018-05-13        False        False
+50    201921802        1   443  2018-08-18  2018-08-27        False        False
+51    201207268        1   444  2018-07-31  2018-08-09        False        False
+52    201807747        1   444  2018-09-15  2018-09-24        False        False
+53    201993762        1   444  2018-05-16  2018-05-25        False        False
+54    201050305        1   445  2018-07-11  2018-07-20        False        False
+55    201089691        1   445  2018-05-29  2018-06-07        False        False
+56    201219100        1   445  2018-06-22  2018-07-01        False        False
+57    201298606        1   445  2018-05-05  2018-05-14        False        False
+58    201585258        1   445  2018-08-22  2018-08-31        False        False
+59    201958047        1   445  2018-10-27  2018-11-05        False        False
+60    201980623        1   445  2018-09-27  2018-10-06        False        False
+61    201005131        1   492  2018-09-08  2018-09-17        False        False
+62    201591592        1   492  2018-05-05  2018-05-14        False        False
+63    201702953        1   492  2018-10-13  2018-10-22        False        False
+64    201873796        1   492  2018-08-14  2018-08-23        False        False
+65    201347508        1   486  2018-05-07  2018-05-30        False        False
+66    201501658        1   486  2018-09-20  2018-09-29        False        False
+67    201760141        1   486  2018-06-08  2018-06-17        False        False
+68    201907304        1   486  2018-07-20  2018-07-29        False        False
+69    201943028        1   486  2018-10-25  2018-11-03        False        False
+70    201210287        1   478  2018-11-14  2018-11-23        False        False
+71    201215961        1   478  2018-09-29  2018-10-08        False        False
+72    201259654        1   478  2018-08-02  2018-08-16        False        False
+73    201767359        1   478  2018-05-29  2018-06-07        False        False
+74    201907402        1   478  2018-05-12  2018-05-21        False        False
+75    201117523        1   493  2018-05-30  2018-06-08        False        False
+76    201465169        1   493  2018-10-11  2018-10-20        False        False
+77    201657731        1   493  2018-05-09  2018-05-18        False        False
+78    201879991        1   493  2018-09-11  2018-09-21        False        False
+79    201945699        1   493  2018-11-06  2018-11-15        False        False
+80    201439904        1   481  2018-05-25  2018-06-03        False        False
+81    201547240        1   481  2018-06-13  2018-06-22        False        False
+82    201607646        1   481  2018-07-26  2018-08-04        False        False
+83    201841665        1   481  2018-07-06  2018-07-15        False        False
+84    201421800        1   494  2018-10-02  2018-10-11        False        False
+85    201459922        1   494  2018-08-10  2018-08-21        False        False
+86    201541156        1   494  2018-05-30  2018-06-08        False        False
+87    201544209        1   494  2018-06-23  2018-07-02        False        False
+88    201661659        1   494  2018-08-28  2018-09-06        False        False
+89    201759149        1   494  2018-07-18  2018-07-28        False        False
+90    201119567        1   482  2018-11-10  2018-11-19        False        False
+91    201541287        1   482  2018-06-12  2018-06-21        False        False
+92    201598406        1   482  2018-05-25  2018-06-03        False        False
+93    201732023        1   482  2018-07-05  2018-07-14        False        False
+94    201894756        1   482  2018-08-02  2018-08-11        False        False
+95    201185816        1   495  2018-08-22  2018-08-31        False        False
+96    201595427        1   495  2018-09-15  2018-09-25        False        False
+97    201833530        1   495  2018-10-31  2018-11-09        False        False
+98    201893555        1   495  2018-10-11  2018-10-20        False        False
+99    201999448        1   495  2018-06-01  2018-06-11        False        False
+100   201122672        1   490  2018-08-22  2018-08-31        False        False
+101   201702497        1   490  2018-07-31  2018-08-09        False        False
+102   201771612        1   494  2018-10-27  2018-11-05        False        False
+103   201774161        1   490  2018-07-05  2018-07-14        False        False
+104   201784517        1   490  2018-05-23  2018-06-01        False        False
+105   201144166        1   488  2018-05-25  2018-06-03        False        False
+106   201660846        1   488  2018-07-20  2018-07-29        False        False
+107   201330387        1   474  2018-07-26  2018-08-04        False        False
+108   201470524        1   474  2018-08-30  2018-09-08        False        False
+109   201801387        1   474  2018-11-08  2018-12-15        False        False
+110   201825339        1   474  2018-06-28  2018-07-07        False        False
+111   201890309        1   474  2018-10-06  2018-10-15        False        False
+112   201906396        1   474  2018-06-13  2018-06-22        False        False
+113   201984846        1   474  2018-11-07  2018-11-16        False        False
+114   201995308        1   474  2018-05-24  2018-06-02        False        False
+115   201244468        1   475  2018-08-24  2018-09-02        False        False
+116   201518284        1   475  2018-08-03  2018-08-12        False        False
+117   201790918        1   475  2018-05-15  2018-05-24        False        False
+118   201328108        1   476  2018-10-04  2018-10-13        False        False
+119   201499501        1   476  2018-09-15  2018-09-25        False        False
+120   201804678        1   476  2018-05-23  2018-06-01        False        False
+121   201972436        1   476  2018-07-26  2018-08-24        False        False
+122   201177837        1   465  2018-08-27  2018-09-05        False        False
+123   201356556        1   465  2018-10-27  2018-11-05        False        False
+124   201481781        1   465  2018-07-06  2018-07-15        False        False
+125   201676154        1   465  2018-09-29  2018-10-08        False        False
+126   201734545        1   465  2018-05-18  2018-05-27        False        False
+127   201085786        1   457  2018-09-22  2018-10-01        False        False
+128   201501554        1   457  2018-10-18  2018-10-27        False        False
+129   201502772        1   457  2018-08-11  2018-08-20        False        False
+130   201552267        1   439  2018-06-12  2018-06-23        False        False
+131   201564666        1   457  2018-07-05  2018-07-14        False        False
+132   201781641        1   457  2018-07-26  2018-08-04        False        False
+133   201912164        1   457  2018-05-16  2018-05-25        False        False
+134   201577173        1   449  2018-10-16  2018-10-25        False        False
+135   201035705        1   454  2018-05-31  2018-06-09        False        False
+136   201070246        1   454  2018-08-18  2018-08-27        False        False
+137   201185322        1   454  2018-07-26  2018-08-04        False        False
+138   201221004        1   454  2018-09-14  2018-09-24        False        False
+139   201789403        1   454  2018-06-22  2018-07-08        False        False
+140   201911845        1   454  2018-05-18  2018-05-27        False        False
+141   201069240        1   455  2018-05-11  2018-05-20        False        False
+142   201398316        1   455  2018-07-10  2018-07-19        False        False
+143   201439230        1   455  2018-06-06  2018-06-15        False        False
+144   201066939        1   423  2018-08-19  2018-08-20        False        False
+145   201323910        1   476  2018-11-03  2018-11-04        False        False
+146   201355341        1   495  2018-06-16  2018-06-25        False        False
+147   201523441        1   482  2018-10-11  2018-10-22        False        False
+148   201715989        1   455  2018-09-15  2018-09-21        False        False
+149   201730931        1   420  2018-05-04  2018-05-05        False        False
+150   201810690        1   444         NaN         NaN        False        False
+151   201973640        1   420  2018-11-08  2018-11-16        False        False
+[11/17/2023 05:38:22] WARNING: Elite folder <vancouver/wave_02/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:23] DEBUG: SD to process, according to linkage file <linkage_van_w2.csv>:
+   interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0    201005131        1   405  2020-10-02  2020-10-11        False        False
+1    201050305        1   415  2020-11-26  2020-12-05        False        False
+2    201084620        1   475  2020-09-18  2020-09-27        False        False
+3    201085786        1   373  2020-10-14  2020-10-23        False        False
+4    201089691        1   356  2020-11-11  2020-11-20        False        False
+5    201133626        1   493  2020-10-14  2020-10-26        False        False
+6    201140482        1   375  2020-09-10  2020-09-26        False        False
+7    201185322        1   443  2020-10-15  2020-10-24        False        False
+8    201206867        1   366  2020-12-01  2020-12-11        False        False
+9    201207268        1   373  2021-01-30  2021-02-08        False        False
+10   201219100        1   482  2020-09-22  2020-10-01        False        False
+11   201221004        1   495  2020-12-24  2020-12-30        False        False
+12   201233360        1   358  2020-12-10  2020-12-19        False        False
+13   201243705        1   373  2020-12-03  2020-12-12        False        False
+14   201259654        1   369  2020-11-04  2020-10-13        False        False
+15   201260516        1   404  2021-01-14  2021-01-15        False        False
+16   201289762        1   406  2021-01-24  2021-02-02        False        False
+17   201296599        1   409  2020-09-21  2020-09-30        False        False
+18   201298606        1   426  2020-10-16  2020-10-25        False        False
+19   201299366        1   392  2020-12-03  2020-12-12        False        False
+20   201320546        1   417  2020-10-16  2020-10-25        False        False
+21   201328108        1   405  2020-12-15  2020-12-24        False        False
+22   201347508        1   393  2020-11-06  2020-11-18        False        False
+23   201354715        1   495  2020-11-06  2020-11-15        False        False
+24   201355341        1   407  2021-01-29  2021-02-08        False        False
+25   201356556        1   379  2020-12-15  2020-12-24        False        False
+26   201375419        1   374  2020-09-25  2020-09-30        False        False
+27   201398316        1   462  2020-11-18  2020-11-21        False        False
+28   201439230        1   486  2020-10-16  2020-10-25        False        False
+29   201459922        1   392  2020-10-22  2020-10-31        False        False
+30   201470524        1   379  2020-09-15  2020-09-24        False        False
+31   201481781        1   493  2020-12-23  2021-01-03        False        False
+32   201501554        1   406  2020-10-21  2020-10-30        False        False
+33   201501658        1   465  2020-09-29  2020-10-08        False        False
+34   201541156        1   358  2021-01-30  2021-02-08        False        False
+35   201544209        1   420  2020-10-15  2020-10-24        False        False
+36   201547240        1   313  2020-09-25  2020-10-04        False        False
+37   201550524        1   366  2020-09-22  2020-10-01        False        False
+38   201564666        1   486  2020-12-13  2020-12-22        False        False
+39   201577173        1   346  2020-11-26  2020-12-10        False        False
+40   201589206        1   486  2021-01-27  2021-02-05        False        False
+41   201591592        1   427  2020-10-15  2020-10-24        False        False
+42   201598406        1   473  2020-10-08  2020-10-21        False        False
+43   201629908        1   406  2020-11-28  2020-12-07        False        False
+44   201657731        1   447  2020-09-29  2020-10-08        False        False
+45   201660846        1   357  2020-11-04  2020-11-26        False        False
+46   201661659        1   439  2020-11-13  2020-11-22        False        False
+47   201670130        1   358  2020-11-20  2020-11-29        False        False
+48   201732023        1   363  2020-12-24  2021-01-02        False        False
+49   201759149        1   441  2020-11-04  2020-11-17        False        False
+50   201760141        1   465  2020-11-28  2020-12-07        False        False
+51   201771612        1   415  2020-10-15  2020-10-24        False        False
+52   201781641        1   491  2020-11-03  2020-11-12        False        False
+53   201801387        1   482  2020-11-27  2020-12-06        False        False
+54   201804678        1   488  2020-10-14  2020-10-23        False        False
+55   201894756        1   441  2020-12-22  2020-12-29        False        False
+56   201906036        1   367  2020-11-03  2020-11-12        False        False
+57   201917306        1   476  2021-02-08  2021-02-17        False        False
+58   201929826        1   466  2021-02-13  2021-02-22        False        False
+59   201943028        1   466  2020-10-16  2020-10-25        False        False
+60   201980293        1   473  2021-01-27  2021-02-11        False        False
+61   201993762        1   455  2020-10-16  2020-10-26        False        False
+62   202141573        1   473  2020-12-02  2020-11-11        False        False
+63   202144658        1   420  2021-02-18  2021-02-27        False        False
+64   202177481        1   363  2020-10-16  2020-10-29        False        False
+65   202258511        1   427  2020-12-15  2020-12-24        False        False
+66   202315896        1   366  2021-01-27  2021-02-05        False        False
+67   202340607        1   393  2020-12-16  2020-12-26        False        False
+68   202361310        1   476  2020-11-25  2020-12-04        False        False
+69   202370401        1   449  2020-10-18  2020-11-06        False        False
+70   202384021        1   445  2020-10-23  2020-11-01        False        False
+71   202599618        1   367  2020-12-15  2020-12-24        False        False
+72   202613433        1   443  2021-02-04  2021-02-13        False        False
+73   202634537        1   491  2020-12-03  2020-12-12         True         True
+74   202675492        1   392  2021-01-21  2021-01-30        False        False
+75   202722540        1   404  2020-11-29  2020-12-08        False        False
+76   202764990        1   357  2021-01-16  2021-01-28        False        False
+77   202768654        1   313  2021-01-27  2021-02-05        False        False
+78   202786503        1   346  2021-02-04  2021-02-06        False        False
+79   202790885        1   459  2021-01-30  2021-02-08        False        False
+80   202806934        1   443  2020-12-03  2020-12-12        False        False
+81   202938759        1   447  2021-01-30  2021-02-08        False        False
+82   202987910        1   459  2020-11-25  2020-12-04        False        False
+83   202990150        1   494  2020-10-23  2020-11-01        False        False
+84   201221004        2   415  2021-01-07  2021-01-16        False        False
+85   201260516        2   465  2021-01-21  2021-01-25        False        False
+86   201375419        2   444  2020-10-02  2020-10-06        False        False
+87   201894756        2   482  2021-01-07  2021-01-12        False        False
+88   202634537        2   407  2020-12-08  2020-12-17        False        False
+89   202786503        2   369  2021-02-10  2021-02-16        False        False
+90   201260516        3   439  2021-01-27  2021-01-31        False        False
+[11/17/2023 05:38:23] WARNING: No folder <vancouver/wave_02/sensedoc/202634537_491> found, skipping
+[11/17/2023 05:38:23] WARNING: Elite folder <vancouver/wave_03/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:23] DEBUG: SD to process, according to linkage file <linkage_van_w3.csv>:
+   interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0    202662394        1   401  2022-07-17  2022-08-29        False        False
+1    201210287        1   349  2022-08-26  2022-10-02        False        False
+2    202931821        1   343  2022-10-02  2022-10-11        False        False
+3    202144658        1   483  2022-07-20  2022-07-30        False        False
+4    202938759        1   352  2022-07-02  2022-07-17        False        False
+5    202768654        1   331  2022-06-25  2022-07-04        False        False
+6    202116714        1   403  2022-06-16  2022-08-10        False        False
+7    202506905        1   451  2022-10-04  2022-10-13        False        False
+8    201457854        1   464  2022-06-21  2022-06-30        False        False
+9    201771612        1   454  2022-06-28  2022-07-07        False        False
+10   201356556        1   349  2022-10-13  2022-10-22        False        False
+11   201585799        1   453  2022-10-09  2022-10-19        False        False
+12   201328108        1   339  2022-09-21  2022-09-30        False        False
+13   201005131        1   453  2022-06-21  2022-06-30        False        False
+14   201185322        1   484  2022-06-24  2022-07-03        False        False
+15   201550524        1   344  2022-06-16  2022-06-25        False        False
+16   201781641        1   334  2022-07-27  2022-08-06        False        False
+17   201808807        1   484  2022-08-09  2022-08-18        False        False
+18   201547240        1   423  2022-07-06  2022-07-15        False        False
+19   201760141        1   428  2022-07-24  2022-08-02        False        False
+20   201544209        1   490  2022-08-28  2022-09-08        False        False
+21   201834558        1   434  2022-07-16  2022-07-25        False        False
+22   201096308        1   338  2022-09-30  2022-10-09        False        False
+23   201375419        1   343  2022-08-04  2022-08-14        False        False
+24   201089691        1   312  2022-08-04  2022-08-13        False        False
+25   201804678        1   317  2022-07-14  2022-07-23        False        False
+26   201144166        1   423  2022-10-01  2022-10-10        False        False
+27   201541156        1   391  2022-07-06  2022-07-15        False        False
+28   201047893        1   319  2022-07-20  2022-07-29        False        False
+29   201069240        1   339  2022-07-26  2022-08-04        False        False
+30   201498983        1   347  2022-07-14  2022-07-23        False        False
+31   201140482        1   470  2022-07-17  2022-07-26        False        False
+32   201759149        1   457  2022-07-27  2022-08-05        False        False
+33   201219100        1   338  2022-07-27  2022-08-05        False        False
+34   201347508        1   416  2022-08-04  2022-08-13        False        False
+35   201233360        1   344  2022-08-26  2022-09-04        False        False
+36   201298606        1   328  2022-07-14  2022-07-23        False        False
+37   201335765        1   408  2022-07-14  2022-07-23        False        False
+38   201133626        1   399  2022-07-21  2022-08-02        False        False
+39   203226714        1   423  2022-10-23  2022-11-03        False        False
+40   203379888        1   317  2022-10-17  2022-10-26        False        False
+41   203018945        1   319  2022-09-25  2022-10-04        False        False
+42   203388759        1   428  2022-09-06  2022-09-16        False        False
+43   203452762        1   470  2022-09-16  2022-09-25        False        False
+44   203410011        1   423  2022-08-31  2022-09-09        False        False
+45   203510842        1   453  2022-09-04  2022-09-13        False        False
+46   203061460        1   399  2022-09-06  2022-09-15        False        False
+47   203138986        1   347  2022-08-31  2022-09-09        False        False
+48   203854380        1   352  2022-09-12  2022-09-21        False        False
+49   203229570        1   454  2022-09-07  2022-09-16        False        False
+50   203036762        1   454  2022-10-04  2022-10-13        False        False
+51   203667726        1   317  2022-08-28  2022-09-06        False        False
+52   203951109        1   352  2022-10-08  2022-10-17        False        False
+53   203734065        1   490  2022-09-30  2022-10-09        False        False
+54   203549113        1   434  2022-09-18  2022-09-25        False        False
+55   203631864        1   312  2022-09-30  2022-10-09        False        False
+56   203945903        1   317  2022-09-30  2022-10-09        False        False
+57   203757301        1   331  2022-08-09  2022-08-18        False        False
+58   203712476        1   391  2022-08-07  2022-08-11        False        False
+59   203473435        1   428  2022-10-13  2022-10-23        False        False
+60   203367508        1   337  2022-08-12  2022-08-21        False        False
+61   203064043        1   324  2022-08-02  2022-08-09        False        False
+62   203842375        1   451  2022-07-24  2022-08-02        False        False
+63   203253990        1   435  2022-07-27  2022-08-05        False        False
+64   201501554        1   474  2022-06-21  2022-06-27        False        False
+65   201989693        1   328  2022-09-25  2022-09-25        False        False
+66   202258511        1   349  2022-06-18  2022-06-27        False        False
+67   201470524        1   337  2022-10-13  2022-10-22        False        False
+68   201774161        1   312  2022-10-16  2022-10-25        False        False
+69   201481781        1   347  2022-10-01  2022-10-10        False        False
+70   201921802        1   464  2022-08-04  2022-08-17        False        False
+71   201458731        1   470  2022-10-22  2022-10-31        False        False
+72   201084620        1   399  2022-10-04  2022-10-13        False        False
+73   201296599        1   442  2022-07-17  2022-07-26        False        False
+74   201591592        1   490  2022-07-17  2022-07-26        False        False
+75   201225837        1   337  2022-06-24  2022-07-03        False        False
+76   203712476        2   451  2022-09-14  2022-09-18        False        False
+77   201501554        2   312  2022-07-10  2022-07-13        False        False
+78   201989693        2   319  2022-10-21  2022-10-31        False        False
+[11/17/2023 05:38:23] WARNING: Elite folder <victoria/wave_01/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:23] DEBUG: SD to process, according to linkage file <linkage_vic_w1.csv>:
+    interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0     101393503        1   276  2017-05-30  2017-06-08        False        False
+1     101740289        1    96  2017-06-07  2017-06-16        False        False
+2     101072948        1   263  2017-06-03  2017-06-12        False        False
+3     101219235        1   158  2017-09-08  2017-09-17        False        False
+4     101429213        1   169  2017-06-06  2017-06-15        False        False
+5     101359113        1   162  2017-06-12  2017-06-21        False        False
+6     101706606        1   169         NaN         NaN        False        False
+7     101096844        1   104  2017-09-25  2017-10-04        False        False
+8     101079910        1   144  2017-06-11  2017-06-20        False        False
+9     101389055        1    51  2017-06-08  2017-06-18        False        False
+10    101245824        1   102  2017-07-18  2017-07-27        False        False
+11    101732449        1   147  2017-06-01  2017-06-10        False        False
+12    101663527        1    69  2017-05-30  2017-06-08        False        False
+13    101489602        1   162  2017-07-25  2017-08-03        False        False
+14    101668945        1   123  2017-06-07  2017-06-15        False        False
+15    101981972        1   109  2017-06-12  2017-06-21        False        False
+16    101865370        1   253  2017-07-22  2017-07-31        False        False
+17    101938190        1   201  2017-07-06  2017-07-15        False        False
+18    101053220        1   235  2017-06-09  2017-06-18        False        False
+19    101923600        1    45  2017-07-06  2017-07-15        False        False
+20    101496686        1   276  2017-07-05  2017-07-14        False        False
+21    101896664        1    78  2017-06-23  2017-07-02        False        False
+22    101294250        1    69  2017-06-14  2017-06-23        False        False
+23    101751848        1    17  2017-06-07  2017-06-16        False        False
+24    101498314        1   201  2017-06-19  2017-06-28        False        False
+25    101830987        1   121  2017-06-13  2017-06-22        False        False
+26    101534317        1    17  2017-06-19  2017-06-28        False        False
+27    101488244        1   103  2017-06-06  2017-06-17        False        False
+28    101564348        1   300  2017-06-08  2017-06-17        False        False
+29    101228883        1     9  2017-06-10  2017-06-19        False        False
+30    101011680        1   162  2017-09-15  2017-09-24        False        False
+31    101356709        1    34  2017-06-07  2017-06-16        False        False
+32    101550026        1   253  2017-06-17  2017-06-26        False        False
+33    101650144        1    39  2017-06-11  2017-06-21        False        False
+34    101960171        1    96  2017-08-05  2017-08-14        False        False
+35    101585368        1    59  2017-06-11  2017-06-16        False        False
+36    101853385        1    51  2017-06-27  2017-07-06        False        False
+37    101204317        1    50  2017-06-11  2017-06-20        False        False
+38    101315590        1   122  2017-06-17  2017-06-26        False        False
+39    101657771        1   104  2017-06-09  2017-06-18        False        False
+40    101688230        1    34  2017-09-27  2017-10-06        False        False
+41    101514406        1   111  2017-07-05  2017-07-14        False        False
+42    101019903        1   263  2017-06-13  2017-06-22        False        False
+43    101474667        1   103  2017-06-22  2017-07-02        False        False
+44    101978056        1   123  2017-06-17  2017-06-22        False        False
+45    101537130        1    72  2017-06-10  2017-06-19        False        False
+46    101555830        1   214  2017-07-06  2017-07-15        False        False
+47    101044327        1   189  2017-07-17  2017-07-26        False        False
+48    101061024        1   235  2017-06-27  2017-07-06        False        False
+49    101269517        1    45  2017-06-12  2017-06-21        False        False
+50    101236115        1    36  2017-06-10  2017-06-19        False        False
+51    101158091        1    23  2017-06-13  2017-06-20         True         True
+52    101198287        1   276  2017-06-13  2017-06-22        False        False
+53    101864035        1   104  2017-08-02  2017-08-13        False        False
+54    101382479        1   169  2017-06-21  2017-06-30        False        False
+55    101372253        1   300  2017-10-14  2017-10-19        False        False
+56    101819997        1   144  2017-07-04  2017-07-13        False        False
+57    101435597        1    34  2017-07-27  2017-08-05        False        False
+58    101172402        1    36  2017-07-19  2017-07-28        False        False
+59    101002187        1   109  2017-07-27  2017-08-05        False        False
+60    101794991        1     6  2017-06-29  2017-07-08        False        False
+61    101389337        1   144  2017-09-20  2017-09-29        False        False
+62    101754686        1   162  2017-06-29  2017-07-08        False        False
+63    101100339        1   117  2017-07-11  2017-07-20        False        False
+64    101413417        1    39  2017-10-03  2017-10-12        False        False
+65    101293204        1     6  2017-07-19  2017-07-27        False        False
+66    101558664        1   264  2017-07-18  2017-07-27        False        False
+67    101192364        1   253  2017-08-15  2017-08-24        False        False
+68    101104546        1   169  2017-07-06  2017-07-15        False        False
+69    101446496        1   300  2017-07-25  2017-08-03        False        False
+70    101050476        1   147  2017-07-21  2017-07-30        False        False
+71    101341923        1   147  2017-07-07  2017-07-16        False        False
+72    101018267        1   253  2017-09-09  2017-09-18        False        False
+73    101108039        1    78  2017-07-17  2017-07-26        False        False
+74    101439815        1   276  2017-09-05  2017-09-14        False        False
+75    101905559        1   144  2017-07-21  2017-07-30        False        False
+76    101415303        1   276  2017-07-21  2017-07-30        False        False
+77    101636205        1    78  2017-08-01  2017-08-08        False        False
+78    101452903        1    72  2017-07-17  2017-07-26        False        False
+79    101333673        1    45  2017-07-19  2017-07-28        False        False
+80    101707067        1    69  2017-08-10  2017-08-19        False        False
+81    101787606        1   111  2017-07-22  2017-07-31        False        False
+82    101286165        1   264  2017-08-15  2017-08-24        False        False
+83    101818131        1   121  2017-07-26  2017-08-01        False        False
+84    101413973        1    23  2017-11-17  2017-11-29        False        False
+85    101493098        1   117  2017-07-27  2017-08-05        False        False
+86    101800094        1   235  2017-09-15  2017-09-24        False        False
+87    101996732        1    60  2017-09-11  2017-09-16        False        False
+88    101580601        1   147  2017-10-24  2017-11-21        False        False
+89    101199093        1     9  2017-10-21  2017-10-30        False        False
+90    101841825        1    72  2017-08-01  2017-08-10        False        False
+91    101541425        1   122  2017-09-27  2017-10-06        False        False
+92    101355811        1   103  2017-08-08  2017-08-17        False        False
+93    101407396        1    60  2017-08-04  2017-08-13        False        False
+94    101170040        1    51  2017-08-07  2017-08-16        False        False
+95    101461451        1   162  2017-08-09  2017-08-18        False        False
+96    101237708        1   263  2017-09-02  2017-09-11        False        False
+97    101941765        1   102  2017-08-08  2017-08-17        False        False
+98    101747521        1   144  2017-08-10  2017-08-19        False        False
+99    101365793        1   214  2017-09-06  2017-09-17        False        False
+100   101732534        1    72  2017-09-29  2017-10-08        False        False
+101   101012486        1   300  2017-08-08  2017-08-17        False        False
+102   101747215        1   201  2017-09-07  2017-09-16        False        False
+103   101423098        1    36  2017-09-06  2017-09-08        False        False
+104   101215885        1    51  2017-09-20  2017-09-29        False        False
+105   101257520        1    45  2017-11-09  2017-11-20        False        False
+106   101777239        1    34  2017-09-13  2017-09-22        False        False
+107   101761435        1    17  2017-10-15  2017-10-25        False        False
+108   101285500        1   147  2017-09-27  2017-10-06        False        False
+109   101720534        1    60  2017-11-12  2017-11-21        False        False
+110   101955991        1   264  2017-09-14  2017-09-29        False        False
+111   101726531        1   144  2017-11-09  2017-11-18        False        False
+112   101518271        1   235  2017-09-30  2017-10-15        False        False
+113   101976403        1    72  2017-09-12  2017-09-21        False        False
+114   101920543        1    45  2017-09-14  2017-09-23        False        False
+115   101624715        1   169  2017-09-14  2017-09-26        False        False
+116   101253378        1   253  2017-09-29  2017-10-08        False        False
+117   101165382        1    69  2017-09-20  2017-10-01        False        False
+118   101202069        1   117  2017-09-16  2017-09-26        False        False
+119   101869520        1   214  2017-09-22  2017-10-05        False        False
+120   101036990        1   158  2017-10-02  2017-10-19        False        False
+121   101668118        1   201  2017-10-02  2017-10-11        False        False
+122   101664312        1    50  2017-09-25  2017-10-07        False        False
+123   101116865        1   263  2017-09-26  2017-10-05        False        False
+124   101785365        1    36  2017-11-05  2017-11-14        False        False
+125   101214983        1   122  2017-10-20  2017-10-09        False        False
+126   101143070        1     9  2017-09-30  2017-10-10        False        False
+127   101383010        1   264  2017-10-23  2017-11-01        False        False
+128   101533248        1    78  2017-10-14  2017-10-23        False        False
+129   101977090        1    23  2017-10-07  2017-10-16        False        False
+130   101005415        1    60  2017-10-10  2017-10-21        False        False
+131   101180124        1    59  2017-10-06  2017-10-15        False        False
+132   101261525        1   123  2017-10-07  2017-10-16        False        False
+133   101432781        1   121  2017-10-07  2017-10-16        False        False
+134   101888460        1    78  2017-11-23  2017-12-02        False        False
+135   101185528        1    72  2017-10-17  2017-10-26        False        False
+136   101933830        1   103  2017-11-14  2017-11-25        False        False
+137   101553232        1   188  2017-10-06  2017-10-15        False        False
+138   101545068        1   276  2017-10-16  2017-10-25        False        False
+139   101825783        1    39  2017-11-11  2017-11-20        False        False
+140   101482753        1   104  2017-10-14  2017-10-23        False        False
+141   101962906        1   111         NaN         NaN        False        False
+142   101001706        1   253  2017-10-23  2017-11-01        False        False
+143   101426859        1   109  2017-10-17  2017-10-27        False        False
+144   101307761        1   263  2017-10-25  2017-11-03        False        False
+145   101145369        1    23  2017-10-21  2017-10-30        False        False
+146   101201381        1   123  2017-10-21  2017-10-30        False        False
+147   101891218        1   111  2017-11-03  2017-11-14         True         True
+148   101710208        1    59  2017-10-19  2017-10-28        False        False
+149   101107968        1    39  2017-10-23  2017-11-02        False        False
+150   101738663        1    50  2017-10-24  2017-10-29        False        False
+151   101310422        1    34  2017-10-24  2017-11-06        False        False
+152   101251965        1   188  2017-10-18  2017-10-27        False        False
+153   101359479        1    17  2017-10-30  2017-11-09        False        False
+154   101107086        1    51  2017-11-03  2017-11-13        False        False
+155   101372253        2    36  2017-10-21  2017-10-29        False        False
+156   101996732        2   147  2017-09-19  2017-09-24        False        False
+157   101423098        2    96  2017-09-12  2017-09-18        False        False
+158   101518271        2    36  2017-09-30  2017-10-15        False        False
+159   101624715        2    72  2017-09-14  2017-09-26        False        False
+160   101165382        2   300  2017-09-20  2017-10-01        False        False
+161   101202069        2   109  2017-09-16  2017-09-26        False        False
+162   101869520        2   162  2017-09-22  2017-10-05        False        False
+163   101891218        2   123  2017-11-03  2017-11-14        False        False
+164   101310422        2    72  2017-10-24  2017-11-06        False        False
+[11/17/2023 05:38:23] WARNING: No folder <victoria/wave_01/sensedoc/101158091_23> found, skipping
+[11/17/2023 05:38:24] WARNING: No folder <victoria/wave_01/sensedoc/101891218_111> found, skipping
+[11/17/2023 05:38:24] WARNING: Elite folder <victoria/wave_02/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:24] DEBUG: SD to process, according to linkage file <linkage_vic_w2.csv>:
+    interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0     101072948        1   363  2019-10-09  2019-10-18        False        False
+1     101429213        1   345  2019-06-11  2019-06-20        False        False
+2     101359113        1   349  2019-07-08  2019-07-17        False        False
+3     101389055        1   375  2019-06-27  2019-07-06        False        False
+4     101245824        1   401  2019-06-25  2019-07-04        False        False
+5     101505455        1   409  2019-06-09  2019-06-18        False        False
+6     101732449        1   339  2019-06-20  2019-06-30        False        False
+7     101663527        1   404  2019-06-11  2019-06-20        False        False
+8     101981972        1   356  2019-06-08  2019-06-17        False        False
+9     101865370        1   350  2019-07-03  2019-07-12        False        False
+10    101053220        1   451  2019-06-18  2019-06-27        False        False
+11    101923600        1   358  2019-07-19  2019-07-28        False        False
+12    101496686        1   375  2019-06-07  2019-06-16        False        False
+13    101294250        1   358  2019-08-11  2019-08-20        False        False
+14    101830987        1   412  2019-06-29  2019-07-08        False        False
+15    101488244        1   349  2019-06-11  2019-06-20        False        False
+16    101798447        1   366  2019-06-11  2019-06-20        False        False
+17    101564348        1   366  2019-08-12  2019-08-13        False        False
+18    101011680        1   484  2019-07-20  2019-07-29        False        False
+19    101356709        1   416  2019-07-19  2019-07-29        False        False
+20    101550026        1   349  2019-09-05  2019-09-11        False        False
+21    101650144        1   459  2019-11-10  2019-11-20        False        False
+22    101585368        1   392  2019-06-13  2019-06-22        False        False
+23    101853385        1   374  2019-06-07  2019-06-16        False        False
+24    101204317        1   468  2019-08-09  2019-08-20        False        False
+25    101315590        1   375  2019-07-24  2019-08-02        False        False
+26    101657771        1   406  2019-07-22  2019-07-31        False        False
+27    101474667        1   369  2019-07-11  2019-07-20        False        False
+28    101555830        1   349  2019-08-08  2019-08-17        False        False
+29    101044327        1   462  2019-06-14  2019-06-23        False        False
+30    101269517        1   408  2019-06-12  2019-06-21        False        False
+31    101236115        1   345  2019-07-19  2019-07-28        False        False
+32    101372253        1   416  2019-08-12  2019-08-22        False        False
+33    101435597        1   468  2019-07-09  2019-07-18        False        False
+34    101002187        1   468  2019-07-28  2019-08-06        False        False
+35    101847191        1   367  2019-06-08  2019-06-17        False        False
+36    101794991        1   363  2019-06-19  2019-06-28        False        False
+37    101413417        1   358  2019-09-03  2019-09-12        False        False
+38    101293204        1   483  2019-07-30  2019-08-10        False        False
+39    101050476        1   369  2019-07-31  2019-08-09        False        False
+40    101341923        1   451  2019-07-30  2019-08-08        False        False
+41    101018267        1   412  2019-08-02  2019-08-11        False        False
+42    101108039        1   412  2019-06-11  2019-06-20        False        False
+43    101439815        1   403  2019-06-10  2019-06-19        False        False
+44    101636205        1   459  2019-09-25  2019-10-04        False        False
+45    101452903        1   399  2019-06-11  2019-06-20        False        False
+46    101254492        1   350  2019-07-22  2019-07-31        False        False
+47    101787606        1   412  2019-08-30  2019-09-08        False        False
+48    101818131        1   368  2019-06-13  2019-06-22        False        False
+49    101493098        1   468  2019-09-12  2019-09-21        False        False
+50    101800094        1   343  2019-06-22  2019-07-01        False        False
+51    101996732        1   399  2019-06-26  2019-07-05        False        False
+52    101915841        1   483  2019-10-22  2019-10-31        False        False
+53    101407396        1   474  2019-06-22  2019-07-01        False        False
+54    101461451        1   416  2019-06-22  2019-07-01        False        False
+55    101747521        1   346  2019-07-10  2019-07-19        False        False
+56    101215885        1   392  2019-08-03  2019-08-12        False        False
+57    101777239        1   482  2019-06-28  2019-07-07        False        False
+58    101761435        1   350  2019-09-25  2019-10-04        False        False
+59    101285500        1   374  2019-06-21  2019-06-30        False        False
+60    101720534        1   347  2019-08-06  2019-08-15        False        False
+61    101726531        1   481  2019-08-16  2019-08-25        False        False
+62    101753407        1   409  2019-07-06  2019-07-15        False        False
+63    101976403        1   468  2019-06-13  2019-06-22        False        False
+64    101920543        1   357  2019-07-02  2019-07-11        False        False
+65    101202069        1   415  2019-06-25  2019-07-05        False        False
+66    101869520        1   401  2019-07-18  2019-07-28        False        False
+67    101664312        1   453  2019-06-12  2019-06-15        False        False
+68    101785365        1   459  2019-07-22  2019-07-31        False        False
+69    101143070        1   358  2019-06-15  2019-06-24        False        False
+70    101383010        1   346  2019-08-17  2019-08-29        False        False
+71    101005415        1   350  2019-06-11  2019-06-20        False        False
+72    101180124        1   357  2019-08-07  2019-08-16        False        False
+73    101888460        1   356  2019-07-04  2019-07-21        False        False
+74    101185528        1   356  2019-08-03  2019-08-12        False        False
+75    101482753        1   347  2019-06-24  2019-07-03        False        False
+76    101307761        1   451  2019-07-11  2019-07-20        False        False
+77    101201381        1   339  2019-07-21  2019-07-21        False        False
+78    101680398        1   391  2019-06-15  2019-06-26        False        False
+79    102644133        1   392  2019-07-02  2019-07-11        False        False
+80    102504895        1   379  2019-06-14  2019-06-25        False        False
+81    102755345        1   459  2019-06-14  2019-06-26        False        False
+82    102471126        1   399  2019-07-18  2019-08-28        False        False
+83    102696608        1   464  2019-11-01  2019-11-09        False        False
+84    102179921        1   453  2019-09-24  2019-10-03        False        False
+85    102886115        1   346  2019-06-18  2019-06-27        False        False
+86    102913493        1   367  2019-06-22  2019-07-01        False        False
+87    102558474        1   403  2019-06-25  2019-07-06        False        False
+88    102833619        1   367  2019-07-09  2019-07-18        False        False
+89    102401547        1   345  2019-08-03  2019-08-11        False        False
+90    102882523        1   347  2019-07-18  2019-07-27        False        False
+91    102831505        1   459  2019-08-08  2019-08-17        False        False
+92    102681990        1   379  2019-07-24  2019-08-02        False        False
+93    102344365        1   345  2019-11-01  2019-11-14        False        False
+94    102492701        1   482  2019-07-30  2019-08-09        False        False
+95    102475434        1   415  2019-09-25  2019-10-05        False        False
+96    102482181        1   369  2019-10-30  2019-11-08        False        False
+97    102502710        1   415  2019-08-07  2019-08-16        False        False
+98    102558631        1   363  2019-07-31  2019-08-09        False        False
+99    102660474        1   481  2019-08-31  2019-09-10        False        False
+100   102749686        1   391  2019-09-11  2019-09-20        False        False
+101   102817701        1   367  2019-08-17  2019-08-26        False        False
+102   102649509        1   460  2019-08-13  2019-08-22        False        False
+103   102993750        1   374  2019-08-08  2019-08-17        False        False
+104   102148083        1   409  2019-10-08  2019-10-17        False        False
+105   102789042        1   392  2019-09-17  2019-09-26        False        False
+106   102322976        1   401  2019-08-06  2019-08-15        False        False
+107   102498628        1   358  2019-10-11  2019-10-20        False        False
+108   102225098        1   409  2019-11-01  2019-11-10        False        False
+109   102500847        1   363  2019-11-02  2019-11-11        False        False
+110   102470084        1   356  2019-09-30  2019-10-09        False        False
+111   102733352        1   409  2019-08-09  2019-08-18        False        False
+112   102574115        1   343  2019-08-14  2019-08-23        False        False
+113   102567670        1   484  2019-08-14  2019-08-23        False        False
+114   102859652        1   403  2019-08-12  2019-08-21        False        False
+115   102481129        1   406  2019-08-13  2019-08-20        False        False
+116   102860428        1   453  2019-08-07  2019-08-21        False        False
+117   102682144        1   451  2019-08-14  2019-08-23        False        False
+118   102841223        1   347  2019-08-24  2019-09-02        False        False
+119   102799134        1   409  2019-09-06  2019-09-15        False        False
+120   102422099        1   345  2019-09-26  2019-10-05        False        False
+121   102873412        1   459  2019-09-07  2019-09-16        False        False
+122   102118028        1   415  2019-10-23  2019-11-03        False        False
+123   102521647        1   367  2019-09-05  2019-09-14        False        False
+124   102622945        1   367  2019-09-28  2019-10-07        False        False
+125   102782233        1   347  2019-09-06  2019-09-15        False        False
+126   102643856        1   374  2019-09-18  2019-09-27        False        False
+127   102265934        1   401  2019-09-24  2019-09-25        False        False
+128   102202271        1   399  2019-10-10  2019-10-19        False        False
+129   102370888        1   356  2019-10-30  2019-11-08        False        False
+130   101564348        2   481  2019-09-18  2019-09-29        False        False
+131   101550026        2   416  2019-09-13  2019-09-15        False        False
+132   101201381        2   391  2019-07-29  2019-08-16        False        False
+133   102265934        2   412  2019-09-27  2019-10-04        False        False
+[11/17/2023 05:38:24] WARNING: Elite folder <victoria/wave_03/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/17/2023 05:38:24] DEBUG: SD to process, according to linkage file <linkage_vic_w3.csv>:
+   interact_id  sd_rank sd_id    sd_start      sd_end  process_gps  process_axl
+0    101011680        1   356  2021-06-16  2021-06-25        False        False
+1    101019903        1   369  2021-06-05  2021-06-14        False        False
+2    101053220        1   356  2021-05-08  2021-05-17        False        False
+3    101072948        1   373  2021-06-05  2021-06-14        False        False
+4    101143070        1   420  2021-05-12  2021-05-21        False        False
+5    101145369        1   367  2021-06-04  2021-06-13        False        False
+6    101180124        1   369  2021-08-11  2021-08-20        False        False
+7    101185528        1   393  2021-06-22  2021-07-02        False        False
+8    101202069        1   462  2021-05-29  2021-06-07        False        False
+9    101204317        1   443  2021-05-12  2021-05-19        False        False
+10   101254492        1   486  2021-05-16  2021-05-25        False        False
+11   101269517        1   488  2021-05-15  2021-05-24        False        False
+12   101285500        1   407  2021-06-11  2021-07-20        False        False
+13   101315590        1   375  2021-06-18  2021-06-28        False        False
+14   101359113        1   466  2021-10-12  2021-10-20        False        False
+15   101382479        1   356  2021-08-21  2021-08-30        False        False
+16   101407396        1   405  2021-06-14  2021-06-23        False        False
+17   101429213        1   449  2021-09-21  2021-10-01        False        False
+18   101435597        1   445  2021-05-15  2021-05-19        False        False
+19   101452903        1   466  2021-05-08  2021-05-17        False        False
+20   101474667        1   449  2021-06-22  2021-07-02        False        False
+21   101482753        1   375  2021-05-12  2021-05-21        False        False
+22   101493098        1   476  2021-06-18  2021-06-27        False        False
+23   101496686        1   366  2021-05-08  2021-05-17        False        False
+24   101505455        1   494  2021-05-09  2021-05-18        False        False
+25   101534317        1   482  2021-06-09  2021-06-18        False        False
+26   101550026        1   369  2021-10-07  2021-10-16        False        False
+27   101564348        1   375  2021-08-16  2021-08-27        False        False
+28   101585368        1   482  2021-09-13  2021-09-22        False        False
+29   101636205        1   455  2021-06-16  2021-06-25        False        False
+30   101657771        1   405  2021-08-11  2021-08-20        False        False
+31   101668118        1   482  2021-05-15  2021-05-24        False        False
+32   101740289        1   374  2021-07-04  2021-07-14        False        False
+33   101747521        1   455  2021-05-29  2021-06-07        False        False
+34   101785365        1   406  2021-05-19  2021-05-28        False        False
+35   101787606        1   367  2021-05-15  2021-05-24        False        False
+36   101798447        1   476  2021-09-23  2021-10-02        False        False
+37   101800094        1   476  2021-06-04  2021-06-13        False        False
+38   101818131        1   417  2021-05-08  2021-05-17        False        False
+39   101830987        1   358  2021-05-15  2021-05-24        False        False
+40   101841825        1   449  2021-05-15  2021-05-24        False        False
+41   101847191        1   405  2021-05-12  2021-05-21         True         True
+42   101865370        1   426  2021-05-20  2021-05-29        False        False
+43   101888460        1   379  2021-05-25  2021-05-31        False        False
+44   101920543        1   407  2021-07-05  2021-07-14        False        False
+45   101923600        1   415  2021-05-29  2021-06-07        False        False
+46   101938190        1   473  2021-05-08  2021-05-17        False        False
+47   101976403        1   439  2021-05-08  2021-05-17        False        False
+48   101981972        1   313  2021-05-12  2021-05-21        False        False
+49   101996732        1   420  2021-07-19  2021-07-28        False        False
+50   102118028        1   356  2021-08-03  2021-08-16        False        False
+51   102179921        1   375  2021-05-29  2021-06-07        False        False
+52   102265934        1   420  2021-06-04  2021-06-13        False        False
+53   102370888        1   476  2021-05-12  2021-05-21        False        False
+54   102470084        1   366  2021-05-28  2021-06-06        False        False
+55   102475434        1   443  2021-05-29  2021-06-07        False        False
+56   102567670        1   441  2021-05-16  2021-05-26        False        False
+57   102622945        1   356  2021-05-26  2021-06-04        False        False
+58   102649509        1   393  2021-05-15  2021-05-24        False        False
+59   102681990        1   466  2021-05-22  2021-05-31        False        False
+60   102696608        1   494  2021-05-29  2021-06-07        False        False
+61   102733352        1   420  2021-07-03  2021-07-12        False        False
+62   102749686        1   409  2021-05-23  2021-06-01        False        False
+63   102755345        1   374  2021-06-09  2021-06-19        False        False
+64   102789042        1   482  2021-10-04  2021-10-12        False        False
+65   102831505        1   409  2021-07-01  2021-07-12        False        False
+66   102859652        1   426  2021-06-05  2021-06-14        False        False
+67   102877373        1   373  2021-05-19  2021-05-28        False        False
+68   102886115        1   313  2021-05-29  2021-06-07        False        False
+69   102913493        1   369  2021-05-15  2021-05-24        False        False
+70   102993750        1   447  2021-05-26  2021-06-04        False        False
+71   103255107        1   407  2021-05-28  2021-06-06        False        False
+72   103259951        1   374  2021-08-21  2021-08-30        False        False
+73   103296257        1   406  2021-06-09  2021-06-16        False        False
+74   103297077        1   449  2021-08-21  2021-09-01        False        False
+75   103336301        1   473  2021-06-02  2021-06-17        False        False
+76   103383632        1   407  2021-09-29  2021-10-14        False        False
+77   103391561        1   374  2021-09-23  2021-10-02        False        False
+78   103486093        1   427  2021-05-19  2021-05-28        False        False
+79   103512105        1   449  2021-08-04  2021-08-13        False        False
+80   103531689        1   313  2021-06-16  2021-06-25        False        False
+81   103663507        1   409  2021-08-21  2021-08-31        False        False
+82   103678107        1   455  2021-09-21  2021-10-01        False        False
+83   103722386        1   405  2021-07-03  2021-07-12        False        False
+84   103761333        1   449  2021-05-29  2021-06-07        False        False
+85   103772760        1   357  2021-05-25  2021-06-03        False        False
+86   103839408        1   393  2021-07-31  2021-08-16        False        False
+87   103970793        1   369  2021-07-17  2021-07-26        False        False
+88   103997305        1   488  2021-06-05  2021-06-15        False        False
+89   101435597        2   374  2021-05-22  2021-05-26        False        False
+90   101888460        2   358  2021-06-02  2021-06-04        False        False
+[11/17/2023 05:38:24] WARNING: No folder <victoria/wave_03/sensedoc/101847191_405> found, skipping
+[11/17/2023 05:38:24] DEBUG: PID 215484: processing 401228518/50
+[11/17/2023 05:38:24] DEBUG: PID 215485: processing 401184984/40
+[11/17/2023 05:38:24] DEBUG: PID 215486: processing 401313041/48
+[11/17/2023 05:38:24] DEBUG: PID 215487: processing 401095730/245
+[11/17/2023 05:38:24] DEBUG: PID 215488: processing 401001817/11
+[11/17/2023 05:38:24] DEBUG: PID 215489: processing 401479258/182
+[11/17/2023 05:38:24] DEBUG: PID 215490: processing 401507474/188
+[11/17/2023 05:38:24] DEBUG: PID 215491: processing 401277679/223
+[11/17/2023 05:38:24] DEBUG: PID 215492: processing 401263827/205
+[11/17/2023 05:38:24] DEBUG: PID 215493: processing 401774805/166
+[11/17/2023 05:38:24] DEBUG: PID 215494: processing 401655897/168
+[11/17/2023 05:38:24] DEBUG: PID 215495: processing 401277385/121
+[11/17/2023 05:38:24] DEBUG: PID 215496: processing 401128981/223
+[11/17/2023 05:38:24] DEBUG: PID 215497: processing 401709298/264
+[11/17/2023 05:38:24] DEBUG: PID 215498: processing 401532425/264
+[11/17/2023 05:38:24] DEBUG: PID 215499: processing 401655906/241
+[11/17/2023 05:38:24] DEBUG: PID 215500: processing 401915749/223
+[11/17/2023 05:38:24] DEBUG: PID 215501: processing 401935700/280
+[11/17/2023 05:38:24] DEBUG: PID 215502: processing 401034573/39
+[11/17/2023 05:38:24] DEBUG: PID 215503: processing 401328714/201
+[11/17/2023 05:38:24] DEBUG: PID 215504: processing 401630460/256
+[11/17/2023 05:38:24] DEBUG: PID 215505: processing 401919451/235
+[11/17/2023 05:38:24] DEBUG: PID 215506: processing 402411342/96
+[11/17/2023 05:38:24] DEBUG: PID 215507: processing 403658820/263
+[11/17/2023 05:38:24] DEBUG: PID 215508: processing 402559939/162
+[11/17/2023 05:38:24] DEBUG: PID 215509: processing 401760345/9
+[11/17/2023 05:38:24] DEBUG: PID 215510: processing 401860045/162
+[11/17/2023 05:38:24] DEBUG: PID 215511: processing 401309906/6
+[11/17/2023 05:38:24] DEBUG: PID 215512: processing 401586738/254
+[11/17/2023 05:38:24] DEBUG: PID 215513: processing 302988056/404
+[11/17/2023 05:38:24] DEBUG: PID 215515: processing 302769937/356
+[11/17/2023 05:38:24] DEBUG: PID 215514: processing 302434238/379
+[11/17/2023 05:38:24] DEBUG: PID 215484: processing 401837149/214
+[11/17/2023 05:38:24] DEBUG: PID 215485: processing 401143240/174
+[11/17/2023 05:38:24] DEBUG: PID 215484: processing 401657924/158
+[11/17/2023 05:38:24] DEBUG: PID 215484: processing 401630460/256
+[11/17/2023 05:38:24] DEBUG: PID 215485: processing 401213122/77
+[11/17/2023 05:38:24] DEBUG: PID 215484: processing 401977519/250
+[11/17/2023 05:38:24] DEBUG: PID 215485: processing 401460946/179
+[11/17/2023 05:38:24] DEBUG: PID 215488: processing 401586738/112
+[11/17/2023 05:38:24] DEBUG: PID 215486: processing 401387517/162
+[11/17/2023 05:38:24] DEBUG: PID 215487: processing 401117024/102
+[11/17/2023 05:38:24] DEBUG: PID 215489: processing 401867550/46
+[11/17/2023 05:38:24] DEBUG: PID 215484: processing 401097960/205
+[11/17/2023 05:38:24] DEBUG: PID 215485: processing 401809034/146
+[11/17/2023 05:38:24] DEBUG: PID 215488: processing 401519033/283
+[11/17/2023 05:38:24] DEBUG: PID 215486: processing 401406511/258
+[11/17/2023 05:38:24] DEBUG: PID 215484: processing 401858062/230
+[11/17/2023 05:38:24] DEBUG: PID 215487: processing 401669659/147
+[11/17/2023 05:38:24] DEBUG: PID 215485: processing 401442080/63
+[11/17/2023 05:38:24] DEBUG: PID 215489: processing 401043675/237
+[11/17/2023 05:38:24] DEBUG: PID 215490: processing 401719979/49
+[11/17/2023 05:38:24] DEBUG: PID 215488: processing 401522734/77
+[11/17/2023 05:38:24] DEBUG: PID 215492: processing 401379028/6
+[11/17/2023 05:38:24] DEBUG: PID 215486: processing 401755253/293
+[11/17/2023 05:38:24] DEBUG: PID 215484: processing 401013270/122
+[11/17/2023 05:38:24] DEBUG: PID 215487: processing 401702019/166
+[11/17/2023 05:38:24] DEBUG: PID 215485: processing 401145591/51
+[11/17/2023 05:38:24] DEBUG: PID 215489: processing 401674061/258
+[11/17/2023 05:38:24] DEBUG: PID 215490: processing 401717838/293
+[11/17/2023 05:38:24] DEBUG: PID 215488: processing 401143038/253
+[11/17/2023 05:38:24] DEBUG: PID 215486: processing 401513068/280
+[11/17/2023 05:38:24] DEBUG: PID 215487: processing 401785805/264
+[11/17/2023 05:38:24] DEBUG: PID 215485: processing 401713668/48
+[11/17/2023 05:38:24] DEBUG: PID 215484: processing 401114651/192
+[11/17/2023 05:38:24] DEBUG: PID 215489: processing 401493283/63
+[11/17/2023 05:38:24] DEBUG: PID 215492: processing 401471476/204
+[11/17/2023 05:38:24] DEBUG: PID 215490: processing 401599541/36
+[11/17/2023 05:38:24] DEBUG: PID 215488: processing 401809607/72
+[11/17/2023 05:38:24] DEBUG: PID 215486: processing 401461413/60
+[11/17/2023 05:38:24] DEBUG: PID 215487: processing 401793448/205
+[11/17/2023 05:38:24] DEBUG: PID 215485: processing 401079598/109
+[11/17/2023 05:38:24] DEBUG: PID 215489: processing 401303680/50
+[11/17/2023 05:38:24] DEBUG: PID 215492: processing 401279983/147
+[11/17/2023 05:38:24] DEBUG: PID 215488: processing 401687877/123
+[11/17/2023 05:38:24] DEBUG: PID 215486: processing 401015259/121
+[11/17/2023 05:38:24] DEBUG: PID 215490: processing 401815437/144
+[11/17/2023 05:38:24] DEBUG: PID 215487: processing 401887854/250
+[11/17/2023 05:38:24] DEBUG: PID 215489: processing 401885616/166
+[11/17/2023 05:38:24] DEBUG: PID 215492: processing 401211351/23
+[11/17/2023 05:38:24] DEBUG: PID 215488: processing 401206271/192
+[11/17/2023 05:38:24] DEBUG: PID 215486: processing 401882892/232
+[11/17/2023 05:38:24] DEBUG: PID 215490: processing 401545947/25
+[11/17/2023 05:38:24] DEBUG: PID 215487: processing 401547018/199
+[11/17/2023 05:38:24] DEBUG: PID 215489: processing 401936329/165
+[11/17/2023 05:38:24] DEBUG: PID 215492: processing 401449636/69
+[11/17/2023 05:38:24] DEBUG: PID 215488: processing 401639662/268
+[11/17/2023 05:38:24] DEBUG: PID 215490: processing 401469801/96
+[11/17/2023 05:38:24] DEBUG: PID 215486: processing 401240793/17
+[11/17/2023 05:38:24] DEBUG: PID 215487: processing 401291822/167
+[11/17/2023 05:38:24] DEBUG: PID 215489: processing 401068153/103
+[11/17/2023 05:38:24] DEBUG: PID 215492: processing 401178700/25
+[11/17/2023 05:38:24] DEBUG: PID 215490: processing 401331963/95
+[11/17/2023 05:38:24] DEBUG: PID 215492: processing 401240419/169
+[11/17/2023 05:38:24] DEBUG: PID 215490: processing 401778226/149
+[11/17/2023 05:38:24] DEBUG: PID 215492: processing 401189367/95
+[11/17/2023 05:38:24] DEBUG: PID 215493: processing 401581644/203
+[11/17/2023 05:38:24] DEBUG: PID 215496: processing 401839530/256
+[11/17/2023 05:38:24] DEBUG: PID 215495: processing 401610003/205
+[11/17/2023 05:38:24] DEBUG: PID 215494: processing 401690625/78
+[11/17/2023 05:38:24] DEBUG: PID 215497: processing 401204379/246
+[11/17/2023 05:38:24] DEBUG: PID 215493: processing 401968762/214
+[11/17/2023 05:38:24] DEBUG: PID 215496: processing 401377103/112
+[11/17/2023 05:38:24] DEBUG: PID 215498: processing 401998921/77
+[11/17/2023 05:38:24] DEBUG: PID 215495: processing 401342134/168
+[11/17/2023 05:38:24] DEBUG: PID 215494: processing 401480375/246
+[11/17/2023 05:38:24] DEBUG: PID 215497: processing 401914555/96
+[11/17/2023 05:38:24] DEBUG: PID 215493: processing 401899217/232
+[11/17/2023 05:38:24] DEBUG: PID 215496: processing 401573388/146
+[11/17/2023 05:38:24] DEBUG: PID 215495: processing 401400173/169
+[11/17/2023 05:38:24] DEBUG: PID 215494: processing 401524229/241
+[11/17/2023 05:38:24] DEBUG: PID 215498: processing 401841730/112
+[11/17/2023 05:38:24] DEBUG: PID 215497: processing 401615346/201
+[11/17/2023 05:38:24] DEBUG: PID 215499: processing 401967217/223
+[11/17/2023 05:38:24] DEBUG: PID 215493: processing 401855160/205
+[11/17/2023 05:38:24] DEBUG: PID 215496: processing 401601193/23
+[11/17/2023 05:38:24] DEBUG: PID 215495: processing 401167164/192
+[11/17/2023 05:38:24] DEBUG: PID 215494: processing 401652752/169
+[11/17/2023 05:38:24] DEBUG: PID 215498: processing 401928299/258
+[11/17/2023 05:38:24] DEBUG: PID 215497: processing 401047099/51
+[11/17/2023 05:38:24] DEBUG: PID 215493: processing 401380365/246
+[11/17/2023 05:38:24] DEBUG: PID 215496: processing 401888182/77
+[11/17/2023 05:38:24] DEBUG: PID 215499: processing 401818388/103
+[11/17/2023 05:38:24] DEBUG: PID 215495: processing 401392810/168
+[11/17/2023 05:38:24] DEBUG: PID 215494: processing 401952428/103
+[11/17/2023 05:38:24] DEBUG: PID 215500: processing 401386983/168
+[11/17/2023 05:38:24] DEBUG: PID 215498: processing 401522186/166
+[11/17/2023 05:38:24] DEBUG: PID 215497: processing 401677382/168
+[11/17/2023 05:38:24] DEBUG: PID 215493: processing 401505571/174
+[11/17/2023 05:38:24] DEBUG: PID 215496: processing 401750427/95
+[11/17/2023 05:38:24] DEBUG: PID 215495: processing 401249937/174
+[11/17/2023 05:38:24] DEBUG: PID 215499: processing 401879844/174
+[11/17/2023 05:38:24] DEBUG: PID 215494: processing 401706561/241
+[11/17/2023 05:38:24] DEBUG: PID 215498: processing 401842092/223
+[11/17/2023 05:38:24] DEBUG: PID 215497: processing 401217682/23
+[11/17/2023 05:38:24] DEBUG: PID 215493: processing 401952301/169
+[11/17/2023 05:38:24] DEBUG: PID 215496: processing 401754630/48
+[11/17/2023 05:38:24] DEBUG: PID 215500: processing 401201353/174
+[11/17/2023 05:38:24] DEBUG: PID 215495: processing 401691038/241
+[11/17/2023 05:38:24] DEBUG: PID 215499: processing 401530157/280
+[11/17/2023 05:38:24] DEBUG: PID 215494: processing 401030297/232
+[11/17/2023 05:38:24] DEBUG: PID 215498: processing 401462227/169
+[11/17/2023 05:38:24] DEBUG: PID 215497: processing 401500689/122
+[11/17/2023 05:38:24] DEBUG: PID 215502: processing 401035210/173
+[11/17/2023 05:38:24] DEBUG: PID 215496: processing 401514073/60
+[11/17/2023 05:38:24] DEBUG: PID 215493: processing 401747663/168
+[11/17/2023 05:38:24] DEBUG: PID 215495: processing 401034467/96
+[11/17/2023 05:38:24] DEBUG: PID 215499: processing 401272407/48
+[11/17/2023 05:38:24] DEBUG: PID 215500: processing 401102101/60
+[11/17/2023 05:38:24] DEBUG: PID 215494: processing 401016540/232
+[11/17/2023 05:38:24] DEBUG: PID 215497: processing 401194965/147
+[11/17/2023 05:38:24] DEBUG: PID 215498: processing 401678459/122
+[11/17/2023 05:38:24] DEBUG: PID 215499: processing 401336772/189
+[11/17/2023 05:38:24] DEBUG: PID 215502: processing 401082893/158
+[11/17/2023 05:38:24] DEBUG: PID 215500: processing 401152941/23
+[11/17/2023 05:38:24] DEBUG: PID 215498: processing 401021150/264
+[11/17/2023 05:38:24] DEBUG: PID 215499: processing 401794213/192
+[11/17/2023 05:38:24] DEBUG: PID 215502: processing 401095730/158
+[11/17/2023 05:38:24] DEBUG: PID 215500: processing 401876240/121
+[11/17/2023 05:38:24] DEBUG: PID 215499: processing 401273284/48
+[11/17/2023 05:38:24] DEBUG: PID 215502: processing 401097960/121
+[11/17/2023 05:38:24] DEBUG: PID 215500: processing 401760345/50
+[11/17/2023 05:38:24] DEBUG: PID 215505: processing 401937896/117
+[11/17/2023 05:38:24] DEBUG: PID 215502: processing 401214720/280
+[11/17/2023 05:38:24] DEBUG: PID 215500: processing 401450953/205
+[11/17/2023 05:38:24] DEBUG: PID 215505: processing 401952301/6
+[11/17/2023 05:38:24] DEBUG: PID 215502: processing 401240419/77
+[11/17/2023 05:38:24] DEBUG: PID 215500: processing 401272178/169
+[11/17/2023 05:38:24] DEBUG: PID 215505: processing 401967217/102
+[11/17/2023 05:38:24] DEBUG: PID 215502: processing 401272178/60
+[11/17/2023 05:38:24] DEBUG: PID 215508: processing 402411342/158
+[11/17/2023 05:38:24] DEBUG: PID 215505: processing 401967735/103
+[11/17/2023 05:38:24] DEBUG: PID 215502: processing 401313041/283
+[11/17/2023 05:38:24] DEBUG: PID 215505: processing 402141286/293
+[11/17/2023 05:38:24] DEBUG: PID 215508: processing 402949876/96
+[11/17/2023 05:38:24] DEBUG: PID 215505: processing 402178963/253
+[11/17/2023 05:38:24] DEBUG: PID 215508: processing 402737687/59
+[11/17/2023 05:38:24] DEBUG: PID 215505: processing 402312216/280
+[11/17/2023 05:38:24] DEBUG: PID 215508: processing 402326480/122
+[11/17/2023 05:38:24] DEBUG: PID 215511: processing 401240419/45
+[11/17/2023 05:38:24] DEBUG: PID 215505: processing 402402064/45
+[11/17/2023 05:38:24] DEBUG: PID 215513: processing 302539875/470
+[11/17/2023 05:38:24] DEBUG: PID 215508: processing 402141286/50
+[11/17/2023 05:38:24] DEBUG: PID 215511: processing 401263827/253
+[11/17/2023 05:38:24] DEBUG: PID 215515: processing 302445933/357
+[11/17/2023 05:38:24] DEBUG: PID 215513: processing 302417689/483
+[11/17/2023 05:38:24] DEBUG: PID 215508: processing 401103480/122
+[11/17/2023 05:38:24] DEBUG: PID 215511: processing 401461691/123
+[11/17/2023 05:38:24] DEBUG: PID 215513: processing 302544861/487
+[11/17/2023 05:38:24] DEBUG: PID 215508: processing 401919451/201
+[11/17/2023 05:38:24] DEBUG: PID 215515: processing 302406156/466
+[11/17/2023 05:38:24] DEBUG: PID 215511: processing 401128368/103
+[11/17/2023 05:38:24] DEBUG: PID 215513: processing 302898812/453
+[11/17/2023 05:38:24] DEBUG: PID 215508: processing 401514022/179
+[11/17/2023 05:38:24] DEBUG: PID 215515: processing 302312662/346
+[11/17/2023 05:38:24] DEBUG: PID 215511: processing 401545947/123
+[11/17/2023 05:38:24] DEBUG: PID 215513: processing 302947667/468
+[11/17/2023 05:38:24] DEBUG: PID 215515: processing 302347000/392
+[11/17/2023 05:38:24] DEBUG: PID 215511: processing 401740972/46
+[11/17/2023 05:38:24] DEBUG: PID 215513: processing 302975201/363
+[11/17/2023 05:38:24] DEBUG: PID 215515: processing 302877334/416
+[11/17/2023 05:38:24] DEBUG: PID 215511: processing 401844948/36
+[11/17/2023 05:38:24] DEBUG: PID 215513: processing 302980703/401
+[11/17/2023 05:38:24] DEBUG: PID 215515: processing 302571730/314
+[11/17/2023 05:38:24] DEBUG: PID 215511: processing 401809607/69
+[11/17/2023 05:38:24] DEBUG: PID 215513: processing 302982550/404
+[11/17/2023 05:38:24] DEBUG: PID 215515: processing 302411013/412
+[11/17/2023 05:38:24] DEBUG: PID 215515: processing 302162315/406
+[11/17/2023 05:38:24] DEBUG: PID 215514: processing 302172908/366
+[11/17/2023 05:38:24] DEBUG: PID 215514: processing 302464931/484
+[11/17/2023 05:38:24] DEBUG: PID 215514: processing 302350198/491
+[11/17/2023 05:38:24] DEBUG: PID 215514: processing 302319371/358
+[11/17/2023 05:38:24] DEBUG: PID 215514: processing 302770046/373
+[11/17/2023 05:38:24] DEBUG: PID 215514: processing 302226167/374
+[11/17/2023 05:38:24] DEBUG: PID 215514: processing 302699137/367
+[11/17/2023 05:38:24] DEBUG: PID 215514: processing 302201045/369
+[11/17/2023 05:38:24] DEBUG: PID 215491: processing 401553707/276
+[11/17/2023 05:38:24] DEBUG: PID 215491: processing 401664309/59
+[11/17/2023 05:38:24] DEBUG: PID 215491: processing 401811306/78
+[11/17/2023 05:38:24] DEBUG: PID 215491: processing 401208681/104
+[11/17/2023 05:38:24] DEBUG: PID 215491: processing 401826476/235
+[11/17/2023 05:38:24] DEBUG: PID 215491: processing 401720955/45
+[11/17/2023 05:38:24] DEBUG: PID 215491: processing 401067509/201
+[11/17/2023 05:38:24] DEBUG: PID 215491: processing 401911823/241
+[11/17/2023 05:38:24] DEBUG: PID 215519: processing 302450280/409
+[11/17/2023 05:38:24] DEBUG: PID 215520: processing 302358375/346
+[11/17/2023 05:38:24] DEBUG: PID 215521: processing 302078583/483
+[11/17/2023 05:38:24] DEBUG: PID 215522: processing 302022142/412
+[11/17/2023 05:38:24] DEBUG: PID 215523: processing 302279231/358
+[11/17/2023 05:38:24] DEBUG: PID 215524: processing 302435759/343
+[11/17/2023 05:38:24] DEBUG: PID 215525: processing 302928345/483
+[11/17/2023 05:38:24] DEBUG: PID 215519: processing 302405256/415
+[11/17/2023 05:38:24] DEBUG: PID 215519: processing 302168004/400
+[11/17/2023 05:38:24] DEBUG: PID 215519: processing 302810350/350
+[11/17/2023 05:38:24] DEBUG: PID 215519: processing 302168848/393
+[11/17/2023 05:38:24] DEBUG: PID 215519: processing 302999241/345
+[11/17/2023 05:38:24] DEBUG: PID 215519: processing 302061859/391
+[11/17/2023 05:38:24] DEBUG: PID 215526: processing 302631120/356
+[11/17/2023 05:38:24] DEBUG: PID 215519: processing 302402459/347
+[11/17/2023 05:38:24] DEBUG: PID 215519: processing 302988730/358
+[11/17/2023 05:38:24] DEBUG: PID 215520: processing 302837017/374
+[11/17/2023 05:38:24] DEBUG: PID 215520: processing 302260551/466
+[11/17/2023 05:38:24] DEBUG: PID 215520: processing 302045191/401
+[11/17/2023 05:38:24] DEBUG: PID 215520: processing 302887081/470
+[11/17/2023 05:38:24] DEBUG: PID 215520: processing 302886690/349
+[11/17/2023 05:38:24] DEBUG: PID 215520: processing 302405269/383
+[11/17/2023 05:38:24] DEBUG: PID 215527: processing 302631199/420
+[11/17/2023 05:38:24] DEBUG: PID 215520: processing 302974083/366
+[11/17/2023 05:38:24] DEBUG: PID 215520: processing 302515834/404
+[11/17/2023 05:38:24] DEBUG: PID 215528: processing 302531549/466
+[11/17/2023 05:38:24] DEBUG: PID 215521: processing 302468920/487
+[11/17/2023 05:38:24] DEBUG: PID 215521: processing 302869057/343
+[11/17/2023 05:38:24] DEBUG: PID 215521: processing 302414522/403
+[11/17/2023 05:38:24] DEBUG: PID 215521: processing 302103402/415
+[11/17/2023 05:38:24] DEBUG: PID 215521: processing 302244974/453
+[11/17/2023 05:38:24] DEBUG: PID 215521: processing 302979980/339
+[11/17/2023 05:38:24] DEBUG: PID 215521: processing 302328670/369
+[11/17/2023 05:38:24] DEBUG: PID 215521: processing 302316534/379
+[11/17/2023 05:38:24] DEBUG: PID 215529: processing 302539875/324
+[11/17/2023 05:38:24] DEBUG: PID 215522: processing 302730391/314
+[11/17/2023 05:38:24] DEBUG: PID 215522: processing 302641169/391
+[11/17/2023 05:38:24] DEBUG: PID 215522: processing 302446738/375
+[11/17/2023 05:38:24] DEBUG: PID 215523: processing 302955513/349
+[11/17/2023 05:38:24] DEBUG: PID 215522: processing 302881421/404
+[11/17/2023 05:38:24] DEBUG: PID 215523: processing 302680215/401
+[11/17/2023 05:38:24] DEBUG: PID 215522: processing 302056620/416
+[11/17/2023 05:38:24] DEBUG: PID 215523: processing 302387519/392
+[11/17/2023 05:38:24] DEBUG: PID 215522: processing 302466932/487
+[11/17/2023 05:38:24] DEBUG: PID 215523: processing 302790666/375
+[11/17/2023 05:38:24] DEBUG: PID 215522: processing 302445124/363
+[11/17/2023 05:38:24] DEBUG: PID 215523: processing 302810474/339
+[11/17/2023 05:38:24] DEBUG: PID 215522: processing 302918821/406
+[11/17/2023 05:38:24] DEBUG: PID 215523: processing 302431853/369
+[11/17/2023 05:38:24] DEBUG: PID 215523: processing 302731380/491
+[11/17/2023 05:38:24] DEBUG: PID 215523: processing 302605500/468
+[11/17/2023 05:38:24] DEBUG: PID 215530: processing 302992006/408
+[11/17/2023 05:38:24] DEBUG: PID 215524: processing 302624918/357
+[11/17/2023 05:38:24] DEBUG: PID 215524: processing 302460504/349
+[11/17/2023 05:38:24] DEBUG: PID 215524: processing 302677539/358
+[11/17/2023 05:38:24] DEBUG: PID 215524: processing 302146561/415
+[11/17/2023 05:38:24] DEBUG: PID 215524: processing 302160728/416
+[11/17/2023 05:38:24] DEBUG: PID 215524: processing 302770297/417
+[11/17/2023 05:38:24] DEBUG: PID 215524: processing 302826527/443
+[11/17/2023 05:38:24] DEBUG: PID 215524: processing 302440874/453
+[11/17/2023 05:38:25] DEBUG: PID 215525: processing 302562672/492
+[11/17/2023 05:38:25] DEBUG: PID 215525: processing 302422928/475
+[11/17/2023 05:38:24] DEBUG: PID 215531: processing 303606448/399
+[11/17/2023 05:38:25] DEBUG: PID 215525: processing 302357259/465
+[11/17/2023 05:38:25] DEBUG: PID 215525: processing 302614231/435
+[11/17/2023 05:38:25] DEBUG: PID 215525: processing 302002879/473
+[11/17/2023 05:38:25] DEBUG: PID 215525: processing 302665073/494
+[11/17/2023 05:38:25] DEBUG: PID 215526: processing 302756755/373
+[11/17/2023 05:38:25] DEBUG: PID 215526: processing 302865628/393
+[11/17/2023 05:38:25] DEBUG: PID 215525: processing 302902697/493
+[11/17/2023 05:38:25] DEBUG: PID 215525: processing 302530348/345
+[11/17/2023 05:38:25] DEBUG: PID 215527: processing 302591105/426
+[11/17/2023 05:38:25] DEBUG: PID 215526: processing 302330481/399
+[11/17/2023 05:38:25] DEBUG: PID 215527: processing 302977654/427
+[11/17/2023 05:38:25] DEBUG: PID 215526: processing 302487100/403
+[11/17/2023 05:38:25] DEBUG: PID 215526: processing 302862878/405
+[11/17/2023 05:38:25] DEBUG: PID 215526: processing 302318839/407
+[11/17/2023 05:38:25] DEBUG: PID 215526: processing 302394560/408
+[11/17/2023 05:38:25] DEBUG: PID 215526: processing 302700417/409
+[11/17/2023 05:38:25] DEBUG: PID 215532: processing 304282966/442
+[11/17/2023 05:38:25] DEBUG: PID 215527: processing 302832294/439
+[11/17/2023 05:38:25] DEBUG: PID 215527: processing 302265135/441
+[11/17/2023 05:38:25] DEBUG: PID 215527: processing 302864487/442
+[11/17/2023 05:38:25] DEBUG: PID 215527: processing 302429590/451
+[11/17/2023 05:38:25] DEBUG: PID 215527: processing 302168600/459
+[11/17/2023 05:38:25] DEBUG: PID 215527: processing 302919111/462
+[11/17/2023 05:38:25] DEBUG: PID 215528: processing 302394520/470
+[11/17/2023 05:38:25] DEBUG: PID 215528: processing 302319371/403
+[11/17/2023 05:38:25] DEBUG: PID 215528: processing 302045191/483
+[11/17/2023 05:38:25] DEBUG: PID 215528: processing 302078583/468
+[11/17/2023 05:38:25] DEBUG: PID 215528: processing 302319371/391
+[11/17/2023 05:38:25] DEBUG: PID 215528: processing 302387519/460
+[11/17/2023 05:38:25] DEBUG: PID 215528: processing 302417689/347
+[11/17/2023 05:38:25] DEBUG: PID 215528: processing 302515834/319
+[11/17/2023 05:38:25] DEBUG: PID 215533: processing 302417689/464
+[11/17/2023 05:38:25] DEBUG: PID 215529: processing 302579217/428
+[11/17/2023 05:38:25] DEBUG: PID 215529: processing 302619633/312
+[11/17/2023 05:38:25] DEBUG: PID 215529: processing 302641169/434
+[11/17/2023 05:38:25] DEBUG: PID 215529: processing 302769937/344
+[11/17/2023 05:38:25] DEBUG: PID 215529: processing 302918821/423
+[11/17/2023 05:38:25] DEBUG: PID 215535: processing 201555219/420
+[11/17/2023 05:38:25] DEBUG: PID 215529: processing 302938714/317
+[11/17/2023 05:38:25] DEBUG: PID 215529: processing 302947667/453
+[11/17/2023 05:38:25] DEBUG: PID 215529: processing 302988730/352
+[11/17/2023 05:38:25] DEBUG: PID 215530: processing 303105656/349
+[11/17/2023 05:38:25] DEBUG: PID 215530: processing 303215059/464
+[11/17/2023 05:38:25] DEBUG: PID 215530: processing 303304799/481
+[11/17/2023 05:38:25] DEBUG: PID 215530: processing 303344149/490
+[11/17/2023 05:38:25] DEBUG: PID 215530: processing 303494740/332
+[11/17/2023 05:38:25] DEBUG: PID 215530: processing 303555236/451
+[11/17/2023 05:38:25] DEBUG: PID 215530: processing 303571721/442
+[11/17/2023 05:38:25] DEBUG: PID 215530: processing 303583054/337
+[11/17/2023 05:38:25] DEBUG: PID 215536: processing 201046774/427
+[11/17/2023 05:38:25] DEBUG: PID 215531: processing 303781388/345
+[11/17/2023 05:38:25] DEBUG: PID 215531: processing 303792486/401
+[11/17/2023 05:38:25] DEBUG: PID 215531: processing 303827552/338
+[11/17/2023 05:38:25] DEBUG: PID 215537: processing 201622526/430
+[11/17/2023 05:38:25] DEBUG: PID 215532: processing 303619525/324
+[11/17/2023 05:38:25] DEBUG: PID 215532: processing 303606564/334
+[11/17/2023 05:38:25] DEBUG: PID 215532: processing 302918821/331
+[11/17/2023 05:38:25] DEBUG: PID 215532: processing 302078583/483
+[11/17/2023 05:38:25] DEBUG: PID 215532: processing 302614101/401
+[11/17/2023 05:38:25] DEBUG: PID 215532: processing 302988730/484
+[11/17/2023 05:38:25] DEBUG: PID 215532: processing 302980421/416
+[11/17/2023 05:38:25] DEBUG: PID 215532: processing 302350198/403
+[11/17/2023 05:38:25] DEBUG: PID 215538: processing 201865115/435
+[11/17/2023 05:38:25] DEBUG: PID 215533: processing 201747792/455
+[11/17/2023 05:38:25] DEBUG: PID 215533: processing 201016583/417
+[11/17/2023 05:38:25] DEBUG: PID 215533: processing 201096308/417
+[11/17/2023 05:38:25] DEBUG: PID 215533: processing 201354715/417
+[11/17/2023 05:38:25] DEBUG: PID 215533: processing 201897232/417
+[11/17/2023 05:38:25] DEBUG: PID 215539: processing 201888195/441
+[11/17/2023 05:38:25] DEBUG: PID 215533: processing 201084620/420
+[11/17/2023 05:38:25] DEBUG: PID 215533: processing 201243705/420
+[11/17/2023 05:38:25] DEBUG: PID 215533: processing 201440082/420
+[11/17/2023 05:38:25] DEBUG: PID 215535: processing 201206867/423
+[11/17/2023 05:38:25] DEBUG: PID 215535: processing 201395817/423
+[11/17/2023 05:38:25] DEBUG: PID 215535: processing 201808807/423
+[11/17/2023 05:38:25] DEBUG: PID 215540: processing 201993762/444
+[11/17/2023 05:38:25] DEBUG: PID 215535: processing 201936202/423
+[11/17/2023 05:38:25] DEBUG: PID 215535: processing 201335765/426
+[11/17/2023 05:38:25] DEBUG: PID 215535: processing 201581816/426
+[11/17/2023 05:38:25] DEBUG: PID 215535: processing 201629908/426
+[11/17/2023 05:38:25] DEBUG: PID 215535: processing 201966494/426
+[11/17/2023 05:38:25] DEBUG: PID 215541: processing 201591592/492
+[11/17/2023 05:38:25] DEBUG: PID 215536: processing 201062161/427
+[11/17/2023 05:38:25] DEBUG: PID 215536: processing 201335404/427
+[11/17/2023 05:38:25] DEBUG: PID 215536: processing 201540108/427
+[11/17/2023 05:38:25] DEBUG: PID 215536: processing 201611721/428
+[11/17/2023 05:38:25] DEBUG: PID 215536: processing 201642869/428
+[11/17/2023 05:38:25] DEBUG: PID 215536: processing 201828168/428
+[11/17/2023 05:38:25] DEBUG: PID 215536: processing 201140482/430
+[11/17/2023 05:38:25] DEBUG: PID 215536: processing 201213672/430
+[11/17/2023 05:38:25] DEBUG: PID 215542: processing 201215961/478
+[11/17/2023 05:38:25] DEBUG: PID 215537: processing 201210693/434
+[11/17/2023 05:38:25] DEBUG: PID 215537: processing 201344260/434
+[11/17/2023 05:38:25] DEBUG: PID 215537: processing 201488353/434
+[11/17/2023 05:38:25] DEBUG: PID 215537: processing 201632326/434
+[11/17/2023 05:38:25] DEBUG: PID 215537: processing 201829346/434
+[11/17/2023 05:38:25] DEBUG: PID 215537: processing 201057630/435
+[11/17/2023 05:38:25] DEBUG: PID 215543: processing 201439904/481
+[11/17/2023 05:38:25] DEBUG: PID 215544: processing 201759149/494
+[11/17/2023 05:38:25] DEBUG: PID 215538: processing 201167559/439
+[11/17/2023 05:38:25] DEBUG: PID 215538: processing 201537102/457
+[11/17/2023 05:38:25] DEBUG: PID 215538: processing 201731907/439
+[11/17/2023 05:38:25] DEBUG: PID 215538: processing 201903900/439
+[11/17/2023 05:38:25] DEBUG: PID 215538: processing 201047893/441
+[11/17/2023 05:38:25] DEBUG: PID 215538: processing 201320546/441
+[11/17/2023 05:38:25] DEBUG: PID 215538: processing 201751458/441
+[11/17/2023 05:38:25] DEBUG: PID 215538: processing 201822987/441
+[11/17/2023 05:38:25] DEBUG: PID 215545: processing 201893555/495
+[11/17/2023 05:38:25] DEBUG: PID 215539: processing 201906036/441
+[11/17/2023 05:38:25] DEBUG: PID 215539: processing 201260516/442
+[11/17/2023 05:38:25] DEBUG: PID 215539: processing 201299366/442
+[11/17/2023 05:38:25] DEBUG: PID 215539: processing 201498983/442
+[11/17/2023 05:38:25] DEBUG: PID 215539: processing 201296599/443
+[11/17/2023 05:38:25] DEBUG: PID 215539: processing 201921802/443
+[11/17/2023 05:38:25] DEBUG: PID 215546: processing 201330387/474
+[11/17/2023 05:38:25] DEBUG: PID 215539: processing 201207268/444
+[11/17/2023 05:38:25] DEBUG: PID 215539: processing 201807747/444
+[11/17/2023 05:38:25] DEBUG: PID 215547: processing 201518284/475
+[11/17/2023 05:38:25] DEBUG: PID 215540: processing 201050305/445
+[11/17/2023 05:38:25] DEBUG: PID 215540: processing 201089691/445
+[11/17/2023 05:38:25] DEBUG: PID 215540: processing 201219100/445
+[11/17/2023 05:38:25] DEBUG: PID 215540: processing 201298606/445
+[11/17/2023 05:38:25] DEBUG: PID 215540: processing 201585258/445
+[11/17/2023 05:38:25] DEBUG: PID 215540: processing 201958047/445
+[11/17/2023 05:38:25] DEBUG: PID 215540: processing 201980623/445
+[11/17/2023 05:38:25] DEBUG: PID 215540: processing 201005131/492
+[11/17/2023 05:38:25] DEBUG: PID 215541: processing 201702953/492
+[11/17/2023 05:38:25] DEBUG: PID 215541: processing 201873796/492
+[11/17/2023 05:38:25] DEBUG: PID 215541: processing 201347508/486
+[11/17/2023 05:38:25] DEBUG: PID 215541: processing 201501658/486
+[11/17/2023 05:38:25] DEBUG: PID 215541: processing 201760141/486
+[11/17/2023 05:38:25] DEBUG: PID 215541: processing 201907304/486
+[11/17/2023 05:38:25] DEBUG: PID 215541: processing 201943028/486
+[11/17/2023 05:38:25] DEBUG: PID 215541: processing 201210287/478
+[11/17/2023 05:38:25] DEBUG: PID 215548: processing 201676154/465
+[11/17/2023 05:38:25] DEBUG: PID 215542: processing 201259654/478
+[11/17/2023 05:38:25] DEBUG: PID 215542: processing 201767359/478
+[11/17/2023 05:38:25] DEBUG: PID 215542: processing 201907402/478
+[11/17/2023 05:38:25] DEBUG: PID 215542: processing 201117523/493
+[11/17/2023 05:38:25] DEBUG: PID 215542: processing 201465169/493
+[11/17/2023 05:38:25] DEBUG: PID 215542: processing 201657731/493
+[11/17/2023 05:38:25] DEBUG: PID 215542: processing 201879991/493
+[11/17/2023 05:38:25] DEBUG: PID 215542: processing 201945699/493
+[11/17/2023 05:38:25] DEBUG: PID 215549: processing 201577173/449
+[11/17/2023 05:38:25] DEBUG: PID 215543: processing 201547240/481
+[11/17/2023 05:38:25] DEBUG: PID 215543: processing 201607646/481
+[11/17/2023 05:38:25] DEBUG: PID 215543: processing 201841665/481
+[11/17/2023 05:38:25] DEBUG: PID 215543: processing 201421800/494
+[11/17/2023 05:38:25] DEBUG: PID 215543: processing 201459922/494
+[11/17/2023 05:38:25] DEBUG: PID 215543: processing 201541156/494
+[11/17/2023 05:38:25] DEBUG: PID 215543: processing 201544209/494
+[11/17/2023 05:38:25] DEBUG: PID 215543: processing 201661659/494
+[11/17/2023 05:38:25] DEBUG: PID 215544: processing 201119567/482
+[11/17/2023 05:38:25] DEBUG: PID 215544: processing 201541287/482
+[11/17/2023 05:38:25] DEBUG: PID 215544: processing 201598406/482
+[11/17/2023 05:38:25] DEBUG: PID 215544: processing 201732023/482
+[11/17/2023 05:38:25] DEBUG: PID 215550: processing 201439230/455
+[11/17/2023 05:38:25] DEBUG: PID 215544: processing 201894756/482
+[11/17/2023 05:38:25] DEBUG: PID 215544: processing 201185816/495
+[11/17/2023 05:38:25] DEBUG: PID 215544: processing 201595427/495
+[11/17/2023 05:38:25] DEBUG: PID 215544: processing 201833530/495
+[11/17/2023 05:38:25] DEBUG: PID 215545: processing 201999448/495
+[11/17/2023 05:38:25] DEBUG: PID 215545: processing 201122672/490
+[11/17/2023 05:38:25] DEBUG: PID 215545: processing 201702497/490
+[11/17/2023 05:38:25] DEBUG: PID 215545: processing 201771612/494
+[11/17/2023 05:38:25] DEBUG: PID 215545: processing 201774161/490
+[11/17/2023 05:38:25] DEBUG: PID 215551: processing 201005131/405
+[11/17/2023 05:38:25] DEBUG: PID 215545: processing 201784517/490
+[11/17/2023 05:38:25] DEBUG: PID 215546: processing 201470524/474
+[11/17/2023 05:38:25] DEBUG: PID 215545: processing 201144166/488
+[11/17/2023 05:38:25] DEBUG: PID 215545: processing 201660846/488
+[11/17/2023 05:38:25] DEBUG: PID 215546: processing 201801387/474
+[11/17/2023 05:38:25] DEBUG: PID 215546: processing 201825339/474
+[11/17/2023 05:38:25] DEBUG: PID 215546: processing 201890309/474
+[11/17/2023 05:38:25] DEBUG: PID 215546: processing 201906396/474
+[11/17/2023 05:38:25] DEBUG: PID 215546: processing 201984846/474
+[11/17/2023 05:38:25] DEBUG: PID 215546: processing 201995308/474
+[11/17/2023 05:38:25] DEBUG: PID 215546: processing 201244468/475
+[11/17/2023 05:38:25] DEBUG: PID 215547: processing 201790918/475
+[11/17/2023 05:38:25] DEBUG: PID 215547: processing 201328108/476
+[11/17/2023 05:38:25] DEBUG: PID 215547: processing 201499501/476
+[11/17/2023 05:38:25] DEBUG: PID 215547: processing 201804678/476
+[11/17/2023 05:38:25] DEBUG: PID 215547: processing 201972436/476
+[11/17/2023 05:38:25] DEBUG: PID 215547: processing 201177837/465
+[11/17/2023 05:38:25] DEBUG: PID 215547: processing 201356556/465
+[11/17/2023 05:38:25] DEBUG: PID 215547: processing 201481781/465
+[11/17/2023 05:38:25] DEBUG: PID 215552: processing 201207268/373
+[11/17/2023 05:38:25] DEBUG: PID 215553: processing 201298606/426
+[11/17/2023 05:38:25] DEBUG: PID 215548: processing 201734545/465
+[11/17/2023 05:38:25] DEBUG: PID 215548: processing 201085786/457
+[11/17/2023 05:38:25] DEBUG: PID 215548: processing 201501554/457
+[11/17/2023 05:38:25] DEBUG: PID 215548: processing 201502772/457
+[11/17/2023 05:38:25] DEBUG: PID 215548: processing 201552267/439
+[11/17/2023 05:38:25] DEBUG: PID 215548: processing 201564666/457
+[11/17/2023 05:38:25] DEBUG: PID 215548: processing 201781641/457
+[11/17/2023 05:38:25] DEBUG: PID 215548: processing 201912164/457
+[11/17/2023 05:38:25] DEBUG: PID 215554: processing 201398316/462
+[11/17/2023 05:38:25] DEBUG: PID 215549: processing 201035705/454
+[11/17/2023 05:38:25] DEBUG: PID 215549: processing 201070246/454
+[11/17/2023 05:38:25] DEBUG: PID 215549: processing 201185322/454
+[11/17/2023 05:38:25] DEBUG: PID 215549: processing 201221004/454
+[11/17/2023 05:38:25] DEBUG: PID 215549: processing 201789403/454
+[11/17/2023 05:38:25] DEBUG: PID 215555: processing 201547240/313
+[11/17/2023 05:38:25] DEBUG: PID 215549: processing 201911845/454
+[11/17/2023 05:38:25] DEBUG: PID 215549: processing 201069240/455
+[11/17/2023 05:38:25] DEBUG: PID 215549: processing 201398316/455
+[11/17/2023 05:38:25] DEBUG: PID 215550: processing 201066939/423
+[11/17/2023 05:38:25] DEBUG: PID 215550: processing 201323910/476
+[11/17/2023 05:38:25] DEBUG: PID 215550: processing 201355341/495
+[11/17/2023 05:38:25] DEBUG: PID 215550: processing 201523441/482
+[11/17/2023 05:38:25] DEBUG: PID 215550: processing 201715989/455
+[11/17/2023 05:38:25] DEBUG: PID 215550: processing 201730931/420
+[11/17/2023 05:38:25] DEBUG: PID 215550: processing 201810690/444
+[11/17/2023 05:38:25] DEBUG: PID 215550: processing 201973640/420
+[11/17/2023 05:38:25] DEBUG: PID 215556: processing 201660846/357
+[11/17/2023 05:38:25] DEBUG: PID 215551: processing 201050305/415
+[11/17/2023 05:38:25] DEBUG: PID 215551: processing 201084620/475
+[11/17/2023 05:38:25] DEBUG: PID 215551: processing 201085786/373
+[11/17/2023 05:38:25] DEBUG: PID 215551: processing 201089691/356
+[11/17/2023 05:38:25] DEBUG: PID 215551: processing 201133626/493
+[11/17/2023 05:38:25] DEBUG: PID 215551: processing 201140482/375
+[11/17/2023 05:38:25] DEBUG: PID 215551: processing 201185322/443
+[11/17/2023 05:38:25] DEBUG: PID 215551: processing 201206867/366
+[11/17/2023 05:38:25] DEBUG: PID 215557: processing 201804678/488
+[11/17/2023 05:38:25] DEBUG: PID 215552: processing 201219100/482
+[11/17/2023 05:38:25] DEBUG: PID 215552: processing 201221004/495
+[11/17/2023 05:38:25] DEBUG: PID 215552: processing 201233360/358
+[11/17/2023 05:38:25] DEBUG: PID 215552: processing 201243705/373
+[11/17/2023 05:38:25] DEBUG: PID 215552: processing 201259654/369
+[11/17/2023 05:38:25] DEBUG: PID 215552: processing 201260516/404
+[11/17/2023 05:38:25] DEBUG: PID 215552: processing 201289762/406
+[11/17/2023 05:38:25] DEBUG: PID 215552: processing 201296599/409
+[11/17/2023 05:38:25] DEBUG: PID 215553: processing 201299366/392
+[11/17/2023 05:38:25] DEBUG: PID 215553: processing 201320546/417
+[11/17/2023 05:38:25] DEBUG: PID 215558: processing 202144658/420
+[11/17/2023 05:38:25] DEBUG: PID 215553: processing 201328108/405
+[11/17/2023 05:38:25] DEBUG: PID 215553: processing 201347508/393
+[11/17/2023 05:38:25] DEBUG: PID 215553: processing 201354715/495
+[11/17/2023 05:38:25] DEBUG: PID 215553: processing 201355341/407
+[11/17/2023 05:38:25] DEBUG: PID 215553: processing 201356556/379
+[11/17/2023 05:38:25] DEBUG: PID 215553: processing 201375419/374
+[11/17/2023 05:38:25] DEBUG: PID 215554: processing 201439230/486
+[11/17/2023 05:38:25] DEBUG: PID 215554: processing 201459922/392
+[11/17/2023 05:38:25] DEBUG: PID 215554: processing 201470524/379
+[11/17/2023 05:38:25] DEBUG: PID 215559: processing 202613433/443
+[11/17/2023 05:38:25] DEBUG: PID 215554: processing 201481781/493
+[11/17/2023 05:38:25] DEBUG: PID 215554: processing 201501554/406
+[11/17/2023 05:38:25] DEBUG: PID 215554: processing 201501658/465
+[11/17/2023 05:38:25] DEBUG: PID 215554: processing 201541156/358
+[11/17/2023 05:38:25] DEBUG: PID 215554: processing 201544209/420
+[11/17/2023 05:38:25] DEBUG: PID 215555: processing 201550524/366
+[11/17/2023 05:38:25] DEBUG: PID 215555: processing 201564666/486
+[11/17/2023 05:38:25] DEBUG: PID 215555: processing 201577173/346
+[11/17/2023 05:38:25] DEBUG: PID 215555: processing 201589206/486
+[11/17/2023 05:38:25] DEBUG: PID 215555: processing 201591592/427
+[11/17/2023 05:38:25] DEBUG: PID 215555: processing 201598406/473
+[11/17/2023 05:38:25] DEBUG: PID 215555: processing 201629908/406
+[11/17/2023 05:38:25] DEBUG: PID 215555: processing 201657731/447
+[11/17/2023 05:38:25] DEBUG: PID 215560: processing 202987910/459
+[11/17/2023 05:38:25] DEBUG: PID 215556: processing 201661659/439
+[11/17/2023 05:38:25] DEBUG: PID 215556: processing 201670130/358
+[11/17/2023 05:38:25] DEBUG: PID 215556: processing 201732023/363
+[11/17/2023 05:38:25] DEBUG: PID 215561: processing 202662394/401
+[11/17/2023 05:38:25] DEBUG: PID 215556: processing 201759149/441
+[11/17/2023 05:38:25] DEBUG: PID 215556: processing 201760141/465
+[11/17/2023 05:38:25] DEBUG: PID 215556: processing 201771612/415
+[11/17/2023 05:38:25] DEBUG: PID 215556: processing 201781641/491
+[11/17/2023 05:38:25] DEBUG: PID 215556: processing 201801387/482
+[11/17/2023 05:38:25] DEBUG: PID 215562: processing 201771612/454
+[11/17/2023 05:38:25] DEBUG: PID 215557: processing 201894756/441
+[11/17/2023 05:38:25] DEBUG: PID 215557: processing 201906036/367
+[11/17/2023 05:38:25] DEBUG: PID 215557: processing 201917306/476
+[11/17/2023 05:38:25] DEBUG: PID 215557: processing 201929826/466
+[11/17/2023 05:38:25] DEBUG: PID 215557: processing 201943028/466
+[11/17/2023 05:38:25] DEBUG: PID 215557: processing 201980293/473
+[11/17/2023 05:38:25] DEBUG: PID 215557: processing 201993762/455
+[11/17/2023 05:38:25] DEBUG: PID 215557: processing 202141573/473
+[11/17/2023 05:38:25] DEBUG: PID 215563: processing 201547240/423
+[11/17/2023 05:38:25] DEBUG: PID 215558: processing 202177481/363
+[11/17/2023 05:38:25] DEBUG: PID 215558: processing 202258511/427
+[11/17/2023 05:38:25] DEBUG: PID 215558: processing 202315896/366
+[11/17/2023 05:38:25] DEBUG: PID 215558: processing 202340607/393
+[11/17/2023 05:38:25] DEBUG: PID 215558: processing 202361310/476
+[11/17/2023 05:38:25] DEBUG: PID 215558: processing 202370401/449
+[11/17/2023 05:38:25] DEBUG: PID 215558: processing 202384021/445
+[11/17/2023 05:38:25] DEBUG: PID 215558: processing 202599618/367
+[11/17/2023 05:38:25] DEBUG: PID 215564: processing 201541156/391
+[11/17/2023 05:38:25] DEBUG: PID 215559: processing 202675492/392
+[11/17/2023 05:38:25] DEBUG: PID 215559: processing 202722540/404
+[11/17/2023 05:38:25] DEBUG: PID 215559: processing 202764990/357
+[11/17/2023 05:38:25] DEBUG: PID 215559: processing 202768654/313
+[11/17/2023 05:38:25] DEBUG: PID 215559: processing 202786503/346
+[11/17/2023 05:38:25] DEBUG: PID 215559: processing 202790885/459
+[11/17/2023 05:38:25] DEBUG: PID 215559: processing 202806934/443
+[11/17/2023 05:38:25] DEBUG: PID 215559: processing 202938759/447
+[11/17/2023 05:38:25] DEBUG: PID 215565: processing 201298606/328
+[11/17/2023 05:38:25] DEBUG: PID 215560: processing 202990150/494
+[11/17/2023 05:38:25] DEBUG: PID 215560: processing 201221004/415
+[11/17/2023 05:38:25] DEBUG: PID 215560: processing 201260516/465
+[11/17/2023 05:38:25] DEBUG: PID 215560: processing 201375419/444
+[11/17/2023 05:38:25] DEBUG: PID 215560: processing 201894756/482
+[11/17/2023 05:38:25] DEBUG: PID 215560: processing 202634537/407
+[11/17/2023 05:38:25] DEBUG: PID 215560: processing 202786503/369
+[11/17/2023 05:38:25] DEBUG: PID 215560: processing 201260516/439
+[11/17/2023 05:38:25] DEBUG: PID 215561: processing 201210287/349
+[11/17/2023 05:38:25] DEBUG: PID 215561: processing 202931821/343
+[11/17/2023 05:38:25] DEBUG: PID 215561: processing 202144658/483
+[11/17/2023 05:38:25] DEBUG: PID 215561: processing 202938759/352
+[11/17/2023 05:38:25] DEBUG: PID 215561: processing 202768654/331
+[11/17/2023 05:38:25] DEBUG: PID 215566: processing 203510842/453
+[11/17/2023 05:38:25] DEBUG: PID 215561: processing 202116714/403
+[11/17/2023 05:38:25] DEBUG: PID 215561: processing 202506905/451
+[11/17/2023 05:38:25] DEBUG: PID 215561: processing 201457854/464
+[11/17/2023 05:38:25] DEBUG: PID 215562: processing 201356556/349
+[11/17/2023 05:38:25] DEBUG: PID 215562: processing 201585799/453
+[11/17/2023 05:38:25] DEBUG: PID 215567: processing 203549113/434
+[11/17/2023 05:38:25] DEBUG: PID 215562: processing 201328108/339
+[11/17/2023 05:38:25] DEBUG: PID 215562: processing 201005131/453
+[11/17/2023 05:38:25] DEBUG: PID 215562: processing 201185322/484
+[11/17/2023 05:38:25] DEBUG: PID 215562: processing 201550524/344
+[11/17/2023 05:38:25] DEBUG: PID 215562: processing 201781641/334
+[11/17/2023 05:38:25] DEBUG: PID 215562: processing 201808807/484
+[11/17/2023 05:38:25] DEBUG: PID 215563: processing 201760141/428
+[11/17/2023 05:38:25] DEBUG: PID 215563: processing 201544209/490
+[11/17/2023 05:38:25] DEBUG: PID 215563: processing 201834558/434
+[11/17/2023 05:38:25] DEBUG: PID 215563: processing 201096308/338
+[11/17/2023 05:38:25] DEBUG: PID 215563: processing 201375419/343
+[11/17/2023 05:38:25] DEBUG: PID 215563: processing 201089691/312
+[11/17/2023 05:38:25] DEBUG: PID 215563: processing 201804678/317
+[11/17/2023 05:38:25] DEBUG: PID 215563: processing 201144166/423
+[11/17/2023 05:38:25] DEBUG: PID 215568: processing 203253990/435
+[11/17/2023 05:38:25] DEBUG: PID 215569: processing 201084620/399
+[11/17/2023 05:38:25] ERROR: Participant # 303827552: Unable to process GPS (Table gps not found)
+[11/17/2023 05:38:25] DEBUG: PID 215570: processing 101072948/263
+[11/17/2023 05:38:25] DEBUG: PID 215565: processing 201335765/408
+[11/17/2023 05:38:25] DEBUG: PID 215565: processing 201133626/399
+[11/17/2023 05:38:25] DEBUG: PID 215565: processing 203226714/423
+[11/17/2023 05:38:25] DEBUG: PID 215565: processing 203379888/317
+[11/17/2023 05:38:25] DEBUG: PID 215565: processing 203018945/319
+[11/17/2023 05:38:25] DEBUG: PID 215565: processing 203388759/428
+[11/17/2023 05:38:25] DEBUG: PID 215565: processing 203452762/470
+[11/17/2023 05:38:25] DEBUG: PID 215565: processing 203410011/423
+[11/17/2023 05:38:25] DEBUG: PID 215571: processing 101732449/147
+[11/17/2023 05:38:25] DEBUG: PID 215572: processing 101496686/276
+[11/17/2023 05:38:25] DEBUG: PID 215573: processing 101228883/9
+[11/17/2023 05:38:25] DEBUG: PID 215567: processing 203631864/312
+[11/17/2023 05:38:25] DEBUG: PID 215567: processing 203945903/317
+[11/17/2023 05:38:25] DEBUG: PID 215567: processing 203757301/331
+[11/17/2023 05:38:25] DEBUG: PID 215567: processing 203712476/391
+[11/17/2023 05:38:25] DEBUG: PID 215567: processing 203473435/428
+[11/17/2023 05:38:25] DEBUG: PID 215567: processing 203367508/337
+[11/17/2023 05:38:25] DEBUG: PID 215567: processing 203064043/324
+[11/17/2023 05:38:25] DEBUG: PID 215567: processing 203842375/451
+[11/17/2023 05:38:25] DEBUG: PID 215568: processing 201501554/474
+[11/17/2023 05:38:25] DEBUG: PID 215574: processing 101315590/122
+[11/17/2023 05:38:25] DEBUG: PID 215568: processing 201989693/328
+[11/17/2023 05:38:25] DEBUG: PID 215564: processing 201047893/319
+[11/17/2023 05:38:25] DEBUG: PID 215568: processing 202258511/349
+[11/17/2023 05:38:25] DEBUG: PID 215568: processing 201470524/337
+[11/17/2023 05:38:25] DEBUG: PID 215564: processing 201069240/339
+[11/17/2023 05:38:25] DEBUG: PID 215568: processing 201774161/312
+[11/17/2023 05:38:25] DEBUG: PID 215564: processing 201498983/347
+[11/17/2023 05:38:25] DEBUG: PID 215568: processing 201481781/347
+[11/17/2023 05:38:25] DEBUG: PID 215564: processing 201140482/470
+[11/17/2023 05:38:25] DEBUG: PID 215568: processing 201921802/464
+[11/17/2023 05:38:25] DEBUG: PID 215564: processing 201759149/457
+[11/17/2023 05:38:25] DEBUG: PID 215564: processing 201219100/338
+[11/17/2023 05:38:25] DEBUG: PID 215568: processing 201458731/470
+[11/17/2023 05:38:25] DEBUG: PID 215564: processing 201347508/416
+[11/17/2023 05:38:25] DEBUG: PID 215564: processing 201233360/344
+[11/17/2023 05:38:25] DEBUG: PID 215569: processing 201296599/442
+[11/17/2023 05:38:25] DEBUG: PID 215569: processing 201591592/490
+[11/17/2023 05:38:25] DEBUG: PID 215569: processing 201225837/337
+[11/17/2023 05:38:25] DEBUG: PID 215569: processing 203712476/451
+[11/17/2023 05:38:25] DEBUG: PID 215575: processing 101044327/189
+[11/17/2023 05:38:25] DEBUG: PID 215569: processing 201501554/312
+[11/17/2023 05:38:25] DEBUG: PID 215569: processing 201989693/319
+[11/17/2023 05:38:25] DEBUG: PID 215569: processing 101393503/276
+[11/17/2023 05:38:25] DEBUG: PID 215569: processing 101740289/96
+[11/17/2023 05:38:25] DEBUG: PID 215570: processing 101219235/158
+[11/17/2023 05:38:25] DEBUG: PID 215570: processing 101429213/169
+[11/17/2023 05:38:25] DEBUG: PID 215570: processing 101359113/162
+[11/17/2023 05:38:25] DEBUG: PID 215570: processing 101706606/169
+[11/17/2023 05:38:25] DEBUG: PID 215570: processing 101096844/104
+[11/17/2023 05:38:25] DEBUG: PID 215570: processing 101079910/144
+[11/17/2023 05:38:25] DEBUG: PID 215570: processing 101389055/51
+[11/17/2023 05:38:25] DEBUG: PID 215570: processing 101245824/102
+[11/17/2023 05:38:25] DEBUG: PID 215566: processing 203061460/399
+[11/17/2023 05:38:25] DEBUG: PID 215566: processing 203138986/347
+[11/17/2023 05:38:25] DEBUG: PID 215566: processing 203854380/352
+[11/17/2023 05:38:25] DEBUG: PID 215566: processing 203229570/454
+[11/17/2023 05:38:25] DEBUG: PID 215566: processing 203036762/454
+[11/17/2023 05:38:25] DEBUG: PID 215566: processing 203667726/317
+[11/17/2023 05:38:25] DEBUG: PID 215566: processing 203951109/352
+[11/17/2023 05:38:25] DEBUG: PID 215566: processing 203734065/490
+[11/17/2023 05:38:25] DEBUG: PID 215577: processing 101435597/34
+[11/17/2023 05:38:25] DEBUG: PID 215571: processing 101663527/69
+[11/17/2023 05:38:25] DEBUG: PID 215571: processing 101489602/162
+[11/17/2023 05:38:25] DEBUG: PID 215571: processing 101668945/123
+[11/17/2023 05:38:25] DEBUG: PID 215571: processing 101981972/109
+[11/17/2023 05:38:25] DEBUG: PID 215571: processing 101865370/253
+[11/17/2023 05:38:25] DEBUG: PID 215571: processing 101938190/201
+[11/17/2023 05:38:25] DEBUG: PID 215571: processing 101053220/235
+[11/17/2023 05:38:25] DEBUG: PID 215571: processing 101923600/45
+[11/17/2023 05:38:25] DEBUG: PID 215578: processing 101558664/264
+[11/17/2023 05:38:25] DEBUG: PID 215573: processing 101011680/162
+[11/17/2023 05:38:25] DEBUG: PID 215573: processing 101356709/34
+[11/17/2023 05:38:25] DEBUG: PID 215573: processing 101550026/253
+[11/17/2023 05:38:25] DEBUG: PID 215573: processing 101650144/39
+[11/17/2023 05:38:25] DEBUG: PID 215573: processing 101960171/96
+[11/17/2023 05:38:25] DEBUG: PID 215573: processing 101585368/59
+[11/17/2023 05:38:25] DEBUG: PID 215573: processing 101853385/51
+[11/17/2023 05:38:25] DEBUG: PID 215579: processing 101905559/144
+[11/17/2023 05:38:25] DEBUG: PID 215573: processing 101204317/50
+[11/17/2023 05:38:25] DEBUG: PID 215574: processing 101657771/104
+[11/17/2023 05:38:25] DEBUG: PID 215574: processing 101688230/34
+[11/17/2023 05:38:25] DEBUG: PID 215574: processing 101514406/111
+[11/17/2023 05:38:25] DEBUG: PID 215574: processing 101019903/263
+[11/17/2023 05:38:25] DEBUG: PID 215574: processing 101474667/103
+[11/17/2023 05:38:25] DEBUG: PID 215574: processing 101978056/123
+[11/17/2023 05:38:25] DEBUG: PID 215574: processing 101537130/72
+[11/17/2023 05:38:25] DEBUG: PID 215576: processing 101413973/23
+[11/17/2023 05:38:25] DEBUG: PID 215574: processing 101555830/214
+[11/17/2023 05:38:25] DEBUG: PID 215575: processing 101061024/235
+[11/17/2023 05:38:25] DEBUG: PID 215575: processing 101269517/45
+[11/17/2023 05:38:25] DEBUG: PID 215580: processing 101407396/60
+[11/17/2023 05:38:25] DEBUG: PID 215575: processing 101236115/36
+[11/17/2023 05:38:25] DEBUG: PID 215575: processing 101198287/276
+[11/17/2023 05:38:25] DEBUG: PID 215575: processing 101864035/104
+[11/17/2023 05:38:25] DEBUG: PID 215575: processing 101382479/169
+[11/17/2023 05:38:25] DEBUG: PID 215572: processing 101896664/78
+[11/17/2023 05:38:25] DEBUG: PID 215575: processing 101372253/300
+[11/17/2023 05:38:25] DEBUG: PID 215575: processing 101819997/144
+[11/17/2023 05:38:25] DEBUG: PID 215572: processing 101294250/69
+[11/17/2023 05:38:25] DEBUG: PID 215572: processing 101751848/17
+[11/17/2023 05:38:25] DEBUG: PID 215572: processing 101498314/201
+[11/17/2023 05:38:25] DEBUG: PID 215572: processing 101830987/121
+[11/17/2023 05:38:25] DEBUG: PID 215572: processing 101534317/17
+[11/17/2023 05:38:25] DEBUG: PID 215572: processing 101488244/103
+[11/17/2023 05:38:25] DEBUG: PID 215572: processing 101564348/300
+[11/17/2023 05:38:25] DEBUG: PID 215581: processing 101747215/201
+[11/17/2023 05:38:25] DEBUG: PID 215582: processing 101726531/144
+[11/17/2023 05:38:25] DEBUG: PID 215577: processing 101172402/36
+[11/17/2023 05:38:25] DEBUG: PID 215577: processing 101002187/109
+[11/17/2023 05:38:25] DEBUG: PID 215577: processing 101794991/6
+[11/17/2023 05:38:25] DEBUG: PID 215577: processing 101389337/144
+[11/17/2023 05:38:25] DEBUG: PID 215577: processing 101754686/162
+[11/17/2023 05:38:25] DEBUG: PID 215577: processing 101100339/117
+[11/17/2023 05:38:25] DEBUG: PID 215577: processing 101413417/39
+[11/17/2023 05:38:25] DEBUG: PID 215577: processing 101293204/6
+[11/17/2023 05:38:25] DEBUG: PID 215578: processing 101192364/253
+[11/17/2023 05:38:25] DEBUG: PID 215578: processing 101104546/169
+[11/17/2023 05:38:25] DEBUG: PID 215578: processing 101446496/300
+[11/17/2023 05:38:25] DEBUG: PID 215578: processing 101050476/147
+[11/17/2023 05:38:25] DEBUG: PID 215578: processing 101341923/147
+[11/17/2023 05:38:25] DEBUG: PID 215578: processing 101018267/253
+[11/17/2023 05:38:25] DEBUG: PID 215578: processing 101108039/78
+[11/17/2023 05:38:25] DEBUG: PID 215578: processing 101439815/276
+[11/17/2023 05:38:25] DEBUG: PID 215579: processing 101415303/276
+[11/17/2023 05:38:25] DEBUG: PID 215579: processing 101636205/78
+[11/17/2023 05:38:25] DEBUG: PID 215579: processing 101452903/72
+[11/17/2023 05:38:25] DEBUG: PID 215579: processing 101333673/45
+[11/17/2023 05:38:25] DEBUG: PID 215579: processing 101707067/69
+[11/17/2023 05:38:25] DEBUG: PID 215579: processing 101787606/111
+[11/17/2023 05:38:25] DEBUG: PID 215579: processing 101286165/264
+[11/17/2023 05:38:25] DEBUG: PID 215579: processing 101818131/121
+[11/17/2023 05:38:25] DEBUG: PID 215576: processing 101493098/117
+[11/17/2023 05:38:25] DEBUG: PID 215576: processing 101800094/235
+[11/17/2023 05:38:25] DEBUG: PID 215576: processing 101996732/60
+[11/17/2023 05:38:25] DEBUG: PID 215576: processing 101580601/147
+[11/17/2023 05:38:25] DEBUG: PID 215576: processing 101199093/9
+[11/17/2023 05:38:25] DEBUG: PID 215576: processing 101841825/72
+[11/17/2023 05:38:25] DEBUG: PID 215576: processing 101541425/122
+[11/17/2023 05:38:25] DEBUG: PID 215585: processing 101036990/158
+[11/17/2023 05:38:25] DEBUG: PID 215580: processing 101170040/51
+[11/17/2023 05:38:25] DEBUG: PID 215576: processing 101355811/103
+[11/17/2023 05:38:25] DEBUG: PID 215580: processing 101461451/162
+[11/17/2023 05:38:25] DEBUG: PID 215580: processing 101237708/263
+[11/17/2023 05:38:25] DEBUG: PID 215580: processing 101941765/102
+[11/17/2023 05:38:25] DEBUG: PID 215580: processing 101747521/144
+[11/17/2023 05:38:25] DEBUG: PID 215580: processing 101365793/214
+[11/17/2023 05:38:25] DEBUG: PID 215580: processing 101732534/72
+[11/17/2023 05:38:25] DEBUG: PID 215580: processing 101012486/300
+[11/17/2023 05:38:25] DEBUG: PID 215587: processing 101977090/23
+[11/17/2023 05:38:25] DEBUG: PID 215581: processing 101423098/36
+[11/17/2023 05:38:25] DEBUG: PID 215581: processing 101215885/51
+[11/17/2023 05:38:25] DEBUG: PID 215581: processing 101257520/45
+[11/17/2023 05:38:25] DEBUG: PID 215581: processing 101777239/34
+[11/17/2023 05:38:25] DEBUG: PID 215581: processing 101761435/17
+[11/17/2023 05:38:25] DEBUG: PID 215581: processing 101285500/147
+[11/17/2023 05:38:25] DEBUG: PID 215581: processing 101720534/60
+[11/17/2023 05:38:25] DEBUG: PID 215581: processing 101955991/264
+[11/17/2023 05:38:25] DEBUG: PID 215588: processing 101545068/276
+[11/17/2023 05:38:25] ERROR: Participant # 303827552: Unable to process AXL (Table accel not found)
+[11/17/2023 05:38:25] DEBUG: PID 215531: processing 303846901/421
+[11/17/2023 05:38:25] DEBUG: PID 215531: processing 303897664/416
+[11/17/2023 05:38:25] DEBUG: PID 215531: processing 303929327/331
+[11/17/2023 05:38:25] DEBUG: PID 215531: processing 302515834/403
+[11/17/2023 05:38:25] DEBUG: PID 215582: processing 101518271/235
+[11/17/2023 05:38:25] DEBUG: PID 215531: processing 303583054/492
+[11/17/2023 05:38:25] DEBUG: PID 215582: processing 101976403/72
+[11/17/2023 05:38:25] DEBUG: PID 215582: processing 101920543/45
+[11/17/2023 05:38:25] DEBUG: PID 215582: processing 101624715/169
+[11/17/2023 05:38:25] DEBUG: PID 215582: processing 101253378/253
+[11/17/2023 05:38:25] DEBUG: PID 215582: processing 101165382/69
+[11/17/2023 05:38:25] DEBUG: PID 215582: processing 101202069/117
+[11/17/2023 05:38:25] DEBUG: PID 215582: processing 101869520/214
+[11/17/2023 05:38:25] DEBUG: PID 215583: processing 101710208/59
+[11/17/2023 05:38:25] DEBUG: PID 215589: processing 101423098/96
+[11/17/2023 05:38:25] DEBUG: PID 215584: processing 101429213/345
+[11/17/2023 05:38:25] DEBUG: PID 215591: processing 101053220/451
+[11/17/2023 05:38:25] DEBUG: PID 215585: processing 101668118/201
+[11/17/2023 05:38:25] DEBUG: PID 215585: processing 101664312/50
+[11/17/2023 05:38:25] DEBUG: PID 215585: processing 101116865/263
+[11/17/2023 05:38:25] DEBUG: PID 215585: processing 101785365/36
+[11/17/2023 05:38:25] DEBUG: PID 215585: processing 101214983/122
+[11/17/2023 05:38:25] DEBUG: PID 215585: processing 101143070/9
+[11/17/2023 05:38:25] DEBUG: PID 215585: processing 101383010/264
+[11/17/2023 05:38:25] DEBUG: PID 215585: processing 101533248/78
+[11/17/2023 05:38:25] DEBUG: PID 215593: processing 101356709/416
+[11/17/2023 05:38:25] DEBUG: PID 215587: processing 101005415/60
+[11/17/2023 05:38:25] DEBUG: PID 215587: processing 101180124/59
+[11/17/2023 05:38:25] DEBUG: PID 215587: processing 101261525/123
+[11/17/2023 05:38:25] DEBUG: PID 215587: processing 101432781/121
+[11/17/2023 05:38:25] DEBUG: PID 215594: processing 101555830/349
+[11/17/2023 05:38:25] DEBUG: PID 215587: processing 101888460/78
+[11/17/2023 05:38:25] DEBUG: PID 215587: processing 101185528/72
+[11/17/2023 05:38:25] DEBUG: PID 215587: processing 101933830/103
+[11/17/2023 05:38:25] DEBUG: PID 215587: processing 101553232/188
+[11/17/2023 05:38:25] DEBUG: PID 215588: processing 101825783/39
+[11/17/2023 05:38:25] DEBUG: PID 215588: processing 101482753/104
+[11/17/2023 05:38:25] DEBUG: PID 215588: processing 101962906/111
+[11/17/2023 05:38:25] DEBUG: PID 215588: processing 101001706/253
+[11/17/2023 05:38:25] DEBUG: PID 215588: processing 101426859/109
+[11/17/2023 05:38:25] DEBUG: PID 215588: processing 101307761/263
+[11/17/2023 05:38:25] DEBUG: PID 215588: processing 101145369/23
+[11/17/2023 05:38:25] DEBUG: PID 215588: processing 101201381/123
+[11/17/2023 05:38:25] DEBUG: PID 215583: processing 101107968/39
+[11/17/2023 05:38:25] DEBUG: PID 215583: processing 101738663/50
+[11/17/2023 05:38:25] DEBUG: PID 215583: processing 101310422/34
+[11/17/2023 05:38:25] DEBUG: PID 215583: processing 101251965/188
+[11/17/2023 05:38:25] DEBUG: PID 215583: processing 101359479/17
+[11/17/2023 05:38:25] DEBUG: PID 215583: processing 101107086/51
+[11/17/2023 05:38:25] DEBUG: PID 215583: processing 101372253/36
+[11/17/2023 05:38:25] DEBUG: PID 215583: processing 101996732/147
+[11/17/2023 05:38:25] DEBUG: PID 215589: processing 101518271/36
+[11/17/2023 05:38:25] DEBUG: PID 215589: processing 101624715/72
+[11/17/2023 05:38:25] DEBUG: PID 215589: processing 101165382/300
+[11/17/2023 05:38:25] DEBUG: PID 215596: processing 101413417/358
+[11/17/2023 05:38:25] DEBUG: PID 215589: processing 101202069/109
+[11/17/2023 05:38:25] DEBUG: PID 215589: processing 101869520/162
+[11/17/2023 05:38:25] DEBUG: PID 215589: processing 101891218/123
+[11/17/2023 05:38:25] DEBUG: PID 215589: processing 101310422/72
+[11/17/2023 05:38:25] DEBUG: PID 215589: processing 101072948/363
+[11/17/2023 05:38:25] DEBUG: PID 215584: processing 101359113/349
+[11/17/2023 05:38:25] DEBUG: PID 215584: processing 101389055/375
+[11/17/2023 05:38:25] DEBUG: PID 215584: processing 101245824/401
+[11/17/2023 05:38:25] DEBUG: PID 215584: processing 101505455/409
+[11/17/2023 05:38:25] DEBUG: PID 215584: processing 101732449/339
+[11/17/2023 05:38:25] DEBUG: PID 215592: processing 101254492/350
+[11/17/2023 05:38:25] DEBUG: PID 215584: processing 101663527/404
+[11/17/2023 05:38:25] DEBUG: PID 215584: processing 101981972/356
+[11/17/2023 05:38:25] DEBUG: PID 215584: processing 101865370/350
+[11/17/2023 05:38:25] DEBUG: PID 215591: processing 101923600/358
+[11/17/2023 05:38:25] DEBUG: PID 215591: processing 101496686/375
+[11/17/2023 05:38:25] DEBUG: PID 215591: processing 101294250/358
+[11/17/2023 05:38:25] DEBUG: PID 215591: processing 101830987/412
+[11/17/2023 05:38:25] DEBUG: PID 215591: processing 101488244/349
+[11/17/2023 05:38:25] DEBUG: PID 215591: processing 101798447/366
+[11/17/2023 05:38:25] DEBUG: PID 215591: processing 101564348/366
+[11/17/2023 05:38:25] DEBUG: PID 215591: processing 101011680/484
+[11/17/2023 05:38:25] DEBUG: PID 215590: processing 101920543/357
+[11/17/2023 05:38:25] DEBUG: PID 215597: processing 101888460/356
+[11/17/2023 05:38:25] DEBUG: PID 215607: processing 102471126/399
+[11/17/2023 05:38:25] DEBUG: PID 215593: processing 101550026/349
+[11/17/2023 05:38:25] DEBUG: PID 215593: processing 101650144/459
+[11/17/2023 05:38:25] DEBUG: PID 215593: processing 101585368/392
+[11/17/2023 05:38:25] DEBUG: PID 215593: processing 101853385/374
+[11/17/2023 05:38:25] DEBUG: PID 215593: processing 101204317/468
+[11/17/2023 05:38:25] DEBUG: PID 215593: processing 101315590/375
+[11/17/2023 05:38:25] DEBUG: PID 215593: processing 101657771/406
+[11/17/2023 05:38:25] DEBUG: PID 215595: processing 101747521/346
+[11/17/2023 05:38:25] DEBUG: PID 215593: processing 101474667/369
+[11/17/2023 05:38:25] DEBUG: PID 215609: processing 102831505/459
+[11/17/2023 05:38:25] DEBUG: PID 215594: processing 101044327/462
+[11/17/2023 05:38:25] DEBUG: PID 215594: processing 101269517/408
+[11/17/2023 05:38:25] DEBUG: PID 215594: processing 101236115/345
+[11/17/2023 05:38:25] DEBUG: PID 215594: processing 101372253/416
+[11/17/2023 05:38:25] DEBUG: PID 215594: processing 101435597/468
+[11/17/2023 05:38:25] DEBUG: PID 215594: processing 101002187/468
+[11/17/2023 05:38:25] DEBUG: PID 215594: processing 101847191/367
+[11/17/2023 05:38:25] DEBUG: PID 215594: processing 101794991/363
+[11/17/2023 05:38:25] DEBUG: PID 215596: processing 101293204/483
+[11/17/2023 05:38:25] DEBUG: PID 215596: processing 101050476/369
+[11/17/2023 05:38:25] DEBUG: PID 215596: processing 101341923/451
+[11/17/2023 05:38:25] DEBUG: PID 215596: processing 101018267/412
+[11/17/2023 05:38:25] DEBUG: PID 215596: processing 101108039/412
+[11/17/2023 05:38:25] DEBUG: PID 215596: processing 101439815/403
+[11/17/2023 05:38:25] DEBUG: PID 215613: processing 102749686/391
+[11/17/2023 05:38:25] DEBUG: PID 215596: processing 101636205/459
+[11/17/2023 05:38:25] DEBUG: PID 215596: processing 101452903/399
+[11/17/2023 05:38:25] DEBUG: PID 215592: processing 101787606/412
+[11/17/2023 05:38:25] DEBUG: PID 215592: processing 101818131/368
+[11/17/2023 05:38:25] DEBUG: PID 215592: processing 101493098/468
+[11/17/2023 05:38:25] DEBUG: PID 215592: processing 101800094/343
+[11/17/2023 05:38:25] DEBUG: PID 215612: processing 102500847/363
+[11/17/2023 05:38:25] DEBUG: PID 215592: processing 101996732/399
+[11/17/2023 05:38:25] DEBUG: PID 215592: processing 101915841/483
+[11/17/2023 05:38:25] DEBUG: PID 215592: processing 101407396/474
+[11/17/2023 05:38:25] DEBUG: PID 215592: processing 101461451/416
+[11/17/2023 05:38:25] DEBUG: PID 215607: processing 102696608/464
+[11/17/2023 05:38:25] DEBUG: PID 215607: processing 102179921/453
+[11/17/2023 05:38:25] DEBUG: PID 215607: processing 102886115/346
+[11/17/2023 05:38:25] DEBUG: PID 215607: processing 102913493/367
+[11/17/2023 05:38:25] DEBUG: PID 215607: processing 102558474/403
+[11/17/2023 05:38:25] DEBUG: PID 215607: processing 102833619/367
+[11/17/2023 05:38:25] DEBUG: PID 215607: processing 102401547/345
+[11/17/2023 05:38:25] DEBUG: PID 215607: processing 102882523/347
+[11/17/2023 05:38:25] DEBUG: PID 215615: processing 102841223/347
+[11/17/2023 05:38:25] DEBUG: PID 215611: processing 102265934/401
+[11/17/2023 05:38:25] DEBUG: PID 215614: processing 101053220/356
+[11/17/2023 05:38:25] DEBUG: PID 215616: processing 101269517/488
+[11/17/2023 05:38:25] DEBUG: PID 215609: processing 102681990/379
+[11/17/2023 05:38:25] DEBUG: PID 215609: processing 102344365/345
+[11/17/2023 05:38:25] DEBUG: PID 215609: processing 102492701/482
+[11/17/2023 05:38:25] DEBUG: PID 215609: processing 102475434/415
+[11/17/2023 05:38:25] DEBUG: PID 215609: processing 102482181/369
+[11/17/2023 05:38:25] DEBUG: PID 215609: processing 102502710/415
+[11/17/2023 05:38:25] DEBUG: PID 215609: processing 102558631/363
+[11/17/2023 05:38:25] DEBUG: PID 215595: processing 101215885/392
+[11/17/2023 05:38:25] DEBUG: PID 215609: processing 102660474/481
+[11/17/2023 05:38:25] DEBUG: PID 215595: processing 101777239/482
+[11/17/2023 05:38:25] DEBUG: PID 215595: processing 101761435/350
+[11/17/2023 05:38:25] DEBUG: PID 215595: processing 101285500/374
+[11/17/2023 05:38:25] DEBUG: PID 215595: processing 101720534/347
+[11/17/2023 05:38:25] DEBUG: PID 215595: processing 101726531/481
+[11/17/2023 05:38:25] DEBUG: PID 215595: processing 101753407/409
+[11/17/2023 05:38:25] DEBUG: PID 215595: processing 101976403/468
+[11/17/2023 05:38:25] DEBUG: PID 215618: processing 101636205/455
+[11/17/2023 05:38:25] DEBUG: PID 215617: processing 101474667/449
+[11/17/2023 05:38:25] DEBUG: PID 215613: processing 102817701/367
+[11/17/2023 05:38:25] DEBUG: PID 215613: processing 102649509/460
+[11/17/2023 05:38:25] DEBUG: PID 215613: processing 102993750/374
+[11/17/2023 05:38:25] DEBUG: PID 215613: processing 102148083/409
+[11/17/2023 05:38:25] DEBUG: PID 215613: processing 102789042/392
+[11/17/2023 05:38:25] DEBUG: PID 215613: processing 102322976/401
+[11/17/2023 05:38:25] DEBUG: PID 215613: processing 102498628/358
+[11/17/2023 05:38:25] DEBUG: PID 215613: processing 102225098/409
+[11/17/2023 05:38:25] DEBUG: PID 215612: processing 102470084/356
+[11/17/2023 05:38:25] DEBUG: PID 215612: processing 102733352/409
+[11/17/2023 05:38:25] DEBUG: PID 215612: processing 102574115/343
+[11/17/2023 05:38:25] DEBUG: PID 215612: processing 102567670/484
+[11/17/2023 05:38:25] DEBUG: PID 215612: processing 102859652/403
+[11/17/2023 05:38:25] DEBUG: PID 215612: processing 102481129/406
+[11/17/2023 05:38:25] DEBUG: PID 215612: processing 102860428/453
+[11/17/2023 05:38:25] DEBUG: PID 215612: processing 102682144/451
+[11/17/2023 05:38:25] DEBUG: PID 215619: processing 101818131/417
+[11/17/2023 05:38:25] DEBUG: PID 215620: processing 101981972/313
+[11/17/2023 05:38:25] DEBUG: PID 215590: processing 101202069/415
+[11/17/2023 05:38:25] DEBUG: PID 215590: processing 101869520/401
+[11/17/2023 05:38:25] DEBUG: PID 215597: processing 101185528/356
+[11/17/2023 05:38:25] DEBUG: PID 215590: processing 101664312/453
+[11/17/2023 05:38:25] DEBUG: PID 215597: processing 101482753/347
+[11/17/2023 05:38:25] DEBUG: PID 215621: processing 102622945/356
+[11/17/2023 05:38:25] DEBUG: PID 215590: processing 101785365/459
+[11/17/2023 05:38:25] DEBUG: PID 215611: processing 102202271/399
+[11/17/2023 05:38:25] DEBUG: PID 215614: processing 101072948/373
+[11/17/2023 05:38:25] DEBUG: PID 215597: processing 101307761/451
+[11/17/2023 05:38:25] DEBUG: PID 215590: processing 101143070/358
+[11/17/2023 05:38:25] DEBUG: PID 215615: processing 102799134/409
+[11/17/2023 05:38:25] DEBUG: PID 215611: processing 102370888/356
+[11/17/2023 05:38:25] DEBUG: PID 215597: processing 101201381/339
+[11/17/2023 05:38:25] DEBUG: PID 215614: processing 101143070/420
+[11/17/2023 05:38:25] DEBUG: PID 215590: processing 101383010/346
+[11/17/2023 05:38:25] DEBUG: PID 215611: processing 101564348/481
+[11/17/2023 05:38:25] DEBUG: PID 215615: processing 102422099/345
+[11/17/2023 05:38:25] DEBUG: PID 215597: processing 101680398/391
+[11/17/2023 05:38:25] DEBUG: PID 215590: processing 101005415/350
+[11/17/2023 05:38:25] DEBUG: PID 215614: processing 101145369/367
+[11/17/2023 05:38:25] DEBUG: PID 215611: processing 101550026/416
+[11/17/2023 05:38:25] DEBUG: PID 215597: processing 102644133/392
+[11/17/2023 05:38:25] DEBUG: PID 215615: processing 102873412/459
+[11/17/2023 05:38:25] DEBUG: PID 215590: processing 101180124/357
+[11/17/2023 05:38:25] DEBUG: PID 215614: processing 101180124/369
+[11/17/2023 05:38:25] DEBUG: PID 215611: processing 101201381/391
+[11/17/2023 05:38:25] DEBUG: PID 215597: processing 102504895/379
+[11/17/2023 05:38:25] DEBUG: PID 215615: processing 102118028/415
+[11/17/2023 05:38:25] DEBUG: PID 215614: processing 101185528/393
+[11/17/2023 05:38:25] DEBUG: PID 215616: processing 101285500/407
+[11/17/2023 05:38:25] DEBUG: PID 215611: processing 102265934/412
+[11/17/2023 05:38:25] DEBUG: PID 215597: processing 102755345/459
+[11/17/2023 05:38:25] DEBUG: PID 215615: processing 102521647/367
+[11/17/2023 05:38:25] DEBUG: PID 215614: processing 101202069/462
+[11/17/2023 05:38:25] DEBUG: PID 215616: processing 101315590/375
+[11/17/2023 05:38:25] DEBUG: PID 215611: processing 101011680/356
+[11/17/2023 05:38:25] DEBUG: PID 215614: processing 101204317/443
+[11/17/2023 05:38:25] DEBUG: PID 215615: processing 102622945/367
+[11/17/2023 05:38:25] DEBUG: PID 215616: processing 101359113/466
+[11/17/2023 05:38:25] DEBUG: PID 215611: processing 101019903/369
+[11/17/2023 05:38:25] DEBUG: PID 215614: processing 101254492/486
+[11/17/2023 05:38:25] DEBUG: PID 215615: processing 102782233/347
+[11/17/2023 05:38:25] DEBUG: PID 215616: processing 101382479/356
+[11/17/2023 05:38:25] DEBUG: PID 215615: processing 102643856/374
+[11/17/2023 05:38:25] DEBUG: PID 215616: processing 101407396/405
+[11/17/2023 05:38:25] DEBUG: PID 215616: processing 101429213/449
+[11/17/2023 05:38:25] DEBUG: PID 215616: processing 101435597/445
+[11/17/2023 05:38:25] DEBUG: PID 215616: processing 101452903/466
+[11/17/2023 05:38:25] DEBUG: PID 215622: processing 102859652/426
+[11/17/2023 05:38:25] DEBUG: PID 215623: processing 103336301/473
+[11/17/2023 05:38:25] DEBUG: PID 215618: processing 101657771/405
+[11/17/2023 05:38:25] DEBUG: PID 215618: processing 101668118/482
+[11/17/2023 05:38:25] DEBUG: PID 215618: processing 101740289/374
+[11/17/2023 05:38:25] DEBUG: PID 215617: processing 101482753/375
+[11/17/2023 05:38:25] DEBUG: PID 215618: processing 101747521/455
+[11/17/2023 05:38:25] DEBUG: PID 215618: processing 101785365/406
+[11/17/2023 05:38:25] DEBUG: PID 215624: processing 103761333/449
+[11/17/2023 05:38:25] DEBUG: PID 215617: processing 101493098/476
+[11/17/2023 05:38:25] DEBUG: PID 215618: processing 101787606/367
+[11/17/2023 05:38:25] DEBUG: PID 215617: processing 101496686/366
+[11/17/2023 05:38:25] DEBUG: PID 215618: processing 101798447/476
+[11/17/2023 05:38:25] DEBUG: PID 215617: processing 101505455/494
+[11/17/2023 05:38:25] DEBUG: PID 215618: processing 101800094/476
+[11/17/2023 05:38:25] DEBUG: PID 215617: processing 101534317/482
+[11/17/2023 05:38:25] DEBUG: PID 215617: processing 101550026/369
+[11/17/2023 05:38:25] DEBUG: PID 215617: processing 101564348/375
+[11/17/2023 05:38:25] DEBUG: PID 215617: processing 101585368/482
+[11/17/2023 05:38:25] DEBUG: PID 215619: processing 101830987/358
+[11/17/2023 05:38:25] DEBUG: PID 215619: processing 101841825/449
+[11/17/2023 05:38:25] DEBUG: PID 215620: processing 101996732/420
+[11/17/2023 05:38:25] DEBUG: PID 215619: processing 101865370/426
+[11/17/2023 05:38:25] DEBUG: PID 215619: processing 101888460/379
+[11/17/2023 05:38:25] DEBUG: PID 215620: processing 102118028/356
+[11/17/2023 05:38:25] DEBUG: PID 215619: processing 101920543/407
+[11/17/2023 05:38:25] DEBUG: PID 215620: processing 102179921/375
+[11/17/2023 05:38:25] DEBUG: PID 215619: processing 101923600/415
+[11/17/2023 05:38:25] DEBUG: PID 215620: processing 102265934/420
+[11/17/2023 05:38:25] DEBUG: PID 215619: processing 101938190/473
+[11/17/2023 05:38:25] DEBUG: PID 215620: processing 102370888/476
+[11/17/2023 05:38:25] DEBUG: PID 215620: processing 102470084/366
+[11/17/2023 05:38:25] DEBUG: PID 215619: processing 101976403/439
+[11/17/2023 05:38:25] DEBUG: PID 215620: processing 102475434/443
+[11/17/2023 05:38:25] DEBUG: PID 215620: processing 102567670/441
+[11/17/2023 05:38:25] DEBUG: PID 215621: processing 102649509/393
+[11/17/2023 05:38:25] DEBUG: PID 215621: processing 102681990/466
+[11/17/2023 05:38:25] DEBUG: PID 215621: processing 102696608/494
+[11/17/2023 05:38:25] DEBUG: PID 215621: processing 102733352/420
+[11/17/2023 05:38:25] DEBUG: PID 215621: processing 102749686/409
+[11/17/2023 05:38:25] DEBUG: PID 215621: processing 102755345/374
+[11/17/2023 05:38:25] DEBUG: PID 215621: processing 102789042/482
+[11/17/2023 05:38:25] DEBUG: PID 215621: processing 102831505/409
+[11/17/2023 05:38:25] DEBUG: PID 215622: processing 102877373/373
+[11/17/2023 05:38:25] DEBUG: PID 215622: processing 102886115/313
+[11/17/2023 05:38:25] DEBUG: PID 215622: processing 102913493/369
+[11/17/2023 05:38:25] DEBUG: PID 215622: processing 102993750/447
+[11/17/2023 05:38:25] DEBUG: PID 215622: processing 103255107/407
+[11/17/2023 05:38:25] DEBUG: PID 215622: processing 103259951/374
+[11/17/2023 05:38:25] DEBUG: PID 215622: processing 103296257/406
+[11/17/2023 05:38:25] DEBUG: PID 215622: processing 103297077/449
+[11/17/2023 05:38:25] DEBUG: PID 215623: processing 103383632/407
+[11/17/2023 05:38:25] DEBUG: PID 215623: processing 103391561/374
+[11/17/2023 05:38:25] DEBUG: PID 215623: processing 103486093/427
+[11/17/2023 05:38:25] DEBUG: PID 215623: processing 103512105/449
+[11/17/2023 05:38:25] DEBUG: PID 215623: processing 103531689/313
+[11/17/2023 05:38:25] DEBUG: PID 215623: processing 103663507/409
+[11/17/2023 05:38:25] DEBUG: PID 215623: processing 103678107/455
+[11/17/2023 05:38:25] DEBUG: PID 215623: processing 103722386/405
+[11/17/2023 05:38:25] DEBUG: PID 215624: processing 103772760/357
+[11/17/2023 05:38:25] DEBUG: PID 215624: processing 103839408/393
+[11/17/2023 05:38:25] DEBUG: PID 215624: processing 103970793/369
+[11/17/2023 05:38:25] DEBUG: PID 215624: processing 103997305/488
+[11/17/2023 05:38:25] DEBUG: PID 215624: processing 101435597/374
+[11/17/2023 05:38:25] DEBUG: PID 215624: processing 101888460/358
+[11/17/2023 05:39:08] ERROR: Participant # 201057630: Unable to process AXL ((sqlite3.DatabaseError) database disk image is malformed
+(Background on this error at: https://sqlalche.me/e/20/4xp6))
+[11/17/2023 05:39:08] DEBUG: PID 215537: processing 201233360/435
+[11/17/2023 05:39:08] DEBUG: PID 215537: processing 201375419/435
+[11/17/2023 05:44:57] INFO: Participant # 403658820: AXL elite file -> 403658820_263_AXL.csv [392.8s]
+[11/17/2023 05:44:57] DEBUG: PID 215507: processing 403910107/8
+[11/17/2023 05:45:01] INFO: Participant # 403910107: GPS elite file -> 403910107_8_GPS.csv [3.7s]
+[11/17/2023 05:45:02] INFO: Participant # 401935700: AXL elite file -> 401935700_280_AXL.csv [398.0s]
+[11/17/2023 05:45:02] DEBUG: PID 215501: processing 401841090/169
+[11/17/2023 05:45:12] INFO: Participant # 401860045: AXL elite file -> 401860045_162_AXL.csv [407.2s]
+[11/17/2023 05:45:12] DEBUG: PID 215510: processing 401393873/264
+[11/17/2023 05:45:13] INFO: Participant # 401393873: GPS elite file -> 401393873_264_GPS.csv [1.0s]
+[11/17/2023 05:45:13] INFO: Participant # 401841090: GPS elite file -> 401841090_169_GPS.csv [10.8s]
+[11/17/2023 05:45:38] INFO: Participant # 401328714: AXL elite file -> 401328714_201_AXL.csv [434.0s]
+[11/17/2023 05:45:38] DEBUG: PID 215503: processing 401341482/117
+[11/17/2023 05:45:47] INFO: Participant # 401341482: GPS elite file -> 401341482_117_GPS.csv [8.5s]
+[11/17/2023 05:45:55] INFO: Participant # 402411342: AXL elite file -> 402411342_96_AXL.csv [450.3s]
+[11/17/2023 05:45:55] DEBUG: PID 215506: processing 402435135/122
+[11/17/2023 05:45:59] INFO: Participant # 402435135: GPS elite file -> 402435135_122_GPS.csv [3.9s]
+[11/17/2023 05:46:26] INFO: Participant # 401760345: AXL elite file -> 401760345_9_AXL.csv [481.2s]
+[11/17/2023 05:46:26] DEBUG: PID 215509: processing 401273284/59
+[11/17/2023 05:46:26] INFO: Participant # 401273284: GPS elite file -> 401273284_59_GPS.csv [0.4s]
+[11/17/2023 05:46:48] INFO: Participant # 401586738: AXL elite file -> 401586738_254_AXL.csv [503.8s]
+[11/17/2023 05:46:48] DEBUG: PID 215512: processing 401785805/264
+[11/17/2023 05:46:49] INFO: Participant # 401785805: GPS elite file -> 401785805_264_GPS.csv [0.7s]
+[11/17/2023 05:47:13] INFO: Participant # 401630460: AXL elite file -> 401630460_256_AXL.csv [528.2s]
+[11/17/2023 05:47:13] DEBUG: PID 215504: processing 401664309/63
+[11/17/2023 05:47:25] INFO: Participant # 401664309: GPS elite file -> 401664309_63_GPS.csv [12.8s]
+[11/17/2023 05:49:16] INFO: Participant # 401273284: AXL elite file -> 401273284_59_AXL.csv [169.6s]
+[11/17/2023 05:49:16] DEBUG: PID 215509: processing 401530157/276
+[11/17/2023 05:49:18] INFO: Participant # 401530157: GPS elite file -> 401530157_276_GPS.csv [2.5s]
+[11/17/2023 05:50:42] INFO: Participant # 401341482: AXL elite file -> 401341482_117_AXL.csv [295.2s]
+[11/17/2023 05:50:42] DEBUG: PID 215503: processing 401342134/241
+[11/17/2023 05:50:49] INFO: Participant # 401342134: GPS elite file -> 401342134_241_GPS.csv [7.1s]
+[11/17/2023 05:51:34] INFO: Participant # 401841090: AXL elite file -> 401841090_169_AXL.csv [380.3s]
+[11/17/2023 05:51:34] DEBUG: PID 215501: processing 401919451/189
+[11/17/2023 05:51:35] INFO: Participant # 401919451: GPS elite file -> 401919451_189_GPS.csv [1.6s]
+[11/17/2023 05:52:53] INFO: Participant # 403910107: AXL elite file -> 403910107_8_AXL.csv [472.4s]
+[11/17/2023 05:52:53] DEBUG: PID 215507: processing 403846091/69
+[11/17/2023 05:52:54] INFO: Participant # 403846091: GPS elite file -> 403846091_69_GPS.csv [0.7s]
+[11/17/2023 05:53:43] INFO: Participant # 402435135: AXL elite file -> 402435135_122_AXL.csv [464.6s]
+[11/17/2023 05:53:43] DEBUG: PID 215506: processing 402463787/283
+[11/17/2023 05:53:48] INFO: Participant # 402463787: GPS elite file -> 402463787_283_GPS.csv [4.6s]
+[11/17/2023 05:54:10] INFO: Participant # 401393873: AXL elite file -> 401393873_264_AXL.csv [537.7s]
+[11/17/2023 05:54:10] DEBUG: PID 215510: processing 401750427/17
+[11/17/2023 05:54:11] INFO: Participant # 401750427: GPS elite file -> 401750427_17_GPS.csv [0.4s]
+[11/17/2023 05:54:33] INFO: Participant # 401785805: AXL elite file -> 401785805_264_AXL.csv [464.0s]
+[11/17/2023 05:54:33] DEBUG: PID 215512: processing 401669659/144
+[11/17/2023 05:54:35] INFO: Participant # 401669659: GPS elite file -> 401669659_144_GPS.csv [1.5s]
+[11/17/2023 05:54:39] INFO: Participant # 401342134: AXL elite file -> 401342134_241_AXL.csv [229.7s]
+[11/17/2023 05:54:39] DEBUG: PID 215503: processing 401379272/169
+[11/17/2023 05:54:43] INFO: Participant # 401379272: GPS elite file -> 401379272_169_GPS.csv [3.9s]
+[11/17/2023 05:55:26] INFO: Participant # 401664309: AXL elite file -> 401664309_63_AXL.csv [481.1s]
+[11/17/2023 05:55:26] DEBUG: PID 215504: processing 401727775/50
+[11/17/2023 05:55:34] INFO: Participant # 401727775: GPS elite file -> 401727775_50_GPS.csv [7.3s]
+[11/17/2023 05:57:44] INFO: Participant # 402463787: AXL elite file -> 402463787_283_AXL.csv [236.5s]
+[11/17/2023 05:57:44] DEBUG: PID 215506: processing 402495712/36
+[11/17/2023 05:57:45] INFO: Participant # 402495712: GPS elite file -> 402495712_36_GPS.csv [0.5s]
+[11/17/2023 05:57:58] INFO: Participant # 402495712: AXL elite file -> 402495712_36_AXL.csv [12.7s]
+[11/17/2023 05:57:58] DEBUG: PID 215506: processing 402577721/23
+[11/17/2023 05:58:11] INFO: Participant # 402577721: GPS elite file -> 402577721_23_GPS.csv [13.4s]
+[11/17/2023 05:59:41] INFO: Participant # 401919451: AXL elite file -> 401919451_189_AXL.csv [485.4s]
+[11/17/2023 05:59:41] DEBUG: PID 215501: processing 401178032/96
+[11/17/2023 05:59:50] INFO: Participant # 401178032: GPS elite file -> 401178032_96_GPS.csv [9.6s]
+[11/17/2023 06:00:27] INFO: Participant # 403846091: AXL elite file -> 403846091_69_AXL.csv [453.0s]
+[11/17/2023 06:00:27] DEBUG: PID 215507: processing 403322693/96
+[11/17/2023 06:00:28] INFO: Participant # 403322693: GPS elite file -> 403322693_96_GPS.csv [0.6s]
+[11/17/2023 06:00:44] INFO: Participant # 401530157: AXL elite file -> 401530157_276_AXL.csv [685.4s]
+[11/17/2023 06:00:44] DEBUG: PID 215509: processing 401967217/78
+[11/17/2023 06:00:46] INFO: Participant # 401967217: GPS elite file -> 401967217_78_GPS.csv [2.1s]
+[11/17/2023 06:02:19] INFO: Participant # 401379272: AXL elite file -> 401379272_169_AXL.csv [455.8s]
+[11/17/2023 06:02:19] DEBUG: PID 215503: processing 401440362/167
+[11/17/2023 06:02:31] INFO: Participant # 401440362: GPS elite file -> 401440362_167_GPS.csv [12.1s]
+[11/17/2023 06:02:31] INFO: Participant # 401750427: AXL elite file -> 401750427_17_AXL.csv [500.2s]
+[11/17/2023 06:02:31] DEBUG: PID 215510: processing 401484804/263
+[11/17/2023 06:02:33] INFO: Participant # 401484804: GPS elite file -> 401484804_263_GPS.csv [2.4s]
+[11/17/2023 06:02:47] INFO: Participant # 401727775: AXL elite file -> 401727775_50_AXL.csv [432.8s]
+[11/17/2023 06:02:47] DEBUG: PID 215504: processing 401796474/189
+[11/17/2023 06:02:52] INFO: Participant # 401796474: GPS elite file -> 401796474_189_GPS.csv [5.0s]
+[11/17/2023 06:03:48] INFO: Participant # 401669659: AXL elite file -> 401669659_144_AXL.csv [553.8s]
+[11/17/2023 06:03:48] DEBUG: PID 215512: processing 401095730/9
+[11/17/2023 06:03:51] INFO: Participant # 401095730: GPS elite file -> 401095730_9_GPS.csv [2.5s]
+[11/17/2023 06:06:26] INFO: Participant # 401178032: AXL elite file -> 401178032_96_AXL.csv [395.8s]
+[11/17/2023 06:06:26] DEBUG: PID 215501: processing 401937896/147
+[11/17/2023 06:06:28] INFO: Participant # 401937896: GPS elite file -> 401937896_147_GPS.csv [2.4s]
+[11/17/2023 06:06:40] INFO: Participant # 401967217: AXL elite file -> 401967217_78_AXL.csv [353.8s]
+[11/17/2023 06:06:40] DEBUG: PID 215509: processing 401841730/276
+[11/17/2023 06:06:41] INFO: Participant # 401841730: GPS elite file -> 401841730_276_GPS.csv [1.2s]
+[11/17/2023 06:07:11] INFO: Participant # 401796474: AXL elite file -> 401796474_189_AXL.csv [259.6s]
+[11/17/2023 06:07:11] DEBUG: PID 215504: processing 401809607/49
+[11/17/2023 06:07:18] INFO: Participant # 401809607: GPS elite file -> 401809607_49_GPS.csv [6.5s]
+[11/17/2023 06:07:49] INFO: Participant # 402577721: AXL elite file -> 402577721_23_AXL.csv [577.6s]
+[11/17/2023 06:07:49] DEBUG: PID 215506: processing 402781880/95
+[11/17/2023 06:07:49] INFO: Participant # 402781880: GPS elite file -> 402781880_95_GPS.csv [0.6s]
+[11/17/2023 06:10:25] INFO: Participant # 403322693: AXL elite file -> 403322693_96_AXL.csv [596.9s]
+[11/17/2023 06:10:25] DEBUG: PID 215507: processing 403683583/72
+[11/17/2023 06:10:26] INFO: Participant # 403683583: GPS elite file -> 403683583_72_GPS.csv [1.2s]
+[11/17/2023 06:10:47] INFO: Participant # 401440362: AXL elite file -> 401440362_167_AXL.csv [495.7s]
+[11/17/2023 06:10:47] DEBUG: PID 215503: processing 401465378/51
+[11/17/2023 06:10:48] INFO: Participant # 401484804: AXL elite file -> 401484804_263_AXL.csv [494.6s]
+[11/17/2023 06:10:48] DEBUG: PID 215510: processing 401831490/23
+[11/17/2023 06:10:51] INFO: Participant # 401831490: GPS elite file -> 401831490_23_GPS.csv [2.6s]
+[11/17/2023 06:10:56] INFO: Participant # 401465378: GPS elite file -> 401465378_51_GPS.csv [9.8s]
+[11/17/2023 06:11:12] INFO: Participant # 401841730: AXL elite file -> 401841730_276_AXL.csv [271.1s]
+[11/17/2023 06:11:12] DEBUG: PID 215509: processing 401532425/104
+[11/17/2023 06:11:14] INFO: Participant # 401532425: GPS elite file -> 401532425_104_GPS.csv [2.0s]
+[11/17/2023 06:11:16] INFO: Participant # 401095730: AXL elite file -> 401095730_9_AXL.csv [444.7s]
+[11/17/2023 06:11:16] DEBUG: PID 215512: processing 401544321/253
+[11/17/2023 06:11:16] INFO: Participant # 401544321: GPS elite file -> 401544321_253_GPS.csv [0.7s]
+[11/17/2023 06:13:27] INFO: Participant # 401809607: AXL elite file -> 401809607_49_AXL.csv [369.7s]
+[11/17/2023 06:13:27] DEBUG: PID 215504: processing 401811306/246
+[11/17/2023 06:13:29] INFO: Participant # 401811306: GPS elite file -> 401811306_246_GPS.csv [2.1s]
+[11/17/2023 06:15:04] INFO: Participant # 401937896: AXL elite file -> 401937896_147_AXL.csv [515.7s]
+[11/17/2023 06:15:04] DEBUG: PID 215501: processing 401440362/166
+[11/17/2023 06:15:16] INFO: Participant # 401440362: GPS elite file -> 401440362_166_GPS.csv [12.2s]
+[11/17/2023 06:15:46] INFO: Participant # 402781880: AXL elite file -> 402781880_95_AXL.csv [476.9s]
+[11/17/2023 06:15:46] DEBUG: PID 215506: processing 402789603/205
+[11/17/2023 06:15:53] INFO: Participant # 402789603: GPS elite file -> 402789603_205_GPS.csv [6.7s]
+[11/17/2023 06:18:07] INFO: Participant # 401532425: AXL elite file -> 401532425_104_AXL.csv [413.2s]
+[11/17/2023 06:18:07] DEBUG: PID 215509: processing 401451781/46
+[11/17/2023 06:18:09] INFO: Participant # 401451781: GPS elite file -> 401451781_46_GPS.csv [1.7s]
+[11/17/2023 06:18:34] INFO: Participant # 403683583: AXL elite file -> 403683583_72_AXL.csv [488.3s]
+[11/17/2023 06:18:34] DEBUG: PID 215507: processing 403835859/109
+[11/17/2023 06:18:34] INFO: Participant # 403835859: GPS elite file -> 403835859_109_GPS.csv [0.1s]
+[11/17/2023 06:18:34] INFO: Participant # 403835859: AXL elite file -> 403835859_109_AXL.csv [0.0s]
+[11/17/2023 06:18:34] DEBUG: PID 215507: processing 403144072/201
+[11/17/2023 06:18:36] INFO: Participant # 403144072: GPS elite file -> 403144072_201_GPS.csv [1.9s]
+[11/17/2023 06:18:55] INFO: Participant # 401465378: AXL elite file -> 401465378_51_AXL.csv [478.3s]
+[11/17/2023 06:18:55] DEBUG: PID 215503: processing 401469801/165
+[11/17/2023 06:19:04] INFO: Participant # 401469801: GPS elite file -> 401469801_165_GPS.csv [9.4s]
+[11/17/2023 06:19:39] INFO: Participant # 401831490: AXL elite file -> 401831490_23_AXL.csv [528.1s]
+[11/17/2023 06:19:39] DEBUG: PID 215510: processing 401167164/72
+[11/17/2023 06:19:40] INFO: Participant # 401167164: GPS elite file -> 401167164_72_GPS.csv [1.0s]
+[11/17/2023 06:20:32] INFO: Participant # 401544321: AXL elite file -> 401544321_253_AXL.csv [555.7s]
+[11/17/2023 06:20:32] DEBUG: PID 215512: processing 401713668/235
+[11/17/2023 06:20:33] INFO: Participant # 401713668: GPS elite file -> 401713668_235_GPS.csv [0.6s]
+[11/17/2023 06:20:51] INFO: Participant # 401811306: AXL elite file -> 401811306_246_AXL.csv [441.6s]
+[11/17/2023 06:20:51] DEBUG: PID 215504: processing 401812917/144
+[11/17/2023 06:20:59] INFO: Participant # 401812917: GPS elite file -> 401812917_144_GPS.csv [8.0s]
+[11/17/2023 06:22:20] INFO: Participant # 401440362: AXL elite file -> 401440362_166_AXL.csv [423.8s]
+[11/17/2023 06:22:20] DEBUG: PID 215501: processing 401103480/112
+[11/17/2023 06:22:22] INFO: Participant # 401103480: GPS elite file -> 401103480_112_GPS.csv [2.3s]
+[11/17/2023 06:23:33] INFO: Participant # 401451781: AXL elite file -> 401451781_46_AXL.csv [324.3s]
+[11/17/2023 06:23:33] DEBUG: PID 215509: processing 401556493/147
+[11/17/2023 06:23:34] INFO: Participant # 401556493: GPS elite file -> 401556493_147_GPS.csv [0.9s]
+[11/17/2023 06:24:42] INFO: Participant # 403144072: AXL elite file -> 403144072_201_AXL.csv [365.8s]
+[11/17/2023 06:24:42] DEBUG: PID 215507: processing 403094862/102
+[11/17/2023 06:24:49] INFO: Participant # 403094862: GPS elite file -> 403094862_102_GPS.csv [7.0s]
+[11/17/2023 06:24:50] INFO: Participant # 402789603: AXL elite file -> 402789603_205_AXL.csv [537.3s]
+[11/17/2023 06:24:50] DEBUG: PID 215506: processing 402843397/189
+[11/17/2023 06:24:57] INFO: Participant # 402843397: GPS elite file -> 402843397_189_GPS.csv [6.5s]
+[11/17/2023 06:25:34] INFO: Participant # 401469801: AXL elite file -> 401469801_165_AXL.csv [389.4s]
+[11/17/2023 06:25:34] DEBUG: PID 215503: processing 401507474/69
+[11/17/2023 06:25:38] INFO: Participant # 401507474: GPS elite file -> 401507474_69_GPS.csv [4.6s]
+[11/17/2023 06:28:44] INFO: Participant # 401812917: AXL elite file -> 401812917_144_AXL.csv [464.4s]
+[11/17/2023 06:28:44] DEBUG: PID 215504: processing 401860045/237
+[11/17/2023 06:28:44] INFO: Participant # 401860045: GPS elite file -> 401860045_237_GPS.csv [0.7s]
+[11/17/2023 06:29:01] INFO: Participant # 401167164: AXL elite file -> 401167164_72_AXL.csv [561.0s]
+[11/17/2023 06:29:01] DEBUG: PID 215510: processing 401910151/169
+[11/17/2023 06:29:04] INFO: Participant # 401910151: GPS elite file -> 401910151_169_GPS.csv [3.4s]
+[11/17/2023 06:29:16] INFO: Participant # 401713668: AXL elite file -> 401713668_235_AXL.csv [523.6s]
+[11/17/2023 06:29:16] DEBUG: PID 215512: processing 401460946/254
+[11/17/2023 06:29:17] INFO: Participant # 401460946: GPS elite file -> 401460946_254_GPS.csv [0.6s]
+[11/17/2023 06:30:15] INFO: Participant # 401103480: AXL elite file -> 401103480_112_AXL.csv [472.9s]
+[11/17/2023 06:30:15] DEBUG: PID 215501: processing 401184984/112
+[11/17/2023 06:30:26] INFO: Participant # 401184984: GPS elite file -> 401184984_112_GPS.csv [10.4s]
+[11/17/2023 06:31:59] INFO: Participant # 401556493: AXL elite file -> 401556493_147_AXL.csv [505.2s]
+[11/17/2023 06:31:59] DEBUG: PID 215509: processing 401212334/169
+[11/17/2023 06:32:00] INFO: Participant # 401212334: GPS elite file -> 401212334_169_GPS.csv [1.2s]
+[11/17/2023 06:33:02] INFO: Participant # 402843397: AXL elite file -> 402843397_189_AXL.csv [484.8s]
+[11/17/2023 06:33:02] DEBUG: PID 215506: processing 402958700/166
+[11/17/2023 06:33:02] INFO: Participant # 402958700: GPS elite file -> 402958700_166_GPS.csv [0.3s]
+[11/17/2023 06:33:12] INFO: Participant # 402958700: AXL elite file -> 402958700_166_AXL.csv [9.8s]
+[11/17/2023 06:34:04] INFO: Participant # 401507474: AXL elite file -> 401507474_69_AXL.csv [505.3s]
+[11/17/2023 06:34:04] DEBUG: PID 215503: processing 401556493/204
+[11/17/2023 06:34:04] INFO: Participant # 401556493: GPS elite file -> 401556493_204_GPS.csv [1.0s]
+[11/17/2023 06:35:08] INFO: Participant # 401910151: AXL elite file -> 401910151_169_AXL.csv [363.5s]
+[11/17/2023 06:35:08] DEBUG: PID 215510: processing 401399249/102
+[11/17/2023 06:35:09] INFO: Participant # 401399249: GPS elite file -> 401399249_102_GPS.csv [1.5s]
+[11/17/2023 06:35:38] INFO: Participant # 401860045: AXL elite file -> 401860045_237_AXL.csv [413.4s]
+[11/17/2023 06:35:38] DEBUG: PID 215504: processing 401905412/174
+[11/17/2023 06:35:45] INFO: Participant # 401905412: GPS elite file -> 401905412_174_GPS.csv [7.5s]
+[11/17/2023 06:36:39] INFO: Participant # 401460946: AXL elite file -> 401460946_254_AXL.csv [441.8s]
+[11/17/2023 06:36:39] DEBUG: PID 215512: processing 401959741/103
+[11/17/2023 06:36:41] INFO: Participant # 401959741: GPS elite file -> 401959741_103_GPS.csv [2.0s]
+[11/17/2023 06:37:24] INFO: Participant # 401556493: AXL elite file -> 401556493_204_AXL.csv [199.6s]
+[11/17/2023 06:38:46] INFO: Participant # 401184984: AXL elite file -> 401184984_112_AXL.csv [499.9s]
+[11/17/2023 06:38:46] DEBUG: PID 215501: processing 401016540/232
+[11/17/2023 06:38:57] INFO: Participant # 401212334: AXL elite file -> 401212334_169_AXL.csv [416.5s]
+[11/17/2023 06:41:49] INFO: Participant # 401905412: AXL elite file -> 401905412_174_AXL.csv [364.1s]
+[11/17/2023 06:43:28] INFO: Participant # 401399249: AXL elite file -> 401399249_102_AXL.csv [498.3s]
+[11/17/2023 06:43:28] DEBUG: PID 215510: processing 401927418/78
+[11/17/2023 06:43:28] INFO: Participant # 401959741: AXL elite file -> 401959741_103_AXL.csv [407.3s]
+[11/17/2023 06:43:28] DEBUG: PID 215512: processing 401630460/17
+[11/17/2023 06:43:29] INFO: Participant # 401927418: GPS elite file -> 401927418_78_GPS.csv [1.1s]
+[11/17/2023 06:43:29] INFO: Participant # 401630460: GPS elite file -> 401630460_17_GPS.csv [1.2s]
+[11/17/2023 06:48:16] INFO: Participant # 403094862: AXL elite file -> 403094862_102_AXL.csv [1407.3s]
+[11/17/2023 06:48:16] DEBUG: PID 215507: processing 403781623/8
+[11/17/2023 06:48:17] INFO: Participant # 403781623: GPS elite file -> 403781623_8_GPS.csv [0.6s]
+[11/17/2023 06:49:38] INFO: Participant # 401927418: AXL elite file -> 401927418_78_AXL.csv [369.1s]
+[11/17/2023 06:52:35] INFO: Participant # 401630460: AXL elite file -> 401630460_17_AXL.csv [545.6s]
+[11/17/2023 06:56:42] INFO: Participant # 403781623: AXL elite file -> 403781623_8_AXL.csv [505.3s]
+==== PROCESSING REPORT | GPS ====
+ City      | Wave   |   Error |   OK |   Skipped
+-----------+--------+---------+------+-----------
+ Montreal  | Wave 1 |       0 |    7 |       155
+ Montreal  | Wave 2 |       0 |   24 |        21
+ Montreal  | Wave 3 |       0 |   32 |        22
+ Saskatoon | Wave 1 |       0 |    0 |       111
+ Saskatoon | Wave 2 |       1 |    0 |        32
+ Saskatoon | Wave 3 |       0 |    0 |        10
+ Vancouver | Wave 1 |       0 |    0 |       152
+ Vancouver | Wave 2 |       0 |    0 |        90
+ Vancouver | Wave 3 |       0 |    0 |        79
+ Victoria  | Wave 1 |       0 |    0 |       163
+ Victoria  | Wave 2 |       0 |    0 |       134
+ Victoria  | Wave 3 |       0 |    0 |        90
+==== PROCESSING REPORT | AXL ====
+ City      | Wave   |   Error |   OK |   Skipped
+-----------+--------+---------+------+-----------
+ Montreal  | Wave 1 |       0 |    8 |       154
+ Montreal  | Wave 2 |       0 |   27 |        18
+ Montreal  | Wave 3 |       0 |   36 |        18
+ Saskatoon | Wave 1 |       0 |    0 |       111
+ Saskatoon | Wave 2 |       1 |    0 |        32
+ Saskatoon | Wave 3 |       0 |    0 |        10
+ Vancouver | Wave 1 |       1 |    0 |       151
+ Vancouver | Wave 2 |       0 |    0 |        90
+ Vancouver | Wave 3 |       0 |    0 |        79
+ Victoria  | Wave 1 |       0 |    0 |       163
+ Victoria  | Wave 2 |       0 |    0 |       134
+ Victoria  | Wave 3 |       0 |    0 |        90
+DONE: 4698.2s
+
+Job ID: 18643816
+Cluster: cedar
+User/Group: btcrchum/btcrchum
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 32
+CPU Utilized: 08:42:07
+CPU Efficiency: 20.66% of 1-18:06:56 core-walltime
+Job Wall-clock time: 01:18:58
+Memory Utilized: 31.33 GB
+Memory Efficiency: 24.47% of 128.00 GB

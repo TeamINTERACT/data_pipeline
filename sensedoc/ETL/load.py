@@ -410,7 +410,7 @@ def load_transform_sd(src_dir, ncpu=None):
             
     # Multiprocessing run
     c0 = perf_counter()
-    if ncpus > 1: # Switch to multiprocessing if more than 1 CPU
+    if ncpu > 1: # Switch to multiprocessing if more than 1 CPU
         with mp.Pool(processes=ncpu, maxtasksperchild=1) as pool:
             results = pool.starmap_async(single_load_transform, wrk_args)
             result_df = pd.DataFrame([r for r in results.get()], columns=['City', 'Wave', 'iid', 'sd', 'GPS', 'AXL']).convert_dtypes()

@@ -1,3 +1,5 @@
+geographiclib==2.0
+geopy==2.4.0
 greenlet==2.0.2+computecanada
 numpy==1.25.2+computecanada
 pandas==2.1.0+computecanada
