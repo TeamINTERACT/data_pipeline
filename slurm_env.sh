@@ -10,6 +10,7 @@
 module load python/3.11 scipy-stack
 virtualenv --no-download $SLURM_TMPDIR/env
 source $SLURM_TMPDIR/env/bin/activate
+module load proj # Need to be loaded once venv is activated
 pip install --no-index --upgrade pip
 pip install --no-index -r requirements.txt
 # python /home/btcrchum/projects/def-dfuller/btcrchum/data_pipeline/sensedoc/ETL/utilities.py
