@@ -330,11 +330,11 @@ def load_transform_sd(src_dir, ncpu=None):
     for ccode, city in cities.items():
         for wave in waves:
             # Check that city/wave folder exists, which is the case with test data...
-            if not os.path.exists(os.path.join(root_data_folder, city, f'wave_{wave:02d}')):
+            if not os.path.exists(os.path.join(src_dir, city, f'wave_{wave:02d}')):
                 logging.warning(f'Unable to find subfolder <{os.path.join(city, f"wave_{wave:02d}")}>, skipping')
                 continue
             # Create elite subfolder
-            elite_folder = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'sensedoc_elite_files')
+            elite_folder = os.path.join(src_dir, city, f'wave_{wave:02d}', 'sensedoc_elite_files')
             existing_files = [] # store (interact_id, sd_id, gps_found, axl_found)
             if os.path.exists(elite_folder):
                 # Found a folder, all content will be scan to remove already processed GPS/AXL files from queue
@@ -345,7 +345,7 @@ def load_transform_sd(src_dir, ncpu=None):
                         m = re.match('(?P<iid>\\d+)_(?P<sd_id>\\d+)_(?P<sensor>GPS|AXL).csv', f.name)
                         if m is not None:
                             if not warned:
-                                logging.warning(f'Elite folder <{os.path.relpath(elite_folder, root_data_folder)}> contains already processed files, which will be skipped')
+                                logging.warning(f'Elite folder <{os.path.relpath(elite_folder, src_dir)}> contains already processed files, which will be skipped')
                                 warned = True
                             found = existing_files_dict.get((m.group('iid'), m.group('sd_id')), {})
                             found[m.group('sensor')] = 1
@@ -358,7 +358,7 @@ def load_transform_sd(src_dir, ncpu=None):
                 os.mkdir(elite_folder)
 
             # Read linkage file and add corresponding args to list of worker args
-            lk_file_path = os.path.join(root_data_folder, city, f'wave_{wave:02d}', f'linkage_{ccode}_w{wave}.csv')
+            lk_file_path = os.path.join(src_dir, city, f'wave_{wave:02d}', f'linkage_{ccode}_w{wave}.csv')
             if not os.path.isfile(lk_file_path):
                 logging.warning(f'Linkage file <{os.path.basename(lk_file_path)}> not found, skipping')
                 continue
@@ -382,10 +382,10 @@ def load_transform_sd(src_dir, ncpu=None):
 
             # Load pid/sd metadata for processing by pool of workers
             for pid in lk_df_long.itertuples(index=False):
-                pid_folder = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'sensedoc', f'{pid.interact_id}_{pid.sd_id}')
+                pid_folder = os.path.join(src_dir, city, f'wave_{wave:02d}', 'sensedoc', f'{pid.interact_id}_{pid.sd_id}')
 
                 if not os.path.exists(pid_folder):
-                    logging.warning(f'No folder <{os.path.relpath(pid_folder, root_data_folder)}> found, skipping')
+                    logging.warning(f'No folder <{os.path.relpath(pid_folder, src_dir)}> found, skipping')
                     continue
 
                 missing_sdb = True
@@ -406,7 +406,7 @@ def load_transform_sd(src_dir, ncpu=None):
                         break
                         
                 if missing_sdb:
-                    logging.warning(f'No sdb file found in folder <{os.path.relpath(pid_folder, root_data_folder)}>, skipping')
+                    logging.warning(f'No sdb file found in folder <{os.path.relpath(pid_folder, src_dir)}>, skipping')
             
     # Multiprocessing run
     c0 = perf_counter()
