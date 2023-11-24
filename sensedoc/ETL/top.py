@@ -173,11 +173,17 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
     except Exception as e:
         logger.error(f'Unable to load GPS data from {os.path.basename(gps_fname)}, skipping')
         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error loading GPS ({e})')
+    if gps_df.empty:
+        logger.error(f'No GPS data in {os.path.basename(gps_fname)}, skipping')
+        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Empty GPS file')
     try:
         axl_df = _load_clean_axl(axl_fname)
     except Exception as e:
         logger.error(f'Unable to load AXL data from {os.path.basename(axl_fname)}, skipping')
         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error loading AXL ({e})')
+    if axl_df.empty:
+        logger.error(f'No AXL data in {os.path.basename(axl_fname)}, skipping')
+        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Empty AXL file')
 
     # Process 1sec epoch
     try:
@@ -244,43 +250,43 @@ def execute_ddl_top(city_code:str, wave:int):
     # ToP 1 second table definition
     stmt_ddl_top1sec = f"""
         CREATE TABLE IF NOT EXISTS {target_schema}.{target_table1sec} (
-            interact_id TEXT,
-            sd_id TEXT,
+            interact_id INTEGER,
+            sd_id SMALLINT,
             utcdate TIMESTAMP WITH TIME ZONE,
             count_x INTEGER,
             count_y INTEGER,
             count_z INTEGER,
-            count_vm DOUBLE PRECISION,
-            lat DOUBLE PRECISION,
-            lon DOUBLE PRECISION,
-            speed DOUBLE PRECISION,
-            course DOUBLE PRECISION,
+            count_vm REAL,
+            lat REAL,
+            lon REAL,
+            speed REAL,
+            course REAL,
             mode TEXT,
             fix TEXT,
-            alt DOUBLE PRECISION,
+            alt REAL,
             mode1 TEXT,
-            mode2 INTEGER,
-            sat_used INTEGER,
-            pdop DOUBLE PRECISION,
-            hdop DOUBLE PRECISION,
-            vdop DOUBLE PRECISION,
-            sat_in_view INTEGER,
+            mode2 SMALLINT,
+            sat_used SMALLINT,
+            pdop REAL,
+            hdop REAL,
+            vdop REAL,
+            sat_in_view SMALLINT,
             CONSTRAINT {target_schema}_{target_table1sec}_pk PRIMARY KEY (interact_id, sd_id, utcdate)
     )"""
 
     # ToP 1 minute table definition
     stmt_ddl_top1min = f"""
         CREATE TABLE IF NOT EXISTS {target_schema}.{target_table1min} (
-            interact_id TEXT,
-            sd_id TEXT,
+            interact_id INTEGER,
+            sd_id SMALLINT,
             utcdate TIMESTAMP WITH TIME ZONE,
             count_x INTEGER,
             count_y INTEGER,
             count_z INTEGER,
-            count_vm DOUBLE PRECISION,
-            lat DOUBLE PRECISION,
-            lon DOUBLE PRECISION,
-            alt DOUBLE PRECISION,
+            count_vm REAL,
+            lat REAL,
+            lon REAL,
+            alt REAL,
             wearing SMALLINT,
             CONSTRAINT {target_schema}_{target_table1min}_pk PRIMARY KEY (interact_id, sd_id, utcdate)
     )"""
@@ -425,8 +431,8 @@ def _top_1sec(interact_id, sd_id, gps_df:pd.DataFrame, axl_df:pd.DataFrame) -> p
 
     # Merge with GPS data and return
     cnt_df = cnt_df.join(gps_df.set_index('utcdate'), on='utcdate')
-    cnt_df.insert(0, 'interact_id', interact_id)
-    cnt_df.insert(1, 'sd_id', sd_id)
+    cnt_df.insert(0, 'interact_id', int(interact_id))
+    cnt_df.insert(1, 'sd_id', int(sd_id))
     return cnt_df
 
 
