@@ -42,7 +42,7 @@ root_data_folder = 'data\interact_test_data'
 
 
 def single_load_transform(interact_id, sd_id, src_sdb, dst_dir, 
-                          start_date=None, end_date=None, city=None, wave=None,
+                          start_date=None, end_date=None, city='', wave='',
                           process_gps = True, process_axl = True):
     """
     Processing of a single participant's SD data.
@@ -155,6 +155,7 @@ def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date,
     else:
         sdb_con = create_engine(f'sqlite:////{src_sdb}')
     gps_df = pd.read_sql_table("gps", sdb_con, parse_dates=["utcdate"])
+    logging.debug(f'=== Loaded GPS DF {interact_id} from <{src_sdb}> (1) ===\n{gps_df.to_string(max_rows=10)}\n')
 
     # Check if several sdb with _rtcX have been created, deal with the loading in that case
     i = 1
@@ -172,6 +173,8 @@ def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date,
             continue
         rtc_df.loc[:,'rtc'] = i # Keep track of rtc count, although not used for the moment
         gps_df = pd.concat([gps_df, rtc_df])
+        logging.debug(f'=== Loaded GPS DF {interact_id} (1.{i}) ===\n{gps_df.to_string(max_rows=10)}\n')
+
 
     # Filter records based on start/end dates if required (dates already converted in utc timestamps)
     if pd.notna(start_date):
@@ -186,6 +189,7 @@ def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date,
         gps_df.drop(columns='rtc', inplace=True)
     gps_df.sort_values(by = "utcdate", inplace=True)
     gps_df = gps_df.convert_dtypes() # Some int were decoded as float in order to handle NULL, this should fix it
+    logging.debug(f'=== Loaded GPS DF {interact_id} (2) ===\n{gps_df.to_string(max_rows=10)}\n')
 
     # Save to destination folder
     with NamedTemporaryFile(prefix=f'{interact_id}_GPS-', suffix=".csv", delete=False, dir=dst_dir) as f:
@@ -393,7 +397,10 @@ def load_transform_sd(src_dir, ncpu=None):
                 missing_sdb = True
                 # Define pattern according to type of sd_id
                 psdb = f'SD{pid.sd_id}fw\\d*_.+.sdb'
+                psdb_rtc = f'SD{pid.sd_id}fw\\d*_.+_rtc\\d+.sdb'
                 for fentry in os.scandir(pid_folder):
+                    if re.fullmatch(psdb_rtc, fentry.name):
+                        continue # Exclude rtc files, which are taken care of in subprocess
                     if re.fullmatch(psdb, fentry.name) : #and (pid.process_gps or pid.process_axl):
                         wrk_args.append((pid.interact_id,
                                          pid.sd_id,
