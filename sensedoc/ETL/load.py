@@ -190,6 +190,7 @@ def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date,
     # Save to destination folder
     with NamedTemporaryFile(prefix=f'{interact_id}_GPS-', suffix=".csv", delete=False, dir=dst_dir) as f:
         gps_df.to_csv(f, index=False)
+    os.chmod(f.name, 0o640) # Give group read on top of owner rw, which is default for NamedTempFile
 
     # Try to rename newly created file
     # FIXME: Unable to properly deal with race condition on Linux, althought
@@ -275,6 +276,7 @@ def _single_load_transform_axl(interact_id, sd_id, src_sdb, dst_dir, start_date=
     # Save to destination folder
     with NamedTemporaryFile(prefix=f'{interact_id}_AXL-', suffix=".csv", delete=False, dir=dst_dir) as f:
         axl_df.to_csv(f, index=False, float_format="%.5f")
+    os.chmod(f.name, 0o640) # Give group read on top of owner rw, which is default for NamedTempFile
     
     # Try to rename newly created file
     # FIXME: Unable to properly deal with race condition on Linux, althought
@@ -411,6 +413,7 @@ def load_transform_sd(src_dir, ncpu=None):
     # Multiprocessing run
     c0 = perf_counter()
     if ncpu > 1: # Switch to multiprocessing if more than 1 CPU
+        logging.info(f'Multiprocessing with {ncpu} cores')
         with mp.Pool(processes=ncpu, maxtasksperchild=1) as pool:
             results = pool.starmap_async(single_load_transform, wrk_args)
             result_df = pd.DataFrame([r for r in results.get()], columns=['City', 'Wave', 'iid', 'sd', 'GPS', 'AXL']).convert_dtypes()
