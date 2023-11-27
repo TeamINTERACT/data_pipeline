@@ -155,7 +155,6 @@ def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date,
     else:
         sdb_con = create_engine(f'sqlite:////{src_sdb}')
     gps_df = pd.read_sql_table("gps", sdb_con, parse_dates=["utcdate"])
-    logging.debug(f'=== Loaded GPS DF {interact_id} from <{src_sdb}> (1) ===\n{gps_df.to_string(max_rows=10)}\n')
 
     # Check if several sdb with _rtcX have been created, deal with the loading in that case
     i = 1
@@ -173,7 +172,6 @@ def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date,
             continue
         rtc_df.loc[:,'rtc'] = i # Keep track of rtc count, although not used for the moment
         gps_df = pd.concat([gps_df, rtc_df])
-        logging.debug(f'=== Loaded GPS DF {interact_id} (1.{i}) ===\n{gps_df.to_string(max_rows=10)}\n')
 
 
     # Filter records based on start/end dates if required (dates already converted in utc timestamps)
@@ -189,7 +187,10 @@ def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date,
         gps_df.drop(columns='rtc', inplace=True)
     gps_df.sort_values(by = "utcdate", inplace=True)
     gps_df = gps_df.convert_dtypes() # Some int were decoded as float in order to handle NULL, this should fix it
-    logging.debug(f'=== Loaded GPS DF {interact_id} (2) ===\n{gps_df.to_string(max_rows=10)}\n')
+
+    # Check if axl df is empty
+    if gps_df.empty:
+        logging.warning(f'Participant # {interact_id}: empty GPS dataset (source: <{src_sdb}>)')
 
     # Save to destination folder
     with NamedTemporaryFile(prefix=f'{interact_id}_GPS-', suffix=".csv", delete=False, dir=dst_dir) as f:
@@ -276,6 +277,10 @@ def _single_load_transform_axl(interact_id, sd_id, src_sdb, dst_dir, start_date=
         axl_df.drop(columns='rtc', inplace=True)
     axl_df.sort_values(by = "utcdate", inplace=True)
     axl_df = axl_df.convert_dtypes() # Some int were decoded as float in order to handle NULL, this should fix it
+
+    # Check if axl df is empty
+    if axl_df.empty:
+        logging.warning(f'Participant # {interact_id}: empty AXL dataset (source: <{src_sdb}>)')
 
     # Save to destination folder
     with NamedTemporaryFile(prefix=f'{interact_id}_AXL-', suffix=".csv", delete=False, dir=dst_dir) as f:
