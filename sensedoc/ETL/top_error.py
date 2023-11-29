@@ -56,7 +56,7 @@ for ccode, city in cities.items():
     for wave in waves:
         target_schema = f'top_sd{"" if wave == 1 else wave}'
         target_table = f'top_1min_{ccode}'
-        sql = f"SELECT DISTINCT '{ccode}' AS ccode, {wave} AS wave, interact_id, sd_id FROM {target_schema}.{target_table}"
+        sql = f"SELECT DISTINCT '{ccode}' AS ccode, {wave} AS wave, interact_id::TEXT, sd_id::TEXT FROM {target_schema}.{target_table}"
         top_iid_df = pd.read_sql_query(sql, con=top_con)
 
         # Updating the set of processed IID/SD
