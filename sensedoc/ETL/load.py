@@ -452,7 +452,7 @@ def load_transform_sd(src_dir, ncpu=None):
     print(f'DONE: {perf_counter() - c0:.1f}s')
 
 if __name__ == '__main__':
-    logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.DEBUG)
+    logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S') #, level=logging.DEBUG)
 
     # Get target root folder as command line argument
     if len(sys.argv[1:]):

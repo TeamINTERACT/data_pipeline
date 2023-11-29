@@ -64,6 +64,12 @@ Data is aggregated by epoch: Three ToPs are created per city per wave: 1 second,
     + OUTPUT: 1 table of power per city, per wave per epoch (3/city/wave)
     + Data dictionary for **TOP variables for SenseDoc** is available here: https://teaminteract.ca/ressources/INTERACT_datadict.html#top_title 
 
+    Adjusting grants on top tables in database:
+    ```
+    GRANT USAGE ON SCHEMA top_sd, top_sd2, top_sd3 TO zoeps, celiak, reiad, dfuller, kstanley;
+    GRANT SELECT ON ALL TABLES IN SCHEMA top_sd, top_sd2, top_sd3  TO zoeps, celiak, reiad, dfuller, kstanley;
+    ```
+
 7. **Describe**: Create summary statistics:
       + date ranges
       + number of days of data per participant
