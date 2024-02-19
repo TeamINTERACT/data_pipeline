@@ -1,0 +1,169 @@
+created virtual environment CPython3.11.5.final.0-64 in 15462ms
+  creator CPython3Posix(dest=/localscratch/btcrchum.19440372.0/env, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/btcrchum/.local/share/virtualenv)
+    added seed packages: pip==23.3.1, setuptools==68.2.2, wheel==0.41.3
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+-------------------------------------------------------------------------------
+The following dependent module(s) are not currently loaded: sqlite/3.43.1 (required by: python/3.11.5)
+-------------------------------------------------------------------------------
+
+The following have been reloaded with a version change:
+  1) sqlite/3.43.1 => sqlite/3.38.5
+
+Looking in links: /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic
+Requirement already satisfied: pip in /localscratch/btcrchum.19440372.0/env/lib/python3.11/site-packages (23.3.1)
+Looking in links: /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic
+Collecting geographiclib==2.0 (from -r requirements.txt (line 1))
+  Using cached geographiclib-2.0-py3-none-any.whl (40 kB)
+Collecting geopy==2.4.0 (from -r requirements.txt (line 2))
+  Using cached geopy-2.4.0-py3-none-any.whl.metadata (6.8 kB)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/greenlet-2.0.2+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 3))
+Requirement already satisfied: numpy==1.25.2+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 4)) (1.25.2+computecanada)
+Requirement already satisfied: pandas==2.1.0+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 5)) (2.1.0+computecanada)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2/llvmlite-0.41.0+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 6))
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/generic/numba-0.58.0+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 7))
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2/psycopg2-2.9.7+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 8))
+Collecting pyproj==3.6.1 (from -r requirements.txt (line 9))
+  Using cached pyproj-3.6.1-cp311-cp311-linux_x86_64.whl
+Requirement already satisfied: python-dateutil==2.8.2+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/ipykernel/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 10)) (2.8.2+computecanada)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/pytz-2023.3.post1+computecanada-py2.py3-none-any.whl (from -r requirements.txt (line 11))
+Requirement already satisfied: six==1.16.0+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/ipykernel/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 12)) (1.16.0+computecanada)
+Collecting resampy==0.4.2 (from -r requirements.txt (line 13))
+  Using cached resampy-0.4.2-py3-none-any.whl (3.1 MB)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/SQLAlchemy-2.0.21+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 14))
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/tabulate-0.9.0+computecanada-py3-none-any.whl (from -r requirements.txt (line 15))
+Requirement already satisfied: typing_extensions==4.7.1+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 16)) (4.7.1+computecanada)
+Requirement already satisfied: tzdata==2023.3+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 17)) (2023.3+computecanada)
+Requirement already satisfied: certifi in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/scipy-stack/2023b/lib/python3.11/site-packages (from pyproj==3.6.1->-r requirements.txt (line 9)) (2023.7.22+computecanada)
+Using cached geopy-2.4.0-py3-none-any.whl (125 kB)
+Installing collected packages: pytz, tabulate, pyproj, psycopg2, llvmlite, greenlet, geographiclib, SQLAlchemy, numba, geopy, resampy
+  Attempting uninstall: pytz
+    Found existing installation: pytz 2023.3+computecanada
+    Not uninstalling pytz at /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Core/scipy-stack/2023b/lib/python3.11/site-packages, outside environment /localscratch/btcrchum.19440372.0/env
+    Can't uninstall 'pytz'. No files were found to uninstall.
+Successfully installed SQLAlchemy-2.0.21+computecanada geographiclib-2.0 geopy-2.4.0 greenlet-2.0.2+computecanada llvmlite-0.41.0+computecanada numba-0.58.0+computecanada psycopg2-2.9.7+computecanada pyproj-3.6.1 pytz-2023.3.post1+computecanada resampy-0.4.2 tabulate-0.9.0+computecanada
+[11/28/2023 13:49:09] WARNING: Elite folder <montreal/wave_01/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:10] WARNING: No folder <montreal/wave_01/sensedoc/401627014_188> found, skipping
+[11/28/2023 13:49:10] WARNING: No folder <montreal/wave_01/sensedoc/401751741_51> found, skipping
+[11/28/2023 13:49:10] WARNING: No folder <montreal/wave_01/sensedoc/401679813_146> found, skipping
+[11/28/2023 13:49:10] WARNING: Elite folder <montreal/wave_02/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:11] WARNING: Elite folder <montreal/wave_03/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:11] WARNING: No folder <montreal/wave_03/sensedoc/401952301_23> found, skipping
+[11/28/2023 13:49:11] WARNING: Elite folder <saskatoon/wave_01/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:11] WARNING: No folder <saskatoon/wave_01/sensedoc/302610266_367> found, skipping
+[11/28/2023 13:49:11] WARNING: No folder <saskatoon/wave_01/sensedoc/302923081_367> found, skipping
+[11/28/2023 13:49:11] WARNING: No folder <saskatoon/wave_01/sensedoc/302273130_375> found, skipping
+[11/28/2023 13:49:11] WARNING: Elite folder <saskatoon/wave_02/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:12] WARNING: No folder <saskatoon/wave_02/sensedoc/302955394_383> found, skipping
+[11/28/2023 13:49:12] WARNING: Elite folder <saskatoon/wave_03/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:12] WARNING: Elite folder <vancouver/wave_01/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:12] WARNING: Elite folder <vancouver/wave_02/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:13] WARNING: No folder <vancouver/wave_02/sensedoc/202634537_491> found, skipping
+[11/28/2023 13:49:13] WARNING: Elite folder <vancouver/wave_03/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:13] WARNING: Elite folder <victoria/wave_01/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:14] WARNING: No folder <victoria/wave_01/sensedoc/101158091_23> found, skipping
+[11/28/2023 13:49:14] WARNING: No folder <victoria/wave_01/sensedoc/101891218_111> found, skipping
+[11/28/2023 13:49:14] WARNING: Elite folder <victoria/wave_02/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:15] WARNING: Elite folder <victoria/wave_03/sensedoc_elite_files> contains already processed files, which will be skipped
+[11/28/2023 13:49:15] WARNING: No folder <victoria/wave_03/sensedoc/101847191_405> found, skipping
+[11/28/2023 13:49:15] WARNING: Participant # 302431853: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302431853_369/SD369fw2099_20190201_124406.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 302530348: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302530348_345/SD345fw2099_20190213_132636.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 302631199: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302631199_420/SD420fw2106_20190213_135206.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 401809034: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/montreal/wave_01/sensedoc/401809034_146/SD146fw2098_20180731_124013.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 302631120: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302631120_356/SD356fw2099_20190408_153754.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 302531549: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302531549_466/SD466fw2106_20190107_171227.sdb>)
+[11/28/2023 13:49:15] ERROR: Participant # 303827552: Unable to process GPS (Table gps not found)
+[11/28/2023 13:49:15] WARNING: Participant # 401809034: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/montreal/wave_01/sensedoc/401809034_146/SD146fw2098_20180731_124013.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 302631120: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302631120_356/SD356fw2099_20190408_153754.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 302531549: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302531549_466/SD466fw2106_20190107_171227.sdb>)
+[11/28/2023 13:49:15] ERROR: Participant # 303827552: Unable to process AXL (Table accel not found)
+[11/28/2023 13:49:15] WARNING: Participant # 302431853: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302431853_369/SD369fw2099_20190201_124406.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 302530348: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302530348_345/SD345fw2099_20190213_132636.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 302756755: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302756755_373/SD373fw2099_20190418_140304.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 201810690: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_01/sensedoc/201810690_444/SD444fw2106_20190115_093902.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 302756755: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302756755_373/SD373fw2099_20190418_140304.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 302631199: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302631199_420/SD420fw2106_20190213_135206.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 201398316: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_02/sensedoc/201398316_462/SD462fw2110_20210120_151745.sdb>)
+[11/28/2023 13:49:15] WARNING: Participant # 201642869: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_01/sensedoc/201642869_428/SD428fw2106_20190103_111820.sdb>)
+[11/28/2023 13:49:16] WARNING: Participant # 202662394: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_03/sensedoc/202662394_401/SD401fw2110_20220910_111205.sdb>)
+[11/28/2023 13:49:16] WARNING: Participant # 202662394: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_03/sensedoc/202662394_401/SD401fw2110_20220910_111205.sdb>)
+[11/28/2023 13:49:16] WARNING: Participant # 201210287: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_03/sensedoc/201210287_349/SD349fw2110_20221011_113814.sdb>)
+[11/28/2023 13:49:16] WARNING: Participant # 202141573: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_02/sensedoc/202141573_473/SD473fw2106_20201223_141740.sdb>)
+[11/28/2023 13:49:16] WARNING: Participant # 302591105: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302591105_426/SD426fw2106_20190523_153448.sdb>)
+[11/28/2023 13:49:16] WARNING: Participant # 201210287: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_03/sensedoc/201210287_349/SD349fw2110_20221011_113814.sdb>)
+[11/28/2023 13:49:17] WARNING: Participant # 202116714: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_03/sensedoc/202116714_403/SD403fw2106_20220903_104635.sdb>)
+[11/28/2023 13:49:17] WARNING: Participant # 202116714: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_03/sensedoc/202116714_403/SD403fw2106_20220903_104635.sdb>)
+[11/28/2023 13:49:17] WARNING: Participant # 302591105: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302591105_426/SD426fw2106_20190523_153448.sdb>)
+[11/28/2023 13:49:18] WARNING: Participant # 302832294: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302832294_439/SD439fw2106_20190524_104050.sdb>)
+[11/28/2023 13:49:18] WARNING: Participant # 302265135: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302265135_441/SD441fw2106_20190213_122610.sdb>)
+[11/28/2023 13:49:18] WARNING: Participant # 302265135: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302265135_441/SD441fw2106_20190213_122610.sdb>)
+[11/28/2023 13:49:18] WARNING: Participant # 302429590: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302429590_451/SD451fw2106_20190408_141027.sdb>)
+[11/28/2023 13:49:18] WARNING: Participant # 201398316: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_02/sensedoc/201398316_462/SD462fw2110_20210120_151745.sdb>)
+[11/28/2023 13:49:18] WARNING: Participant # 402495712: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/montreal/wave_02/sensedoc/402495712_36/SD36fw2106_20201120_165446.sdb>)
+[11/28/2023 13:49:20] WARNING: Participant # 101214983: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/victoria/wave_01/sensedoc/101214983_122/SD122fw2091_20171101_180954.sdb>)
+[11/28/2023 13:49:21] WARNING: Participant # 201259654: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_02/sensedoc/201259654_369/SD369fw2099_20201201_165105.sdb>)
+[11/28/2023 13:49:21] WARNING: Participant # 403835859: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/montreal/wave_03/sensedoc/403835859_109/SD109fw_20230518_171521.sdb>)
+[11/28/2023 13:49:22] WARNING: Participant # 302641169: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302641169_391/SD391fw2099_20190213_130907.sdb>)
+[11/28/2023 13:49:31] WARNING: Participant # 201642869: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_01/sensedoc/201642869_428/SD428fw2106_20190103_111820.sdb>)
+[11/28/2023 13:49:48] ERROR: Participant # 201057630: Unable to process AXL ((sqlite3.DatabaseError) database disk image is malformed
+(Background on this error at: https://sqlalche.me/e/20/4xp6))
+[11/28/2023 13:51:27] WARNING: Participant # 202141573: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_02/sensedoc/202141573_473/SD473fw2106_20201223_141740.sdb>)
+[11/28/2023 13:51:34] WARNING: Participant # 201259654: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/vancouver/wave_02/sensedoc/201259654_369/SD369fw2099_20201201_165105.sdb>)
+[11/28/2023 13:51:44] WARNING: Participant # 302641169: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302641169_391/SD391fw2099_20190213_130907.sdb>)
+[11/28/2023 13:52:07] WARNING: Participant # 101214983: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/victoria/wave_01/sensedoc/101214983_122/SD122fw2091_20171101_180954.sdb>)
+[11/28/2023 13:52:18] WARNING: Participant # 402495712: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/montreal/wave_02/sensedoc/402495712_36/SD36fw2106_20201120_165446.sdb>)
+[11/28/2023 13:52:35] WARNING: Participant # 302061859: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302061859_391/SD391fw2099_20181203_150358.sdb>)
+[11/28/2023 13:55:15] WARNING: Participant # 302061859: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302061859_391/SD391fw2099_20181203_150358.sdb>)
+[11/28/2023 13:59:23] WARNING: Participant # 302330481: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302330481_399/SD399fw2099_20190502_124229.sdb>)
+[11/28/2023 13:59:23] WARNING: Participant # 302487100: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302487100_403/SD403fw2106_20190213_135442.sdb>)
+[11/28/2023 13:59:23] WARNING: Participant # 302487100: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302487100_403/SD403fw2106_20190213_135442.sdb>)
+[11/28/2023 13:59:23] WARNING: Participant # 302862878: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302862878_405/SD405fw2106_20190131_155821.sdb>)
+[11/28/2023 13:59:23] WARNING: Participant # 302862878: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302862878_405/SD405fw2106_20190131_155821.sdb>)
+[11/28/2023 13:59:23] WARNING: Participant # 302318839: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302318839_407/SD407fw2106_20190213_141954.sdb>)
+[11/28/2023 13:59:23] WARNING: Participant # 302318839: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302318839_407/SD407fw2106_20190213_141954.sdb>)
+[11/28/2023 13:59:25] WARNING: Participant # 302394560: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302394560_408/SD408fw2106_20190201_114043.sdb>)
+[11/28/2023 13:59:25] WARNING: Participant # 302700417: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302700417_409/SD409fw2106_20190213_111855.sdb>)
+[11/28/2023 13:59:25] WARNING: Participant # 302700417: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/saskatoon/wave_01/sensedoc/302700417_409/SD409fw2106_20190213_111855.sdb>)
+==== PROCESSING REPORT | GPS ====
+ City      | Wave   |   Error |   OK |   Skipped
+-----------+--------+---------+------+-----------
+ Montreal  | Wave 1 |       0 |    5 |       157
+ Montreal  | Wave 2 |       0 |    2 |        43
+ Montreal  | Wave 3 |       0 |    2 |        52
+ Saskatoon | Wave 1 |       0 |   20 |        91
+ Saskatoon | Wave 2 |       1 |    1 |        31
+ Saskatoon | Wave 3 |       0 |    0 |        10
+ Vancouver | Wave 1 |       0 |    3 |       149
+ Vancouver | Wave 2 |       0 |    4 |        86
+ Vancouver | Wave 3 |       0 |    5 |        74
+ Victoria  | Wave 1 |       0 |    4 |       159
+ Victoria  | Wave 2 |       0 |    1 |       133
+ Victoria  | Wave 3 |       0 |    0 |        90
+==== PROCESSING REPORT | AXL ====
+ City      | Wave   |   Error |   OK |   Skipped
+-----------+--------+---------+------+-----------
+ Montreal  | Wave 1 |       0 |    5 |       157
+ Montreal  | Wave 2 |       0 |    2 |        43
+ Montreal  | Wave 3 |       0 |    2 |        52
+ Saskatoon | Wave 1 |       0 |   16 |        95
+ Saskatoon | Wave 2 |       1 |    1 |        31
+ Saskatoon | Wave 3 |       0 |    0 |        10
+ Vancouver | Wave 1 |       1 |    2 |       149
+ Vancouver | Wave 2 |       0 |    4 |        86
+ Vancouver | Wave 3 |       0 |    5 |        74
+ Victoria  | Wave 1 |       0 |    3 |       160
+ Victoria  | Wave 2 |       0 |    1 |       133
+ Victoria  | Wave 3 |       0 |    0 |        90
+DONE: 858.8s
+
+Job ID: 19440372
+Cluster: cedar
+User/Group: btcrchum/btcrchum
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 32
+CPU Utilized: 02:11:16
+CPU Efficiency: 25.58% of 08:33:04 core-walltime
+Job Wall-clock time: 00:16:02
+Memory Utilized: 28.18 GB
+Memory Efficiency: 22.02% of 128.00 GB

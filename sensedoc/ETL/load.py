@@ -42,7 +42,7 @@ root_data_folder = 'data\interact_test_data'
 
 
 def single_load_transform(interact_id, sd_id, src_sdb, dst_dir, 
-                          start_date=None, end_date=None, city=None, wave=None,
+                          start_date=None, end_date=None, city='', wave='',
                           process_gps = True, process_axl = True):
     """
     Processing of a single participant's SD data.
@@ -173,6 +173,7 @@ def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date,
         rtc_df.loc[:,'rtc'] = i # Keep track of rtc count, although not used for the moment
         gps_df = pd.concat([gps_df, rtc_df])
 
+
     # Filter records based on start/end dates if required (dates already converted in utc timestamps)
     if pd.notna(start_date):
         gps_df = gps_df[gps_df['utcdate'] >= pd.to_datetime(start_date.replace(tzinfo = None))] # Need to drop tz so that pandas can handle it properly
@@ -187,9 +188,14 @@ def _single_load_transform_gps(interact_id, sd_id, src_sdb, dst_dir, start_date,
     gps_df.sort_values(by = "utcdate", inplace=True)
     gps_df = gps_df.convert_dtypes() # Some int were decoded as float in order to handle NULL, this should fix it
 
+    # Check if axl df is empty
+    if gps_df.empty:
+        logging.warning(f'Participant # {interact_id}: empty GPS dataset (source: <{src_sdb}>)')
+
     # Save to destination folder
     with NamedTemporaryFile(prefix=f'{interact_id}_GPS-', suffix=".csv", delete=False, dir=dst_dir) as f:
         gps_df.to_csv(f, index=False)
+    os.chmod(f.name, 0o640) # Give group read on top of owner rw, which is default for NamedTempFile
 
     # Try to rename newly created file
     # FIXME: Unable to properly deal with race condition on Linux, althought
@@ -272,9 +278,14 @@ def _single_load_transform_axl(interact_id, sd_id, src_sdb, dst_dir, start_date=
     axl_df.sort_values(by = "utcdate", inplace=True)
     axl_df = axl_df.convert_dtypes() # Some int were decoded as float in order to handle NULL, this should fix it
 
+    # Check if axl df is empty
+    if axl_df.empty:
+        logging.warning(f'Participant # {interact_id}: empty AXL dataset (source: <{src_sdb}>)')
+
     # Save to destination folder
     with NamedTemporaryFile(prefix=f'{interact_id}_AXL-', suffix=".csv", delete=False, dir=dst_dir) as f:
         axl_df.to_csv(f, index=False, float_format="%.5f")
+    os.chmod(f.name, 0o640) # Give group read on top of owner rw, which is default for NamedTempFile
     
     # Try to rename newly created file
     # FIXME: Unable to properly deal with race condition on Linux, althought
@@ -391,7 +402,10 @@ def load_transform_sd(src_dir, ncpu=None):
                 missing_sdb = True
                 # Define pattern according to type of sd_id
                 psdb = f'SD{pid.sd_id}fw\\d*_.+.sdb'
+                psdb_rtc = f'SD{pid.sd_id}fw\\d*_.+_rtc\\d+.sdb'
                 for fentry in os.scandir(pid_folder):
+                    if re.fullmatch(psdb_rtc, fentry.name):
+                        continue # Exclude rtc files, which are taken care of in subprocess
                     if re.fullmatch(psdb, fentry.name) : #and (pid.process_gps or pid.process_axl):
                         wrk_args.append((pid.interact_id,
                                          pid.sd_id,
@@ -411,6 +425,7 @@ def load_transform_sd(src_dir, ncpu=None):
     # Multiprocessing run
     c0 = perf_counter()
     if ncpu > 1: # Switch to multiprocessing if more than 1 CPU
+        logging.info(f'Multiprocessing with {ncpu} cores')
         with mp.Pool(processes=ncpu, maxtasksperchild=1) as pool:
             results = pool.starmap_async(single_load_transform, wrk_args)
             result_df = pd.DataFrame([r for r in results.get()], columns=['City', 'Wave', 'iid', 'sd', 'GPS', 'AXL']).convert_dtypes()
@@ -437,7 +452,7 @@ def load_transform_sd(src_dir, ncpu=None):
     print(f'DONE: {perf_counter() - c0:.1f}s')
 
 if __name__ == '__main__':
-    logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.DEBUG)
+    logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S') #, level=logging.DEBUG)
 
     # Get target root folder as command line argument
     if len(sys.argv[1:]):
