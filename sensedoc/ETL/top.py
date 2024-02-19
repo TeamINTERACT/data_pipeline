@@ -422,7 +422,7 @@ def _top_1sec(interact_id, sd_id, gps_df:pd.DataFrame, axl_df:pd.DataFrame) -> p
     cnt_y = counts(axl_df['y'], axl_fs).astype(int)
     cnt_z = counts(axl_df['z'], axl_fs).astype(int)
     cnt_vm = np.sqrt(cnt_x**2 + cnt_y**2 + cnt_z**2) # Compute 3D vector magnitude
-    cnt_idx = pd.date_range(axl_df.index[0], periods=len(cnt_x), freq='1S', name='utcdate')
+    cnt_idx = pd.date_range(axl_df.index[0].round('1S'), periods=len(cnt_x), freq='1S', name='utcdate')
     cnt_df = pd.DataFrame({'count_x': cnt_x,
                            'count_y': cnt_y,
                            'count_z': cnt_z,
