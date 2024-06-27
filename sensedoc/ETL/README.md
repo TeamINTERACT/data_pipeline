@@ -202,3 +202,7 @@ Python script `sensedoc/ETL/top_error.py` scans the list of elites files and com
 GRANT USAGE ON SCHEMA top_sd, top_sd2, top_sd3 TO group_dfuller;
 GRANT SELECT ON ALL TABLES IN SCHEMA top_sd, top_sd2, top_sd3 TO group_dfuller;
 ```
+
+# SenseDoc Quality Checks
+
+See `QA` subfolder.
