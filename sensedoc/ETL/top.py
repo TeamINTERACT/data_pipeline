@@ -163,7 +163,7 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
         logger.warning(f'Unable to find GPS elite file {os.path.basename(gps_fname)}, skipping')
         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Missing file ({os.path.basename(gps_fname)})')
     axl_fname = f'{root_elite_filename}_AXL.csv'
-    if not os.path.exists(gps_fname):
+    if not os.path.exists(axl_fname):
         logger.warning(f'Unable to find AXL elite file {os.path.basename(axl_fname)}, skipping')
         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Missing file ({os.path.basename(axl_fname)})')
     
