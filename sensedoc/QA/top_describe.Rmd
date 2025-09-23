@@ -1,0 +1,319 @@
+---
+title: "INTERACT | SenseDoc Quality checks"
+author: "B. Thierry, Spherelab"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 4
+    number_sections: true
+    df_print: kable
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    df_print: paged
+    code_folding: hide
+    self_contained: no
+    keep_md: true
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(DBI)
+library(sf)
+library(ggmap)
+library(cowplot)
+library(units)
+library(kableExtra)
+
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width = 10)
+knitr::opts_chunk$set(fig.height = 8)
+
+# Define connection to Cedar DB || Requires a live SSH tunnel
+con <- dbConnect(RPostgres::Postgres(), user="btcrchum", port=5433, dbname = "interact_db")
+
+#dbExecute(con, 'SET client_min_messages TO WARNING') # Suppress all notices displayed while computing raster stats
+knitr::opts_chunk$set(connection = "con")
+
+```
+
+# QA objectives
+
+Create summary statistics (see `QA` subfolder):
+
++ date ranges
++ number of days of data per participant
++ min, max, SD distributions
++ GPS locations
+
+# Data coverage
+
+## Get data from database
+
+```{sql, output.var="top_1s_agg", cache=TRUE}
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'mtl' city_id, 1 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd.top_1sec_mtl ts,
+		top_sd.top_1min_mtl tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+  -- Get Mtl / w2
+UNION
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'mtl' city_id, 2 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd2.top_1sec_mtl ts,
+		top_sd2.top_1min_mtl tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+  -- Get Mtl / w3
+UNION
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'mtl' city_id, 3 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd3.top_1sec_mtl ts,
+		top_sd3.top_1min_mtl tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+  -- Get Skt / w1
+UNION
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'skt' city_id, 1 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd.top_1sec_skt ts,
+		top_sd.top_1min_skt tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+  -- Get Skt / w2
+UNION
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'skt' city_id, 2 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd2.top_1sec_skt ts,
+		top_sd2.top_1min_skt tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+  -- Get skt / w3
+UNION
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'skt' city_id, 3 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd3.top_1sec_skt ts,
+		top_sd3.top_1min_skt tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+  -- Get van / w1
+UNION
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'van' city_id, 1 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd.top_1sec_van ts,
+		top_sd.top_1min_van tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+  -- Get van / w2
+UNION
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'van' city_id, 2 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd2.top_1sec_van ts,
+		top_sd2.top_1min_van tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+  -- Get van / w3
+UNION
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'van' city_id, 3 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd3.top_1sec_van ts,
+		top_sd3.top_1min_van tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+  -- Get vic / w1
+UNION
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'vic' city_id, 1 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd.top_1sec_vic ts,
+		top_sd.top_1min_vic tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+  -- Get vic / w2
+UNION
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'vic' city_id, 2 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd2.top_1sec_vic ts,
+		top_sd2.top_1min_vic tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+-- Get vic / w3
+UNION
+select city_id, wave_id, interact_id, sd_id
+	,min(utcdate) start_time, max(utcdate) end_time
+	,max(utcdate) - min(utcdate) survey_duration
+	,count(*) n_epoch
+	,sum(wearing) n_epoch_wearing
+	,count(lat) n_gps_fix
+from (
+	SELECT 'vic' city_id, 3 wave_id
+		,ts.*, tm.wearing
+	FROM top_sd3.top_1sec_vic ts,
+		top_sd3.top_1min_vic tm
+	WHERE ts.interact_id = tm.interact_id AND ts.sd_id = tm.sd_id
+		AND date_trunc('minute', ts.utcdate) = tm.utcdate) as foo
+group by city_id, wave_id, interact_id, sd_id
+```
+
+```{r}
+head(top_1s_agg)
+```
+
+## Survey time span
+
+```{r}
+top_1s_agg |>
+  mutate(
+    sdate = as_date(start_time),
+    edate = as_date(end_time)
+  ) |>
+  ggplot() +
+  geom_segment(
+    aes(
+      x = sdate,
+      xend = edate,
+      y = city_id,
+      color = city_id
+  ),
+    linewidth = 2,
+    alpha = .3,
+    position = position_jitter(width = 0, height = .3)
+  ) +
+  scale_x_date(name = "Survey period", date_breaks = "2 month", date_labels = "%b %y") +
+  facet_wrap(vars(wave_id), ncol = 1, scales = "free", labeller = label_both) +
+  theme(legend.position = "none")
+
+```
+
+## Wear time vs total survey time
+
+```{r}
+top_1s_agg |>
+  ggplot() +
+  geom_point(aes(x=n_epoch, y=n_epoch_wearing, color=factor(sd_id))) +
+  xlim(0, 10 * 24 * 3600) + ylim(0, 10 * 24 * 3600) + # Define theoretical max of survey n_epoch, i.e. 10 days
+  facet_grid(rows = vars(city_id), cols = vars(wave_id)) +
+  theme(legend.position = "none")
+               
+```
+
+```{r}
+top_1s_agg |>
+  mutate(`Wear time` = n_epoch_wearing / n_epoch) |>
+  ggplot() +
+  geom_histogram(aes(x = `Wear time`)) +
+  scale_x_continuous(labels = scales::percent) +
+  facet_grid(rows = vars(city_id), cols = vars(wave_id), scales = "free_y")
+```
+
+## Wear time with GPS fix
+
+```{r}
+top_1s_agg |>
+  ggplot() +
+  geom_point(aes(x=n_epoch_wearing, y=n_gps_fix, color=factor(sd_id))) +
+  xlim(0, 10 * 24 * 3600) + ylim(0, 10 * 24 * 3600) + # Define theoretical max of survey n_epoch, i.e. 10 days
+  facet_grid(rows = vars(city_id), cols = vars(wave_id)) +
+  theme(legend.position = "none")
+               
+```
+
+```{r}
+top_1s_agg |>
+  mutate(`Wear time with GPS` = pmin(n_gps_fix / n_epoch_wearing, 1)) |>
+  ggplot() +
+  geom_histogram(aes(x = `Wear time with GPS`)) +
+  scale_x_continuous(labels = scales::percent) +
+  facet_grid(rows = vars(city_id), cols = vars(wave_id), scales = "free_y")
+```

@@ -198,7 +198,29 @@ Python script `sensedoc/ETL/top_error.py` scans the list of elites files and com
 
 ### Adjusting grants on top tables in database
 
+```sql
+GRANT USAGE ON SCHEMA top_sd, top_sd2, top_sd3 TO group_dfuller;
+GRANT SELECT ON ALL TABLES IN SCHEMA top_sd, top_sd2, top_sd3 TO group_dfuller;
 ```
-GRANT USAGE ON SCHEMA top_sd, top_sd2, top_sd3 TO zoeps, celiak, reiad, dfuller, kstanley;
-GRANT SELECT ON ALL TABLES IN SCHEMA top_sd, top_sd2, top_sd3  TO zoeps, celiak, reiad, dfuller, kstanley;
-```
+
+## Produce data (II)
+
+See script `sensedoc\ETL\top_step.py`
+
+This second stage focuses on the step counts extracted from the accelerometer data. It is based on a model ytained on UK Biobank dataset and published in _[Yuan, H., Chan, S., Creagh, A.P. et al. Self-supervised learning for human activity recognition using 700,000 person-days of wearable data. npj Digit. Med. 7, 91 (2024).](https://doi.org/10.1038/s41746-024-01062-3)_
+
+For each city/wave/participant:
+1. Load AXL data from CSV (see _Load and transfom data_ above)
+2. Compute steps using OxWalk trained ML algorithm
+3. Merge to into pg database
+4. Export to CSV, including `city_id`, `wave_id`, `interact_id`, `epoch` at the record level
+
+### Notes
+
+- Steps are computed with the [stepcount module](https://github.com/OxWearables/stepcount)
+- stepcount package does not work with the latest `StdEnv/2023` environment module on Digital Alliance clusters. It requires `StdEnv/2020`, which is not compatible with the new GPUs. Nonetheless, this is not a problem as it can be configured to use the CPU ressources instead of the GPU/CUDA ones within the `torch` module it relies on.
+- A specific virtual environment needs to be created, see `setup_env_stepcnt.sh`
+
+# SenseDoc Quality Checks
+
+See `QA` subfolder.

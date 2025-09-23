@@ -22,7 +22,7 @@ Data is aggregated by epoch: Three ToPs are created per city per wave: 1 second,
    + OUTPUT: 1 table of power per city, per wave per epoch (3/city/wave)
    + Data dictionary for **TOP variables for SenseDoc** is available here: https://teaminteract.ca/ressources/INTERACT_datadict.html#top_title 
 
-7. **Describe**: Create summary statistics:
+7. **Describe**: Create summary statistics (see `QA` subfolder):
       + date ranges
       + number of days of data per participant
       + min, max, SD distributions
