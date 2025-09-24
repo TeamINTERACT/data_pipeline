@@ -35,7 +35,7 @@ import logging
 import pandas as pd
 from tempfile import NamedTemporaryFile
 from sqlalchemy import create_engine, text
-from time import perf_counter
+from time import perf_counter, strftime
 import multiprocessing as mp
 import subprocess
 from itertools import starmap, islice
@@ -297,10 +297,10 @@ def step_produce_sd(src_dir, ncpu=None):
                         axl_elite_fname = os.path.abspath(f.path)
                         wrk_args.add((ccode, wave, axl_elite_fname, None))
 
-    # TESTING: subselect a sample of args
-    wrk_args = set(islice(wrk_args, 3))
-    logger.debug('List of args:\n' + '\n'.join(map(str, wrk_args)))
-    # END TESTING
+    # # TESTING: subselect a sample of args
+    # wrk_args = set(islice(wrk_args, 3))
+    # logger.debug('List of args:\n' + '\n'.join(map(str, wrk_args)))
+    # # END TESTING
 
     # Multiprocessing run
     c0 = perf_counter()
@@ -315,6 +315,7 @@ def step_produce_sd(src_dir, ncpu=None):
         result_df = pd.DataFrame([r for r in results], columns=['City', 'Wave', 'Filename', 'Status', 'Details']).convert_dtypes()
 
     print(result_df)
+    result_df.to_csv(os.path.join(scratch_folder, f'step_processing_results_{strftime("%Y-%m-%d_%H-%M-%S")}.csv'), index=False)
 
     # Display stats on computation
     print('==== PROCESSING REPORT | Steps ====')

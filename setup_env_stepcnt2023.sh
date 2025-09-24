@@ -15,7 +15,7 @@ pip install --no-index --upgrade pip
 pip install --no-deps stepcount
 pip install "numpy < 2"
 pip install "pandas < 2.1.0"
-pip install actipy hmmlearn imbalanced-learn joblib numba scikit-learn torchvision tqdm transforms3d sqlalchemy psycopg2
+pip install actipy hmmlearn imbalanced-learn joblib numba scikit-learn torchvision tqdm transforms3d sqlalchemy psycopg2 tabulate
 
 ## Environment ##
 # Package            Version
@@ -83,6 +83,7 @@ pip install actipy hmmlearn imbalanced-learn joblib numba scikit-learn torchvisi
 # statsmodels        0.14.3+computecanada
 # stepcount          3.16.2
 # sympy              1.13.1+computecanada
+# tabulate           0.9.0+computecanada
 # threadpoolctl      3.6.0+computecanada
 # torch              2.6.0+computecanada
 # torchvision        0.21.0+computecanada
