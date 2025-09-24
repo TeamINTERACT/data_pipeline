@@ -20,7 +20,7 @@ According to help: Crude estimates represent raw metrics calculated directly
 from observed data. Adjusted estimates compensate for missing time-series 
 values by imputing each absent timepoint with the average value at that same 
 clock time across all other recorded days. To derive adjusted totals and daily 
-summaries, any gaps in the required 24‑hour span are similarly imputed; if 
+summaries, any gaps in the required 24-hour span are similarly imputed; if 
 data remain missing after this process, the estimate is reported as NaN.
 --
 USAGE: stepcount.py [TARGET_ROOT_FOLDER]
@@ -38,7 +38,7 @@ from tempfile import NamedTemporaryFile
 from sqlalchemy import create_engine, text
 from time import perf_counter
 import multiprocessing as mp
-from itertools import starmap
+from itertools import starmap, islice
 from contextlib import redirect_stdout
 
 # stepcount module, see https://github.com/OxWearables/stepcount
@@ -122,7 +122,7 @@ def single_step_produce(city_code:str, wave:int, axl_elite_filename:str, dst_dir
     - Cleaning (TODO: add description)
     - Additional metrics (TODO: add description)
     """
-    logger.debug(f'PID {mp.current_process().pid}: processing {os.path.basename(axl_elite_filename)}')
+    logger.debug(f'PID {mp.current_process().pid}: processing w{wave}|{city_code}: {os.path.basename(axl_elite_filename)}')
     c0 = perf_counter()
 
     # A bit of checking needed here:
@@ -301,7 +301,12 @@ def step_produce_sd(src_dir, ncpu=None):
                     if re.match('\\d{9}_\\d{1,3}_AXL.csv', f.name) is not None:
                         axl_elite_fname = os.path.abspath(f.path)
                         wrk_args.add((ccode, wave, axl_elite_fname, None))
-                                    
+
+    # TESTING: subselect a sample of args
+    wrk_args = set(islice(wrk_args, 3))
+    logger.debug('List of args:\n' + '\n'.join(map(str, wrk_args)))
+    # END TESTING
+
     # Multiprocessing run
     c0 = perf_counter()
     if ncpu > 1: # Switch to multiprocessing if more than 1 CPU
