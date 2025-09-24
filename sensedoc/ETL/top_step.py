@@ -29,20 +29,16 @@ If TARGET_ROOT_FOLDER not provided, will default to test data folder.
 """
 
 import os
-import sys
 import re
-import io
+import sys
 import logging
 import pandas as pd
 from tempfile import NamedTemporaryFile
 from sqlalchemy import create_engine, text
 from time import perf_counter
 import multiprocessing as mp
+import subprocess
 from itertools import starmap, islice
-from contextlib import redirect_stdout
-
-# stepcount module, see https://github.com/OxWearables/stepcount
-from stepcount import stepcount
 
 # create module logger
 logger = logging.getLogger(__name__)
@@ -122,7 +118,7 @@ def single_step_produce(city_code:str, wave:int, axl_elite_filename:str, dst_dir
     - Cleaning (TODO: add description)
     - Additional metrics (TODO: add description)
     """
-    logger.debug(f'PID {mp.current_process().pid}: processing w{wave}|{city_code}: {os.path.basename(axl_elite_filename)}')
+    logger.info(f'PID {mp.current_process().pid}: processing w{wave}|{city_code}: {os.path.basename(axl_elite_filename)}')
     c0 = perf_counter()
 
     # A bit of checking needed here:
@@ -170,13 +166,12 @@ def single_step_produce(city_code:str, wave:int, axl_elite_filename:str, dst_dir
         if dst_dir is None:
             dst_dir = scratch_folder
         out_folder = os.path.join(dst_dir, "outputs_stepcount", f"w{wave}")
-        sys.argv += [axl_filename, "-q", 
+        run_args = ['stepcount', axl_filename, "-q", 
                     "-d", "cpu", 
                     "-t", "ssl", 
                     "--txyz", "utcdate,x,y,z", 
                     "-o", out_folder]
-        with redirect_stdout(io.StringIO()) as f:
-            stepcount.main()
+        subprocess.run(run_args, stdout=subprocess.DEVNULL, check=True)
     except Exception as e:
         logger.error(f'Unable to compute steps from {os.path.basename(axl_elite_filename)}, skipping')
         return (city_code, wave, os.path.basename(axl_elite_filename), 0, f'Error computing steps ({e})')
