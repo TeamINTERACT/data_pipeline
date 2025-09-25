@@ -328,6 +328,34 @@ def step_produce_sd(src_dir, ncpu=None):
     print(f'DONE: {perf_counter() - c0:.1f}s')
 
 
+def export_top_to_csv(dst_dir):
+    """ Export the ToP to individual CSV files into the destination folder
+    """
+    c0 = perf_counter()
+    dst_dir = os.path.abspath(dst_dir)
+    top_con = create_engine(f'postgresql://{db_user}@{db_host}/interact_db')
+    for ccode, city in cities.items():
+        for wave in waves:
+            # Load 1min top
+            target_schema = f'top_sd{"" if wave == 1 else wave}'
+            target_table1min = f'top_1min_{ccode}'
+            top = pd.read_sql_table(target_table1min, top_con, schema=target_schema)
+
+            # Get unique combination of iid/sd
+            iid_sd_df = top.groupby(['interact_id', 'sd_id']).size().reset_index().drop(columns=0)
+
+            # Export to CSV, one file per iid/sd
+            for iid, sd in iid_sd_df.itertuples(index=False):
+                logger.info(f'Exporting {city}|w{wave}: IID #{iid} / SD #{sd}')
+                top_csv_filename = os.path.join(dst_dir, city, f'wave_{wave:02d}', 'sensedoc_top_files', f'{iid}_{sd}_top1min.csv')
+                if not os.path.exists(os.path.dirname(top_csv_filename)):
+                    os.makedirs(os.path.dirname(top_csv_filename))
+                top[(top['interact_id'] == iid) & (top['sd_id'] == sd)].to_csv(top_csv_filename, index=False)
+                
+    print(f'DONE: {perf_counter() - c0:.1f}s')
+
+
+
 if __name__ == '__main__':
     # execute_alter_top('vic', 2)
     # single_step_produce('vic', 2, 
@@ -335,13 +363,15 @@ if __name__ == '__main__':
     #                     r'data\interact_test_data\victoria\wave_02\sensedoc_elite_files\102696608_464_AXL.csv',
     #                     r'data/output_step')
 
-    # Get target root folder as command line argument
-    if len(sys.argv[1:]):
-        root_data_folder = sys.argv[1]
+    # # Get target root folder as command line argument
+    # if len(sys.argv[1:]):
+    #     root_data_folder = sys.argv[1]
 
-    if not os.path.isdir(root_data_folder):
-        logger.error(f'No directory <{root_data_folder}> found! Aborting')
-        exit(1)
+    # if not os.path.isdir(root_data_folder):
+    #     logger.error(f'No directory <{root_data_folder}> found! Aborting')
+    #     exit(1)
 
-    ncpus = int(os.environ.get('SLURM_CPUS_PER_TASK',default=6))
-    step_produce_sd(root_data_folder, ncpus)
+    # ncpus = int(os.environ.get('SLURM_CPUS_PER_TASK',default=6))
+    # step_produce_sd(root_data_folder, ncpus)
+
+    export_top_to_csv(r'data/top_csv')
