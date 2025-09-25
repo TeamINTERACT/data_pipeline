@@ -1,7 +1,7 @@
 ---
 title: "INTERACT | SenseDoc Quality checks"
 author: "B. Thierry, Spherelab"
-date: "27 June, 2024"
+date: "25 September, 2025"
 output:
   html_document:
     toc: true
@@ -29,6 +29,7 @@ Create summary statistics (see `QA` subfolder):
 + number of days of data per participant
 + min, max, SD distributions
 + GPS locations
++ [Sept. 2025] Step statistics
 
 # Data coverage
 
@@ -336,3 +337,186 @@ top_1s_agg |>
 ```
 
 ![](top_describe_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+
+## Step statistcs
+
+Steps have been added in September 2025 following the Bernard Asante's work. Steps are computing according to the Python package `stepcount` (see [repo](https://github.com/OxWearables/stepcount)) based on _Small SR, Chan S, Walmsley R, et al. (2024) Self-Supervised Machine Learning to Characterize Step Counts from Wrist-Worn Accelerometers in the UK Biobank. Medicine & Science in Sports & Exercise. DOI: 10.1249/MSS.0000000000003478_
+
+
+``` sql
+select 'mtl' city_id, 1 wave_id,
+  utcdate at time zone 'America/Montreal' datetime,
+  wearing, steps, steps_adj
+from top_sd.top_1min_mtl
+union
+select 'skt' city_id, 1 wave_id,
+  utcdate at time zone 'America/Regina' datetime,
+  wearing, steps, steps_adj
+from top_sd.top_1min_skt
+union
+select 'van' city_id, 1 wave_id,
+  utcdate at time zone 'America/Vancouver' datetime,
+  wearing, steps, steps_adj
+from top_sd.top_1min_van
+union
+select 'vic' city_id, 1 wave_id,
+  utcdate at time zone 'America/Vancouver' datetime,
+  wearing, steps, steps_adj
+from top_sd.top_1min_vic
+union
+select 'mtl' city_id, 2 wave_id,
+  utcdate at time zone 'America/Montreal' datetime,
+  wearing, steps, steps_adj
+from top_sd2.top_1min_mtl
+union
+select 'skt' city_id, 2 wave_id,
+  utcdate at time zone 'America/Regina' datetime,
+  wearing, steps, steps_adj
+from top_sd2.top_1min_skt
+union
+select 'van' city_id, 2 wave_id,
+  utcdate at time zone 'America/Vancouver' datetime,
+  wearing, steps, steps_adj
+from top_sd2.top_1min_van
+union
+select 'vic' city_id, 2 wave_id,
+  utcdate at time zone 'America/Vancouver' datetime,
+  wearing, steps, steps_adj
+from top_sd.top_1min_vic
+union
+select 'mtl' city_id, 3 wave_id,
+  utcdate at time zone 'America/Montreal' datetime,
+  wearing, steps, steps_adj
+from top_sd3.top_1min_mtl
+union
+select 'skt' city_id, 3 wave_id,
+  utcdate at time zone 'America/Regina' datetime,
+  wearing, steps, steps_adj
+from top_sd3.top_1min_skt
+union
+select 'van' city_id, 3 wave_id,
+  utcdate at time zone 'America/Vancouver' datetime,
+  wearing, steps, steps_adj
+from top_sd3.top_1min_van
+union
+select 'vic' city_id, 3 wave_id,
+  utcdate at time zone 'America/Vancouver' datetime,
+  wearing, steps, steps_adj
+from top_sd3.top_1min_vic
+```
+
+### All epochs
+
+
+``` r
+top_1m |>
+  select(steps, steps_adj) |>
+  summary()
+```
+
+```
+##      steps           steps_adj      
+##  Min.   :  0       Min.   :  0.00   
+##  1st Qu.:  0       1st Qu.:  0.00   
+##  Median :  0       Median :  1.00   
+##  Mean   : 17       Mean   : 16.29   
+##  3rd Qu.: 23       3rd Qu.: 21.00   
+##  Max.   :171       Max.   :170.00   
+##  NA's   :4305757   NA's   :2866640
+```
+
+
+``` r
+top_1m |>
+  pivot_longer(cols = starts_with("steps"), names_to = "method", values_to = "steps", values_drop_na = T) |>
+  ggplot() +
+  geom_freqpoly(aes(x = steps, color = method), alpha=.5, lwd=1) +
+  scale_color_manual(labels = c("Raw steps", "Adjusted steps"), values = c("blue", "red")) +
+  facet_grid(rows = vars(city_id), cols = vars(wave_id)) +
+  labs(title = "Step distribution for raw and adjusted steps", x = "Steps / minutes") +
+  theme(legend.position = "bottom")
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](top_describe_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+
+
+``` r
+top_1m |>
+  pivot_longer(cols = starts_with("steps"), names_to = "method", values_to = "steps", values_drop_na = T) |>
+  filter(steps != 0) |>
+  ggplot() +
+  geom_freqpoly(aes(x = steps, color = method), alpha=.5, lwd=1) +
+  scale_color_manual(labels = c("Raw steps", "Adjusted steps"), values = c("blue", "red")) +
+  facet_grid(rows = vars(city_id), cols = vars(wave_id)) +
+  labs(title = "Step distribution for raw and adjusted steps | Minutes of zero step removed", x = "Steps / minutes") +
+  theme(legend.position = "bottom")
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](top_describe_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+
+### Wearing period epochs
+
+
+``` r
+top_1m |>
+  filter(wearing == 1) |>
+  select(steps, steps_adj) |>
+  summary()
+```
+
+```
+##      steps          steps_adj      
+##  Min.   :  0.00   Min.   :  0.00   
+##  1st Qu.:  0.00   1st Qu.:  0.00   
+##  Median :  0.00   Median :  0.00   
+##  Mean   : 17.19   Mean   : 12.38   
+##  3rd Qu.: 23.00   3rd Qu.: 14.00   
+##  Max.   :171.00   Max.   :170.00   
+##  NA's   :424653   NA's   :1952965
+```
+
+
+``` r
+top_1m |>
+  pivot_longer(cols = starts_with("steps"), names_to = "method", values_to = "steps", values_drop_na = T) |>
+  filter(wearing == 1) |>
+  ggplot() +
+  geom_freqpoly(aes(x = steps, color = method), alpha=.5, lwd=1) +
+  scale_color_manual(labels = c("Raw steps", "Adjusted steps"), values = c("blue", "red")) +
+  facet_grid(rows = vars(city_id), cols = vars(wave_id)) +
+  labs(title = "Step distribution for raw and adjusted steps | Wearing periods only", x = "Steps / minutes") +
+  theme(legend.position = "bottom")
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](top_describe_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+
+
+``` r
+top_1m |>
+  pivot_longer(cols = starts_with("steps"), names_to = "method", values_to = "steps", values_drop_na = T) |>
+  filter(wearing == 1 & steps != 0) |>
+  ggplot() +
+  geom_freqpoly(aes(x = steps, color = method), alpha=.5, lwd=1) +
+  scale_color_manual(labels = c("Raw steps", "Adjusted steps"), values = c("blue", "red")) +
+  facet_grid(rows = vars(city_id), cols = vars(wave_id)) +
+  labs(title = "Step distribution for raw and adjusted steps | Wearing periods only, minutes of zero step removed", x = "Steps / minutes") +
+  theme(legend.position = "bottom")
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](top_describe_files/figure-html/unnamed-chunk-14-1.png)<!-- -->

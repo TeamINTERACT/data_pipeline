@@ -14,7 +14,7 @@
 
 <title>INTERACT | SenseDoc Quality checks</title>
 
-<script src="top_describe_files/header-attrs-2.27/header-attrs.js"></script>
+<script src="top_describe_files/header-attrs-2.29/header-attrs.js"></script>
 <script src="top_describe_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="top_describe_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -253,7 +253,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">INTERACT | SenseDoc Quality checks</h1>
 <h4 class="author">B. Thierry, Spherelab</h4>
-<h4 class="date">27 June, 2024</h4>
+<h4 class="date">25 September, 2025</h4>
 
 </div>
 
@@ -266,6 +266,7 @@ div.tocify {
 <li>number of days of data per participant</li>
 <li>min, max, SD distributions</li>
 <li>GPS locations</li>
+<li>[Sept. 2025] Step statistics</li>
 </ul>
 </div>
 <div id="data-coverage" class="section level1" number="2">
@@ -541,6 +542,153 @@ src="top_describe_files/figure-html/unnamed-chunk-6-1.png" /><!-- --></p>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img
 src="top_describe_files/figure-html/unnamed-chunk-7-1.png" /><!-- --></p>
+</div>
+<div id="step-statistcs" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Step statistcs</h2>
+<p>Steps have been added in September 2025 following the Bernard
+Asante’s work. Steps are computing according to the Python package
+<code>stepcount</code> (see <a
+href="https://github.com/OxWearables/stepcount">repo</a>) based on
+<em>Small SR, Chan S, Walmsley R, et al. (2024) Self-Supervised Machine
+Learning to Characterize Step Counts from Wrist-Worn Accelerometers in
+the UK Biobank. Medicine &amp; Science in Sports &amp; Exercise. DOI:
+10.1249/MSS.0000000000003478</em></p>
+<pre class="sql"><code>select &#39;mtl&#39; city_id, 1 wave_id,
+  utcdate at time zone &#39;America/Montreal&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd.top_1min_mtl
+union
+select &#39;skt&#39; city_id, 1 wave_id,
+  utcdate at time zone &#39;America/Regina&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd.top_1min_skt
+union
+select &#39;van&#39; city_id, 1 wave_id,
+  utcdate at time zone &#39;America/Vancouver&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd.top_1min_van
+union
+select &#39;vic&#39; city_id, 1 wave_id,
+  utcdate at time zone &#39;America/Vancouver&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd.top_1min_vic
+union
+select &#39;mtl&#39; city_id, 2 wave_id,
+  utcdate at time zone &#39;America/Montreal&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd2.top_1min_mtl
+union
+select &#39;skt&#39; city_id, 2 wave_id,
+  utcdate at time zone &#39;America/Regina&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd2.top_1min_skt
+union
+select &#39;van&#39; city_id, 2 wave_id,
+  utcdate at time zone &#39;America/Vancouver&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd2.top_1min_van
+union
+select &#39;vic&#39; city_id, 2 wave_id,
+  utcdate at time zone &#39;America/Vancouver&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd.top_1min_vic
+union
+select &#39;mtl&#39; city_id, 3 wave_id,
+  utcdate at time zone &#39;America/Montreal&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd3.top_1min_mtl
+union
+select &#39;skt&#39; city_id, 3 wave_id,
+  utcdate at time zone &#39;America/Regina&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd3.top_1min_skt
+union
+select &#39;van&#39; city_id, 3 wave_id,
+  utcdate at time zone &#39;America/Vancouver&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd3.top_1min_van
+union
+select &#39;vic&#39; city_id, 3 wave_id,
+  utcdate at time zone &#39;America/Vancouver&#39; datetime,
+  wearing, steps, steps_adj
+from top_sd3.top_1min_vic</code></pre>
+<div id="all-epochs" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> All epochs</h3>
+<pre class="r"><code>top_1m |&gt;
+  select(steps, steps_adj) |&gt;
+  summary()</code></pre>
+<pre><code>##      steps           steps_adj      
+##  Min.   :  0       Min.   :  0.00   
+##  1st Qu.:  0       1st Qu.:  0.00   
+##  Median :  0       Median :  1.00   
+##  Mean   : 17       Mean   : 16.29   
+##  3rd Qu.: 23       3rd Qu.: 21.00   
+##  Max.   :171       Max.   :170.00   
+##  NA&#39;s   :4305757   NA&#39;s   :2866640</code></pre>
+<pre class="r"><code>top_1m |&gt;
+  pivot_longer(cols = starts_with(&quot;steps&quot;), names_to = &quot;method&quot;, values_to = &quot;steps&quot;, values_drop_na = T) |&gt;
+  ggplot() +
+  geom_freqpoly(aes(x = steps, color = method), alpha=.5, lwd=1) +
+  scale_color_manual(labels = c(&quot;Raw steps&quot;, &quot;Adjusted steps&quot;), values = c(&quot;blue&quot;, &quot;red&quot;)) +
+  facet_grid(rows = vars(city_id), cols = vars(wave_id)) +
+  labs(title = &quot;Step distribution for raw and adjusted steps&quot;, x = &quot;Steps / minutes&quot;) +
+  theme(legend.position = &quot;bottom&quot;)</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img
+src="top_describe_files/figure-html/unnamed-chunk-10-1.png" /><!-- --></p>
+<pre class="r"><code>top_1m |&gt;
+  pivot_longer(cols = starts_with(&quot;steps&quot;), names_to = &quot;method&quot;, values_to = &quot;steps&quot;, values_drop_na = T) |&gt;
+  filter(steps != 0) |&gt;
+  ggplot() +
+  geom_freqpoly(aes(x = steps, color = method), alpha=.5, lwd=1) +
+  scale_color_manual(labels = c(&quot;Raw steps&quot;, &quot;Adjusted steps&quot;), values = c(&quot;blue&quot;, &quot;red&quot;)) +
+  facet_grid(rows = vars(city_id), cols = vars(wave_id)) +
+  labs(title = &quot;Step distribution for raw and adjusted steps | Minutes of zero step removed&quot;, x = &quot;Steps / minutes&quot;) +
+  theme(legend.position = &quot;bottom&quot;)</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img
+src="top_describe_files/figure-html/unnamed-chunk-11-1.png" /><!-- --></p>
+</div>
+<div id="wearing-period-epochs" class="section level3" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Wearing period
+epochs</h3>
+<pre class="r"><code>top_1m |&gt;
+  filter(wearing == 1) |&gt;
+  select(steps, steps_adj) |&gt;
+  summary()</code></pre>
+<pre><code>##      steps          steps_adj      
+##  Min.   :  0.00   Min.   :  0.00   
+##  1st Qu.:  0.00   1st Qu.:  0.00   
+##  Median :  0.00   Median :  0.00   
+##  Mean   : 17.19   Mean   : 12.38   
+##  3rd Qu.: 23.00   3rd Qu.: 14.00   
+##  Max.   :171.00   Max.   :170.00   
+##  NA&#39;s   :424653   NA&#39;s   :1952965</code></pre>
+<pre class="r"><code>top_1m |&gt;
+  pivot_longer(cols = starts_with(&quot;steps&quot;), names_to = &quot;method&quot;, values_to = &quot;steps&quot;, values_drop_na = T) |&gt;
+  filter(wearing == 1) |&gt;
+  ggplot() +
+  geom_freqpoly(aes(x = steps, color = method), alpha=.5, lwd=1) +
+  scale_color_manual(labels = c(&quot;Raw steps&quot;, &quot;Adjusted steps&quot;), values = c(&quot;blue&quot;, &quot;red&quot;)) +
+  facet_grid(rows = vars(city_id), cols = vars(wave_id)) +
+  labs(title = &quot;Step distribution for raw and adjusted steps | Wearing periods only&quot;, x = &quot;Steps / minutes&quot;) +
+  theme(legend.position = &quot;bottom&quot;)</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img
+src="top_describe_files/figure-html/unnamed-chunk-13-1.png" /><!-- --></p>
+<pre class="r"><code>top_1m |&gt;
+  pivot_longer(cols = starts_with(&quot;steps&quot;), names_to = &quot;method&quot;, values_to = &quot;steps&quot;, values_drop_na = T) |&gt;
+  filter(wearing == 1 &amp; steps != 0) |&gt;
+  ggplot() +
+  geom_freqpoly(aes(x = steps, color = method), alpha=.5, lwd=1) +
+  scale_color_manual(labels = c(&quot;Raw steps&quot;, &quot;Adjusted steps&quot;), values = c(&quot;blue&quot;, &quot;red&quot;)) +
+  facet_grid(rows = vars(city_id), cols = vars(wave_id)) +
+  labs(title = &quot;Step distribution for raw and adjusted steps | Wearing periods only, minutes of zero step removed&quot;, x = &quot;Steps / minutes&quot;) +
+  theme(legend.position = &quot;bottom&quot;)</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img
+src="top_describe_files/figure-html/unnamed-chunk-14-1.png" /><!-- --></p>
+</div>
 </div>
 </div>
 
