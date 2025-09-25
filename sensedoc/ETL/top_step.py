@@ -374,4 +374,4 @@ if __name__ == '__main__':
     # ncpus = int(os.environ.get('SLURM_CPUS_PER_TASK',default=6))
     # step_produce_sd(root_data_folder, ncpus)
 
-    export_top_to_csv(r'data/top_csv')
+    export_top_to_csv(r'/home/btcrchum/projects/def-dfuller/interact/data_archive')

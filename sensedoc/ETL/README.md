@@ -218,8 +218,44 @@ For each city/wave/participant:
 ### Notes
 
 - Steps are computed with the [stepcount module](https://github.com/OxWearables/stepcount)
-- stepcount package does not work with the latest `StdEnv/2023` environment module on Digital Alliance clusters. It requires `StdEnv/2020`, which is not compatible with the new GPUs. Nonetheless, this is not a problem as it can be configured to use the CPU ressources instead of the GPU/CUDA ones within the `torch` module it relies on.
-- A specific virtual environment needs to be created, see `setup_env_stepcnt.sh`
+- stepcount package does not work out of the box with the latest `StdEnv/2023` environment module on Digital Alliance clusters. It requires `StdEnv/2020`, which is not compatible with the new GPUs. Nonetheless, by manually selecting the Python modules required by `stepcount` and deactivating dependency checking, it is possible to successfully deploy `stepcount` under `StdEnv/2023`.
+- A specific virtual environment needs to be created, see `setup_env_stepcnt2023.sh`
+
+### Summary:
+
+```
+Job ID: 5394739
+Cluster: fir
+User/Group: btcrchum/btcrchum
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 24
+CPU Utilized: 9-00:33:14
+CPU Efficiency: 97.33% of 9-06:29:12 core-walltime
+Job Wall-clock time: 09:16:13
+Memory Utilized: 119.99 GB
+Memory Efficiency: 99.99% of 120.00 GB (5.00 GB/core)
+```
+
+```
+==== PROCESSING REPORT | Steps ====
+ City   |   Wave |   OK |   Skipped
+--------+--------+------+-----------
+ mtl    |      1 |  160 |         1
+ mtl    |      2 |   44 |         1
+ mtl    |      3 |   53 |         1
+ skt    |      1 |   93 |        18
+ skt    |      2 |   32 |         0
+ skt    |      3 |   10 |         0
+ van    |      1 |  149 |         2
+ van    |      2 |   87 |         3
+ van    |      3 |   76 |         3
+ vic    |      1 |  162 |         1
+ vic    |      2 |  134 |         0
+ vic    |      3 |   90 |         0
+```
+
+*NB*: Skipped participants have no ToP records in DB, see above for explanation of missing records.
 
 # SenseDoc Quality Checks
 

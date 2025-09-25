@@ -2,8 +2,8 @@
 #SBATCH --account=def-dfuller
 #SBATCH --mem-per-cpu=5G
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=24
-#SBATCH --time=10:00:00
+#SBATCH --cpus-per-task=1
+#SBATCH --time=1:00:00
 #SBATCH --mail-user=benoit.thierry@umontreal.ca
 #SBATCH --mail-type=ALL
 
