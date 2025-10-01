@@ -8,9 +8,10 @@ are flagged for follow up.
 A second step during validation involves listing all *.sdb files found and 
 not matched against linkage file.
 --
-USAGE: validate.py [TARGET_ROOT_FOLDER]
+USAGE: validate.py [TARGET_ROOT_FOLDER [WAVE]]
 
 If TARGET_ROOT_FOLDER not provided, will default to test data folder.
+If WAVE is not provided, all waves (1-4) will be processed
 """
 
 import os
@@ -24,7 +25,7 @@ cities = {'mtl': 'montreal',
           'skt': 'saskatoon', 
           'van': 'vancouver', 
           'vic': 'victoria'}
-waves = [1, 2, 3]
+waves = [1, 2, 3, 4]
 
 # Define base folder when not provided on the cmd line
 root_data_folder = 'data\interact_test_data'
@@ -41,12 +42,26 @@ if __name__ == '__main__':
         logging.error(f'No directory <{root_data_folder}> found! Aborting')
         exit(1)
 
+    # Get wave id to process
+    if len(sys.argv[2:]):
+        wave = sys.argv[2]
+    
+    if wave not in waves:
+        logging.error(f'Invalid wave id <{wave}>! Aborting')
+        exit(1)
+    else:
+        waves = [wave]
+
     # Reporting, stored in a list of tuples (city, wave, n pids, n sdb, status)
     report = []
     matched_sdbs = [] # keep track of all matched sdb files, for 2nd step validation
 
     for ccode, city in cities.items():
         for wave in waves:
+            # Check if city has no SD data, then skip. This happened at w4 for skt and van
+            if wave == 4 and ccode in ['van', 'skt']:
+                continue
+
             n_match = 0
 
             # Heading
