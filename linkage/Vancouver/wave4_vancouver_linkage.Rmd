@@ -1,0 +1,173 @@
+---
+title: "Wave 4 Vancouver Linkage"
+author: "Zoé Poirier Stephens"
+output:
+  github_document:
+    keep_html: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidyr)
+library(kableExtra)
+```
+
+# Vancouver Wave 4 Linkage Files
+
+### Read in Data
+
+Reading in the data. These are data are relatively different from Wave 1 and 2 as we have a separate file for each of the Polygon, Ethica, and Sensedoc data sources. We are also moving to our naming convention of extract, validate, etc for this document. Here we are reading in two files. No SenseDoc data was collected in Vancouver at w4. Those fields are in the linkage file as NA. 
+
+- `plg_participants-20241219.csv` : a download of the participant csv from the PLG dashboard on Dec 19th 
+- `avicenna_study-3729-export-4-participation-2024-12-16-15-02-28.csv` : a download of the participant csv from the Avicenna dashboard on Dec 16th 
+
+
+```{r}
+#setwd("/Users/dlf545/Documents/ForDan_Linkages_072023")
+setwd("I:/Benoit/OneDrive - Universite de Montreal/Documents/PROJETS/INTERACT_2016/Donnees/Wave4/Vancouver_linkages_w4")
+
+w4_plg <- read_delim("plg_participants-20241219.csv", delim = ",", name_repair = "universal")
+w4_eth <- read_delim("avicenna_study-3729-export-4-participation-2024-12-16-15-02-28.csv", delim = ",", name_repair = "universal")
+
+```
+
+### Validate
+
+Only keep ids of people who have done eligibility 
+
+```{r}
+w4_plg <- filter(w4_plg, completed.sessions.count >= 1) 
+```
+
+### Rename columns 
+
+```{r}
+w4_plg <- rename(w4_plg, 
+                 interact_id = study.id,
+                 email = identifier, 
+                 plg_id = id)
+
+w4_eth <- rename(w4_eth, 
+                  ethica_start = Start.Time, 
+                  ethica_end = End.Time, 
+                  email = Email.Address, 
+                  ethica_id = ID)
+```
+
+```{r}
+w4_plg <- select(w4_plg, interact_id, email, plg_id, status)
+```
+
+## Flag deactivated accounts, dropped_out accounts.
+
+Polygon dashboard is how coordinators tracked drop out participants. A drop out on Ethica, is just understood as a drop from that study activity.
+
+(Nota: PLG has different labels to designate a drop out. The plg status 'deactivated' is renamed to dropped out here)
+
+How coordinators used the two statuses at w4: 
+
++ Désinscrit : Unsubscribed from e-mailings for the Wave. Can contact in future recruitment years.
+
++ Désactivé : Account deactivated – no longer an INTERACT participant. Do not contact in future years. Includes spam accounts, those no longer living in a study city (or otherwise ineligible), people without valid contact information (e.g., unresponsive, undeliverable email, or invalid phone number), and those requesting to withdraw from the study.
+
+```{r}
+w4_plg$dropout <- ifelse(w4_plg$status=="deactivated", 1, 0)
+
+## join PLG with Ethica 
+
+van_w4 <- full_join(w4_plg, w4_eth, by= "email") 
+
+
+```
+
+### Flag Ethica test  
+
+List of test accounts used by our research team to test the Ethica app. These will be flagged later. 
+
+```{r}
+ethica_tests <- c("1451", "2036", 
+                  "5256", "1454", 
+                  "8911", "1469",
+                  "1462", "9321", 
+                  "12641", "12638", 
+                  "12617", "1470",
+                  "4579", "5367",
+                  "5399","3962")
+```
+
+Here we create a 0/1 flag for Ethica test accounts. 
+
+```{r}
+van_w4 <- van_w4 %>%
+  mutate(test = ifelse(ethica_id %in% ethica_tests, 1, 0)) 
+```
+
+## add 1 if test accounts 
+
+```{r}
+van_w4$test[van_w4$email== "moreno.zanotto@gmail.com"] <- 1  
+van_w4$test[van_w4$email== "vancouver@teaminteract.ca"] <- 1  
+van_w4$test[van_w4$email== "joalleva@gmail.com"] <- 1  
+van_w4$test[van_w4$email== "mzanotto@sfu.ca"] <- 1  
+van_w4$test[van_w4$email== "vancouver+noveritas@teaminteract.ca"] <- 1  
+van_w4$test[van_w4$email== "test@teaminteract.ca"] <- 1  
+van_w4$test[van_w4$email== "courtneyjross@gmail.com"] <- 1  
+van_w4$test[van_w4$email== "testc@testc.com"] <- 1  
+van_w4$test[van_w4$email== "vancouver+moved@teaminteract.ca"] <- 1
+
+```
+
+### Fix unmatched ethica users
+
+Participant with ethica_id `97940` used to be in Victoria and has now moved to Vancouver, validated with email address.
+
+```{r}
+van_w4 <- van_w4 |>
+  filter(!(ethica_id %in% c(97940)))
+  
+van_w4[van_w4$interact_id == "204807216" & !is.na(van_w4$interact_id),"ethica_id"] <- 97940
+
+```
+
+
+### Adding columns
+
+Here we add the columns to have consistent columns across linkage files. 
+
+```{r}
+van_w4$data_disposition <- NA
+van_w4$treksoft_pid <- NA
+van_w4$treksoft_uid <- NA
+van_w4$spam_participant <- 0
+van_w4$wave <- 4
+
+## adding the sd fields as empty
+van_w4$sd_id_1  <- NA
+van_w4$sd_firmware_1  <- NA
+van_w4$sd_start_1  <- NA
+van_w4$sd_end_1  <- NA
+van_w4$sd_id_2  <- NA
+van_w4$sd_firmware_2  <- NA
+van_w4$sd_start_2  <- NA
+van_w4$sd_end_2  <- NA
+
+van_w4$interact_id <- as.numeric(van_w4$interact_id)
+
+van_w4$treksoft_pid <- as.numeric(van_w4$treksoft_pid)
+van_w4$treksoft_uid <- as.numeric(van_w4$treksoft_uid)
+```
+
+
+
+### Selecting variables
+
+```{r}
+van_w4 <- select(van_w4, interact_id, treksoft_pid, treksoft_uid, ethica_id, sd_id_1, sd_firmware_1, sd_start_1, sd_end_1, sd_id_2, sd_firmware_2, sd_start_2, sd_end_2, data_disposition, plg_id, dropout, wave, test, spam_participant)
+```
+
+## Write clean csv file
+
+```{r, eval = TRUE}
+write.csv(van_w4, file = "linkage_van_w4.csv")
+```
