@@ -43,14 +43,14 @@ if __name__ == '__main__':
         exit(1)
 
     # Get wave id to process
+    wave_id = None
     if len(sys.argv[2:]):
-        wave = sys.argv[2]
-    
-    if wave not in waves:
-        logging.error(f'Invalid wave id <{wave}>! Aborting')
-        exit(1)
-    else:
-        waves = [wave]
+        wave_id = int(sys.argv[2])
+        if wave_id not in waves:
+            logging.error(f'Invalid wave id <{wave_id}>! Aborting')
+            exit(1)
+        else:
+            waves = [wave_id]
 
     # Reporting, stored in a list of tuples (city, wave, n pids, n sdb, status)
     report = []
@@ -166,7 +166,10 @@ if __name__ == '__main__':
     for dirpath, dirnames, filenames in os.walk(root_data_folder):
         for f in filenames:
             if os.path.splitext(f)[1] == '.sdb' and not re.fullmatch('.+_rtc\\d+.sdb', f) and os.path.join(dirpath, f) not in matched_sdbs:
-                unmatched_sdbs.append(os.path.join(dirpath, f))
+                if wave_id is not None and re.search(f'[\\\\/]wave_{wave_id:02d}[\\\\/]', dirpath):
+                    unmatched_sdbs.append(os.path.join(dirpath, f))
+                elif wave_id is None:
+                    unmatched_sdbs.append(os.path.join(dirpath, f))
     if len(unmatched_sdbs):
         print(f'The following sdb files have been found in <{root_data_folder}> with no match in linkage files:')
         for i, sdb in enumerate(unmatched_sdbs, 1):
