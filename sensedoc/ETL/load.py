@@ -6,9 +6,10 @@ participant with data and INTERACT_ID.
 Resulting CSV files are stored in the <sensedoc_elite_files> subfolder within
 each city/wave folder.
 --
-USAGE: load.py [TARGET_ROOT_FOLDER]
+USAGE: load.py [TARGET_ROOT_FOLDER [WAVE]]
 
 If TARGET_ROOT_FOLDER not provided, will default to test data folder.
+If WAVE is not provided, all waves (1-4) will be processed
 """
 # Required to avoid bug in Pandas https://github.com/pandas-dev/pandas/issues/55025
 import warnings
@@ -35,10 +36,11 @@ cities = {'mtl': 'montreal',
           'skt': 'saskatoon', 
           'van': 'vancouver', 
           'vic': 'victoria'}
-waves = [1, 2, 3]
+waves = [1, 2, 3, 4]
 
 # Define base folder when not provided on the cmd line
 root_data_folder = 'data\interact_test_data'
+wave_id = None
 
 
 def single_load_transform(interact_id, sd_id, src_sdb, dst_dir, 
@@ -93,7 +95,10 @@ def single_load_transform(interact_id, sd_id, src_sdb, dst_dir,
 
     if pd.notna(start_date):
         try:
-            start_date = datetime.strptime(f'{start_date} 00:00:00', '%Y-%m-%d %H:%M:%S')
+            if re.match(r'\d{4}-\d{2}-\d{2}', start_date): # expected format YYYY-MM-DD
+                start_date = datetime.strptime(f'{start_date} 00:00:00', '%Y-%m-%d %H:%M:%S')
+            else: # might be Vic 4 format DD-Month-YYYY
+                start_date = datetime.strptime(f'{start_date} 00:00:00', '%d-%B-%Y %H:%M:%S')
             start_date = target_tz.localize(start_date)
             start_date = start_date.astimezone(pytz.utc)
         except Exception as e:
@@ -103,7 +108,10 @@ def single_load_transform(interact_id, sd_id, src_sdb, dst_dir,
 
     if pd.notna(end_date):
         try:
-            end_date = datetime.strptime(f'{end_date} 23:59:59', '%Y-%m-%d %H:%M:%S')
+            if re.match(r'\d{4}-\d{2}-\d{2}', end_date): # expected format YYYY-MM-DD
+                end_date = datetime.strptime(f'{end_date} 23:59:59', '%Y-%m-%d %H:%M:%S')
+            else: # might be Vic 4 format DD-Month-YYYY
+                end_date = datetime.strptime(f'{end_date} 00:00:00', '%d-%B-%Y %H:%M:%S')
             end_date = target_tz.localize(end_date)
             end_date = end_date.astimezone(pytz.utc)
         except Exception as e:
@@ -340,6 +348,10 @@ def load_transform_sd(src_dir, ncpu=None):
 
     for ccode, city in cities.items():
         for wave in waves:
+            # Check if city has no SD data, then skip. This happened at w4 for skt and van
+            if wave == 4 and ccode in ['van', 'skt']:
+                continue
+
             # Check that city/wave folder exists, which is the case with test data...
             if not os.path.exists(os.path.join(src_dir, city, f'wave_{wave:02d}')):
                 logging.warning(f'Unable to find subfolder <{os.path.join(city, f"wave_{wave:02d}")}>, skipping')
@@ -461,6 +473,15 @@ if __name__ == '__main__':
     if not os.path.isdir(root_data_folder):
         logging.error(f'No directory <{root_data_folder}> found! Aborting')
         exit(1)
+
+    # Get wave id to process
+    if len(sys.argv[2:]):
+        wave_id = int(sys.argv[2])
+        if wave_id not in waves:
+            logging.error(f'Invalid wave id <{wave_id}>! Aborting')
+            exit(1)
+        else:
+            waves = [wave_id]
 
     ncpus = int(os.environ.get('SLURM_CPUS_PER_TASK',default=1))
     load_transform_sd(root_data_folder, ncpus)

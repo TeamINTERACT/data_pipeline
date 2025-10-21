@@ -1,0 +1,65 @@
+created virtual environment CPython3.11.5.final.0-64 in 12165ms
+  creator CPython3Posix(dest=/localscratch/btcrchum.8410998.0/env, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/btcrchum/.local/share/virtualenv)
+    added seed packages: pip==25.2, setuptools==80.9.0+computecanada, wheel==0.45.1+computecanada
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+Lmod Warning:
+-------------------------------------------------------------------------------
+The following dependent module(s) are not currently loaded: sqlite/3.43.1
+(required by: python/3.11.5)
+-------------------------------------------------------------------------------
+
+
+
+
+The following have been reloaded with a version change:
+  1) sqlite/3.43.1 => sqlite/3.38.5
+
+Looking in links: /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx512, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx512, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic
+Requirement already satisfied: pip in /localscratch/btcrchum.8410998.0/env/lib/python3.11/site-packages (25.2)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/pip-25.2+computecanada-py3-none-any.whl
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 25.2
+    Uninstalling pip-25.2:
+      Successfully uninstalled pip-25.2
+Successfully installed pip-25.2+computecanada
+Looking in links: /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx512, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx512, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic
+Collecting geographiclib==2.0 (from -r requirements.txt (line 1))
+  Using cached geographiclib-2.0-py3-none-any.whl.metadata (1.4 kB)
+Collecting geopy==2.4.0 (from -r requirements.txt (line 2))
+  Using cached geopy-2.4.0-py3-none-any.whl.metadata (6.8 kB)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/greenlet-2.0.2+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 3))
+Requirement already satisfied: numpy==1.25.2+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 4)) (1.25.2+computecanada)
+Requirement already satisfied: pandas==2.1.0+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 5)) (2.1.0+computecanada)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2/llvmlite-0.41.0+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 6))
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/generic/numba-0.58.0+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 7))
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2/psycopg2-2.9.7+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 8))
+Collecting pyproj==3.6.1 (from -r requirements.txt (line 9))
+  Using cached pyproj-3.6.1-cp311-cp311-linux_x86_64.whl
+Requirement already satisfied: python-dateutil==2.8.2+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/ipykernel/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 10)) (2.8.2+computecanada)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/pytz-2023.3.post1+computecanada-py2.py3-none-any.whl (from -r requirements.txt (line 11))
+Requirement already satisfied: six==1.16.0+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/ipykernel/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 12)) (1.16.0+computecanada)
+Collecting resampy==0.4.2 (from -r requirements.txt (line 13))
+  Using cached resampy-0.4.2-py3-none-any.whl.metadata (2.8 kB)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/SQLAlchemy-2.0.21+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 14))
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/tabulate-0.9.0+computecanada-py3-none-any.whl (from -r requirements.txt (line 15))
+Requirement already satisfied: typing_extensions==4.7.1+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 16)) (4.7.1+computecanada)
+Requirement already satisfied: tzdata==2023.3+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 17)) (2023.3+computecanada)
+Requirement already satisfied: certifi in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages (from pyproj==3.6.1->-r requirements.txt (line 9)) (2023.7.22+computecanada)
+Using cached geographiclib-2.0-py3-none-any.whl (40 kB)
+Using cached geopy-2.4.0-py3-none-any.whl (125 kB)
+Using cached resampy-0.4.2-py3-none-any.whl (3.1 MB)
+Installing collected packages: pytz, tabulate, pyproj, psycopg2, llvmlite, greenlet, geographiclib, SQLAlchemy, numba, geopy, resampy
+  Attempting uninstall: pytz
+    Found existing installation: pytz 2023.3+computecanada
+    Not uninstalling pytz at /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages, outside environment /localscratch/btcrchum.8410998.0/env
+    Can't uninstall 'pytz'. No files were found to uninstall.
+
+Successfully installed SQLAlchemy-2.0.21+computecanada geographiclib-2.0 geopy-2.4.0 greenlet-2.0.2+computecanada llvmlite-0.41.0+computecanada numba-0.58.0+computecanada psycopg2-2.9.7+computecanada pyproj-3.6.1 pytz-2023.3.post1+computecanada resampy-0.4.2 tabulate-0.9.0+computecanada
+[10/21/2025 11:11:59] WARNING: Elite folder <montreal/wave_04/sensedoc_elite_files> contains already processed files, which will be skipped
+[10/21/2025 11:11:59] WARNING: No folder <montreal/wave_04/sensedoc/402392516_179> found, skipping
+[10/21/2025 11:41:34] WARNING: Participant # 104039365: empty GPS dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/victoria/wave_04/sensedoc/104039365_434/SD434fw2106_20240814_114047.sdb>)
+[10/21/2025 11:41:34] WARNING: Participant # 104039365: empty AXL dataset (source: </home/btcrchum/projects/def-dfuller/interact/data_archive/victoria/wave_04/sensedoc/104039365_434/SD434fw2106_20240814_114047.sdb>)
+slurmstepd: error: *** JOB 8410998 ON fc30606 CANCELLED AT 2025-10-21T12:57:12 ***
+slurmstepd: error: Detected 10 oom_kill events in StepId=8410998.batch. Some of the step tasks have been OOM Killed.

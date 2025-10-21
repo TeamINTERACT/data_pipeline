@@ -14,7 +14,7 @@ For each city/wave:
 
 - Vancouver and Victoria wave 3 data required to be unzipped and renamed before being validated, see script `sensedoc\ETL\utilities.py`
 - Jeff's flag (_e.g._ `ignore`) are not considered when looking for data
-- As of commit `#348ef11`, participant'S data folder with `sdb` files are not listed in linkage file are ignored
+- As of commit `#348ef11`, participant's data folder with `sdb` files that are not listed in linkage file are ignored
 
 ### Summary
 
@@ -59,6 +59,22 @@ Victoria  | Wave 1 |            155 |            165 |         163 | Missing SD 
 Victoria  | Wave 2 |            130 |            134 |         134 | OK
 Victoria  | Wave 3 |             89 |             91 |          90 | Missing SD files
 
+==== SECOND STEP VALIDATION ====
+Ok
+```
+
+### Wave 4
+
+At wave 4, only Victoria and Montréal have been collecting SD data.
+
+```
+===== VALIDATING Montreal | Wave 4 =====
+ERROR: Unable to find directory <montreal/wave_04/sensedoc/402392516_179> | Participant not responding, according to Marianne
+===== VALIDATING Victoria | Wave 4 =====
+ City     | Wave   |   PIDs with SD |   Expected #SD |   Found #SD | Status
+----------+--------+----------------+----------------+-------------+------------------
+ Montreal | Wave 4 |             49 |             49 |          48 | Missing SD files
+ Victoria | Wave 4 |             96 |            104 |         104 | OK
 ==== SECOND STEP VALIDATION ====
 Ok
 ```
@@ -116,6 +132,23 @@ Victoria  | Wave 2 |       0 |    1 |       133
 Victoria  | Wave 3 |       0 |    0 |        90
 ```
 _NB_ Skipped datasets have been computed in a previous run and should be counted as _OK_.
+
+### Wave 4
+
+```
+==== PROCESSING REPORT | GPS ====
+ City     | Wave   |   OK |   Skipped
+----------+--------+------+-----------
+ Montreal | Wave 4 |    1 |        47
+ Victoria | Wave 4 |    0 |       104
+==== PROCESSING REPORT | AXL ====
+ City     | Wave   |   OK |   Skipped
+----------+--------+------+-----------
+ Montreal | Wave 4 |   11 |        37
+ Victoria | Wave 4 |    0 |       104
+```
+_NB_ Skipped datasets have been computed in a previous run and should be counted as _OK_.
+
 
 ## Produce data
 
