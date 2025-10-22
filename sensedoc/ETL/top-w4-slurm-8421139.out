@@ -1,0 +1,537 @@
+created virtual environment CPython3.11.5.final.0-64 in 7658ms
+  creator CPython3Posix(dest=/localscratch/btcrchum.8421139.0/env, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/btcrchum/.local/share/virtualenv)
+    added seed packages: pip==25.2, setuptools==80.9.0+computecanada, wheel==0.45.1+computecanada
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+Lmod Warning:
+-------------------------------------------------------------------------------
+The following dependent module(s) are not currently loaded: sqlite/3.43.1
+(required by: python/3.11.5)
+-------------------------------------------------------------------------------
+
+
+
+
+The following have been reloaded with a version change:
+  1) sqlite/3.43.1 => sqlite/3.38.5
+
+Looking in links: /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx512, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx512, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic
+Requirement already satisfied: pip in /localscratch/btcrchum.8421139.0/env/lib/python3.11/site-packages (25.2)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/pip-25.2+computecanada-py3-none-any.whl
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 25.2
+    Uninstalling pip-25.2:
+      Successfully uninstalled pip-25.2
+Successfully installed pip-25.2+computecanada
+Looking in links: /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx512, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx512, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/avx2, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/generic, /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic
+Collecting geographiclib==2.0 (from -r requirements.txt (line 1))
+  Using cached geographiclib-2.0-py3-none-any.whl.metadata (1.4 kB)
+Collecting geopy==2.4.0 (from -r requirements.txt (line 2))
+  Using cached geopy-2.4.0-py3-none-any.whl.metadata (6.8 kB)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/greenlet-2.0.2+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 3))
+Requirement already satisfied: numpy==1.25.2+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 4)) (1.25.2+computecanada)
+Requirement already satisfied: pandas==2.1.0+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 5)) (2.1.0+computecanada)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2/llvmlite-0.41.0+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 6))
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo/generic/numba-0.58.0+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 7))
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/gentoo2020/avx2/psycopg2-2.9.7+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 8))
+Collecting pyproj==3.6.1 (from -r requirements.txt (line 9))
+  Using cached pyproj-3.6.1-cp311-cp311-linux_x86_64.whl
+Requirement already satisfied: python-dateutil==2.8.2+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/ipykernel/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 10)) (2.8.2+computecanada)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/pytz-2023.3.post1+computecanada-py2.py3-none-any.whl (from -r requirements.txt (line 11))
+Requirement already satisfied: six==1.16.0+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/ipykernel/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 12)) (1.16.0+computecanada)
+Collecting resampy==0.4.2 (from -r requirements.txt (line 13))
+  Using cached resampy-0.4.2-py3-none-any.whl.metadata (2.8 kB)
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/SQLAlchemy-2.0.21+computecanada-cp311-cp311-linux_x86_64.whl (from -r requirements.txt (line 14))
+Processing /cvmfs/soft.computecanada.ca/custom/python/wheelhouse/generic/tabulate-0.9.0+computecanada-py3-none-any.whl (from -r requirements.txt (line 15))
+Requirement already satisfied: typing_extensions==4.7.1+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 16)) (4.7.1+computecanada)
+Requirement already satisfied: tzdata==2023.3+computecanada in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages (from -r requirements.txt (line 17)) (2023.3+computecanada)
+Requirement already satisfied: certifi in /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages (from pyproj==3.6.1->-r requirements.txt (line 9)) (2023.7.22+computecanada)
+Using cached geographiclib-2.0-py3-none-any.whl (40 kB)
+Using cached geopy-2.4.0-py3-none-any.whl (125 kB)
+Using cached resampy-0.4.2-py3-none-any.whl (3.1 MB)
+Installing collected packages: pytz, tabulate, pyproj, psycopg2, llvmlite, greenlet, geographiclib, SQLAlchemy, numba, geopy, resampy
+  Attempting uninstall: pytz
+    Found existing installation: pytz 2023.3+computecanada
+    Not uninstalling pytz at /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx512/Core/scipy-stack/2023b/lib/python3.11/site-packages, outside environment /localscratch/btcrchum.8421139.0/env
+    Can't uninstall 'pytz'. No files were found to uninstall.
+
+Successfully installed SQLAlchemy-2.0.21+computecanada geographiclib-2.0 geopy-2.4.0 greenlet-2.0.2+computecanada llvmlite-0.41.0+computecanada numba-0.58.0+computecanada psycopg2-2.9.7+computecanada pyproj-3.6.1 pytz-2023.3.post1+computecanada resampy-0.4.2 tabulate-0.9.0+computecanada
+/localscratch/btcrchum.8421139.0/env/lib/python3.11/site-packages/resampy/filters.py:50: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[10/21/2025 13:09:59] INFO: Multiprocessing with 24 cores
+[10/21/2025 13:09:59] DEBUG: PID 1789204: processing 101072948_490
+[10/21/2025 13:09:59] DEBUG: PID 1789205: processing 403683583_9
+[10/21/2025 13:09:59] DEBUG: PID 1789203: processing 401860045_17
+[10/21/2025 13:09:59] DEBUG: PID 1789206: processing 104056185_337
+[10/21/2025 13:09:59] DEBUG: PID 1789207: processing 104246930_337
+[10/21/2025 13:09:59] DEBUG: PID 1789209: processing 401524229_9
+[10/21/2025 13:09:59] DEBUG: PID 1789208: processing 101920543_399
+[10/21/2025 13:09:59] DEBUG: PID 1789210: processing 101787606_347
+[10/21/2025 13:09:59] DEBUG: PID 1789212: processing 401997401_78
+[10/21/2025 13:09:59] DEBUG: PID 1789211: processing 101981972_352
+[10/21/2025 13:09:59] DEBUG: PID 1789213: processing 101429213_339
+[10/21/2025 13:09:59] DEBUG: PID 1789216: processing 104073213_399
+[10/21/2025 13:09:59] DEBUG: PID 1789214: processing 101192364_347
+[10/21/2025 13:09:59] DEBUG: PID 1789217: processing 101307761_434
+[10/21/2025 13:09:59] DEBUG: PID 1789218: processing 101941930_434
+[10/21/2025 13:09:59] DEBUG: PID 1789221: processing 402141286_169
+[10/21/2025 13:09:59] DEBUG: PID 1789215: processing 401919451_276
+[10/21/2025 13:09:59] DEBUG: PID 1789220: processing 404846254_17
+[10/21/2025 13:09:59] DEBUG: PID 1789219: processing 101192364_490
+[10/21/2025 13:09:59] DEBUG: PID 1789222: processing 104039365_317
+[10/21/2025 13:09:59] DEBUG: PID 1789223: processing 404393238_264
+[10/21/2025 13:09:59] DEBUG: PID 1789224: processing 104076949_352
+[10/21/2025 13:09:59] DEBUG: PID 1789225: processing 103531689_339
+[10/21/2025 13:09:59] DEBUG: PID 1789226: processing 104009526_338
+[10/21/2025 13:10:04] INFO: Participant # 104039365: ToP 1sec done [2.9s]
+[10/21/2025 13:10:04] INFO: Participant # 104039365: ToP 1min done [0.1s]
+[10/21/2025 13:10:08] DEBUG: PID 1789222: processing 401318330_122
+[10/21/2025 13:10:29] INFO: Participant # 101192364: ToP 1sec done [15.3s]
+[10/21/2025 13:10:30] INFO: Participant # 101192364: ToP 1min done [0.1s]
+[10/21/2025 13:10:44] INFO: Participant # 101192364: ToP 1sec done [22.0s]
+[10/21/2025 13:10:44] INFO: Participant # 101192364: ToP 1min done [0.2s]
+[10/21/2025 13:10:47] DEBUG: PID 1789214: processing 101818131_339
+[10/21/2025 13:10:55] INFO: Participant # 101787606: ToP 1sec done [36.4s]
+[10/21/2025 13:10:55] INFO: Participant # 101981972: ToP 1sec done [38.9s]
+[10/21/2025 13:10:55] INFO: Participant # 101787606: ToP 1min done [0.3s]
+[10/21/2025 13:10:55] INFO: Participant # 101981972: ToP 1min done [0.2s]
+[10/21/2025 13:10:56] INFO: Participant # 104056185: ToP 1sec done [38.3s]
+[10/21/2025 13:10:56] INFO: Participant # 104056185: ToP 1min done [0.3s]
+[10/21/2025 13:10:57] INFO: Participant # 101920543: ToP 1sec done [34.2s]
+[10/21/2025 13:10:57] INFO: Participant # 101920543: ToP 1min done [0.2s]
+[10/21/2025 13:11:02] INFO: Participant # 103531689: ToP 1sec done [35.6s]
+[10/21/2025 13:11:02] INFO: Participant # 103531689: ToP 1min done [0.2s]
+[10/21/2025 13:11:04] INFO: Participant # 401860045: ToP 1sec done [43.7s]
+[10/21/2025 13:11:04] INFO: Participant # 101941930: ToP 1sec done [41.5s]
+[10/21/2025 13:11:05] INFO: Participant # 401860045: ToP 1min done [0.3s]
+[10/21/2025 13:11:05] INFO: Participant # 101941930: ToP 1min done [0.3s]
+[10/21/2025 13:11:05] INFO: Participant # 401919451: ToP 1sec done [40.8s]
+[10/21/2025 13:11:05] INFO: Participant # 401919451: ToP 1min done [0.3s]
+[10/21/2025 13:11:05] INFO: Participant # 104073213: ToP 1sec done [32.6s]
+[10/21/2025 13:11:05] INFO: Participant # 104073213: ToP 1min done [0.2s]
+[10/21/2025 13:11:07] INFO: Participant # 104009526: ToP 1sec done [42.6s]
+[10/21/2025 13:11:08] INFO: Participant # 104009526: ToP 1min done [0.3s]
+[10/21/2025 13:11:09] INFO: Participant # 401524229: ToP 1sec done [40.5s]
+[10/21/2025 13:11:09] INFO: Participant # 104246930: ToP 1sec done [39.3s]
+[10/21/2025 13:11:09] INFO: Participant # 401524229: ToP 1min done [0.3s]
+[10/21/2025 13:11:09] INFO: Participant # 104246930: ToP 1min done [0.3s]
+[10/21/2025 13:11:11] INFO: Participant # 101072948: ToP 1sec done [41.3s]
+[10/21/2025 13:11:12] INFO: Participant # 101072948: ToP 1min done [0.3s]
+[10/21/2025 13:11:12] DEBUG: PID 1789219: processing 103932160_343
+[10/21/2025 13:11:13] INFO: Participant # 101429213: ToP 1sec done [38.0s]
+[10/21/2025 13:11:13] INFO: Participant # 101429213: ToP 1min done [0.3s]
+[10/21/2025 13:11:14] INFO: Participant # 101307761: ToP 1sec done [39.9s]
+[10/21/2025 13:11:14] INFO: Participant # 101307761: ToP 1min done [0.2s]
+[10/21/2025 13:11:17] INFO: Participant # 104076949: ToP 1sec done [40.9s]
+[10/21/2025 13:11:17] INFO: Participant # 404846254: ToP 1sec done [43.7s]
+[10/21/2025 13:11:17] INFO: Participant # 104076949: ToP 1min done [0.3s]
+[10/21/2025 13:11:18] INFO: Participant # 404846254: ToP 1min done [0.4s]
+[10/21/2025 13:11:19] INFO: Participant # 401318330: ToP 1sec done [40.9s]
+[10/21/2025 13:11:19] INFO: Participant # 401318330: ToP 1min done [0.2s]
+[10/21/2025 13:11:24] INFO: Participant # 402141286: ToP 1sec done [42.9s]
+[10/21/2025 13:11:24] INFO: Participant # 402141286: ToP 1min done [0.3s]
+[10/21/2025 13:11:24] INFO: Participant # 403683583: ToP 1sec done [44.7s]
+[10/21/2025 13:11:25] INFO: Participant # 403683583: ToP 1min done [0.3s]
+[10/21/2025 13:11:28] INFO: Participant # 404393238: ToP 1sec done [47.2s]
+[10/21/2025 13:11:29] INFO: Participant # 404393238: ToP 1min done [0.3s]
+[10/21/2025 13:11:44] INFO: Participant # 103932160: ToP 1sec done [15.6s]
+[10/21/2025 13:11:44] INFO: Participant # 103932160: ToP 1min done [0.1s]
+[10/21/2025 13:11:48] INFO: Participant # 401997401: ToP 1sec done [85.1s]
+[10/21/2025 13:11:49] INFO: Participant # 401997401: ToP 1min done [0.5s]
+[10/21/2025 13:11:52] INFO: Participant # 101818131: ToP 1sec done [37.1s]
+[10/21/2025 13:11:53] INFO: Participant # 101818131: ToP 1min done [0.3s]
+[10/21/2025 13:11:57] DEBUG: PID 1789210: processing 103722386_352
+[10/21/2025 13:12:01] DEBUG: PID 1789211: processing 102370888_319
+[10/21/2025 13:12:02] DEBUG: PID 1789206: processing 102877373_352
+[10/21/2025 13:12:18] DEBUG: PID 1789208: processing 104024051_434
+[10/21/2025 13:12:26] DEBUG: PID 1789203: processing 103761333_470
+[10/21/2025 13:12:26] DEBUG: PID 1789225: processing 102622945_423
+[10/21/2025 13:12:30] DEBUG: PID 1789218: processing 104053176_339
+[10/21/2025 13:12:37] DEBUG: PID 1799807: processing 104036795_343
+[10/21/2025 13:12:38] DEBUG: PID 1789226: processing 104007875_312
+[10/21/2025 13:12:40] DEBUG: PID 1789209: processing 101555830_337
+[10/21/2025 13:12:40] DEBUG: PID 1789215: processing 401936329_235
+[10/21/2025 13:12:44] DEBUG: PID 1789216: processing 104082308_490
+[10/21/2025 13:12:45] DEBUG: PID 1789207: processing 103546796_434
+[10/21/2025 13:12:47] DEBUG: PID 1789204: processing 401272178_254
+[10/21/2025 13:12:49] DEBUG: PID 1789213: processing 104020462_470
+[10/21/2025 13:12:52] DEBUG: PID 1789220: processing 104009196_328
+[10/21/2025 13:12:53] DEBUG: PID 1789224: processing 101050476_343
+[10/21/2025 13:12:53] DEBUG: PID 1789217: processing 401760345_72
+[10/21/2025 13:12:55] INFO: Participant # 102370888: ToP 1sec done [40.5s]
+[10/21/2025 13:12:55] INFO: Participant # 102370888: ToP 1min done [0.3s]
+[10/21/2025 13:12:59] DEBUG: PID 1800394: processing 401669659_147
+[10/21/2025 13:12:59] DEBUG: PID 1789205: processing 402495712_276
+[10/21/2025 13:13:02] DEBUG: PID 1789221: processing 101869520_312
+[10/21/2025 13:13:04] INFO: Participant # 401669659: ToP 1sec done [3.9s]
+[10/21/2025 13:13:04] INFO: Participant # 401669659: ToP 1min done [0.1s]
+[10/21/2025 13:13:05] INFO: Participant # 104007875: ToP 1sec done [15.6s]
+[10/21/2025 13:13:05] INFO: Participant # 104007875: ToP 1min done [0.1s]
+[10/21/2025 13:13:05] INFO: Participant # 102877373: ToP 1sec done [42.6s]
+[10/21/2025 13:13:05] INFO: Participant # 102877373: ToP 1min done [0.3s]
+[10/21/2025 13:13:06] DEBUG: PID 1800431: processing 401442080_102
+[10/21/2025 13:13:07] DEBUG: PID 1789223: processing 104063135_338
+[10/21/2025 13:13:08] DEBUG: PID 1800394: processing 101407396_337
+[10/21/2025 13:13:08] INFO: Participant # 103722386: ToP 1sec done [41.8s]
+[10/21/2025 13:13:08] INFO: Participant # 103722386: ToP 1min done [0.3s]
+[10/21/2025 13:13:11] INFO: Participant # 104024051: ToP 1sec done [38.5s]
+[10/21/2025 13:13:12] INFO: Participant # 104024051: ToP 1min done [0.3s]
+[10/21/2025 13:13:19] INFO: Participant # 103546796: ToP 1sec done [32.9s]
+[10/21/2025 13:13:19] INFO: Participant # 103546796: ToP 1min done [0.2s]
+[10/21/2025 13:13:22] INFO: Participant # 103761333: ToP 1sec done [38.9s]
+[10/21/2025 13:13:22] INFO: Participant # 103761333: ToP 1min done [0.3s]
+[10/21/2025 13:13:25] DEBUG: PID 1801167: processing 104088541_428
+[10/21/2025 13:13:26] INFO: Participant # 104053176: ToP 1sec done [36.0s]
+[10/21/2025 13:13:27] INFO: Participant # 104053176: ToP 1min done [0.2s]
+[10/21/2025 13:13:28] INFO: Participant # 102622945: ToP 1sec done [37.3s]
+[10/21/2025 13:13:28] INFO: Participant # 102622945: ToP 1min done [0.2s]
+[10/21/2025 13:13:29] INFO: Participant # 104036795: ToP 1sec done [31.4s]
+[10/21/2025 13:13:29] INFO: Participant # 104036795: ToP 1min done [0.2s]
+[10/21/2025 13:13:39] DEBUG: PID 1801697: processing 102749686_428
+[10/21/2025 13:13:40] INFO: Participant # 101555830: ToP 1sec done [43.5s]
+[10/21/2025 13:13:40] INFO: Participant # 101555830: ToP 1min done [0.3s]
+[10/21/2025 13:13:44] INFO: Participant # 104082308: ToP 1sec done [33.0s]
+[10/21/2025 13:13:45] INFO: Participant # 104082308: ToP 1min done [0.2s]
+[10/21/2025 13:13:49] DEBUG: PID 1789212: processing 401341482_69
+[10/21/2025 13:13:50] INFO: Participant # 104009196: ToP 1sec done [41.0s]
+[10/21/2025 13:13:50] INFO: Participant # 401936329: ToP 1sec done [51.9s]
+[10/21/2025 13:13:50] INFO: Participant # 104009196: ToP 1min done [0.2s]
+[10/21/2025 13:13:50] INFO: Participant # 401936329: ToP 1min done [0.4s]
+[10/21/2025 13:13:50] INFO: Participant # 104020462: ToP 1sec done [40.1s]
+[10/21/2025 13:13:50] INFO: Participant # 104020462: ToP 1min done [0.2s]
+[10/21/2025 13:13:53] DEBUG: PID 1801979: processing 104021532_352
+[10/21/2025 13:13:56] DEBUG: PID 1802170: processing 102890362_423
+[10/21/2025 13:13:57] INFO: Participant # 401272178: ToP 1sec done [41.8s]
+[10/21/2025 13:13:58] INFO: Participant # 401272178: ToP 1min done [0.3s]
+[10/21/2025 13:13:58] INFO: Participant # 101869520: ToP 1sec done [37.6s]
+[10/21/2025 13:13:59] INFO: Participant # 101869520: ToP 1min done [0.3s]
+[10/21/2025 13:13:59] DEBUG: PID 1802345: processing 102755345_339
+[10/21/2025 13:14:01] INFO: Participant # 401760345: ToP 1sec done [44.1s]
+[10/21/2025 13:14:01] INFO: Participant # 401760345: ToP 1min done [0.3s]
+[10/21/2025 13:14:07] INFO: Participant # 101050476: ToP 1sec done [38.9s]
+[10/21/2025 13:14:07] INFO: Participant # 101050476: ToP 1min done [0.2s]
+[10/21/2025 13:14:11] DEBUG: PID 1802435: processing 102860428_428
+[10/21/2025 13:14:15] INFO: Participant # 401442080: ToP 1sec done [44.6s]
+[10/21/2025 13:14:15] INFO: Participant # 401442080: ToP 1min done [0.3s]
+[10/21/2025 13:14:16] INFO: Participant # 101407396: ToP 1sec done [40.5s]
+[10/21/2025 13:14:16] INFO: Participant # 101407396: ToP 1min done [0.2s]
+[10/21/2025 13:14:19] INFO: Participant # 402495712: ToP 1sec done [45.5s]
+[10/21/2025 13:14:20] INFO: Participant # 402495712: ToP 1min done [0.3s]
+[10/21/2025 13:14:22] INFO: Participant # 104063135: ToP 1sec done [42.4s]
+[10/21/2025 13:14:22] INFO: Participant # 104063135: ToP 1min done [0.3s]
+[10/21/2025 13:14:24] DEBUG: PID 1802871: processing 104024995_490
+[10/21/2025 13:14:33] DEBUG: PID 1803105: processing 104015322_428
+[10/21/2025 13:14:35] DEBUG: PID 1803115: processing 104069451_470
+[10/21/2025 13:14:36] INFO: Participant # 104088541: ToP 1sec done [41.2s]
+[10/21/2025 13:14:36] INFO: Participant # 104088541: ToP 1min done [0.3s]
+[10/21/2025 13:14:37] DEBUG: PID 1799807: processing 101996732_399
+[10/21/2025 13:14:41] DEBUG: PID 1803137: processing 401095730_60
+[10/21/2025 13:14:49] INFO: Participant # 102749686: ToP 1sec done [36.3s]
+[10/21/2025 13:14:50] INFO: Participant # 102749686: ToP 1min done [0.3s]
+[10/21/2025 13:14:52] INFO: Participant # 104021532: ToP 1sec done [33.4s]
+[10/21/2025 13:14:52] INFO: Participant # 104021532: ToP 1min done [0.2s]
+[10/21/2025 13:14:52] DEBUG: PID 1803912: processing 104062018_470
+[10/21/2025 13:14:54] INFO: Participant # 104024995: ToP 1sec done [23.1s]
+[10/21/2025 13:14:54] INFO: Participant # 104024995: ToP 1min done [0.2s]
+[10/21/2025 13:14:56] DEBUG: PID 1804870: processing 401910151_254
+[10/21/2025 13:14:59] INFO: Participant # 102890362: ToP 1sec done [36.2s]
+[10/21/2025 13:15:00] INFO: Participant # 102890362: ToP 1min done [0.3s]
+[10/21/2025 13:15:00] INFO: Participant # 102755345: ToP 1sec done [36.0s]
+[10/21/2025 13:15:00] INFO: Participant # 102755345: ToP 1min done [0.2s]
+[10/21/2025 13:15:01] DEBUG: PID 1805052: processing 401399249_162
+[10/21/2025 13:15:03] DEBUG: PID 1805092: processing 104032844_451
+[10/21/2025 13:15:04] INFO: Participant # 401341482: ToP 1sec done [52.7s]
+[10/21/2025 13:15:05] INFO: Participant # 401341482: ToP 1min done [0.3s]
+[10/21/2025 13:15:08] DEBUG: PID 1805201: processing 101356709_453
+[10/21/2025 13:15:12] DEBUG: PID 1805217: processing 104039542_343
+[10/21/2025 13:15:21] INFO: Participant # 102860428: ToP 1sec done [38.7s]
+[10/21/2025 13:15:22] INFO: Participant # 102860428: ToP 1min done [0.2s]
+[10/21/2025 13:15:24] DEBUG: PID 1805526: processing 401440362_46
+[10/21/2025 13:15:24] DEBUG: PID 1805531: processing 104087912_312
+[10/21/2025 13:15:26] DEBUG: PID 1800431: processing 401451781_111
+[10/21/2025 13:15:28] DEBUG: PID 1802871: processing 101896664_451
+[10/21/2025 13:15:29] INFO: Participant # 101996732: ToP 1sec done [33.0s]
+[10/21/2025 13:15:30] INFO: Participant # 101996732: ToP 1min done [0.2s]
+[10/21/2025 13:15:30] DEBUG: PID 1805753: processing 104006449_343
+[10/21/2025 13:15:31] INFO: Participant # 104015322: ToP 1sec done [35.3s]
+[10/21/2025 13:15:31] INFO: Participant # 104015322: ToP 1min done [0.2s]
+[10/21/2025 13:15:31] INFO: Participant # 104069451: ToP 1sec done [37.5s]
+[10/21/2025 13:15:31] INFO: Participant # 104069451: ToP 1min done [0.3s]
+[10/21/2025 13:15:33] DEBUG: PID 1805802: processing 101830987_312
+[10/21/2025 13:15:36] DEBUG: PID 1805902: processing 102741390_317
+[10/21/2025 13:15:43] DEBUG: PID 1801167: processing 401484804_46
+[10/21/2025 13:15:46] INFO: Participant # 104062018: ToP 1sec done [38.4s]
+[10/21/2025 13:15:46] INFO: Participant # 104062018: ToP 1min done [0.3s]
+[10/21/2025 13:15:49] INFO: Participant # 104032844: ToP 1sec done [35.8s]
+[10/21/2025 13:15:49] INFO: Participant # 104032844: ToP 1min done [0.2s]
+[10/21/2025 13:15:53] INFO: Participant # 401399249: ToP 1sec done [37.5s]
+[10/21/2025 13:15:53] INFO: Participant # 401399249: ToP 1min done [0.2s]
+[10/21/2025 13:15:55] INFO: Participant # 401095730: ToP 1sec done [40.7s]
+[10/21/2025 13:15:55] INFO: Participant # 401095730: ToP 1min done [0.3s]
+[10/21/2025 13:15:58] DEBUG: PID 1801697: processing 403571418_111
+[10/21/2025 13:15:59] INFO: Participant # 102741390: ToP 1sec done [15.5s]
+[10/21/2025 13:16:00] INFO: Participant # 102741390: ToP 1min done [0.1s]
+[10/21/2025 13:16:01] DEBUG: PID 1801979: processing 102475434_451
+[10/21/2025 13:16:03] INFO: Participant # 104039542: ToP 1sec done [36.0s]
+[10/21/2025 13:16:04] INFO: Participant # 104039542: ToP 1min done [0.3s]
+[10/21/2025 13:16:07] DEBUG: PID 1802345: processing 102993750_434
+[10/21/2025 13:16:08] INFO: Participant # 101356709: ToP 1sec done [37.2s]
+[10/21/2025 13:16:08] INFO: Participant # 101356709: ToP 1min done [0.3s]
+[10/21/2025 13:16:11] DEBUG: PID 1802170: processing 104061629_337
+[10/21/2025 13:16:13] DEBUG: PID 1807085: processing 102649509_312
+[10/21/2025 13:16:15] INFO: Participant # 104006449: ToP 1sec done [32.3s]
+[10/21/2025 13:16:16] INFO: Participant # 104006449: ToP 1min done [0.2s]
+[10/21/2025 13:16:20] INFO: Participant # 401451781: ToP 1sec done [39.6s]
+[10/21/2025 13:16:20] INFO: Participant # 401451781: ToP 1min done [0.3s]
+[10/21/2025 13:16:24] DEBUG: PID 1805902: processing 401548872_8
+[10/21/2025 13:16:25] DEBUG: PID 1803115: processing 104087370_343
+[10/21/2025 13:16:27] INFO: Participant # 401910151: ToP 1sec done [52.4s]
+[10/21/2025 13:16:27] INFO: Participant # 401910151: ToP 1min done [0.3s]
+[10/21/2025 13:16:31] INFO: Participant # 104087912: ToP 1sec done [40.4s]
+[10/21/2025 13:16:31] INFO: Participant # 104087912: ToP 1min done [0.3s]
+[10/21/2025 13:16:31] DEBUG: PID 1802435: processing 101534317_434
+[10/21/2025 13:16:32] DEBUG: PID 1803105: processing 104062544_337
+[10/21/2025 13:16:32] DEBUG: PID 1808076: processing 104914984_490
+[10/21/2025 13:16:35] INFO: Participant # 101830987: ToP 1sec done [35.6s]
+[10/21/2025 13:16:35] INFO: Participant # 401440362: ToP 1sec done [41.0s]
+[10/21/2025 13:16:35] INFO: Participant # 101830987: ToP 1min done [0.2s]
+[10/21/2025 13:16:35] INFO: Participant # 401440362: ToP 1min done [0.3s]
+[10/21/2025 13:16:39] DEBUG: PID 1803912: processing 102543271_338
+[10/21/2025 13:16:40] DEBUG: PID 1805092: processing 401791704_102
+[10/21/2025 13:16:44] INFO: Participant # 401484804: ToP 1sec done [32.9s]
+[10/21/2025 13:16:45] INFO: Participant # 401484804: ToP 1min done [0.2s]
+[10/21/2025 13:16:53] DEBUG: PID 1805217: processing 101053220_328
+[10/21/2025 13:16:55] DEBUG: PID 1805052: processing 104010044_453
+[10/21/2025 13:17:03] INFO: Participant # 102993750: ToP 1sec done [34.4s]
+[10/21/2025 13:17:03] INFO: Participant # 102993750: ToP 1min done [0.3s]
+[10/21/2025 13:17:03] INFO: Participant # 102475434: ToP 1sec done [34.9s]
+[10/21/2025 13:17:04] INFO: Participant # 102475434: ToP 1min done [0.2s]
+[10/21/2025 13:17:04] DEBUG: PID 1805201: processing 104023607_338
+[10/21/2025 13:17:06] DEBUG: PID 1803137: processing 401660649_264
+[10/21/2025 13:17:06] INFO: Participant # 403571418: ToP 1sec done [53.9s]
+[10/21/2025 13:17:07] INFO: Participant # 403571418: ToP 1min done [0.4s]
+[10/21/2025 13:17:08] INFO: Participant # 104061629: ToP 1sec done [38.8s]
+[10/21/2025 13:17:08] INFO: Participant # 104061629: ToP 1min done [0.2s]
+[10/21/2025 13:17:11] DEBUG: PID 1805753: processing 401399757_104
+[10/21/2025 13:17:11] INFO: Participant # 102649509: ToP 1sec done [36.1s]
+[10/21/2025 13:17:11] INFO: Participant # 102649509: ToP 1min done [0.3s]
+[10/21/2025 13:17:14] INFO: Participant # 101896664: ToP 1sec done [87.5s]
+[10/21/2025 13:17:14] INFO: Participant # 101896664: ToP 1min done [0.6s]
+[10/21/2025 13:17:16] DEBUG: PID 1811108: processing 401103480_254
+[10/21/2025 13:17:20] INFO: Participant # 104914984: ToP 1sec done [35.0s]
+[10/21/2025 13:17:21] INFO: Participant # 104914984: ToP 1min done [0.3s]
+[10/21/2025 13:17:29] INFO: Participant # 104062544: ToP 1sec done [36.7s]
+[10/21/2025 13:17:29] DEBUG: PID 1805531: processing 401664309_253
+[10/21/2025 13:17:29] INFO: Participant # 104062544: ToP 1min done [0.3s]
+[10/21/2025 13:17:31] INFO: Participant # 104087370: ToP 1sec done [36.8s]
+[10/21/2025 13:17:31] INFO: Participant # 104087370: ToP 1min done [0.3s]
+[10/21/2025 13:17:32] INFO: Participant # 101534317: ToP 1sec done [37.1s]
+[10/21/2025 13:17:32] INFO: Participant # 101534317: ToP 1min done [0.3s]
+[10/21/2025 13:17:34] DEBUG: PID 1805526: processing 102886115_312
+[10/21/2025 13:17:35] DEBUG: PID 1805802: processing 104035105_434
+[10/21/2025 13:17:39] DEBUG: PID 1813049: processing 103663507_328
+[10/21/2025 13:17:44] INFO: Participant # 102543271: ToP 1sec done [40.2s]
+[10/21/2025 13:17:44] INFO: Participant # 102543271: ToP 1min done [0.3s]
+[10/21/2025 13:17:51] INFO: Participant # 101053220: ToP 1sec done [37.9s]
+[10/21/2025 13:17:52] INFO: Participant # 101053220: ToP 1min done [0.3s]
+[10/21/2025 13:17:52] DEBUG: PID 1804870: processing 401811306_9
+[10/21/2025 13:17:53] INFO: Participant # 401791704: ToP 1sec done [42.2s]
+[10/21/2025 13:17:54] INFO: Participant # 401791704: ToP 1min done [0.3s]
+[10/21/2025 13:17:55] INFO: Participant # 104010044: ToP 1sec done [34.2s]
+[10/21/2025 13:17:56] INFO: Participant # 104010044: ToP 1min done [0.2s]
+[10/21/2025 13:18:00] INFO: Participant # 104023607: ToP 1sec done [38.1s]
+[10/21/2025 13:18:00] INFO: Participant # 104023607: ToP 1min done [0.2s]
+[10/21/2025 13:18:03] DEBUG: PID 1816744: processing 401839530_235
+[10/21/2025 13:18:04] INFO: Participant # 103663507: ToP 1sec done [15.1s]
+[10/21/2025 13:18:04] INFO: Participant # 103663507: ToP 1min done [0.1s]
+[10/21/2025 13:18:09] DEBUG: PID 1817274: processing 102567670_428
+[10/21/2025 13:18:09] DEBUG: PID 1817276: processing 103259951_423
+[10/21/2025 13:18:10] INFO: Participant # 401548872: ToP 1sec done [72.5s]
+[10/21/2025 13:18:10] INFO: Participant # 401548872: ToP 1min done [0.5s]
+[10/21/2025 13:18:15] DEBUG: PID 1807085: processing 404026707_69
+[10/21/2025 13:18:20] DEBUG: PID 1808076: processing 401967217_72
+[10/21/2025 13:18:27] INFO: Participant # 401103480: ToP 1sec done [43.7s]
+[10/21/2025 13:18:27] INFO: Participant # 401103480: ToP 1min done [0.3s]
+[10/21/2025 13:18:28] DEBUG: PID 1818608: processing 104008847_338
+[10/21/2025 13:18:32] INFO: Participant # 102886115: ToP 1sec done [38.8s]
+[10/21/2025 13:18:32] INFO: Participant # 401660649: ToP 1sec done [44.2s]
+[10/21/2025 13:18:32] INFO: Participant # 102886115: ToP 1min done [0.3s]
+[10/21/2025 13:18:32] INFO: Participant # 401660649: ToP 1min done [0.3s]
+[10/21/2025 13:18:32] DEBUG: PID 1818969: processing 104007875_399
+[10/21/2025 13:18:34] DEBUG: PID 1813049: processing 104079174_423
+[10/21/2025 13:18:39] INFO: Participant # 104035105: ToP 1sec done [35.2s]
+[10/21/2025 13:18:39] INFO: Participant # 104035105: ToP 1min done [0.2s]
+[10/21/2025 13:18:40] DEBUG: PID 1819531: processing 104039365_434
+[10/21/2025 13:18:41] ERROR: Unable to load GPS data from 104039365_434_GPS.csv, skipping
+[10/21/2025 13:18:41] DEBUG: PID 1819531: processing 402435135_253
+[10/21/2025 13:18:43] INFO: Participant # 401399757: ToP 1sec done [61.7s]
+[10/21/2025 13:18:43] DEBUG: PID 1819788: processing 104084225_338
+[10/21/2025 13:18:44] INFO: Participant # 401399757: ToP 1min done [0.4s]
+[10/21/2025 13:18:45] INFO: Participant # 401664309: ToP 1sec done [43.1s]
+[10/21/2025 13:18:45] INFO: Participant # 401664309: ToP 1min done [0.3s]
+[10/21/2025 13:18:49] DEBUG: PID 1820235: processing 104032477_451
+[10/21/2025 13:18:54] INFO: Participant # 104007875: ToP 1sec done [12.5s]
+[10/21/2025 13:18:54] INFO: Participant # 104007875: ToP 1min done [0.1s]
+[10/21/2025 13:18:54] DEBUG: PID 1820762: processing 102643856_399
+[10/21/2025 13:19:01] DEBUG: PID 1821428: processing 103546796_312
+[10/21/2025 13:19:04] INFO: Participant # 401839530: ToP 1sec done [42.1s]
+[10/21/2025 13:19:04] INFO: Participant # 401839530: ToP 1min done [0.3s]
+[10/21/2025 13:19:04] DEBUG: PID 1821659: processing 401586738_122
+[10/21/2025 13:19:06] INFO: Participant # 103259951: ToP 1sec done [42.4s]
+[10/21/2025 13:19:06] INFO: Participant # 401811306: ToP 1sec done [43.3s]
+[10/21/2025 13:19:06] INFO: Participant # 103259951: ToP 1min done [0.2s]
+[10/21/2025 13:19:06] INFO: Participant # 401811306: ToP 1min done [0.3s]
+[10/21/2025 13:19:09] INFO: Participant # 401586738: ToP 1sec done [3.3s]
+[10/21/2025 13:19:09] INFO: Participant # 401586738: ToP 1min done [0.0s]
+[10/21/2025 13:19:11] DEBUG: PID 1822094: processing 102605113_328
+[10/21/2025 13:19:11] INFO: Participant # 104008847: ToP 1sec done [37.1s]
+[10/21/2025 13:19:11] INFO: Participant # 104008847: ToP 1min done [0.2s]
+[10/21/2025 13:19:14] DEBUG: PID 1818969: processing 104036795_319
+[10/21/2025 13:19:14] DEBUG: PID 1821659: processing 401272407_235
+[10/21/2025 13:19:15] INFO: Participant # 401967217: ToP 1sec done [38.2s]
+[10/21/2025 13:19:15] INFO: Participant # 401967217: ToP 1min done [0.3s]
+[10/21/2025 13:19:22] INFO: Participant # 102567670: ToP 1sec done [38.4s]
+[10/21/2025 13:19:22] INFO: Participant # 102567670: ToP 1min done [0.3s]
+[10/21/2025 13:19:23] DEBUG: PID 1823666: processing 402949876_72
+[10/21/2025 13:19:26] INFO: Participant # 104036795: ToP 1sec done [7.8s]
+[10/21/2025 13:19:26] DEBUG: PID 1824029: processing 401910101_45
+[10/21/2025 13:19:26] INFO: Participant # 104036795: ToP 1min done [0.1s]
+[10/21/2025 13:19:28] INFO: Participant # 404026707: ToP 1sec done [43.2s]
+[10/21/2025 13:19:28] INFO: Participant # 404026707: ToP 1min done [0.3s]
+[10/21/2025 13:19:33] INFO: Participant # 104079174: ToP 1sec done [36.4s]
+[10/21/2025 13:19:33] INFO: Participant # 104079174: ToP 1min done [0.2s]
+[10/21/2025 13:19:33] DEBUG: PID 1811108: processing 103773342_328
+[10/21/2025 13:19:39] DEBUG: PID 1825265: processing 101973471_399
+[10/21/2025 13:19:44] INFO: Participant # 104032477: ToP 1sec done [39.0s]
+[10/21/2025 13:19:44] INFO: Participant # 104032477: ToP 1min done [0.3s]
+[10/21/2025 13:19:45] DEBUG: PID 1825652: processing 401630460_17
+[10/21/2025 13:19:47] DEBUG: PID 1825773: processing 101452903_453
+[10/21/2025 13:19:49] INFO: Participant # 104084225: ToP 1sec done [42.6s]
+[10/21/2025 13:19:50] INFO: Participant # 104084225: ToP 1min done [0.3s]
+[10/21/2025 13:19:51] INFO: Participant # 402435135: ToP 1sec done [43.2s]
+[10/21/2025 13:19:51] INFO: Participant # 402435135: ToP 1min done [0.3s]
+[10/21/2025 13:19:52] INFO: Participant # 102643856: ToP 1sec done [38.3s]
+[10/21/2025 13:19:53] INFO: Participant # 102643856: ToP 1min done [0.3s]
+[10/21/2025 13:19:58] DEBUG: PID 1826883: processing 102715577_453
+[10/21/2025 13:20:00] DEBUG: PID 1817276: processing 104011595_319
+[10/21/2025 13:20:05] DEBUG: PID 1818608: processing 101636205_454
+[10/21/2025 13:20:05] DEBUG: PID 1816744: processing 101202069_423
+[10/21/2025 13:20:07] INFO: Participant # 102605113: ToP 1sec done [34.0s]
+[10/21/2025 13:20:08] INFO: Participant # 102605113: ToP 1min done [0.3s]
+[10/21/2025 13:20:10] INFO: Participant # 103546796: ToP 1sec done [38.6s]
+[10/21/2025 13:20:10] INFO: Participant # 103546796: ToP 1min done [0.3s]
+[10/21/2025 13:20:13] DEBUG: PID 1827992: processing 403144072_72
+[10/21/2025 13:20:15] DEBUG: PID 1828214: processing 401927418_276
+[10/21/2025 13:20:16] DEBUG: PID 1828236: processing 401109691_78
+[10/21/2025 13:20:19] DEBUG: PID 1828540: processing 401167164_78
+[10/21/2025 13:20:24] INFO: Participant # 401272407: ToP 1sec done [45.0s]
+[10/21/2025 13:20:24] INFO: Participant # 401272407: ToP 1min done [0.3s]
+[10/21/2025 13:20:28] DEBUG: PID 1817274: processing 101474667_343
+[10/21/2025 13:20:33] DEBUG: PID 1829682: processing 103932160_338
+[10/21/2025 13:20:35] INFO: Participant # 103773342: ToP 1sec done [42.1s]
+[10/21/2025 13:20:35] INFO: Participant # 103773342: ToP 1min done [0.3s]
+[10/21/2025 13:20:37] DEBUG: PID 1820235: processing 402464874_102
+[10/21/2025 13:20:38] INFO: Participant # 402949876: ToP 1sec done [47.3s]
+[10/21/2025 13:20:38] INFO: Participant # 402949876: ToP 1min done [0.3s]
+[10/21/2025 13:20:38] DEBUG: PID 1830132: processing 104019376_319
+[10/21/2025 13:20:38] INFO: Participant # 401910101: ToP 1sec done [49.5s]
+[10/21/2025 13:20:39] INFO: Participant # 401910101: ToP 1min done [0.3s]
+[10/21/2025 13:20:44] INFO: Participant # 101452903: ToP 1sec done [37.5s]
+[10/21/2025 13:20:45] INFO: Participant # 101452903: ToP 1min done [0.3s]
+[10/21/2025 13:20:45] DEBUG: PID 1820762: processing 104017317_317
+[10/21/2025 13:20:46] DEBUG: PID 1819788: processing 101740289_490
+[10/21/2025 13:20:50] INFO: Participant # 101973471: ToP 1sec done [39.6s]
+[10/21/2025 13:20:50] INFO: Participant # 101973471: ToP 1min done [0.3s]
+[10/21/2025 13:20:54] INFO: Participant # 104011595: ToP 1sec done [39.2s]
+[10/21/2025 13:20:55] INFO: Participant # 104011595: ToP 1min done [0.3s]
+[10/21/2025 13:20:59] INFO: Participant # 401630460: ToP 1sec done [45.6s]
+[10/21/2025 13:21:00] INFO: Participant # 401630460: ToP 1min done [0.3s]
+[10/21/2025 13:21:04] INFO: Participant # 101202069: ToP 1sec done [38.3s]
+[10/21/2025 13:21:04] INFO: Participant # 101202069: ToP 1min done [0.3s]
+[10/21/2025 13:21:05] INFO: Participant # 102715577: ToP 1sec done [39.8s]
+[10/21/2025 13:21:05] INFO: Participant # 102715577: ToP 1min done [0.3s]
+[10/21/2025 13:21:05] DEBUG: PID 1822094: processing 101550026_312
+[10/21/2025 13:21:08] DEBUG: PID 1821428: processing 404037100_9
+[10/21/2025 13:21:09] INFO: Participant # 101636205: ToP 1sec done [45.1s]
+[10/21/2025 13:21:09] INFO: Participant # 101636205: ToP 1min done [0.3s]
+[10/21/2025 13:21:14] INFO: Participant # 403144072: ToP 1sec done [36.6s]
+[10/21/2025 13:21:14] INFO: Participant # 403144072: ToP 1min done [0.2s]
+[10/21/2025 13:21:18] INFO: Participant # 103932160: ToP 1sec done [24.3s]
+[10/21/2025 13:21:18] INFO: Participant # 103932160: ToP 1min done [0.2s]
+[10/21/2025 13:21:28] INFO: Participant # 401927418: ToP 1sec done [40.7s]
+[10/21/2025 13:21:28] INFO: Participant # 401927418: ToP 1min done [0.3s]
+[10/21/2025 13:21:30] INFO: Participant # 101474667: ToP 1sec done [36.7s]
+[10/21/2025 13:21:30] INFO: Participant # 101474667: ToP 1min done [0.2s]
+[10/21/2025 13:21:34] INFO: Participant # 401109691: ToP 1sec done [49.0s]
+[10/21/2025 13:21:35] INFO: Participant # 401109691: ToP 1min done [0.3s]
+[10/21/2025 13:21:38] INFO: Participant # 401167164: ToP 1sec done [43.4s]
+[10/21/2025 13:21:38] INFO: Participant # 401167164: ToP 1min done [0.3s]
+[10/21/2025 13:21:39] DEBUG: PID 1824029: processing 103663507_451
+[10/21/2025 13:21:40] DEBUG: PID 1823666: processing 104044025_428
+[10/21/2025 13:21:40] INFO: Participant # 104019376: ToP 1sec done [40.7s]
+[10/21/2025 13:21:40] INFO: Participant # 402464874: ToP 1sec done [39.2s]
+[10/21/2025 13:21:40] INFO: Participant # 104019376: ToP 1min done [0.2s]
+[10/21/2025 13:21:40] DEBUG: PID 1825773: processing 103139862_319
+[10/21/2025 13:21:40] INFO: Participant # 402464874: ToP 1min done [0.2s]
+[10/21/2025 13:21:45] INFO: Participant # 104017317: ToP 1sec done [41.2s]
+[10/21/2025 13:21:45] INFO: Participant # 104017317: ToP 1min done [0.3s]
+[10/21/2025 13:21:51] INFO: Participant # 103663507: ToP 1sec done [6.1s]
+[10/21/2025 13:21:51] INFO: Participant # 103663507: ToP 1min done [0.1s]
+[10/21/2025 13:22:01] DEBUG: PID 1825265: processing 401809607_69
+[10/21/2025 13:22:03] INFO: Participant # 101740289: ToP 1sec done [40.5s]
+[10/21/2025 13:22:04] INFO: Participant # 101740289: ToP 1min done [0.2s]
+[10/21/2025 13:22:08] INFO: Participant # 101550026: ToP 1sec done [35.1s]
+[10/21/2025 13:22:09] DEBUG: PID 1829682: processing 104026243_470
+[10/21/2025 13:22:09] INFO: Participant # 101550026: ToP 1min done [0.2s]
+[10/21/2025 13:22:10] DEBUG: PID 1825652: processing 104005835_428
+[10/21/2025 13:22:14] DEBUG: PID 1826883: processing 101382479_453
+[10/21/2025 13:22:17] INFO: Participant # 404037100: ToP 1sec done [42.0s]
+[10/21/2025 13:22:17] INFO: Participant # 404037100: ToP 1min done [0.3s]
+[10/21/2025 13:22:28] DEBUG: PID 1827992: processing 401945575_179
+[10/21/2025 13:22:29] INFO: Participant # 103139862: ToP 1sec done [31.5s]
+[10/21/2025 13:22:29] INFO: Participant # 103139862: ToP 1min done [0.2s]
+[10/21/2025 13:22:37] DEBUG: PID 1830132: processing 104073032_453
+[10/21/2025 13:22:39] INFO: Participant # 104044025: ToP 1sec done [39.0s]
+[10/21/2025 13:22:39] INFO: Participant # 104044025: ToP 1min done [0.2s]
+[10/21/2025 13:22:45] DEBUG: PID 1828236: processing 102741390_490
+[10/21/2025 13:22:46] DEBUG: PID 1828214: processing 104040150_337
+[10/21/2025 13:22:48] DEBUG: PID 1828540: processing 404047392_104
+[10/21/2025 13:22:59] INFO: Participant # 102741390: ToP 1sec done [7.7s]
+[10/21/2025 13:22:59] INFO: Participant # 102741390: ToP 1min done [0.1s]
+[10/21/2025 13:23:05] INFO: Participant # 104026243: ToP 1sec done [37.3s]
+[10/21/2025 13:23:05] INFO: Participant # 104026243: ToP 1min done [0.2s]
+[10/21/2025 13:23:06] INFO: Participant # 104005835: ToP 1sec done [37.2s]
+[10/21/2025 13:23:06] INFO: Participant # 104005835: ToP 1min done [0.3s]
+[10/21/2025 13:23:06] INFO: Participant # 401809607: ToP 1sec done [42.0s]
+[10/21/2025 13:23:07] INFO: Participant # 401809607: ToP 1min done [0.3s]
+[10/21/2025 13:23:19] INFO: Participant # 101382479: ToP 1sec done [35.8s]
+[10/21/2025 13:23:20] INFO: Participant # 101382479: ToP 1min done [0.3s]
+[10/21/2025 13:23:31] INFO: Participant # 401945575: ToP 1sec done [35.7s]
+[10/21/2025 13:23:31] INFO: Participant # 401945575: ToP 1min done [0.3s]
+[10/21/2025 13:23:33] INFO: Participant # 104073032: ToP 1sec done [34.0s]
+[10/21/2025 13:23:33] INFO: Participant # 104073032: ToP 1min done [0.2s]
+[10/21/2025 13:23:40] INFO: Participant # 104040150: ToP 1sec done [32.8s]
+[10/21/2025 13:23:40] INFO: Participant # 104040150: ToP 1min done [0.2s]
+[10/21/2025 13:23:50] INFO: Participant # 404047392: ToP 1sec done [45.8s]
+[10/21/2025 13:23:50] INFO: Participant # 404047392: ToP 1min done [0.3s]
+    City  Wave       Filename  Status Details
+0    mtl     4   401860045_17       1      Ok
+1    vic     4  103761333_470       1      Ok
+2    vic     4  101072948_490       1      Ok
+3    mtl     4  401272178_254       1      Ok
+4    mtl     4    403683583_9       1      Ok
+..   ...   ...            ...     ...     ...
+147  mtl     4  404047392_104       1      Ok
+148  vic     4  103932160_338       1      Ok
+149  vic     4  104026243_470       1      Ok
+150  vic     4  104019376_319       1      Ok
+151  vic     4  104073032_453       1      Ok
+
+[152 rows x 5 columns]
+==== PROCESSING REPORT | ToP ====
+ City   |   Wave |   Error |   OK
+--------+--------+---------+------
+ mtl    |      4 |       0 |   48
+ vic    |      4 |       1 |  103
+DONE: 867.3s

@@ -14,7 +14,7 @@ cities = {'mtl': 'montreal',
           'skt': 'saskatoon', 
           'van': 'vancouver', 
           'vic': 'victoria'}
-waves = [1, 2, 3]
+waves = [1, 2, 3, 4]
 
 # DB credential, etc.
 db_user = os.environ.get("USER", os.environ.get("USERNAME", ""))
@@ -54,6 +54,9 @@ done = set()
 top_con = create_engine(f'postgresql://{db_user}@{db_host}/interact_db')
 for ccode, city in cities.items():
     for wave in waves:
+        # Check if city has no SD data, then skip. This happened at w4 for skt and van
+        if wave == 4 and ccode in ['van', 'skt']:
+            continue
         target_schema = f'top_sd{"" if wave == 1 else wave}'
         target_table = f'top_1min_{ccode}'
         sql = f"SELECT DISTINCT '{ccode}' AS ccode, {wave} AS wave, interact_id::TEXT, sd_id::TEXT FROM {target_schema}.{target_table}"

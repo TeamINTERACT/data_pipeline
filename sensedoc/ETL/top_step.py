@@ -54,7 +54,7 @@ cities = {'mtl': 'montreal',
           'skt': 'saskatoon', 
           'van': 'vancouver', 
           'vic': 'victoria'}
-waves = [1, 2, 3]
+waves = [1, 2, 3, 4]
 
 # DB credential, etc.
 db_user = os.environ.get("USER", os.environ.get("USERNAME", ""))
@@ -66,6 +66,7 @@ root_data_folder = 'data\interact_test_data'
 # Define temporary folder to store reformatted CSV file as well as scratch folder
 tmp_folder = os.environ.get("SLURM_TMPDIR", 'data/tmp')
 scratch_folder = os.environ.get("SCRATCH", 'data/tmp')
+wave_id = None
 
 def execute_alter_top(city_code:str, wave:int):
     """ Add required new colukns in ToPs
@@ -93,7 +94,7 @@ def execute_alter_top(city_code:str, wave:int):
         conn.execute(text(stmt_ddl_top1min))
 
 
-def single_step_produce(city_code:str, wave:int, axl_elite_filename:str, dst_dir=None):
+def single_step_produce(city_code:str, wave:int, axl_elite_filename:str, dst_dir=None, force=False):
     """
     Processing of a single participant's SD data.
     Load AXL data from elite file subfolder. Reformat AXL CSV to match stepcount
@@ -108,6 +109,7 @@ def single_step_produce(city_code:str, wave:int, axl_elite_filename:str, dst_dir
     - axl_elite_filename: AXL elite filename, including edxtension;
         filenames contain participant ID and SenseDoc ID
     - dst_dir: Path where step count CSV files 
+    - force: if True, steps will be recomputed if already in database
 
     Returns:
     --------
@@ -153,6 +155,17 @@ def single_step_produce(city_code:str, wave:int, axl_elite_filename:str, dst_dir
         if res is None:
             logger.warning(f'Unable to find participant #{interact_id}/sd #{sd_id} in {target_schema}.{target_table1min}, skipping')
             return (city_code, wave, os.path.basename(axl_elite_filename), -1, 'interact_id/sd_id not found in database')
+        # Check if steps have already been computed (only if Force = False)
+        if not force:
+            stmt = text(f"SELECT * FROM {target_schema}.{target_table1min} "
+                        "WHERE interact_id = :interact_id AND steps IS NOT NULL LIMIT 1")
+            stmt = stmt.bindparams(interact_id=interact_id)
+            res = conn.execute(stmt).fetchone()
+            if res is not None:
+                logger.warning(f'Steps for participant #{interact_id} in {target_schema}.{target_table1min} already computed, skipping')
+                return (city_code, wave, os.path.basename(axl_elite_filename), -1, 'already processed')
+
+
         
     # Load and clean data
     try:
@@ -280,6 +293,10 @@ def step_produce_sd(src_dir, ncpu=None):
     src_dir = os.path.abspath(src_dir)
     for ccode, city in cities.items():
         for wave in waves:
+            # Check if city has no SD data, then skip. This happened at w4 for skt and van
+            if wave == 4 and ccode in ['van', 'skt']:
+                continue
+
             # Modify the top with required fileds
             execute_alter_top(ccode, wave)
 
@@ -336,6 +353,10 @@ def export_top_to_csv(dst_dir):
     top_con = create_engine(f'postgresql://{db_user}@{db_host}/interact_db')
     for ccode, city in cities.items():
         for wave in waves:
+            # Check if city has no SD data, then skip. This happened at w4 for skt and van
+            if wave == 4 and ccode in ['van', 'skt']:
+                continue
+
             # Load 1min top
             target_schema = f'top_sd{"" if wave == 1 else wave}'
             target_table1min = f'top_1min_{ccode}'
@@ -363,15 +384,24 @@ if __name__ == '__main__':
     #                     r'data\interact_test_data\victoria\wave_02\sensedoc_elite_files\102696608_464_AXL.csv',
     #                     r'data/output_step')
 
-    # # Get target root folder as command line argument
-    # if len(sys.argv[1:]):
-    #     root_data_folder = sys.argv[1]
+    # Get target root folder as command line argument
+    if len(sys.argv[1:]):
+        root_data_folder = sys.argv[1]
 
-    # if not os.path.isdir(root_data_folder):
-    #     logger.error(f'No directory <{root_data_folder}> found! Aborting')
-    #     exit(1)
+    if not os.path.isdir(root_data_folder):
+        logger.error(f'No directory <{root_data_folder}> found! Aborting')
+        exit(1)
 
-    # ncpus = int(os.environ.get('SLURM_CPUS_PER_TASK',default=6))
-    # step_produce_sd(root_data_folder, ncpus)
+    # Get wave id to process
+    if len(sys.argv[2:]):
+        wave_id = int(sys.argv[2])
+        if wave_id not in waves:
+            logging.error(f'Invalid wave id <{wave_id}>! Aborting')
+            exit(1)
+        else:
+            waves = [wave_id]
+
+    ncpus = int(os.environ.get('SLURM_CPUS_PER_TASK',default=6))
+    step_produce_sd(root_data_folder, ncpus)
 
     export_top_to_csv(r'/home/btcrchum/projects/def-dfuller/interact/data_archive')

@@ -1,0 +1,491 @@
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) mii/1.1.2
+
+The following have been reloaded with a version change:
+  1) StdEnv/2020 => StdEnv/2023
+  2) flexiblas/3.0.4 => flexiblas/3.3.1
+  3) gcc/9.3.0 => gcc/12.3
+  4) gcccore/.9.3.0 => gcccore/.12.3
+  5) gentoo/2020 => gentoo/2023
+  6) libfabric/1.10.1 => libfabric/1.18.0
+  7) openmpi/4.0.3 => openmpi/4.1.5
+  8) ucx/1.8.0 => ucx/1.14.1
+
+[10/22/2025 05:56:33] INFO: Multiprocessing with 8 cores
+[10/22/2025 05:56:33] INFO: PID 3437699: processing w4|mtl: 401272178_254_AXL.csv
+[10/22/2025 05:56:33] INFO: PID 3437700: processing w4|vic: 101973471_399_AXL.csv
+[10/22/2025 05:56:33] INFO: PID 3437698: processing w4|mtl: 403571418_111_AXL.csv
+[10/22/2025 05:56:33] INFO: PID 3437694: processing w4|vic: 102886115_312_AXL.csv
+[10/22/2025 05:56:33] INFO: PID 3437701: processing w4|vic: 104007875_399_AXL.csv
+[10/22/2025 05:56:33] INFO: PID 3437697: processing w4|vic: 104039365_434_AXL.csv
+[10/22/2025 05:56:33] INFO: PID 3437696: processing w4|vic: 104011595_319_AXL.csv
+[10/22/2025 05:56:33] INFO: PID 3437695: processing w4|mtl: 402464874_102_AXL.csv
+[10/22/2025 05:56:33] WARNING: Steps for participant #402464874 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:33] INFO: PID 3437695: processing w4|vic: 104044025_428_AXL.csv
+[10/22/2025 05:56:33] WARNING: Unable to find participant #104039365/sd #434 in top_sd4.top_1min_vic, skipping
+[10/22/2025 05:56:33] INFO: PID 3437697: processing w4|vic: 101981972_352_AXL.csv
+[10/22/2025 05:56:33] WARNING: Steps for participant #102886115 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:33] INFO: PID 3437694: processing w4|vic: 103932160_338_AXL.csv
+[10/22/2025 05:56:33] WARNING: Steps for participant #101973471 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:33] INFO: PID 3437700: processing w4|vic: 101202069_423_AXL.csv
+[10/22/2025 05:56:33] WARNING: Steps for participant #403571418 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:33] INFO: PID 3437698: processing w4|vic: 103773342_328_AXL.csv
+[10/22/2025 05:56:33] WARNING: Steps for participant #401272178 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:33] INFO: PID 3437699: processing w4|mtl: 402949876_72_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104007875 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437701: processing w4|vic: 104040150_337_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104044025 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437695: processing w4|vic: 101996732_399_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #103932160 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437694: processing w4|vic: 101429213_339_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104011595 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437696: processing w4|vic: 102567670_428_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104040150 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437701: processing w4|vic: 103531689_339_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #402949876 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437699: processing w4|vic: 104076949_352_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #101202069 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437700: processing w4|mtl: 402141286_169_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #101996732 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437695: processing w4|vic: 103546796_434_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #101981972 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437697: processing w4|mtl: 401440362_46_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #103773342 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437698: processing w4|vic: 104032477_451_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104076949 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437699: processing w4|vic: 104062544_337_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #401440362 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437697: processing w4|mtl: 401997401_78_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #103546796 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437695: processing w4|vic: 104026243_470_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #103531689 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437701: processing w4|vic: 103722386_352_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #102567670 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437696: processing w4|vic: 104056185_337_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #101429213 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437694: processing w4|vic: 104007875_312_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #401997401 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437697: processing w4|mtl: 401103480_254_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104062544 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437699: processing w4|vic: 101452903_453_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104007875 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] WARNING: Steps for participant #103722386 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437701: processing w4|vic: 101636205_454_AXL.csv
+[10/22/2025 05:56:34] INFO: PID 3437694: processing w4|vic: 104036795_319_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104032477 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437698: processing w4|vic: 104009196_328_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #401103480 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437806: processing w4|mtl: 401910101_45_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104056185 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437696: processing w4|mtl: 401524229_9_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104036795 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437819: processing w4|mtl: 401630460_17_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104026243 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437822: processing w4|vic: 104084225_338_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #401524229 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437696: processing w4|vic: 102475434_451_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104009196 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437698: processing w4|vic: 104019376_319_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #101636205 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437829: processing w4|mtl: 401095730_60_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #401910101 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437806: processing w4|mtl: 404026707_69_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #102475434 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] WARNING: Steps for participant #401630460 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437819: processing w4|vic: 101787606_347_AXL.csv
+[10/22/2025 05:56:34] INFO: PID 3437842: processing w4|mtl: 401341482_69_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104019376 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437847: processing w4|vic: 103663507_451_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #101452903 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437849: processing w4|vic: 103663507_328_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #404026707 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437806: processing w4|vic: 104087370_343_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #103663507 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437847: processing w4|vic: 102741390_490_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #101787606 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437819: processing w4|mtl: 401809607_69_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #103663507 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437849: processing w4|vic: 104010044_453_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #401095730 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437829: processing w4|vic: 102860428_428_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #401341482 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437842: processing w4|mtl: 404037100_9_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104084225 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437822: processing w4|vic: 104023607_338_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #102741390 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437847: processing w4|vic: 104024051_434_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #104010044 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437849: processing w4|vic: 101053220_328_AXL.csv
+[10/22/2025 05:56:34] WARNING: Steps for participant #401809607 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:34] INFO: PID 3437819: processing w4|vic: 101740289_490_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #102860428 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437829: processing w4|mtl: 401586738_122_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #404037100 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437842: processing w4|vic: 104069451_470_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #104087370 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437806: processing w4|vic: 102715577_453_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #401586738 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437829: processing w4|mtl: 401272407_235_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #104023607 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437822: processing w4|vic: 101555830_337_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #101053220 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437849: processing w4|vic: 104015322_428_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #101555830 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437822: processing w4|vic: 101307761_434_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #101740289 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437819: processing w4|vic: 102622945_423_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #401272407 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437829: processing w4|mtl: 404047392_104_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #104015322 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437849: processing w4|mtl: 403683583_9_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #104024051 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437847: processing w4|vic: 104009526_338_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #102715577 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437806: processing w4|vic: 104088541_428_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #104069451 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437842: processing w4|vic: 104035105_434_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #104009526 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437847: processing w4|vic: 103546796_312_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #403683583 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437988: processing w4|mtl: 401919451_276_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #404047392 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437989: processing w4|vic: 104039365_317_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #101307761 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437822: processing w4|mtl: 401860045_17_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #104039365 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437989: processing w4|mtl: 401548872_8_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #104035105 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] WARNING: Steps for participant #103546796 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437842: processing w4|vic: 104061629_337_AXL.csv
+[10/22/2025 05:56:35] INFO: PID 3438007: processing w4|vic: 102749686_428_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #104088541 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3438008: processing w4|vic: 101896664_451_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #401919451 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437988: processing w4|vic: 102643856_399_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #102749686 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3438007: processing w4|vic: 102890362_423_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #104061629 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3438021: processing w4|mtl: 401451781_111_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #101896664 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3438008: processing w4|vic: 104079174_423_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #401451781 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3438021: processing w4|mtl: 402435135_253_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #102890362 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3438007: processing w4|vic: 101818131_339_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #102643856 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437988: processing w4|mtl: 404393238_264_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #104079174 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3438008: processing w4|vic: 102877373_352_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #402435135 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3438021: processing w4|vic: 104087912_312_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #404393238 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3437988: processing w4|mtl: 401167164_78_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #102877373 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3438008: processing w4|vic: 104036795_343_AXL.csv
+[10/22/2025 05:56:35] WARNING: Steps for participant #101818131 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:35] INFO: PID 3438007: processing w4|vic: 103932160_343_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #104036795 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438008: processing w4|vic: 101474667_343_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #104087912 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438021: processing w4|vic: 104021532_352_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #103932160 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438007: processing w4|mtl: 401399757_104_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #401167164 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3437988: processing w4|vic: 102649509_312_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #104021532 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438021: processing w4|vic: 104008847_338_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #101474667 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] WARNING: Steps for participant #401399757 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438072: processing w4|vic: 104073032_453_AXL.csv
+[10/22/2025 05:56:36] INFO: PID 3438073: processing w4|mtl: 401318330_122_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #104008847 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438075: processing w4|mtl: 401936329_235_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #102649509 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438085: processing w4|vic: 104020462_470_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #401318330 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438073: processing w4|vic: 101072948_490_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #104020462 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438085: processing w4|vic: 104017317_317_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #101072948 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438073: processing w4|vic: 102543271_338_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #104017317 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438085: processing w4|mtl: 401669659_147_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #401669659 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438085: processing w4|mtl: 401839530_235_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #102543271 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438073: processing w4|vic: 104039542_343_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #401839530 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438085: processing w4|vic: 102741390_317_AXL.csv
+[10/22/2025 05:56:36] WARNING: Steps for participant #102741390 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:36] INFO: PID 3438194: processing w4|vic: 104006449_343_AXL.csv
+[10/22/2025 05:56:37] WARNING: Steps for participant #104006449 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:37] INFO: PID 3438194: processing w4|vic: 101550026_312_AXL.csv
+[10/22/2025 05:56:37] WARNING: Steps for participant #101550026 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 05:56:37] INFO: PID 3438194: processing w4|mtl: 401927418_276_AXL.csv
+[10/22/2025 05:56:37] WARNING: Steps for participant #401927418 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:37] INFO: PID 3438194: processing w4|mtl: 401660649_264_AXL.csv
+[10/22/2025 05:56:37] WARNING: Steps for participant #401660649 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 05:56:37] INFO: PID 3438194: processing w4|vic: 102993750_434_AXL.csv
+[10/22/2025 06:03:51] DEBUG: PID 3437700: 437.01s @ 31.5ms/row
+[10/22/2025 06:03:51] INFO: PID 3437700: processing w4|mtl: 401967217_72_AXL.csv
+[10/22/2025 06:03:51] WARNING: Steps for participant #401967217 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 06:03:51] INFO: PID 3437700: processing w4|vic: 104053176_339_AXL.csv
+[10/22/2025 06:03:51] DEBUG: PID 3438072: 435.21s @ 36.9ms/row
+[10/22/2025 06:03:51] INFO: PID 3438072: processing w4|vic: 104063135_338_AXL.csv
+[10/22/2025 06:03:51] WARNING: Steps for participant #104053176 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:03:51] INFO: PID 3493646: processing w4|mtl: 401811306_9_AXL.csv
+[10/22/2025 06:03:51] WARNING: Steps for participant #104063135 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:03:51] INFO: PID 3438072: processing w4|vic: 104073213_399_AXL.csv
+[10/22/2025 06:03:51] WARNING: Steps for participant #401811306 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 06:03:51] INFO: PID 3493646: processing w4|vic: 103761333_470_AXL.csv
+[10/22/2025 06:03:51] WARNING: Steps for participant #104073213 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:03:51] INFO: PID 3438072: processing w4|vic: 101382479_453_AXL.csv
+[10/22/2025 06:03:51] WARNING: Steps for participant #103761333 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:03:51] INFO: PID 3493646: processing w4|vic: 102755345_339_AXL.csv
+[10/22/2025 06:03:51] WARNING: Steps for participant #101382479 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:03:51] INFO: PID 3438072: processing w4|vic: 101356709_453_AXL.csv
+[10/22/2025 06:03:51] WARNING: Steps for participant #102755345 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:03:51] INFO: PID 3493646: processing w4|mtl: 401910151_254_AXL.csv
+[10/22/2025 06:03:51] WARNING: Steps for participant #101356709 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:03:51] INFO: PID 3493671: processing w4|vic: 103139862_319_AXL.csv
+[10/22/2025 06:03:52] WARNING: Steps for participant #103139862 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:03:52] INFO: PID 3493671: processing w4|vic: 104082308_490_AXL.csv
+[10/22/2025 06:03:52] WARNING: Steps for participant #104082308 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:03:52] INFO: PID 3493671: processing w4|vic: 104246930_337_AXL.csv
+[10/22/2025 06:04:27] DEBUG: PID 3437822: 472.44s @ 34.3ms/row
+[10/22/2025 06:04:27] INFO: PID 3495101: processing w4|mtl: 401109691_78_AXL.csv
+[10/22/2025 06:04:28] WARNING: Steps for participant #401109691 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 06:04:28] INFO: PID 3495101: processing w4|vic: 101941930_434_AXL.csv
+[10/22/2025 06:04:28] WARNING: Steps for participant #101941930 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:04:28] INFO: PID 3495101: processing w4|mtl: 401791704_102_AXL.csv
+[10/22/2025 06:04:47] DEBUG: PID 3438073: 491.17s @ 39.6ms/row
+[10/22/2025 06:04:47] INFO: PID 3438073: processing w4|mtl: 402495712_276_AXL.csv
+[10/22/2025 06:04:47] WARNING: Steps for participant #402495712 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 06:04:47] INFO: PID 3496093: processing w4|mtl: 404846254_17_AXL.csv
+[10/22/2025 06:04:48] WARNING: Steps for participant #404846254 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 06:04:48] INFO: PID 3496093: processing w4|vic: 101830987_312_AXL.csv
+[10/22/2025 06:04:48] WARNING: Steps for participant #101830987 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:04:48] INFO: PID 3496093: processing w4|vic: 104024995_490_AXL.csv
+[10/22/2025 06:04:48] WARNING: Steps for participant #104024995 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:04:48] INFO: PID 3496093: processing w4|vic: 101534317_434_AXL.csv
+[10/22/2025 06:04:48] WARNING: Steps for participant #101534317 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:04:48] INFO: PID 3496093: processing w4|mtl: 401760345_72_AXL.csv
+[10/22/2025 06:04:50] DEBUG: PID 3437819: 495.55s @ 39.8ms/row
+[10/22/2025 06:04:50] INFO: PID 3496220: processing w4|vic: 104062018_470_AXL.csv
+[10/22/2025 06:04:50] WARNING: Steps for participant #104062018 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:04:50] INFO: PID 3496220: processing w4|vic: 102605113_328_AXL.csv
+[10/22/2025 06:04:51] WARNING: Steps for participant #102605113 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:04:51] INFO: PID 3496220: processing w4|mtl: 401442080_102_AXL.csv
+[10/22/2025 06:04:51] WARNING: Steps for participant #401442080 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 06:04:51] INFO: PID 3496220: processing w4|mtl: 401484804_46_AXL.csv
+[10/22/2025 06:04:51] WARNING: Steps for participant #401484804 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 06:04:51] INFO: PID 3496220: processing w4|vic: 101407396_337_AXL.csv
+[10/22/2025 06:04:51] WARNING: Steps for participant #101407396 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:04:51] INFO: PID 3496237: processing w4|vic: 102370888_319_AXL.csv
+[10/22/2025 06:04:51] WARNING: Steps for participant #102370888 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:04:51] INFO: PID 3496237: processing w4|vic: 104914984_490_AXL.csv
+[10/22/2025 06:04:52] WARNING: Steps for participant #104914984 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:05:04] DEBUG: PID 3438194: 506.67s @ 40.5ms/row
+[10/22/2025 06:05:13] DEBUG: PID 3438075: 517.08s @ 24.4ms/row
+[10/22/2025 06:05:13] INFO: PID 3438075: processing w4|mtl: 401945575_179_AXL.csv
+[10/22/2025 06:05:13] WARNING: Steps for participant #401945575 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 06:05:13] INFO: PID 3438075: processing w4|mtl: 401664309_253_AXL.csv
+[10/22/2025 06:05:13] WARNING: Steps for participant #401664309 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 06:05:13] INFO: PID 3438075: processing w4|vic: 104032844_451_AXL.csv
+[10/22/2025 06:05:13] WARNING: Steps for participant #104032844 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:05:13] INFO: PID 3438075: processing w4|vic: 101869520_312_AXL.csv
+[10/22/2025 06:05:13] WARNING: Steps for participant #101869520 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:05:19] DEBUG: PID 3437989: 524.19s @ 21.4ms/row
+[10/22/2025 06:05:19] INFO: PID 3437989: processing w4|vic: 103259951_423_AXL.csv
+[10/22/2025 06:05:19] WARNING: Steps for participant #103259951 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:05:19] INFO: PID 3437989: processing w4|vic: 101192364_347_AXL.csv
+[10/22/2025 06:05:19] WARNING: Steps for participant #101192364 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:05:19] INFO: PID 3437989: processing w4|vic: 104005835_428_AXL.csv
+[10/22/2025 06:05:20] WARNING: Steps for participant #104005835 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:08:15] DEBUG: PID 3493671: 262.99s @ 21.6ms/row
+[10/22/2025 06:08:15] INFO: PID 3493671: processing w4|mtl: 401399249_162_AXL.csv
+[10/22/2025 06:08:15] WARNING: Steps for participant #401399249 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 06:08:15] INFO: PID 3493671: processing w4|vic: 101192364_490_AXL.csv
+[10/22/2025 06:08:15] WARNING: Steps for participant #101192364 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:08:37] DEBUG: PID 3493646: 285.21s @ 17.2ms/row
+[10/22/2025 06:08:37] INFO: PID 3493646: processing w4|vic: 101920543_399_AXL.csv
+[10/22/2025 06:09:01] DEBUG: PID 3495101: 273.18s @ 19.9ms/row
+[10/22/2025 06:09:01] INFO: PID 3495101: processing w4|mtl: 403144072_72_AXL.csv
+[10/22/2025 06:09:01] WARNING: Steps for participant #403144072 in top_sd4.top_1min_mtl already computed, skipping
+[10/22/2025 06:09:01] INFO: PID 3495101: processing w4|vic: 101050476_343_AXL.csv
+[10/22/2025 06:09:01] WARNING: Steps for participant #101050476 in top_sd4.top_1min_vic already computed, skipping
+[10/22/2025 06:10:04] DEBUG: PID 3496093: 316.31s @ 22.6ms/row
+[10/22/2025 06:11:49] DEBUG: PID 3493646: 192.21s @ 15.7ms/row
+[10/22/2025 06:11:52] INFO: Exporting montreal|w4: IID #401095730 / SD #60
+[10/22/2025 06:11:52] INFO: Exporting montreal|w4: IID #401103480 / SD #254
+[10/22/2025 06:11:52] INFO: Exporting montreal|w4: IID #401109691 / SD #78
+[10/22/2025 06:11:52] INFO: Exporting montreal|w4: IID #401167164 / SD #78
+[10/22/2025 06:11:53] INFO: Exporting montreal|w4: IID #401272178 / SD #254
+[10/22/2025 06:11:53] INFO: Exporting montreal|w4: IID #401272407 / SD #235
+[10/22/2025 06:11:53] INFO: Exporting montreal|w4: IID #401318330 / SD #122
+[10/22/2025 06:11:53] INFO: Exporting montreal|w4: IID #401341482 / SD #69
+[10/22/2025 06:11:53] INFO: Exporting montreal|w4: IID #401399249 / SD #162
+[10/22/2025 06:11:53] INFO: Exporting montreal|w4: IID #401399757 / SD #104
+[10/22/2025 06:11:53] INFO: Exporting montreal|w4: IID #401440362 / SD #46
+[10/22/2025 06:11:53] INFO: Exporting montreal|w4: IID #401442080 / SD #102
+[10/22/2025 06:11:53] INFO: Exporting montreal|w4: IID #401451781 / SD #111
+[10/22/2025 06:11:53] INFO: Exporting montreal|w4: IID #401484804 / SD #46
+[10/22/2025 06:11:53] INFO: Exporting montreal|w4: IID #401524229 / SD #9
+[10/22/2025 06:11:54] INFO: Exporting montreal|w4: IID #401548872 / SD #8
+[10/22/2025 06:11:54] INFO: Exporting montreal|w4: IID #401586738 / SD #122
+[10/22/2025 06:11:54] INFO: Exporting montreal|w4: IID #401630460 / SD #17
+[10/22/2025 06:11:54] INFO: Exporting montreal|w4: IID #401660649 / SD #264
+[10/22/2025 06:11:54] INFO: Exporting montreal|w4: IID #401664309 / SD #253
+[10/22/2025 06:11:54] INFO: Exporting montreal|w4: IID #401669659 / SD #147
+[10/22/2025 06:11:54] INFO: Exporting montreal|w4: IID #401760345 / SD #72
+[10/22/2025 06:11:54] INFO: Exporting montreal|w4: IID #401791704 / SD #102
+[10/22/2025 06:11:54] INFO: Exporting montreal|w4: IID #401809607 / SD #69
+[10/22/2025 06:11:54] INFO: Exporting montreal|w4: IID #401811306 / SD #9
+[10/22/2025 06:11:54] INFO: Exporting montreal|w4: IID #401839530 / SD #235
+[10/22/2025 06:11:55] INFO: Exporting montreal|w4: IID #401860045 / SD #17
+[10/22/2025 06:11:55] INFO: Exporting montreal|w4: IID #401910101 / SD #45
+[10/22/2025 06:11:55] INFO: Exporting montreal|w4: IID #401910151 / SD #254
+[10/22/2025 06:11:55] INFO: Exporting montreal|w4: IID #401919451 / SD #276
+[10/22/2025 06:11:55] INFO: Exporting montreal|w4: IID #401927418 / SD #276
+[10/22/2025 06:11:55] INFO: Exporting montreal|w4: IID #401936329 / SD #235
+[10/22/2025 06:11:55] INFO: Exporting montreal|w4: IID #401945575 / SD #179
+[10/22/2025 06:11:55] INFO: Exporting montreal|w4: IID #401967217 / SD #72
+[10/22/2025 06:11:55] INFO: Exporting montreal|w4: IID #401997401 / SD #78
+[10/22/2025 06:11:56] INFO: Exporting montreal|w4: IID #402141286 / SD #169
+[10/22/2025 06:11:56] INFO: Exporting montreal|w4: IID #402435135 / SD #253
+[10/22/2025 06:11:56] INFO: Exporting montreal|w4: IID #402464874 / SD #102
+[10/22/2025 06:11:56] INFO: Exporting montreal|w4: IID #402495712 / SD #276
+[10/22/2025 06:11:56] INFO: Exporting montreal|w4: IID #402949876 / SD #72
+[10/22/2025 06:11:56] INFO: Exporting montreal|w4: IID #403144072 / SD #72
+[10/22/2025 06:11:56] INFO: Exporting montreal|w4: IID #403571418 / SD #111
+[10/22/2025 06:11:56] INFO: Exporting montreal|w4: IID #403683583 / SD #9
+[10/22/2025 06:11:56] INFO: Exporting montreal|w4: IID #404026707 / SD #69
+[10/22/2025 06:11:56] INFO: Exporting montreal|w4: IID #404037100 / SD #9
+[10/22/2025 06:11:57] INFO: Exporting montreal|w4: IID #404047392 / SD #104
+[10/22/2025 06:11:57] INFO: Exporting montreal|w4: IID #404393238 / SD #264
+[10/22/2025 06:11:57] INFO: Exporting montreal|w4: IID #404846254 / SD #17
+[10/22/2025 06:12:02] INFO: Exporting victoria|w4: IID #101050476 / SD #343
+[10/22/2025 06:12:02] INFO: Exporting victoria|w4: IID #101053220 / SD #328
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101072948 / SD #490
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101192364 / SD #347
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101192364 / SD #490
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101202069 / SD #423
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101307761 / SD #434
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101356709 / SD #453
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101382479 / SD #453
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101407396 / SD #337
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101429213 / SD #339
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101452903 / SD #453
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101474667 / SD #343
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101534317 / SD #434
+[10/22/2025 06:12:03] INFO: Exporting victoria|w4: IID #101550026 / SD #312
+[10/22/2025 06:12:04] INFO: Exporting victoria|w4: IID #101555830 / SD #337
+[10/22/2025 06:12:04] INFO: Exporting victoria|w4: IID #101636205 / SD #454
+[10/22/2025 06:12:04] INFO: Exporting victoria|w4: IID #101740289 / SD #490
+[10/22/2025 06:12:04] INFO: Exporting victoria|w4: IID #101787606 / SD #347
+[10/22/2025 06:12:04] INFO: Exporting victoria|w4: IID #101818131 / SD #339
+[10/22/2025 06:12:04] INFO: Exporting victoria|w4: IID #101830987 / SD #312
+[10/22/2025 06:12:04] INFO: Exporting victoria|w4: IID #101869520 / SD #312
+[10/22/2025 06:12:04] INFO: Exporting victoria|w4: IID #101896664 / SD #451
+[10/22/2025 06:12:04] INFO: Exporting victoria|w4: IID #101920543 / SD #399
+[10/22/2025 06:12:04] INFO: Exporting victoria|w4: IID #101941930 / SD #434
+[10/22/2025 06:12:05] INFO: Exporting victoria|w4: IID #101973471 / SD #399
+[10/22/2025 06:12:05] INFO: Exporting victoria|w4: IID #101981972 / SD #352
+[10/22/2025 06:12:05] INFO: Exporting victoria|w4: IID #101996732 / SD #399
+[10/22/2025 06:12:05] INFO: Exporting victoria|w4: IID #102370888 / SD #319
+[10/22/2025 06:12:05] INFO: Exporting victoria|w4: IID #102475434 / SD #451
+[10/22/2025 06:12:05] INFO: Exporting victoria|w4: IID #102543271 / SD #338
+[10/22/2025 06:12:05] INFO: Exporting victoria|w4: IID #102567670 / SD #428
+[10/22/2025 06:12:05] INFO: Exporting victoria|w4: IID #102605113 / SD #328
+[10/22/2025 06:12:05] INFO: Exporting victoria|w4: IID #102622945 / SD #423
+[10/22/2025 06:12:05] INFO: Exporting victoria|w4: IID #102643856 / SD #399
+[10/22/2025 06:12:05] INFO: Exporting victoria|w4: IID #102649509 / SD #312
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #102715577 / SD #453
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #102741390 / SD #317
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #102741390 / SD #490
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #102749686 / SD #428
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #102755345 / SD #339
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #102860428 / SD #428
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #102877373 / SD #352
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #102886115 / SD #312
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #102890362 / SD #423
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #102993750 / SD #434
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #103139862 / SD #319
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #103259951 / SD #423
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #103531689 / SD #339
+[10/22/2025 06:12:06] INFO: Exporting victoria|w4: IID #103546796 / SD #312
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #103546796 / SD #434
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #103663507 / SD #328
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #103663507 / SD #451
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #103722386 / SD #352
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #103761333 / SD #470
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #103773342 / SD #328
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #103932160 / SD #338
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #103932160 / SD #343
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #104005835 / SD #428
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #104006449 / SD #343
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #104007875 / SD #312
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #104007875 / SD #399
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #104008847 / SD #338
+[10/22/2025 06:12:07] INFO: Exporting victoria|w4: IID #104009196 / SD #328
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104009526 / SD #338
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104010044 / SD #453
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104011595 / SD #319
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104015322 / SD #428
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104017317 / SD #317
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104019376 / SD #319
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104020462 / SD #470
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104021532 / SD #352
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104023607 / SD #338
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104024051 / SD #434
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104024995 / SD #490
+[10/22/2025 06:12:08] INFO: Exporting victoria|w4: IID #104026243 / SD #470
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104032477 / SD #451
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104032844 / SD #451
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104035105 / SD #434
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104036795 / SD #319
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104036795 / SD #343
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104039365 / SD #317
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104039542 / SD #343
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104040150 / SD #337
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104044025 / SD #428
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104053176 / SD #339
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104056185 / SD #337
+[10/22/2025 06:12:09] INFO: Exporting victoria|w4: IID #104061629 / SD #337
+[10/22/2025 06:12:10] INFO: Exporting victoria|w4: IID #104062018 / SD #470
+[10/22/2025 06:12:10] INFO: Exporting victoria|w4: IID #104062544 / SD #337
+[10/22/2025 06:12:10] INFO: Exporting victoria|w4: IID #104063135 / SD #338
+[10/22/2025 06:12:10] INFO: Exporting victoria|w4: IID #104069451 / SD #470
+[10/22/2025 06:12:10] INFO: Exporting victoria|w4: IID #104073032 / SD #453
+[10/22/2025 06:12:10] INFO: Exporting victoria|w4: IID #104073213 / SD #399
+[10/22/2025 06:12:10] INFO: Exporting victoria|w4: IID #104076949 / SD #352
+[10/22/2025 06:12:10] INFO: Exporting victoria|w4: IID #104079174 / SD #423
+[10/22/2025 06:12:10] INFO: Exporting victoria|w4: IID #104082308 / SD #490
+[10/22/2025 06:12:10] INFO: Exporting victoria|w4: IID #104084225 / SD #338
+[10/22/2025 06:12:10] INFO: Exporting victoria|w4: IID #104087370 / SD #343
+[10/22/2025 06:12:11] INFO: Exporting victoria|w4: IID #104087912 / SD #312
+[10/22/2025 06:12:11] INFO: Exporting victoria|w4: IID #104088541 / SD #428
+[10/22/2025 06:12:11] INFO: Exporting victoria|w4: IID #104246930 / SD #337
+[10/22/2025 06:12:11] INFO: Exporting victoria|w4: IID #104914984 / SD #490
+    City  Wave               Filename  Status            Details
+0    vic     4  102886115_312_AXL.csv      -1  already processed
+1    vic     4  103932160_338_AXL.csv      -1  already processed
+2    vic     4  101429213_339_AXL.csv      -1  already processed
+3    vic     4  104007875_312_AXL.csv      -1  already processed
+4    vic     4  104036795_319_AXL.csv      -1  already processed
+..   ...   ...                    ...     ...                ...
+147  mtl     4  401442080_102_AXL.csv      -1  already processed
+148  mtl     4   401484804_46_AXL.csv      -1  already processed
+149  vic     4  101407396_337_AXL.csv      -1  already processed
+150  vic     4  102370888_319_AXL.csv      -1  already processed
+151  vic     4  104914984_490_AXL.csv      -1  already processed
+
+[152 rows x 5 columns]
+==== PROCESSING REPORT | Steps ====
+ City   |   Wave |   OK |   Skipped
+--------+--------+------+-----------
+ mtl    |      4 |    7 |        41
+ vic    |      4 |    6 |        98
+DONE: 915.5s
+DONE: 21.9s

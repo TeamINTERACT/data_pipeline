@@ -229,11 +229,23 @@ Python script `sensedoc/ETL/top_error.py` scans the list of elites files and com
 
 **Conclusion**: all the errors listed above have empty GPS and/or AXL files.
 
+### Wave 4
+
+```
+==== PROCESSING REPORT | ToP ====
+ City   |   Wave |   Error |   OK
+--------+--------+---------+------
+ mtl    |      4 |       0 |   48
+ vic    |      4 |       1 |  103
+```
+
+_NB_ Vic error is due to empty AXL/GPS data set.
+
 ### Adjusting grants on top tables in database
 
 ```sql
-GRANT USAGE ON SCHEMA top_sd, top_sd2, top_sd3 TO group_dfuller;
-GRANT SELECT ON ALL TABLES IN SCHEMA top_sd, top_sd2, top_sd3 TO group_dfuller;
+GRANT USAGE ON SCHEMA top_sd, top_sd2, top_sd3, top_sd4 TO group_dfuller;
+GRANT SELECT ON ALL TABLES IN SCHEMA top_sd, top_sd2, top_sd3, top_sd4 TO group_dfuller;
 ```
 
 ## Produce data (II)
@@ -289,6 +301,18 @@ Memory Efficiency: 99.99% of 120.00 GB (5.00 GB/core)
 ```
 
 *NB*: Skipped participants have no ToP records in DB, see above for explanation of missing records.
+
+### Wave 4
+
+```
+=== PROCESSING REPORT | Steps ====
+ City   |   Wave |   OK |   Skipped
+--------+--------+------+-----------
+ mtl    |      4 |    7 |        41
+ vic    |      4 |    6 |        98
+```
+
+*NB*: Skipped participants have been processed in a first round or have no ToP records in DB, see above for explanation of missing records.
 
 # SenseDoc Quality Checks
 

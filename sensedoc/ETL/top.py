@@ -10,9 +10,10 @@ series of additional metrics that help using the data (see data dictionary)
 Records are saved directly in database, in tables under the top schema with
 the following naming convention: top.SD_<EPOCH>_<CITY_CODE><WAVE>
 --
-USAGE: top.py [TARGET_ROOT_FOLDER]
+USAGE: top.py [TARGET_ROOT_FOLDER [WAVE]]
 
 If TARGET_ROOT_FOLDER not provided, will default to test data folder.
+If WAVE is not provided, all waves (1-4) will be processed
 """
 # Required to avoid bug in Pandas https://github.com/pandas-dev/pandas/issues/55025
 import warnings
@@ -50,7 +51,7 @@ cities = {'mtl': 'montreal',
           'skt': 'saskatoon', 
           'van': 'vancouver', 
           'vic': 'victoria'}
-waves = [1, 2, 3]
+waves = [1, 2, 3, 4]
 
 # DB credential, etc.
 db_user = os.environ.get("USER", os.environ.get("USERNAME", ""))
@@ -58,6 +59,7 @@ db_host = "localhost" if os.environ.get("COMPUTERNAME", "") == "VOLVIC" else "ce
 
 # Define base folder when not provided on the cmd line
 root_data_folder = 'data\interact_test_data'
+wave_id = None
 
 
 def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir, overwrite=False):
@@ -493,6 +495,10 @@ def top_produce_sd(src_dir, ncpu=None):
     src_dir = os.path.abspath(src_dir)
     for ccode, city in cities.items():
         for wave in waves:
+            # Check if city has no SD data, then skip. This happened at w4 for skt and van
+            if wave == 4 and ccode in ['van', 'skt']:
+                continue
+
             # Create the required schemas/tables fro top
             execute_ddl_top(ccode, wave)
 
@@ -546,6 +552,15 @@ if __name__ == '__main__':
     if not os.path.isdir(root_data_folder):
         logger.error(f'No directory <{root_data_folder}> found! Aborting')
         exit(1)
+
+    # Get wave id to process
+    if len(sys.argv[2:]):
+        wave_id = int(sys.argv[2])
+        if wave_id not in waves:
+            logging.error(f'Invalid wave id <{wave_id}>! Aborting')
+            exit(1)
+        else:
+            waves = [wave_id]
 
     ncpus = int(os.environ.get('SLURM_CPUS_PER_TASK',default=6))
     top_produce_sd(root_data_folder, ncpus)
