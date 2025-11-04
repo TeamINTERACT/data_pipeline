@@ -20,7 +20,10 @@
 The following columns are added : `INTERACT_ID`, `activity_levels`, `city_id`, `in_city` (flag whether data was collected within CMA), `sumary_count`, `count_x`, `count_y`, `count_z`, `device worn`. See description in GitHub TOP readme and Data Dictionary. 
 Data is aggregated by epoch: Three ToPs are created per city per wave: 1 second, 1 minute, 5 minutes.  
    + OUTPUT: 1 table of power per city, per wave per epoch (3/city/wave)
-   + Data dictionary for **TOP variables for SenseDoc** is available here: https://teaminteract.ca/ressources/INTERACT_datadict.html#top_title 
+   + Data dictionary for **TOP variables for SenseDoc** is available [here](https://teaminteract.ca/ressources/INTERACT_datadict.html#top_title)
+   + ADDED ON NOV 2025:
+      - Two flags have been added to the 1 second SenseDoc ToP tables to indicate if a GPS fix lies within the study area (`in_city`) or within the Cense Metropolitan Area (`in_cma`)
+      - METs based on Crouter's formula has been added to the 1 minute SenseDoc ToP tables (see sql files in subfolder `METs\`)
 
 7. **Describe**: Create summary statistics (see `QA` subfolder):
       + date ranges
