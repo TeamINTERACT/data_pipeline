@@ -34,3 +34,13 @@ For each city/wave/participant:
 
 ### Notes
 - Due to the specificity of the data acquisition pattern, no PA levels (_ie._ accelerometry counts) are computed for Ethica AXL as the standard algorithm cannot be used with the data
+
+### To be discussed/confirmed
+
+- Processing steps (see [Hildebrand _et al_](https://www.ovid.com/jnls/acsm-msse/toc/2014/09000) and [van Hees _et al._](https://doi.org/10.1371/journal.pone.0061691)):
+    - No filtering of axl data, we use the raw measurements
+    - Compute ENMO at the sample level, whatever the sampling frequency
+    - Reduce to 1s epoch by taking the mean of ENMOs
+- How to flag non-wear period?
+- Which method to extract PA levels from ENMO?
+- Incidentally, should we add ENMO to SenseDoc?
