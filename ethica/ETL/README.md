@@ -11,6 +11,10 @@ For each city/wave:
 ### Notes
 - Ethica data format may have changed from year to year and will require some adaptation before being validated
 
+### Summary
+
+
+
 ## Load and transform data
 
 For each city/wave/participant/sensor:

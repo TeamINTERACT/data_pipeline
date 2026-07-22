@@ -3,7 +3,7 @@ geopy==2.4.0
 greenlet==2.0.2+computecanada
 numpy==1.25.2+computecanada
 pandas==2.1.0+computecanada
-llvmlite==0.41.0+computecanada
+llvmlite==0.41.1+computecanada
 numba==0.58.0+computecanada
 psycopg2==2.9.7+computecanada
 pyproj==3.6.1
