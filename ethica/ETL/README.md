@@ -13,7 +13,26 @@ For each city/wave:
 
 ### Summary
 
+ City      | Wave   |   PIDs with Ethica |   PIDs missing Ethica |   Unknown Ethica users |   Partial data | Status
+-----------+--------+--------------------+-----------------------+------------------------+----------------+--------------------------------
+ Montreal  | Wave 1 |                557 |                    15 |                      3 |            464 | Incomplete/missing Ethica data
+ Montreal  | Wave 2 |                164 |                    10 |                      1 |              2 | Incomplete/missing Ethica data
+ Montreal  | Wave 3 |                162 |                    12 |                      0 |              1 | Incomplete/missing Ethica data
+ Montreal  | Wave 4 |                189 |                     9 |                      1 |              3 | Incomplete/missing Ethica data
+ Saskatoon | Wave 1 |                152 |                     8 |                     17 |            137 | Incomplete/missing Ethica data
+ Saskatoon | Wave 2 |                 81 |                     5 |                      0 |              5 | Incomplete/missing Ethica data
+ Saskatoon | Wave 3 |                 80 |                     1 |                      0 |              3 | Incomplete/missing Ethica data
+ Saskatoon | Wave 4 |                 41 |                     2 |                      0 |              0 | Incomplete/missing Ethica data
+ Vancouver | Wave 1 |                132 |                     3 |                      4 |              1 | Incomplete/missing Ethica data
+ Vancouver | Wave 2 |                 92 |                     5 |                      0 |              0 | Incomplete/missing Ethica data
+ Vancouver | Wave 3 |                 77 |                     0 |                      2 |              2 | Incomplete/missing Ethica data
+ Vancouver | Wave 4 |                 85 |                     4 |                      1 |              3 | Incomplete/missing Ethica data
+ Victoria  | Wave 1 |                150 |                     4 |                     19 |              1 | Incomplete/missing Ethica data
+ Victoria  | Wave 2 |                138 |                     0 |                      1 |              0 | OK
+ Victoria  | Wave 3 |                119 |                     3 |                      4 |              3 | Incomplete/missing Ethica data
+ Victoria  | Wave 4 |                 81 |                     3 |                      3 |              0 | Incomplete/missing Ethica data
 
+Many participants with partial data only have only completed the EMA portion of Ethica, not the AXL/GPS part.
 
 ## Load and transform data
 

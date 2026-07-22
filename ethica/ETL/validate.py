@@ -25,6 +25,7 @@ import sys
 import logging
 import re
 import pandas as pd
+import polars as pl
 
 # Define city_id and wave_id
 cities = {'mtl': 'montreal', 
@@ -75,7 +76,7 @@ if __name__ == '__main__':
             # lk_file_path = os.path.join(root_data_folder, city, wave, f'linkage_{wave}_{city}.csv') # WRONG LINKAGE FILE NAME TEMPLATE IN TEST DATA
             lk_file_path = os.path.join(root_data_folder, city, f'wave_{wave:02d}', f'linkage_{ccode}_w{wave}.csv')
             if not os.path.isfile(lk_file_path):
-                logging.warning(f'Linkage file <{os.path.basename(lk_file_path)}> not found, skipping')
+                logging.warning(f'{ccode}-{wave} | Linkage file <{os.path.basename(lk_file_path)}> not found, skipping')
                 report.append((city.capitalize(), 
                         f'Wave {wave}', 
                         '-', 
@@ -95,7 +96,7 @@ if __name__ == '__main__':
             missing_col = False
             for colname in ['interact_id', 'ethica_id']:
                 if colname not in lk_df.columns:
-                    logging.error(f'No column named <{colname}> in linkage file <{os.path.basename(lk_file_path)}>')
+                    logging.error(f'{ccode}-{wave} | No column named <{colname}> in linkage file <{os.path.basename(lk_file_path)}>')
                     missing_col = True
             if missing_col:
                 report.append((city.capitalize(), 
@@ -111,7 +112,7 @@ if __name__ == '__main__':
             lk_df = lk_df[['interact_id', 'ethica_id']].dropna().reset_index(drop=True)
 
             # Display linkage file content for control
-            logging.debug(f'Linkage file <{os.path.basename(lk_file_path)}>:\n{lk_df.to_string()}')
+            logging.debug(f'{ccode}-{wave} | Linkage file <{os.path.basename(lk_file_path)}>:\n{lk_df.to_string()}')
 
             # Check if we have duplicated participant
             if not lk_df.interact_id.is_unique:
@@ -128,7 +129,7 @@ if __name__ == '__main__':
             # Load Ethica GPS and AXL data, stored into studyid subfolder
             ethica_data = os.path.join(root_data_folder, city, f'wave_{wave:02d}', 'ethica')
             if not os.path.exists(ethica_data):
-                logging.error('Missing ethica data folder')
+                logging.error(f'{ccode}-{wave} | Missing ethica data folder')
                 report.append((city.capitalize(), 
                         f'Wave {wave}', 
                         '-', 
@@ -148,7 +149,7 @@ if __name__ == '__main__':
                     not_found = False
                     studies.append(m[0])
             if not_found:
-                logging.error(f'No subfolder named after study number found in data folder')
+                logging.error(f'{ccode}-{wave} | No subfolder named after study number found in data folder')
                 report.append((city.capitalize(), 
                         f'Wave {wave}', 
                         '-', 
@@ -164,7 +165,7 @@ if __name__ == '__main__':
             for studyid in studies:
                 axl_file = os.path.join(ethica_data, studyid, f'{studyid}_accelerometer.csv')
                 if not os.path.exists(axl_file):
-                    logging.error('Unable to find accelerometer file in Ethica data folder')
+                    logging.error(f'{ccode}-{wave} | Unable to find accelerometer file in Ethica data folder')
                     report.append((city.capitalize(), 
                             f'Wave {wave}', 
                             '-', 
@@ -174,7 +175,13 @@ if __name__ == '__main__':
                             f'No Ethica accelerometer file found in folder {studyid}'))
                     missing_axl = True
                     break
-                axl_dfs.append(pd.read_csv(axl_file, dtype=str, nrows=debug_nrows))
+                q = (pl.scan_csv(axl_file, n_rows=debug_nrows)
+                    .select('user_id')
+                    .unique()
+                )
+                pldf = q.collect()
+                pdf = pldf.to_pandas().astype(str)
+                axl_dfs.append(pdf)
             if missing_axl:
                 continue
             
@@ -189,7 +196,7 @@ if __name__ == '__main__':
             for studyid in studies:
                 gps_file = os.path.join(ethica_data, studyid, f'{studyid}_gps.csv')
                 if not os.path.exists(gps_file):
-                    logging.error('Unable to find accelerometer file in Ethica data folder')
+                    logging.error(f'{ccode}-{wave} | Unable to find accelerometer file in Ethica data folder')
                     report.append((city.capitalize(), 
                             f'Wave {wave}', 
                             '-', 
@@ -199,7 +206,13 @@ if __name__ == '__main__':
                             f'No Ethica GPS file found in folder {studyid}'))
                     missing_gps = True
                     break
-                gps_dfs.append(pd.read_csv(gps_file, dtype=str, nrows=debug_nrows))
+                q = (pl.scan_csv(gps_file, n_rows=debug_nrows)
+                    .select('user_id')
+                    .unique()
+                )
+                pldf = q.collect()
+                pdf = pldf.to_pandas().astype(str)
+                gps_dfs.append(pdf)
             if missing_gps:
                 continue
 
@@ -242,11 +255,11 @@ if __name__ == '__main__':
             
             # Report issues, if any
             if pids_wo_userid.shape[0] > 0:
-                logging.warning('Ethica data missing for the following PIDs:\n'+'\n'.join(map(lambda i: str(int(i)), pids_wo_userid.interact_id)))
+                logging.warning(f'{ccode}-{wave} | Ethica data missing for the following PIDs:\n'+'\n'.join(map(lambda i: str(int(i)), pids_wo_userid.interact_id)))
             if unknown_userid.shape[0] > 0:
-                logging.warning('Unknown Ethica users (no matching Interact ID):\n'+'\n'.join(map(lambda i: str(int(i)), unknown_userid.user_id)))
+                logging.warning(f'{ccode}-{wave} | Unknown Ethica users (no matching Interact ID):\n'+'\n'.join(map(lambda i: str(int(i)), unknown_userid.user_id)))
             if pids_partial.shape[0] > 0:
-                logging.warning('Missing axl or gps data for the following PIDs:\n'+'\n'.join(map(lambda i: str(int(i)), pids_partial.interact_id)))
+                logging.warning(f'{ccode}-{wave} | Missing axl and/or gps data for the following PIDs:\n'+'\n'.join(map(lambda i: str(int(i)), pids_partial.interact_id)))
             
     report_df = pd.DataFrame(report, columns=['City', 'Wave', 'PIDs with Ethica', 'PIDs missing Ethica', 'Unknown Ethica users', 'Partial data', 'Status'])
     print(report_df.to_markdown(index=False, tablefmt='presto'))
