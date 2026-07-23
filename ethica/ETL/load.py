@@ -30,9 +30,9 @@ from itertools import starmap
 
 # Define city_id and wave_id
 cities = {'mtl': 'montreal', 
-          'skt': 'saskatoon', 
-          'van': 'vancouver', 
-          'vic': 'victoria'}
+            'skt': 'saskatoon', 
+            'van': 'vancouver', 
+            'vic': 'victoria'}
 waves = [1, 2, 3, 4]
 
 # Define base folder when not provided on the cmd line
@@ -41,8 +41,8 @@ wave_id = None
 
 
 def single_load_transform(interact_id, ethica_id, src_dir, dst_dir, 
-                          city='', wave='',
-                          process_gps = True, process_axl = True):
+                        city='', wave='',
+                        process_gps = True, process_axl = True):
     """
     Processing of a single participant's SD data.
     Load GPS and AXL data separately from sdb file, filter records to keep only
@@ -84,8 +84,11 @@ def single_load_transform(interact_id, ethica_id, src_dir, dst_dir,
             c0 = perf_counter()
             gps_file = _single_load_transform_gps(interact_id, ethica_id, gps_file, dst_dir)
             c1 = perf_counter()
-            gps_ok = 1
-            logging.info(f'Participant # {interact_id}: GPS elite file -> {os.path.basename(gps_file)} [{c1-c0:.1f}s]')
+            if gps_file is None:
+                gps_ok = -1
+            else:
+                gps_ok = 1
+                logging.info(f'Participant # {interact_id}: GPS elite file -> {os.path.basename(gps_file)} [{c1-c0:.1f}s]')
         except Exception as e:
             gps_ok = 0
             logging.error(f'Participant # {interact_id}: Unable to process GPS ({e})')
@@ -99,8 +102,11 @@ def single_load_transform(interact_id, ethica_id, src_dir, dst_dir,
             c0 = perf_counter()
             axl_file = _single_load_transform_axl(interact_id, ethica_id, axl_file, dst_dir)
             c1 = perf_counter()
-            axl_ok = 1
-            logging.info(f'Participant # {interact_id}: AXL elite file -> {os.path.basename(axl_file)} [{c1-c0:.1f}s]')
+            if axl_file is None:
+                axl_ok = -1
+            else:
+                axl_ok = 1
+                logging.info(f'Participant # {interact_id}: AXL elite file -> {os.path.basename(axl_file)} [{c1-c0:.1f}s]')
         except Exception as e:
             axl_ok = 0
             logging.error(f'Participant # {interact_id}: Unable to process AXL ({e})')
@@ -127,7 +133,7 @@ def _single_load_transform_gps(interact_id, ethica_id, gps_file, dst_dir) -> str
     # Check if axl df is empty
     if gps_df.is_empty():
         logging.warning(f'Participant # {interact_id}/{ethica_id}: no GPS data (source: <{gps_file}>)')
-        
+        return None
 
     # Save to destination folder
     with NamedTemporaryFile(prefix=f'{interact_id}_GPS-', suffix=".csv", delete=False, dir=dst_dir) as f:
@@ -167,6 +173,7 @@ def _single_load_transform_axl(interact_id, ethica_id, axl_file, dst_dir) -> str
     # Check if axl df is empty
     if axl_df.is_empty():
         logging.warning(f'Participant # {interact_id}/{ethica_id}: no AXL data (source: <{axl_file}>)')
+        return None
 
     # Save to destination folder
     with NamedTemporaryFile(prefix=f'{interact_id}_AXL-', suffix=".csv", delete=False, dir=dst_dir) as f:
