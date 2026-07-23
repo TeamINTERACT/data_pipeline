@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --account=def-dfuller
-#SBATCH --mem-per-cpu=64G
+#SBATCH --mem-per-cpu=24G
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=8
 #SBATCH --time=12:00:00
 #SBATCH --mail-user=benoit.thierry@umontreal.ca
 #SBATCH --mail-type=ALL
