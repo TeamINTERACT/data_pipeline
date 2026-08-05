@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --account=def-dfuller
-#SBATCH --mem-per-cpu=24G
+#SBATCH --mem-per-cpu=2G
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=8
-#SBATCH --time=3:00:00
+#SBATCH --cpus-per-task=1
+#SBATCH --time=0:05:00
 #SBATCH --mail-user=benoit.thierry@umontreal.ca
 #SBATCH --mail-type=ALL
 
@@ -16,5 +16,6 @@ pip install --no-index --upgrade pip
 pip install --no-index tabulate SQLAlchemy resampy psycopg2 polars
 pip freeze > requirements_ethica_slurm.txt
 # python /home/btcrchum/projects/def-dfuller/btcrchum/data_pipeline/ethica/ETL/validate.py /home/btcrchum/projects/def-dfuller/interact/data_archive
-# python /home/btcrchum/projects/def-dfuller/btcrchum/data_pipeline/ethica/ETL/load.py /home/btcrchum/projects/def-dfuller/interact/data_archive 4
+# python /home/btcrchum/projects/def-dfuller/btcrchum/data_pipeline/ethica/ETL/load.py /home/btcrchum/projects/def-dfuller/interact/data_archive
+python /home/btcrchum/projects/def-dfuller/btcrchum/data_pipeline/ethica/QA/elite_file_QA.py
 # python /home/btcrchum/projects/def-dfuller/btcrchum/data_pipeline/ethica/ETL/top.py /home/btcrchum/projects/def-dfuller/interact/data_archive 4
