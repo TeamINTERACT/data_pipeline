@@ -40,9 +40,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 import os
 import sys
 import re
-import io
 import logging
-import contextlib
 from pathlib import Path
 import pandas as pd
 import numpy as np
@@ -99,8 +97,7 @@ def _pick_device() -> str:
         return "cpu"
 
 DEVICE = _pick_device()
-N_STEPS = 60
-STRIDE = 60
+N_STEPS = STRIDE = 60 # We use the same value to get a full coverage of the data, with no overlap nor gaps.
 
 GPVAE_INIT = dict(
     n_steps=N_STEPS,
@@ -131,10 +128,14 @@ GPVAE_INIT = dict(
     verbose=True,
 )
 
-def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir, overwrite=False):
+def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir, gpvae_mdl: GPVAE, overwrite=False):
     """
     Processing of a single participant's Ethica data.
-    Load GPS and AXL data files, .
+    Load GPS and AXL data files from elite CSV files.
+    Both streams get resampled at the 1 min epoch then missing measurements 
+    in AXL data get imputed using pretrained GP-VAE model. Then both data get
+    merged into one single DF and saved to CSV file interact_id, timestamp followed 
+    by axl/gps measurements.
 
     Parameters:
     -----------
@@ -144,6 +145,7 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
         filenames contain participant ID and SenseDoc ID
     - dst_dir: Path where newly created ToP CSV files (one for 1s epoch, one for 1m epoch) will
         be saved 
+    - gps_vae: pretrained GP-VAE model
     - overwrite (optional): if data for participant & SenseDoc is already stored in DB,
         should it be replaced. If not, ToP for this combination of participant & SenseDoc
         is skipped. 
@@ -170,7 +172,7 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
     # Extract Interact_id
     interact_id = os.path.basename(root_elite_filename)
     
-    # Check existence of iid/sd_id top in DB
+    # Check existence of iid top in DB
     top_con = create_engine(f'postgresql://{db_user}@{db_host}/interact_db')
     target_schema = f'top_ethica{"" if wave == 1 else wave}'
     target_table1min = f'top_1min_{city_code}'
@@ -210,41 +212,54 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
     if gps_df.empty:
         logger.error(f'No GPS data in {os.path.basename(gps_fname)}, skipping')
         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Empty GPS file')
-    try:
-        axl_df = _load_clean_axl(axl_fname)
-    except Exception as e:
-        logger.error(f'Unable to load AXL data from {os.path.basename(axl_fname)}, skipping')
-        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error loading AXL ({e})')
-    if axl_df.empty:
-        logger.error(f'No AXL data in {os.path.basename(axl_fname)}, skipping')
-        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Empty AXL file')
 
     # Process 1min epoch
+    # 1. resample raw data to 1 min (axl & gps)
+    # 2. impute axl
+    # 3. merge both stream
+
+    # Create tmp dir where resampled 1 min data will be saved for reuse
+    tmpdir = os.environ.get('SCRATCH', os.environ.get('TEMP', ''))
+    tmpdir = os.path.join(tmpdir, 'axl1min')
+    os.makedirs(tmpdir, exist_ok=True)
+
+    c0 = perf_counter()
     try:
-        c0 = perf_counter()
-        cnt_1m_df = _top_1min(cnt_1s_df)
-        c1 = perf_counter()
-        logger.info(f'Participant # {interact_id}: ToP 1min done [{c1-c0:.1f}s]')
+        axl_1m_df = _wrapper_impute1min_axl(gpvae_mdl, wave, interact_id, axl_fname, tmpdir)
+    except Exception as e:
+        logger.error(f'Unexpected error in ToP 1min for <{os.path.basename(root_elite_filename)}>, skipping')
+        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error computing AXL 1min ({e})')
+    try:
+        gps_1m_df = _resample1min_gps(gps_df)
+    except Exception as e:
+        logger.error(f'Unexpected error in ToP 1min for <{os.path.basename(root_elite_filename)}>, skipping')
+        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error computing GPS 1min ({e})')
+    try:
+        top_df = pd.merge(axl_1m_df, gps_1m_df, how='left', on='record_time')
     except Exception as e:
         logger.error(f'Unexpected error in ToP 1min for <{os.path.basename(root_elite_filename)}>, skipping')
         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error computing ToP 1min ({e})')
     
+    c1 = perf_counter()
+    logger.info(f'Participant # {interact_id}: ToP 1min done [{c1-c0:.1f}s]')
+
     # Store ToPs in DB
-    cnt_1m_df = cnt_1m_df.reset_index()
-    top_con = create_engine(f'postgresql://{db_user}@{db_host}/interact_db')
-    with top_con.begin() as conn:
-        try:
-            cnt_1m_df.to_sql(name=target_table1min, schema=target_schema, con=conn, if_exists='append', index=False, chunksize=10000)
-        except Exception as e:
-            logger.error(f'Unexpected error while storing ToP in DB for <{os.path.basename(root_elite_filename)}>, skipping')
-            return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error storing ToPs in database ({e})')
+    # FIXME: need to adapt data structure in DDL below
+    # top_df = top_df.reset_index()
+    # top_con = create_engine(f'postgresql://{db_user}@{db_host}/interact_db')
+    # with top_con.begin() as conn:
+    #     try:
+    #         top_df.to_sql(name=target_table1min, schema=target_schema, con=conn, if_exists='append', index=False, chunksize=10000)
+    #     except Exception as e:
+    #         logger.error(f'Unexpected error while storing ToP in DB for <{os.path.basename(root_elite_filename)}>, skipping')
+    #         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error storing ToPs in database ({e})')
         
     # Save to disk
-    cnt_1m_df.insert(0, 'city_id', city_code)
-    cnt_1m_df.insert(1, 'wave_id', wave)
-    cnt_1m_df.insert(2, 'epoch_seconds', 60)
+    top_df.insert(0, 'city_id', city_code)
+    top_df.insert(1, 'wave_id', wave)
+    top_df.insert(2, 'epoch_seconds', 60)
     fname_top1min = os.path.join(dst_dir, f'{os.path.basename(root_elite_filename)}_top1min.csv')
-    cnt_1m_df.convert_dtypes().to_csv(fname_top1min, index=False)
+    top_df.convert_dtypes().to_csv(fname_top1min, index=False)
 
     return (city_code, wave, os.path.basename(root_elite_filename), 1, 'Ok')
 
@@ -266,7 +281,6 @@ def execute_ddl_top(city_code:str, wave:int):
     stmt_ddl_top1min = f"""
         CREATE TABLE IF NOT EXISTS {target_schema}.{target_table1min} (
             interact_id INTEGER,
-            sd_id SMALLINT,
             utcdate TIMESTAMP WITH TIME ZONE,
             count_x INTEGER,
             count_y INTEGER,
@@ -276,7 +290,7 @@ def execute_ddl_top(city_code:str, wave:int):
             lon REAL,
             alt REAL,
             wearing SMALLINT,
-            CONSTRAINT {target_schema}_{target_table1min}_pk PRIMARY KEY (interact_id, sd_id, utcdate)
+            CONSTRAINT {target_schema}_{target_table1min}_pk PRIMARY KEY (interact_id, utcdate)
     )"""
 
     with top_con.begin() as conn:
@@ -300,7 +314,8 @@ def _get_planimetric_coords(lat_lon_alt_df:pd.DataFrame) -> pd.DataFrame:
     x, y, z = t.transform(lat_lon_alt_df['lat'],
                           lat_lon_alt_df['lon'],
                           lat_lon_alt_df['alt'])
-    lcc_df = pd.DataFrame({'x': x,
+    lcc_df = pd.DataFrame({'record_time': lat_lon_alt_df['record_time'],
+                           'x': x,
                            'y': y,
                            'z': z,
                            'lat': lat_lon_alt_df['lat'],
@@ -327,7 +342,8 @@ def _get_geographic_coords(x_y_z_df:pd.DataFrame) -> pd.DataFrame:
     lat, lon, alt = t.transform(x_y_z_df['x'],
                           x_y_z_df['y'],
                           x_y_z_df['z'])
-    geo_df = pd.DataFrame({'lat': lat,
+    geo_df = pd.DataFrame({'record_time': x_y_z_df['record_time'],
+                           'lat': lat,
                            'lon': lon,
                            'alt': alt})
     return geo_df
@@ -354,13 +370,50 @@ def _load_clean_gps(gps_elite_filename:str, max_speed=300) -> pd.DataFrame:
     gps_df = gps_df[gps_df.keep]
 
     gps_df[['prev_satellite_time', 'prev_lat', 'prev_lon']] = gps_df[['satellite_time', 'lat', 'lon']].shift(1)
-    valid_idx = gps_df[['satellite_time', 'lat', 'lon', 'prev_utcdate','prev_lat', 'prev_lon']].notna().all(axis=1)
+    valid_idx = gps_df[['satellite_time', 'lat', 'lon', 'prev_satellite_time','prev_lat', 'prev_lon']].notna().all(axis=1)
     gps_df.loc[valid_idx, 'dist2prev'] = gps_df[valid_idx].apply(lambda x: distance.distance((x.lat, x.lon), (x.prev_lat, x.prev_lon)).m, axis=1)
     gps_df['app_speed'] = 3.6 * gps_df.dist2prev / (gps_df.satellite_time - gps_df.prev_satellite_time).dt.total_seconds()
     gps_df = gps_df.loc[gps_df.app_speed < max_speed].drop(columns=['keep', 'prev_satellite_time', 'prev_lat', 'prev_lon', 'dist2prev', 'app_speed'])
 
     gps_df = gps_df.sort_values(['satellite_time', 'accu']).drop_duplicates('satellite_time')
     gps_df = gps_df.reset_index(drop=True)
+
+    return gps_df
+
+def _resample1min_gps(gps_df: pd.DataFrame, n_best_recs=5) -> pd.DataFrame:
+    """ Resample GPS data to 1 minute epoch dataset
+    by taking the median of X,Y,Z of the most accurate records """
+    # Define the number of best records to consider in aggregation
+
+    # Compute rank of records within each minute ordered by accuracy
+    gps_df['record_time'] = gps_df['record_time'].dt.floor('min')
+    gps_df['rank'] = gps_df.sort_values(['record_time', 'accu']).groupby('record_time').cumcount() + 1
+
+    # Keep only the best records
+    gps_df = gps_df[gps_df['rank'] <= n_best_recs].reset_index(drop=True)
+
+    # Convert lat/lon to planimetric coords
+    gps_xy_df = _get_planimetric_coords(gps_df)
+    gps_xy_df = gps_xy_df.groupby('record_time', as_index=False).median()
+    gps_ll = _get_geographic_coords(gps_xy_df)
+
+    # Get median values of selected fields
+    def _avg_bearing(angles_deg):
+        # Compute circular mean, in degrees
+        s = np.sum(np.sin(np.radians(angles_deg)))
+        c = np.sum(np.cos(np.radians(angles_deg)))
+        return np.degrees(np.atan2(s, c)) % 360
+
+    gps_df = gps_df.groupby('record_time', as_index=False)[['accu','satellite_time','provider', 'speed', 'bearing']].agg({
+        'accu': 'median',
+        'satellite_time': 'median',
+        'provider': lambda x: '/'.join(set(x)),
+        'speed': 'median',
+        'bearing': lambda x: _avg_bearing(x)
+    })
+
+    # Add median values of lat/lon coords
+    gps_df = pd.merge(gps_df, gps_ll, how='left', on='record_time')
 
     return gps_df
 
@@ -401,17 +454,90 @@ def _resample1min_axl(axl_df: pd.DataFrame) -> pd.DataFrame:
 
     return axl_df
 
-def _impute_axl_gpvae(axl1min_df: pd.DataFrame, gpvae_mdl: GPVAE) -> pd.DataFrame:
+def _wrapper_make1min_axl(wave, interact_id, raw_axl_file, target_dir) -> pd.DataFrame:
+    """ Helper function to read, resample and store AXL file for each
+    interact_id/wave. Resampled files are stored in the target_dir and
+    named according the the pattern axl1min_<wave>_<interact_id>.feather.
+
+    Add wave and interact_id identifiers to help with pooled training.
+    
+    Feather file format is chosen for its read/write performance"""
+    outfile = os.path.join(target_dir, f'axl1min_{wave}_{interact_id}.feather')
+    # Check if 1min axl data already computed, if so, load it
+    if os.path.exists(outfile):
+        logger.info(f'Found precomputed file <{os.path.basename(outfile)}>, loading it')
+        axl_df = pd.read_feather(outfile)
+        return axl_df
+
+    # No file, compute 1min axl data
+    axl_df = _load_clean_axl(raw_axl_file)
+    axl_df = _resample1min_axl(axl_df)
+    axl_df.insert(0, 'wave', wave)
+    axl_df.insert(1, 'interact_id', interact_id)
+    # save reseampled dataframe to file for reuse
+    axl_df.to_feather(outfile)
+    return axl_df
+
+def _impute_axl_gpvae(axl1min_df: pd.DataFrame, gpvae_mdl: GPVAE, wave, interact_id) -> pd.DataFrame:
     """ Takes a 1-min epoch Ethica Axl dataframe and return a 1 minute
     imputed axl dataframe, using a pretrained Gaussian Process Variational 
-    Autoencoder model """
-    # TODO
+    Autoencoder model 
+    
+    Parameters:
+    -----------
+    - axl1min_df: already resampled 1min axl data, with continuous timestamps
+        but missing 3D axl values. These values will be imputed
+    - gpvae_mdl: pretrained GP-VAE model
+    - wave, interact_id: for reporting only
+    """
     # Impute data using trained GPVAE model
     # 1. structure data to match requirements (fct: make_windows);
     #   keeping range indices of missing data
     # 2. impute data using model
     # 3. restore original non-missing data in imputed data
-    raise NotImplemented()
+    X_data, map_ids = make_windows(axl1min_df, n_steps=N_STEPS, stride=STRIDE)
+
+    if X_data.shape[0] == 0:
+        # axl data too short, no imputation
+        logger.warning(f'{interact_id}, wave {wave}: no axl imputation due to too little data')
+        return axl1min_df
+
+    X_impute = gpvae_mdl.impute({'X': X_data}) # returns imputed data, same shape as X_data
+
+    # reshape X_impute and map_ids to get 2D arrays
+    X_impute2D = X_impute.reshape(-1, X_impute.shape[-1])
+    map_ids1D = np.concat(map_ids)
+
+    # drop padded values
+    map_ids1D = map_ids1D[map_ids1D != -1]
+    X_impute2D = X_impute2D[map_ids1D]
+
+    # check if any overlap in windows; if so, we have to reconcile
+    # imputed values of overlapping indices -> use average
+    # NB. this should not happen, as N_STEPS = STRIDE
+    if STRIDE < N_STEPS:
+        _imputed_df = pd.DataFrame(data=X_impute2D,
+                                columns=['x', 'y', 'z'])
+        _imputed_df['ids'] = map_ids1D
+        _imputed_df = _imputed_df.groupby('ids', as_index=False)[['x','y','z']].agg('mean')
+        X_impute2D = _imputed_df[['x','y','z']]
+        map_ids1D = _imputed_df['ids']
+
+    axl1min_df.loc[map_ids1D, ['x_axis', 'y_axis', 'z_axis']] = X_impute2D
+
+    return axl1min_df
+    
+def _wrapper_impute1min_axl(gpvae_mdl:GPVAE, wave, interact_id, raw_axl_file, target_dir) -> pd.DataFrame:
+    """ Helper function to impute missing raw axl data using a
+    pretrained GPVAE model.
+    """
+    # load raw data and resample to 1 min
+    axl1min_df = _wrapper_make1min_axl(wave, interact_id, raw_axl_file, target_dir)
+
+    # use pretrained model to impute missing data
+    axl1min_df = _impute_axl_gpvae(axl1min_df, gpvae_mdl, wave, interact_id)
+
+    return axl1min_df
 
 def _top_1min(top_1sec:pd.DataFrame) -> pd.DataFrame:
     """ Compute the ToP at the 1 minute epoch
@@ -446,7 +572,10 @@ def _top_1min(top_1sec:pd.DataFrame) -> pd.DataFrame:
 def make_windows(min_df: pd.DataFrame, n_steps: int, stride: int):
     """ From Bernard's code
     Build the samples for training/validation/imputation of the 3D accel
-    data through GP-VAE model
+    data through GP-VAE model.
+
+    Modified with padding to insure full coverage of min_df, padded values
+    are marked with -1 as index value
     
     Parameters:
     -----------
@@ -454,6 +583,14 @@ def make_windows(min_df: pd.DataFrame, n_steps: int, stride: int):
         interact_id, wave, x, y, z
     n_steps: the window length (ie. number of consecutive minutes per window)
     stride: the span between one window and the following, in minutes
+
+    Returns:
+    --------
+    A tuple:
+    - A stacked array with (num_windows, n_steps, N_FEATURES), where num_windows
+        is the total count of windows across all (interact_id, wave) groups combined
+    - A list of arrays with indices matching the windows' position in the original
+        dataframe
     """
     X_list, maps = [], []
 
@@ -463,34 +600,30 @@ def make_windows(min_df: pd.DataFrame, n_steps: int, stride: int):
         idxs = g.index.to_numpy()
 
         T = len(g)
+
         start = 0
-        while start + n_steps <= T:
-            sl = slice(start, start + n_steps)
-            X_list.append(vals[sl])
-            maps.append(idxs[sl])
+        while start < T:
+            end = start + n_steps
+            if end > T:
+                # Pad the final partial window
+                pad_len = end - T
+                sl_vals = np.vstack([vals[start:T], np.full((pad_len, 3), np.nan, dtype=np.float32)])
+                sl_idxs = np.concatenate([idxs[start:T], np.full(pad_len, -1, dtype=idxs.dtype)])
+            else:
+                sl_vals = vals[start:end]
+                sl_idxs = idxs[start:end]
+
+            X_list.append(sl_vals)
+            maps.append(sl_idxs)
+
+            if end >= T:
+                break
             start += stride
 
     if not X_list:
         return np.empty((0, n_steps, 3), dtype=np.float32), []
 
     return np.stack(X_list, axis=0), maps
-
-def _wrapper_make1min_axl(wave, interact_id, raw_axl_file, target_dir):
-    """ Helper function to read, resample and store AXL file for each
-    interact_id/wave. Resampled files are stored in the target_dir and
-    named according the the pattern axl1min_<wave>_<interact_id>.feather.
-
-    Add wave and interact_id identifiers to help with pooled training.
-    
-    Feather file format is chosen for its read/write performance"""
-    axl_df = _load_clean_axl(raw_axl_file)
-    axl_df = _resample1min_axl(axl_df)
-    axl_df.insert(0, 'wave', wave)
-    axl_df.insert(1, 'interact_id', interact_id)
-    # save reseampled dataframe to file for reuse
-    outfile = os.path.join(target_dir, f'axl1min_{wave}_{interact_id}.feather')
-    axl_df.to_feather(outfile)
-    return axl_df
 
 def train_gpvae_model(src_dir, train_split=.8, ncpu=1) -> GPVAE:
     """ Train a GP-VAE model for accelerometer data imputation at 
@@ -540,6 +673,7 @@ def train_gpvae_model(src_dir, train_split=.8, ncpu=1) -> GPVAE:
         # Single thread processing (for debug only)
         results = starmap(_wrapper_make1min_axl, wrk_args)
         pooled_axl_df = pd.concat([r for r in results])
+    logger.info(f'Pooled axl data done! {perf_counter() - c0:.1f}s')
 
     # Train GPVAE on the pooled df
     # 1. load GPVAE hyperparameters
@@ -548,6 +682,7 @@ def train_gpvae_model(src_dir, train_split=.8, ncpu=1) -> GPVAE:
     #   structure of timeseries
     # 3. make both dataset ready for GPVAE input (fct: make_windows)
     # 4. init GPVAE model and fit training/validation data
+    c0 = perf_counter()
     pooled_axl_df['dummy_id'] = pooled_axl_df["interact_id"].astype(str).str.cat(pooled_axl_df["wave"].astype(str), sep='-')
     participants = pooled_axl_df["dummy_id"].unique()
     rng = np.random.default_rng(42)
@@ -561,19 +696,23 @@ def train_gpvae_model(src_dir, train_split=.8, ncpu=1) -> GPVAE:
     val_df   = pooled_axl_df[pooled_axl_df["dummy_id"].isin(val_ids)].drop(columns='dummy_id')
 
     X_train, _ = make_windows(train_df, n_steps=N_STEPS, stride=STRIDE)
-    X_val_ori, _   = make_windows(val_df,   n_steps=N_STEPS, stride=STRIDE)
+    X_val_ori, _ = make_windows(val_df,   n_steps=N_STEPS, stride=STRIDE)
 
     # GPVAE requires validation set with ground truth + missing data
     # we use pygrinder.mcar to generate randomly missing data
     X_val = mcar(X_val_ori, p=.1)
+    logger.info(f'Data prep for training done! {perf_counter() - c0:.1f}s')
 
     # Init GPVAE and train/vaidate model
+    c0 = perf_counter()
     GPVAE_INIT['saving_path'] = tmpdir
     gpvae_mdl = GPVAE(**GPVAE_INIT)
     gpvae_mdl.fit({'X':X_train}, {'X':X_val, 'X_ori': X_val_ori})
     gpvae_mdl.save(os.path.join(tmpdir, 'gpvae_mdl'), overwrite=True)
+    logger.info(f'GPVAE model training done! {perf_counter() - c0:.1f}s')
 
     return gpvae_mdl
+
 
 def top_produce_ethica(src_dir, ncpu=1):
     """ Batch process all SenseDoc Elite files, which are a pair of CSV files 
@@ -652,6 +791,7 @@ def top_produce_ethica(src_dir, ncpu=1):
     print(f'DONE: {perf_counter() - c0:.1f}s')
 
 if __name__ == '__main__':
+    # logging.basicConfig(level=logging.INFO)
     # Get target root folder as command line argument
     if len(sys.argv[1:]):
         root_data_folder = sys.argv[1]
@@ -669,9 +809,35 @@ if __name__ == '__main__':
         else:
             waves = [wave_id]
 
-    ncpu = int(os.environ.get('SLURM_CPUS_PER_TASK',default=6))
+    ncpu = int(os.environ.get('SLURM_CPUS_PER_TASK',default=1))
     c0 = perf_counter()
     m = train_gpvae_model(root_data_folder, ncpu=ncpu)
-    print(m)
-    print(f'Done {perf_counter() - c0:.2f}')
-    #top_produce_sd(root_data_folder, ncpus)
+    print(f'Model trained {perf_counter() - c0:.2f}')
+
+    # # Test impute
+    # c0 = perf_counter()
+    # wave = 1
+    # interact_id = 401998921
+    # test_file = r'data\interact_test_data\montreal\wave_01\ethica_elite_files\401998921_AXL.csv'
+    # tgt_dir = os.path.join(os.environ.get('TEMP', ''), 'axl1min')
+    # axlfile = os.path.join(tgt_dir, f'axl1min_{wave}_{interact_id}.feather')
+    # axl1min = pd.read_feather(axlfile)
+    # axl1min_impute = _wrapper_impute1min_axl(m, wave, interact_id, test_file, tgt_dir)
+    # print(f'Imputed data {perf_counter() - c0:.2f}')
+    # print(axl1min)
+    # print(axl1min_impute)
+    # axl1min_impute.info()
+
+    # # Test GPS
+    # test_file = r'data\interact_test_data\montreal\wave_01\ethica_elite_files\401998921_GPS.csv'
+    # gps_df = _load_clean_gps(test_file)
+    # print(gps_df.sort_values('record_time'))
+    # gps_df.info()
+    # gps_df = _resample1min_gps(gps_df)
+    # print(gps_df.sort_values('record_time'))
+    # gps_df.info()
+
+    # Test ToP
+    execute_ddl_top('mtl', 1)
+    single_top_produce('mtl', 1, r'data\interact_test_data\montreal\wave_01\ethica_elite_files\401998921',
+                       r'data\interact_test_data\montreal\wave_01\ethica_top_files', m)
