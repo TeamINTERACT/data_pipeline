@@ -35,7 +35,7 @@ If WAVE is not provided, all waves (1-4) will be processed
 """
 # Required to avoid bug in Pandas https://github.com/pandas-dev/pandas/issues/55025
 import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning)
+warnings.simplefilter(action='ignore', category=(FutureWarning, UserWarning)) # UserWarning triggered by GPVAE and torch
 
 import os
 import sys
@@ -128,7 +128,7 @@ GPVAE_INIT = dict(
     verbose=True,
 )
 
-def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir, gpvae_mdl: GPVAE, overwrite=False):
+def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir, path2mdl, overwrite=False):
     """
     Processing of a single participant's Ethica data.
     Load GPS and AXL data files from elite CSV files.
@@ -145,7 +145,7 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
         filenames contain participant ID and SenseDoc ID
     - dst_dir: Path where newly created ToP CSV files (one for 1s epoch, one for 1m epoch) will
         be saved 
-    - gps_vae: pretrained GP-VAE model
+    - path2mdl: path to saved pretrained GP-VAE model
     - overwrite (optional): if data for participant & SenseDoc is already stored in DB,
         should it be replaced. If not, ToP for this combination of participant & SenseDoc
         is skipped. 
@@ -207,8 +207,8 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
     try:
         gps_df = _load_clean_gps(gps_fname)
     except Exception as e:
-        logger.error(f'Unable to load GPS data from {os.path.basename(gps_fname)}, skipping')
-        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error loading GPS ({e})')
+        logger.error(f'Unable to load GPS data from {os.path.basename(gps_fname)} ({e}), skipping')
+        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error loading GPS')
     if gps_df.empty:
         logger.error(f'No GPS data in {os.path.basename(gps_fname)}, skipping')
         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Empty GPS file')
@@ -225,39 +225,38 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
 
     c0 = perf_counter()
     try:
+        gpvae_mdl = GPVAE(**GPVAE_INIT)
+        gpvae_mdl.load(path2mdl)
         axl_1m_df = _wrapper_impute1min_axl(gpvae_mdl, wave, interact_id, axl_fname, tmpdir)
+        axl_1m_df = axl_1m_df.drop(columns='wave') # Drop wave column, that was added to pool all participants from all waves
     except Exception as e:
-        logger.error(f'Unexpected error in ToP 1min for <{os.path.basename(root_elite_filename)}>, skipping')
-        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error computing AXL 1min ({e})')
+        logger.error(f'Unexpected error in ToP 1min for <{os.path.basename(root_elite_filename)}> ({e}), skipping')
+        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error computing AXL 1min')
     try:
         gps_1m_df = _resample1min_gps(gps_df)
     except Exception as e:
-        logger.error(f'Unexpected error in ToP 1min for <{os.path.basename(root_elite_filename)}>, skipping')
-        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error computing GPS 1min ({e})')
+        logger.error(f'Unexpected error in ToP 1min for <{os.path.basename(root_elite_filename)}> ({e}), skipping')
+        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error computing GPS 1min')
     try:
         top_df = pd.merge(axl_1m_df, gps_1m_df, how='left', on='record_time')
     except Exception as e:
-        logger.error(f'Unexpected error in ToP 1min for <{os.path.basename(root_elite_filename)}>, skipping')
-        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error computing ToP 1min ({e})')
+        logger.error(f'Unexpected error in ToP 1min for <{os.path.basename(root_elite_filename)}> ({e}), skipping')
+        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error computing ToP 1min')
     
     c1 = perf_counter()
     logger.info(f'Participant # {interact_id}: ToP 1min done [{c1-c0:.1f}s]')
 
-    # Store ToPs in DB
-    # FIXME: need to adapt data structure in DDL below
-    # top_df = top_df.reset_index()
-    # top_con = create_engine(f'postgresql://{db_user}@{db_host}/interact_db')
-    # with top_con.begin() as conn:
-    #     try:
-    #         top_df.to_sql(name=target_table1min, schema=target_schema, con=conn, if_exists='append', index=False, chunksize=10000)
-    #     except Exception as e:
-    #         logger.error(f'Unexpected error while storing ToP in DB for <{os.path.basename(root_elite_filename)}>, skipping')
-    #         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error storing ToPs in database ({e})')
+    # Store ToPs in DB after a bit of cleaning
+    top_df = top_df.reset_index(drop=True).rename(columns={'accu': 'accuracy'})
+    top_con = create_engine(f'postgresql://{db_user}@{db_host}/interact_db')
+    with top_con.begin() as conn:
+        try:
+            top_df.to_sql(name=target_table1min, schema=target_schema, con=conn, if_exists='append', index=False, chunksize=10000)
+        except Exception as e:
+            logger.error(f'Unexpected error while storing ToP in DB for <{os.path.basename(root_elite_filename)}> ({e}), skipping')
+            return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error storing ToPs in database')
         
     # Save to disk
-    top_df.insert(0, 'city_id', city_code)
-    top_df.insert(1, 'wave_id', wave)
-    top_df.insert(2, 'epoch_seconds', 60)
     fname_top1min = os.path.join(dst_dir, f'{os.path.basename(root_elite_filename)}_top1min.csv')
     top_df.convert_dtypes().to_csv(fname_top1min, index=False)
 
@@ -281,16 +280,19 @@ def execute_ddl_top(city_code:str, wave:int):
     stmt_ddl_top1min = f"""
         CREATE TABLE IF NOT EXISTS {target_schema}.{target_table1min} (
             interact_id INTEGER,
-            utcdate TIMESTAMP WITH TIME ZONE,
-            count_x INTEGER,
-            count_y INTEGER,
-            count_z INTEGER,
-            count_vm REAL,
+            record_time TIMESTAMP WITH TIME ZONE,
+            x_axis REAL,
+            y_axis REAL,
+            z_axis REAL,
+            accuracy REAL,
+            satellite_time TIMESTAMP WITH TIME ZONE,
+            provider TEXT,
+            speed REAL,
+            bearing REAL,
             lat REAL,
             lon REAL,
             alt REAL,
-            wearing SMALLINT,
-            CONSTRAINT {target_schema}_{target_table1min}_pk PRIMARY KEY (interact_id, utcdate)
+            CONSTRAINT {target_schema}_{target_table1min}_pk PRIMARY KEY (interact_id, record_time)
     )"""
 
     with top_con.begin() as conn:
@@ -625,7 +627,7 @@ def make_windows(min_df: pd.DataFrame, n_steps: int, stride: int):
 
     return np.stack(X_list, axis=0), maps
 
-def train_gpvae_model(src_dir, train_split=.8, ncpu=1) -> GPVAE:
+def train_gpvae_model(src_dir, train_split=.8, ncpu=1, save_model=True) -> (GPVAE, str):
     """ Train a GP-VAE model for accelerometer data imputation at 
     the 1 minute epoch.
     All participants' raw axl files are read, then resampled at 
@@ -634,6 +636,9 @@ def train_gpvae_model(src_dir, train_split=.8, ncpu=1) -> GPVAE:
 
     NB: 1 minute resampled axl data is temporarily stored in directory
     to allow reusing them for imputation.
+    ---
+    Returns a tuple with GPVAE model and pathname (str) to saved model on disk 
+    (or '' if save_model==False)
     """
     # Create tmp dir where resampled 1 min data will be saved for reuse
     tmpdir = os.environ.get('SCRATCH', os.environ.get('TEMP', ''))
@@ -705,16 +710,19 @@ def train_gpvae_model(src_dir, train_split=.8, ncpu=1) -> GPVAE:
 
     # Init GPVAE and train/vaidate model
     c0 = perf_counter()
-    GPVAE_INIT['saving_path'] = tmpdir
     gpvae_mdl = GPVAE(**GPVAE_INIT)
     gpvae_mdl.fit({'X':X_train}, {'X':X_val, 'X_ori': X_val_ori})
-    gpvae_mdl.save(os.path.join(tmpdir, 'gpvae_mdl'), overwrite=True)
+    path2model = ''
+    if save_model:
+        GPVAE_INIT['saving_path'] = tmpdir
+        gpvae_mdl.save(os.path.join(tmpdir, 'gpvae_mdl'), overwrite=True)
+        path2model = os.path.join(tmpdir, 'gpvae_mdl.pypots')
     logger.info(f'GPVAE model training done! {perf_counter() - c0:.1f}s')
 
-    return gpvae_mdl
+    return (gpvae_mdl, path2model)
 
 
-def top_produce_ethica(src_dir, ncpu=1):
+def top_produce_ethica(src_dir, path2mdl, ncpu=1):
     """ Batch process all SenseDoc Elite files, which are a pair of CSV files 
     with raw GPS and AXL data.
     Data is expected to have been validated beforehand and follow
@@ -749,11 +757,11 @@ def top_produce_ethica(src_dir, ncpu=1):
             execute_ddl_top(ccode, wave)
 
             # Create top subfolder
-            top_folder = os.path.join(src_dir, city, f'wave_{wave:02d}', 'sensedoc_top_files')
+            top_folder = os.path.join(src_dir, city, f'wave_{wave:02d}', 'ethica_top_files')
             Path(top_folder).mkdir(parents=True, exist_ok=True)
 
             # Check that city/wave folder exists, which is the case with test data...
-            elite_folder = os.path.join(src_dir, city, f'wave_{wave:02d}', 'sensedoc_elite_files')
+            elite_folder = os.path.join(src_dir, city, f'wave_{wave:02d}', 'ethica_elite_files')
             if not os.path.exists(elite_folder):
                 logger.warning(f'Unable to find elite subfolder <{os.path.relpath(elite_folder, src_dir)}>, skipping')
                 continue
@@ -764,7 +772,7 @@ def top_produce_ethica(src_dir, ncpu=1):
                     root_elite_fname = os.path.abspath(f.path)
                     root_elite_fname = root_elite_fname.removesuffix("_AXL.csv")
                     root_elite_fname = root_elite_fname.removesuffix("_GPS.csv")
-                    wrk_args.add((ccode, wave, root_elite_fname, top_folder, False))
+                    wrk_args.add((ccode, wave, root_elite_fname, top_folder, path2mdl, False))
                                     
     # Multiprocessing run
     c0 = perf_counter()
@@ -811,33 +819,9 @@ if __name__ == '__main__':
 
     ncpu = int(os.environ.get('SLURM_CPUS_PER_TASK',default=1))
     c0 = perf_counter()
-    m = train_gpvae_model(root_data_folder, ncpu=ncpu)
+    m, pth = train_gpvae_model(root_data_folder, ncpu=ncpu)
     print(f'Model trained {perf_counter() - c0:.2f}')
 
-    # # Test impute
-    # c0 = perf_counter()
-    # wave = 1
-    # interact_id = 401998921
-    # test_file = r'data\interact_test_data\montreal\wave_01\ethica_elite_files\401998921_AXL.csv'
-    # tgt_dir = os.path.join(os.environ.get('TEMP', ''), 'axl1min')
-    # axlfile = os.path.join(tgt_dir, f'axl1min_{wave}_{interact_id}.feather')
-    # axl1min = pd.read_feather(axlfile)
-    # axl1min_impute = _wrapper_impute1min_axl(m, wave, interact_id, test_file, tgt_dir)
-    # print(f'Imputed data {perf_counter() - c0:.2f}')
-    # print(axl1min)
-    # print(axl1min_impute)
-    # axl1min_impute.info()
+    # Multi ToP
+    top_produce_ethica(root_data_folder, pth, ncpu)
 
-    # # Test GPS
-    # test_file = r'data\interact_test_data\montreal\wave_01\ethica_elite_files\401998921_GPS.csv'
-    # gps_df = _load_clean_gps(test_file)
-    # print(gps_df.sort_values('record_time'))
-    # gps_df.info()
-    # gps_df = _resample1min_gps(gps_df)
-    # print(gps_df.sort_values('record_time'))
-    # gps_df.info()
-
-    # Test ToP
-    execute_ddl_top('mtl', 1)
-    single_top_produce('mtl', 1, r'data\interact_test_data\montreal\wave_01\ethica_elite_files\401998921',
-                       r'data\interact_test_data\montreal\wave_01\ethica_top_files', m)
