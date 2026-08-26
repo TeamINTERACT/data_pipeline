@@ -801,15 +801,10 @@ def top_produce_ethica(src_dir, path2mdl, ncpu=1):
     c0 = perf_counter()
     if ncpu > 1: # Switch to multiprocessing if more than 1 CPU
         logger.info(f'Multiprocessing with {ncpu} cores')
-        bak_force_cpu = os.environ.pop("FORCE_CPU", None) 
-        os.environ["FORCE_CPU"] = "1"
         ctx = mp.get_context('spawn') # required for CUDA processes
         with ctx.Pool(processes=ncpu, maxtasksperchild=1) as pool:
             results = pool.starmap_async(single_top_produce, wrk_args)
             result_df = pd.DataFrame([r for r in results.get()], columns=['City', 'Wave', 'Filename', 'Status', 'Details']).convert_dtypes()
-        # Restore env variable
-        if bak_force_cpu is not None:
-            os.environ["FORCE_CPU"] = bak_force_cpu
     else:
         # Single thread processing (for debug only)
         results = starmap(single_top_produce, wrk_args)
