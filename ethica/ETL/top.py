@@ -63,12 +63,13 @@ finally:
 
 # create module logger
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
 formatter = logging.Formatter(fmt='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%m/%d/%Y %H:%M:%S')
 ch.setFormatter(formatter)
 logger.addHandler(ch)
+# set logger level
+logger.setLevel(logging.INFO)
 
 
 # Define city_id and wave_id
@@ -224,6 +225,10 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
     os.makedirs(tmpdir, exist_ok=True)
 
     c0 = perf_counter()
+    # DEBUG
+    print(GPVAE_INIT)
+    return
+    # END DEBUG
     try:
         gpvae_mdl = GPVAE(**GPVAE_INIT)
         gpvae_mdl.load(path2mdl)
@@ -627,7 +632,7 @@ def make_windows(min_df: pd.DataFrame, n_steps: int, stride: int):
 
     return np.stack(X_list, axis=0), maps
 
-def train_gpvae_model(src_dir, train_split=.8, ncpu=1, save_model=True) -> (GPVAE, str):
+def train_gpvae_model(src_dir, train_split=.8, ncpu=1, force_training=True, save_model=True) -> (GPVAE, str):
     """ Train a GP-VAE model for accelerometer data imputation at 
     the 1 minute epoch.
     All participants' raw axl files are read, then resampled at 
@@ -636,6 +641,14 @@ def train_gpvae_model(src_dir, train_split=.8, ncpu=1, save_model=True) -> (GPVA
 
     NB: 1 minute resampled axl data is temporarily stored in directory
     to allow reusing them for imputation.
+
+    Parameters:
+    -----------
+    src_dir: path to data folder with the proper city/wave folder hierarchy
+    train_split: proportion of data used for training vs validation, 
+    ncpu: number of CPUs to use for data preparation and loading, 
+    force_training: flag to force training, and discard any existing pretrained model, 
+    save_model: flag to save model to disk
     ---
     Returns a tuple with GPVAE model and pathname (str) to saved model on disk 
     (or '' if save_model==False)
@@ -644,6 +657,14 @@ def train_gpvae_model(src_dir, train_split=.8, ncpu=1, save_model=True) -> (GPVA
     tmpdir = os.environ.get('SCRATCH', os.environ.get('TEMP', ''))
     tmpdir = os.path.join(tmpdir, 'axl1min')
     os.makedirs(tmpdir, exist_ok=True)
+
+    # Check if pretrained model exists
+    path2model = os.path.join(tmpdir, 'gpvae_mdl.pypots')
+    if os.path.exists(path2model) and not force_training:
+        logger.info('Found existing pretrained model, loading it')
+        gpvae_mdl = GPVAE(**GPVAE_INIT)
+        gpvae_mdl.load(path2model)
+        return (gpvae_mdl, path2model)
 
     # Store pool worker arguments in list of tuples
     # Arg = (wave, interact_id, axl_filename, target_dir) / see _wrapper_make1min_axl
@@ -702,6 +723,9 @@ def train_gpvae_model(src_dir, train_split=.8, ncpu=1, save_model=True) -> (GPVA
 
     X_train, _ = make_windows(train_df, n_steps=N_STEPS, stride=STRIDE)
     X_val_ori, _ = make_windows(val_df,   n_steps=N_STEPS, stride=STRIDE)
+
+    # Report some stats about N training records
+    logger.info(f'Training dataset: {len(train_df.index)} records over {len(train_ids)} unique PIDs')
 
     # GPVAE requires validation set with ground truth + missing data
     # we use pygrinder.mcar to generate randomly missing data
@@ -778,9 +802,15 @@ def top_produce_ethica(src_dir, path2mdl, ncpu=1):
     c0 = perf_counter()
     if ncpu > 1: # Switch to multiprocessing if more than 1 CPU
         logger.info(f'Multiprocessing with {ncpu} cores')
+        bak_force_cpu = os.environ.pop("FORCE_CPU", None) 
+        os.environ["FORCE_CPU"] = "1"
+        GPVAE_INIT['DEVICE'] = _pick_device()
         with mp.Pool(processes=ncpu, maxtasksperchild=1) as pool:
-            results = pool.starmap_async(single_top_produce, wrk_args)
+            results = pool.starmap_async(single_top_produce, list(wrk_args)[:3])
             result_df = pd.DataFrame([r for r in results.get()], columns=['City', 'Wave', 'Filename', 'Status', 'Details']).convert_dtypes()
+        # Restore env variable
+        if bak_force_cpu is not None:
+            os.environ["FORCE_CPU"] = bak_force_cpu
     else:
         # Single thread processing (for debug only)
         results = starmap(single_top_produce, wrk_args)
@@ -808,9 +838,22 @@ if __name__ == '__main__':
         logger.error(f'No directory <{root_data_folder}> found! Aborting')
         exit(1)
 
-    # Get wave id to process
+    # Get flag for training
+    force_training = True
     if len(sys.argv[2:]):
-        wave_id = int(sys.argv[2])
+        try:
+            force_training = bool(sys.argv[2])
+            if force_training:
+                logger.info('Model will be trained from scratch')
+            else:
+                logger.info('Any pretrained model will be used if found on disk')
+        except:
+            print(f'Warning: Unable to decode arg {sys.argv[2]}, model will be trained from scratch')
+            force_training = True
+
+    # Get wave id to process
+    if len(sys.argv[3:]):
+        wave_id = int(sys.argv[3])
         if wave_id not in waves:
             logging.error(f'Invalid wave id <{wave_id}>! Aborting')
             exit(1)
@@ -819,7 +862,7 @@ if __name__ == '__main__':
 
     ncpu = int(os.environ.get('SLURM_CPUS_PER_TASK',default=1))
     c0 = perf_counter()
-    m, pth = train_gpvae_model(root_data_folder, ncpu=ncpu)
+    m, pth = train_gpvae_model(root_data_folder, ncpu=ncpu, force_training=force_training)
     print(f'Model trained {perf_counter() - c0:.2f}')
 
     # Multi ToP

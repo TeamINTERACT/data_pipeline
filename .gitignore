@@ -5,6 +5,7 @@ tmp/
 cache/
 .env
 .vscode
+*.whl
 
 # other CC stuff
 def-dfuller.code-workspace
