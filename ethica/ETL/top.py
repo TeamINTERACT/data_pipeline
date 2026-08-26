@@ -224,11 +224,10 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
     tmpdir = os.path.join(tmpdir, 'axl1min')
     os.makedirs(tmpdir, exist_ok=True)
 
+    # Define device to use for Torch (this may be changed in the parent process by setting the FORCE_CPU env variable)
+    GPVAE_INIT['device'] = _pick_device()
+
     c0 = perf_counter()
-    # DEBUG
-    print(GPVAE_INIT)
-    return
-    # END DEBUG
     try:
         gpvae_mdl = GPVAE(**GPVAE_INIT)
         gpvae_mdl.load(path2mdl)
@@ -804,9 +803,9 @@ def top_produce_ethica(src_dir, path2mdl, ncpu=1):
         logger.info(f'Multiprocessing with {ncpu} cores')
         bak_force_cpu = os.environ.pop("FORCE_CPU", None) 
         os.environ["FORCE_CPU"] = "1"
-        GPVAE_INIT['DEVICE'] = _pick_device()
-        with mp.Pool(processes=ncpu, maxtasksperchild=1) as pool:
-            results = pool.starmap_async(single_top_produce, list(wrk_args)[:3])
+        ctx = mp.get_context('spawn') # required for CUDA processes
+        with ctx.Pool(processes=ncpu, maxtasksperchild=1) as pool:
+            results = pool.starmap_async(single_top_produce, wrk_args)
             result_df = pd.DataFrame([r for r in results.get()], columns=['City', 'Wave', 'Filename', 'Status', 'Details']).convert_dtypes()
         # Restore env variable
         if bak_force_cpu is not None:
@@ -842,7 +841,7 @@ if __name__ == '__main__':
     force_training = True
     if len(sys.argv[2:]):
         try:
-            force_training = bool(sys.argv[2])
+            force_training = sys.argv[2] not in ['0', 'False', 'false']
             if force_training:
                 logger.info('Model will be trained from scratch')
             else:
