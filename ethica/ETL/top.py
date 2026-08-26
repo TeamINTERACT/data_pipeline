@@ -196,9 +196,11 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
     # Build complete fileanmes to GPS & AXL elite files
     # TODO: check with Dan if we want to process participants with only AXL or GPS 
     gps_fname = f'{root_elite_filename}_GPS.csv'
+    has_gps = True
     if not os.path.exists(gps_fname):
-        logger.warning(f'Unable to find GPS elite file {os.path.basename(gps_fname)}, skipping')
-        return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Missing file ({os.path.basename(gps_fname)})')
+        logger.warning(f'Unable to find GPS elite file {os.path.basename(gps_fname)}, partial processing')
+        has_gps = False
+        #return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Missing file ({os.path.basename(gps_fname)})')
     axl_fname = f'{root_elite_filename}_AXL.csv'
     if not os.path.exists(axl_fname):
         logger.warning(f'Unable to find AXL elite file {os.path.basename(axl_fname)}, skipping')
@@ -206,12 +208,15 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
     
     # Load and clean data
     try:
-        gps_df = _load_clean_gps(gps_fname)
+        if has_gps:
+            gps_df = _load_clean_gps(gps_fname)
+        else:
+            gps_df = pd.DataFrame(columns = ['record_time','accu','satellite_time','provider', 'speed', 'bearing','lat','lon','alt'])
     except Exception as e:
         logger.error(f'Unable to load GPS data from {os.path.basename(gps_fname)} ({e}), skipping')
         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error loading GPS')
-    if gps_df.empty:
-        logger.error(f'No GPS data in {os.path.basename(gps_fname)}, skipping')
+    if gps_df.empty and has_gps:
+        logger.warning(f'No GPS data in {os.path.basename(gps_fname)}, partial processing')
         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Empty GPS file')
 
     # Process 1min epoch
@@ -237,7 +242,10 @@ def single_top_produce(city_code:str, wave:int, root_elite_filename:str, dst_dir
         logger.error(f'Unexpected error in ToP 1min for <{os.path.basename(root_elite_filename)}> ({e}), skipping')
         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error computing AXL 1min')
     try:
-        gps_1m_df = _resample1min_gps(gps_df)
+        if has_gps:
+            gps_1m_df = _resample1min_gps(gps_df)
+        else:
+            gps_1m_df = gps_df
     except Exception as e:
         logger.error(f'Unexpected error in ToP 1min for <{os.path.basename(root_elite_filename)}> ({e}), skipping')
         return (city_code, wave, os.path.basename(root_elite_filename), 0, f'Error computing GPS 1min')
@@ -801,15 +809,10 @@ def top_produce_ethica(src_dir, path2mdl, ncpu=1):
     c0 = perf_counter()
     if ncpu > 1: # Switch to multiprocessing if more than 1 CPU
         logger.info(f'Multiprocessing with {ncpu} cores')
-        bak_force_cpu = os.environ.pop("FORCE_CPU", None) 
-        os.environ["FORCE_CPU"] = "1"
         ctx = mp.get_context('spawn') # required for CUDA processes
         with ctx.Pool(processes=ncpu, maxtasksperchild=1) as pool:
             results = pool.starmap_async(single_top_produce, wrk_args)
             result_df = pd.DataFrame([r for r in results.get()], columns=['City', 'Wave', 'Filename', 'Status', 'Details']).convert_dtypes()
-        # Restore env variable
-        if bak_force_cpu is not None:
-            os.environ["FORCE_CPU"] = bak_force_cpu
     else:
         # Single thread processing (for debug only)
         results = starmap(single_top_produce, wrk_args)
